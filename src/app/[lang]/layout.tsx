@@ -2,7 +2,7 @@ import React from 'react';
 import { Manrope } from 'next/font/google';
 
 import 'app/[lang]/globals.css';
-import { Menu } from 'components/menu';
+import { Menu } from '../../ui/menu/menu';
 import { getDictionary } from '../../i18n/get-dictionary';
 import { Locale } from '../../utils/types';
 

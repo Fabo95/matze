@@ -3,9 +3,11 @@ import { ReactNode } from 'react';
 export const Row = ({
   classNames: propsClassNames,
   children,
+  onClick,
 }: {
   classNames?: string;
   children: ReactNode;
+  onClick?: () => void;
 }) => {
   const defaultClassnames = 'flex flex-row';
 
@@ -13,5 +15,9 @@ export const Row = ({
     ? `${defaultClassnames} ${propsClassNames}`
     : defaultClassnames;
 
-  return <div className={classNames}>{children}</div>;
+  return (
+    <div className={classNames} onClick={onClick}>
+      {children}
+    </div>
+  );
 };
