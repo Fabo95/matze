@@ -1,0 +1,46 @@
+{
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "sort-keys-fix",
+    "react-hooks",
+    "prettier"
+  ],
+  "rules": {
+    "no-underscore-dangle": [
+      "error",
+      { "allow": ["_partNative", "_partContent"] }
+    ],
+    // Needed for checking order of component props.
+    "react/jsx-sort-props": [
+      "warn",
+      { "callbacksLast": true, "shorthandFirst": true }
+    ],
+    // Needed for checking order of object props.
+    "sort-keys-fix/sort-keys-fix": "warn",
+    "prettier/prettier": "warn",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "import/no-default-export": "off",
+    "import/prefer-default-export": "off",
+    "react/function-component-definition": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-filename-extension": "off",
+    "react/display-name": "off",
+    "react/require-default-props": "off"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}

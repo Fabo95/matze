@@ -1,0 +1,170 @@
+[
+  {
+    "paletteName": "black",
+    "swatches": [
+      {
+        "name": "black-900",
+        "color": "050505"
+      },
+      {
+        "name": "black-800",
+        "color": "1E1E1E"
+      },
+      {
+        "name": "black-700",
+        "color": "333333"
+      },
+      {
+        "name": "black-600",
+        "color": "474747"
+      },
+      {
+        "name": "black-500",
+        "color": "636363"
+      },
+      {
+        "name": "black-400",
+        "color": "7F7F7F"
+      },
+      {
+        "name": "black-300",
+        "color": "9A9A9A"
+      },
+      {
+        "name": "black-200",
+        "color": "B4B4B4"
+      },
+      {
+        "name": "black-100",
+        "color": "DCDCDC"
+      }
+    ]
+  },
+  {
+    "paletteName": "blue",
+    "swatches": [
+      {
+        "name": "blue-900",
+        "color": "001D2D"
+      },
+      {
+        "name": "blue-800",
+        "color": "023149"
+      },
+      {
+        "name": "blue-700",
+        "color": "084261"
+      },
+      {
+        "name": "blue-600",
+        "color": "165678"
+      },
+      {
+        "name": "blue-500",
+        "color": "2B6A8B"
+      },
+      {
+        "name": "blue-400",
+        "color": "4887A8"
+      },
+      {
+        "name": "blue-300",
+        "color": "72AAC8"
+      },
+      {
+        "name": "blue-200",
+        "color": "B0D4E7"
+      },
+      {
+        "name": "blue-100",
+        "color": "F3FAFE"
+      }
+    ]
+  },
+
+  {
+    "paletteName": "red",
+    "swatches": [
+      {
+        "name": "red-900",
+        "color": "180404"
+      },
+      {
+        "name": "red-800",
+        "color": "3C0A0A"
+      },
+      {
+        "name": "red-700",
+        "color": "5C1010"
+      },
+      {
+        "name": "red-600",
+        "color": "791717"
+      },
+      {
+        "name": "red-500",
+        "color": "952727"
+      },
+      {
+        "name": "red-400",
+        "color": "AF3E3E"
+      },
+      {
+        "name": "red-300",
+        "color": "BE5A5A"
+      },
+      {
+        "name": "red-200",
+        "color": "D68282"
+      },
+      {
+        "name": "red-100",
+        "color": "F5C4C4"
+      }
+    ]
+  },
+
+  {
+    "paletteName": "yellow",
+    "swatches": [
+      {
+        "name": "yellow-900",
+        "color": "1E1607"
+      },
+      {
+        "name": "yellow-800",
+        "color": "564116"
+      },
+      {
+        "name": "yellow-700",
+        "color": "9D762A"
+      },
+      {
+        "name": "yellow-600",
+        "color": "C8973A"
+      },
+      {
+        "name": "yellow-500",
+        "color": "FCBF49"
+      },
+      {
+        "name": "yellow-400",
+        "color": "FFCD6D"
+      },
+      {
+        "name": "yellow-300",
+        "color": "FFDB96"
+      },
+      {
+        "name": "yellow-200",
+        "color": "FFE5B2"
+      },
+      {
+        "name": "yellow-100",
+        "color": "FFF8E9"
+      }
+    ]
+  }
+
+]
+

@@ -1,0 +1,16 @@
+{
+  "pages": {
+    "home": {
+      "headline": "Interval Timer"
+    },
+    "settings": {
+      "headline": "Einstellungen"
+    },
+    "history": {
+      "headline": "Histories"
+    },
+    "statistics": {
+      "headline": "Statistiken"
+    }
+  }
+}
