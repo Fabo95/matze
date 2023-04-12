@@ -1,16 +1,16 @@
 import { ReactNode } from 'react';
 
 export const Heading = ({
-  classNames: propsClassNames,
+  className: propsClassName,
   children,
 }: {
-  classNames?: string;
+  className?: string;
   children: ReactNode;
 }) => {
   const defaultClassnames = 'text-inherit text-2xl font-semibold';
 
-  const classNames = propsClassNames
-    ? `${defaultClassnames} ${propsClassNames}`
+  const classNames = propsClassName
+    ? `${defaultClassnames} ${propsClassName}`
     : defaultClassnames;
 
   return <h1 className={classNames}>{children}</h1>;

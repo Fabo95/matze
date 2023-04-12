@@ -1,18 +1,18 @@
 import { ReactNode } from 'react';
 
 export const UnstyledButton = ({
-  classNames: propsClassNames,
+  className: propsClassName,
   children,
   onClick,
 }: {
-  classNames?: string;
+  className?: string;
   children: ReactNode;
   onClick?: () => void;
 }) => {
   const defaultClassnames = 'inline-block max-w-max';
 
-  const classNames = propsClassNames
-    ? `${defaultClassnames} ${propsClassNames}`
+  const classNames = propsClassName
+    ? `${defaultClassnames} ${propsClassName}`
     : defaultClassnames;
 
   return (

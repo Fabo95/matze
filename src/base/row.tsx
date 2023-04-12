@@ -1,18 +1,18 @@
 import { ReactNode } from 'react';
 
 export const Row = ({
-  classNames: propsClassNames,
+  className: propsClassName,
   children,
   onClick,
 }: {
-  classNames?: string;
-  children: ReactNode;
+  className?: string;
+  children?: ReactNode;
   onClick?: () => void;
 }) => {
   const defaultClassnames = 'flex flex-row';
 
-  const classNames = propsClassNames
-    ? `${defaultClassnames} ${propsClassNames}`
+  const classNames = propsClassName
+    ? `${defaultClassnames} ${propsClassName}`
     : defaultClassnames;
 
   return (

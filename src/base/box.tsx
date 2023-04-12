@@ -1,22 +1,22 @@
 import { ReactNode } from 'react';
 
 export const Box = ({
-  classNames: propsClassNames,
+  className: propsClassName,
   children,
   onClick,
 }: {
-  classNames?: string;
-  children: ReactNode;
+  className?: string;
+  children?: ReactNode;
   onClick?: () => void;
 }) => {
   const defaultClassnames = 'flex flex-col';
 
-  const classNames = propsClassNames
-    ? `${defaultClassnames} ${propsClassNames}`
+  const classNames = propsClassName
+    ? `${defaultClassnames} ${propsClassName}`
     : defaultClassnames;
 
   return (
-    <div onClick={onClick} className={classNames}>
+    <div className={classNames} onClick={onClick}>
       {children}
     </div>
   );

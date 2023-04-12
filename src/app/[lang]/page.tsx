@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { getDictionary } from 'i18n/get-dictionary';
+import { getTFunction } from 'i18n/get-t-function';
 import { Locale } from 'utils/types';
 
 export default async function Home({
@@ -8,13 +8,7 @@ export default async function Home({
 }: {
   params: { lang: Locale };
 }) {
-  const t = await getDictionary(lang);
+  const t = await getTFunction(lang);
 
-  return (
-    <>
-      <h1 className="text-blue-9 font-sans">Hello, Next.js!</h1>
-
-      <Link href="hallo">{t('pages.home.headline')}</Link>
-    </>
-  );
+  return <></>;
 }

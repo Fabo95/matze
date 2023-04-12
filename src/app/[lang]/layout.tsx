@@ -2,12 +2,11 @@ import React from 'react';
 import { Manrope } from 'next/font/google';
 
 import 'app/[lang]/globals.css';
-import { Menu } from '../../ui/menu/menu';
-import { getDictionary } from '../../i18n/get-dictionary';
-import { Locale } from '../../utils/types';
+import { Menu } from 'ui/menu/menu';
+import { getTFunction } from 'i18n/get-t-function';
+import { Locale } from 'utils/types';
 
 const manrope = Manrope({
-  display: 'swap',
   subsets: ['latin'],
   variable: '--font-manrope',
 });
@@ -24,7 +23,7 @@ const RootLayout = async ({
   children: React.ReactNode;
   params: { [key: string]: Locale };
 }) => {
-  const t = await getDictionary(lang);
+  const t = await getTFunction(lang);
 
   // --- HELPERS ---
 
@@ -32,7 +31,7 @@ const RootLayout = async ({
 
   return (
     <html className={manrope.variable} lang={lang}>
-      <body className="p-4 text-black-900 min-h-screen box-border">
+      <body className="box-border p-4 tracking-wide text-black-900">
         <Menu headline={t(`pages.home.headline`)} />
 
         {children}

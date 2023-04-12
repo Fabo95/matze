@@ -17,5 +17,5 @@ export const getNestedObjectValue = (
     return getNestedObjectValue(obj[first], rest);
   }
 
-  throw new Error('Invalid keys provided');
+  return 'wrong key';
 };
