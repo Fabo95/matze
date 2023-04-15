@@ -3,6 +3,15 @@ export enum Locale {
   EN = 'en',
 }
 
+export enum Page {
+  HOME = 'home',
+  HISTORY = 'history',
+  SETTINGS = 'settings',
+  STATISTICS = 'statistics',
+}
+
+export type TFunction = (translationKeys: string) => string;
+
 export type ValueOf<T> = T[keyof T];
 
 /**

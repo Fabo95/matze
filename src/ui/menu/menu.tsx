@@ -2,17 +2,26 @@
 
 import { useBoolean } from 'utils/hooks';
 import { MenuBackgroundBlur } from 'ui/menu/components/menuBackgroundBlur';
-import { MenuSlidingPane } from 'ui/menu/components/menuSlidingPane';
+import { MenuSlidingPane } from 'ui/menu/components/menuSlidingPane/menuSlidingPane';
 import { MenuHeader } from 'ui/menu/components/menuHeader';
+import { Page } from 'utils/types';
 
-export const Menu = ({ headline }: { headline: string }) => {
+export const Menu = ({
+  headline,
+  menuOptions,
+}: {
+  headline: string;
+  menuOptions: { translation: string; page: Page }[];
+}) => {
+  // --- STATE ---
+
   const {
     toggle: toggleMenu,
     value: isOpen,
     setFalse: closeMenu,
   } = useBoolean(false);
 
-  // --- CALLBACKS ---
+  // --- RENDER ---
 
   return (
     <>
@@ -20,7 +29,11 @@ export const Menu = ({ headline }: { headline: string }) => {
 
       <MenuBackgroundBlur handleUnblur={closeMenu} isBlurred={isOpen} />
 
-      <MenuSlidingPane headline={headline} isOpen={isOpen} />
+      <MenuSlidingPane
+        headline={headline}
+        isOpen={isOpen}
+        menuOptions={menuOptions}
+      />
     </>
   );
 };

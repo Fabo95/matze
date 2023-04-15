@@ -1,16 +1,21 @@
 {
   "pages": {
     "home": {
-      "headline": "Interval Timer"
+      "headline": "Interval Timer",
+      "menuOption": "Timer"
     },
     "settings": {
-      "headline": "Einstellungen"
+      "headline": "Einstellungen",
+      "menuOption": "Einstellungen"
     },
     "history": {
-      "headline": "Histories"
+      "headline": "Histories",
+      "menuOption": "Histories"
     },
     "statistics": {
-      "headline": "Statistiken"
+      "headline": "Statistiken",
+      "menuOption": "Statistiken"
+
     }
   }
 }

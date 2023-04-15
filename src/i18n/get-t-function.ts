@@ -11,8 +11,8 @@ const LOCALE_TO_DICTIONARY_MAP = {
 export const getTFunction = async (locale: Locale) => {
   const dictionary = await LOCALE_TO_DICTIONARY_MAP[locale]?.();
 
-  return (translationKeys: string): string => {
-    const properties = translationKeys.split('.');
+  return (translationKey: string): string => {
+    const properties = translationKey.split('.');
 
     return getNestedObjectValue(dictionary, properties);
   };

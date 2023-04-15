@@ -4,7 +4,7 @@ import { Manrope } from 'next/font/google';
 import 'app/[lang]/globals.css';
 import { Menu } from 'ui/menu/menu';
 import { getTFunction } from 'i18n/get-t-function';
-import { Locale } from 'utils/types';
+import { Locale, Page } from 'utils/types';
 
 const manrope = Manrope({
   subsets: ['latin'],
@@ -27,13 +27,19 @@ const RootLayout = async ({
 
   // --- HELPERS ---
 
+  const menuOptions = [
+    { translation: t('pages.home.menuOption'), page: Page.HOME },
+    { translation: t('pages.settings.menuOption'), page: Page.SETTINGS },
+    { translation: t('pages.history.menuOption'), page: Page.HISTORY },
+    { translation: t('pages.statistics.menuOption'), page: Page.STATISTICS },
+  ];
+
   // --- RENDER ---
 
   return (
     <html className={manrope.variable} lang={lang}>
       <body className="box-border p-4 tracking-wide text-black-900">
-        <Menu headline={t(`pages.home.headline`)} />
-
+        <Menu headline={t(`pages.home.headline`)} menuOptions={menuOptions} />
         {children}
       </body>
     </html>

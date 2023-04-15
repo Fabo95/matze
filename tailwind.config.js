@@ -25,9 +25,11 @@ module.exports = {
         light: '#E6B4A5',
       },
       red: {
-        from: '#F01151',
-        to: '#FD6854',
-        via: '#F53e52',
+        'op-33': '#F0115133',
+        'op-5': '#F011510D',
+        primary: '#F01151',
+        secondary: '#F53e52',
+        tertiary: '#FD6854',
       },
       turquoise: {
         dark: '#4CB0AA',
