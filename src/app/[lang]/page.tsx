@@ -8,5 +8,9 @@ export default async function Home({
 }) {
   const t = await getTFunction(lang);
 
-  return <>home</>;
+  const res = await fetch('http://localhost:3002/testi');
+
+  console.log('res', res);
+
+  return String(res.body);
 }
