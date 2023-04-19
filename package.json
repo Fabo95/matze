@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node src/server/expressServer.js",
+    "dev": "nodemon src/server/expressServer.js",
     "build": "next build",
     "start": "NODE_ENV=production node src/server/expressServer.js",
     "lint": "next lint"

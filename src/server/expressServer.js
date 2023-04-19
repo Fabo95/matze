@@ -6,18 +6,42 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev, hostname: 'localhost', port: 3002 });
 const handle = app.getRequestHandler();
 
+const users = [{ name: 'fabian' }, { name: 'kerstin' }, { name: 'matze ' }];
+
+const posts = [{ title: 'My first title' }, { title: 'My last title' }];
+
 app.prepare().then(() => {
   const server = express();
 
-  server.use(express.static('public'));
-  server.use(express.json());
   server.use(express.urlencoded({ extended: false }));
 
-  server.use(bodyParser.json());
+  // route parameter get method route.
+  server.get('/users/:name', (req, res) => {
+    const { name } = req.params;
 
-  // add custom path here
-  server.get('/testi', (req, res) => {
-    return res.send('123');
+    const user = users.find((currentUser) => currentUser.name === name);
+
+    if (user) {
+      res.status(200).send(user);
+    } else {
+      res.status(404).send('Not found.');
+    }
+  });
+
+  // query param get method route.
+  server.get('/posts', (req, res) => {
+    const { title } = req.query;
+
+    if (title) {
+      const post = posts.find((currentPost) => currentPost.title === title);
+      if (post) {
+        return res.status(200).send(post);
+      } else {
+        return res.status(404).send('Not found.');
+      }
+    }
+
+    return res.status(200).send(posts);
   });
 
   // next js speicifc to handle all incomming requests with requestHandler.

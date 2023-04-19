@@ -1,10 +1,10 @@
 import { useParams } from 'next/navigation';
+import { useState } from 'react';
 
 import { Box } from 'base/box';
 import { MenuSlidingPaneOption } from 'ui/menu/components/menuSlidingPane/components/menuSlidingPaneOption';
 import { Page } from 'utils/types';
 import { MenuSlidingPaneHeader } from 'ui/menu/components/menuSlidingPane/components/menuSlidingPaneHeader';
-import { useEffect, useState } from 'react';
 
 export const MenuSlidingPane = ({
   isOpen,
@@ -16,19 +16,6 @@ export const MenuSlidingPane = ({
   menuOptions: { translation: string; page: Page }[];
 }) => {
   // --- STATE ---
-  const [state, setState] = useState<any>();
-
-  useEffect(() => {
-    const test = async () => {
-      const res = await fetch('http://localhost:3002/testi');
-
-      setState(res.json());
-    };
-
-    test();
-  }, []);
-
-  console.log('test', state);
 
   const [currentPage, setCurrentPage] = useState(Page.HOME);
 
