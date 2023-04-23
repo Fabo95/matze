@@ -9,6 +9,7 @@ import { Locale, Page } from 'utils/types';
 const manrope = Manrope({
   subsets: ['latin'],
   variable: '--font-manrope',
+  display: 'swap',
 });
 
 export const metadata = {

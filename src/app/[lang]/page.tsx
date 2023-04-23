@@ -8,9 +8,5 @@ export default async function Home({
 }) {
   const t = await getTFunction(lang);
 
-  const res = await fetch('http://localhost:3002/testi');
-
-  console.log('res', res);
-
-  return String(res.body);
+  return t('pages.home.menuOption');
 }
