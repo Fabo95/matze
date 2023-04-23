@@ -23,7 +23,8 @@ router.post('/', async (req, res) => {
   try {
     await db.promise().query(
       `
-     INSERT INTO INTERVALS VALUES ('${userId}', '${workTime}', '${restTime}','${exerciseCount}','${roundCount}','${roundResetTime}') `
+        INSERT INTO INTERVALS 
+        VALUES ('${userId}', '${workTime}', '${restTime}','${exerciseCount}','${roundCount}','${roundResetTime}') `
     );
     res.send(200);
   } catch (error) {
