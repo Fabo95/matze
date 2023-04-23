@@ -5,6 +5,7 @@ import { MenuBackgroundBlur } from 'ui/menu/components/menuBackgroundBlur';
 import { MenuSlidingPane } from 'ui/menu/components/menuSlidingPane/menuSlidingPane';
 import { MenuHeader } from 'ui/menu/components/menuHeader';
 import { Page } from 'utils/types';
+import { Box } from 'base/box';
 
 export const Menu = ({
   headline,
@@ -24,7 +25,7 @@ export const Menu = ({
   // --- RENDER ---
 
   return (
-    <>
+    <Box className="p-4">
       <MenuHeader headline={headline} toggleMenu={toggleMenu} />
 
       <MenuBackgroundBlur handleUnblur={closeMenu} isBlurred={isOpen} />
@@ -34,6 +35,6 @@ export const Menu = ({
         isOpen={isOpen}
         menuOptions={menuOptions}
       />
-    </>
+    </Box>
   );
 };

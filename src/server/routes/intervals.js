@@ -33,14 +33,8 @@ router.post('/', async (req, res) => {
 });
 
 router.patch('/', async (req, res) => {
-  const {
-    userId,
-    workTime,
-    restTime,
-    exerciseCount,
-    roundCount,
-    roundResetTime,
-  } = req.body;
+  const { workTime, restTime, exerciseCount, roundCount, roundResetTime } =
+    req.body;
 
   try {
     await db.promise().query(
@@ -51,7 +45,7 @@ router.patch('/', async (req, res) => {
             exercise_count = COALESCE(${exerciseCount}, exercise_count),
             round_count = COALESCE(${roundCount}, round_count),
             round_reset_time = COALESCE(${roundResetTime}, round_reset_time)
-        WHERE user_id = ${userId}
+        WHERE user_id = ${32}
 `
     );
     res.send(200);

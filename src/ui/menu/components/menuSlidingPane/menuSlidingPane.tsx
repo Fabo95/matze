@@ -1,5 +1,5 @@
 import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Box } from 'base/box';
 import { MenuSlidingPaneOption } from 'ui/menu/components/menuSlidingPane/components/menuSlidingPaneOption';
@@ -19,27 +19,7 @@ export const MenuSlidingPane = ({
 
   const [currentPage, setCurrentPage] = useState(Page.HOME);
 
-  const [data, setData] = useState<any>('');
-
   const params = useParams();
-
-  useEffect(() => {
-    const test = async () => {
-      const test1 = await fetch('http://localhost:8080/intervals', {
-        // If the requests come from another origin we need this to set the cookies correctly.
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }).then((res) => res.json());
-
-      setData(test1);
-    };
-
-    test();
-  }, []);
-
-  console.log('RESULT', data);
 
   // --- CALLBACKS ---
 

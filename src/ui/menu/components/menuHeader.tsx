@@ -11,12 +11,12 @@ export const MenuHeader = ({
   toggleMenu: () => void;
   headline: string;
 }) => (
-  <Row className="justify-between">
+  <Row className="items-center justify-between">
     <UnstyledButton onClick={toggleMenu}>
-      <HamburgerIcon />
+      <HamburgerIcon className="stroke-white-full" />
     </UnstyledButton>
 
-    <Text className="font-semibold">{headline}</Text>
+    <Text className="text-xl font-semibold">{headline}</Text>
 
     <Box>Google Login</Box>
   </Row>

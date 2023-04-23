@@ -7,9 +7,10 @@ import { getTFunction } from 'i18n/get-t-function';
 import { Locale, Page } from 'utils/types';
 
 const manrope = Manrope({
+  display: 'swap',
+  style: ['normal'],
   subsets: ['latin'],
   variable: '--font-manrope',
-  display: 'swap',
 });
 
 export const metadata = {
@@ -39,7 +40,7 @@ const RootLayout = async ({
 
   return (
     <html className={manrope.variable} lang={lang}>
-      <body className="box-border p-4 tracking-wide text-black-900">
+      <body className="box-border h-screen bg-gradient-to-tl from-red-primary via-red-secondary to-red-tertiary tracking-wide text-white-full">
         <Menu headline={t(`pages.home.headline`)} menuOptions={menuOptions} />
         {children}
       </body>

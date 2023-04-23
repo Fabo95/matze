@@ -1,17 +1,17 @@
 export const HamburgerIcon = ({
-  classNames: propsClassNames,
+  className: propsClassName,
 }: {
-  classNames?: string;
+  className?: string;
 }) => {
   const defaultClassnames = 'w-9 stroke-black-900';
 
-  const classNames = propsClassNames
-    ? `${defaultClassnames} ${propsClassNames}`
+  const className = propsClassName
+    ? `${defaultClassnames} ${propsClassName}`
     : defaultClassnames;
 
   return (
     <svg
-      className={classNames}
+      className={className}
       fill="none"
       stroke="currentColor"
       strokeWidth={1.5}
