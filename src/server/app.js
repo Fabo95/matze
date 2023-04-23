@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const app = express();
 
-const usersRouter = require('./routes/users');
+const intervalsRouter = require('./routes/intervals');
 
 app.use(
   cors({
@@ -22,7 +22,7 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/users', usersRouter);
+app.use('/intervals', intervalsRouter);
 
 app.post('/login', (req, res) => {
   const { username, password } = req.body;

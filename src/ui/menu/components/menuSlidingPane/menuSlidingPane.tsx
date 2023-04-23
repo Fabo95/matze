@@ -19,32 +19,27 @@ export const MenuSlidingPane = ({
 
   const [currentPage, setCurrentPage] = useState(Page.HOME);
 
-  const [d, setD] = useState<any>('');
+  const [data, setData] = useState<any>('');
 
   const params = useParams();
 
   useEffect(() => {
     const test = async () => {
-      const test1 = await fetch('http://localhost:8080/login', {
-        body: JSON.stringify({
-          password: '123',
-          username: 'fabian client',
-        }),
+      const test1 = await fetch('http://localhost:8080/intervals', {
         // If the requests come from another origin we need this to set the cookies correctly.
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
-        method: 'POST',
       }).then((res) => res.json());
 
-      setD(test1);
+      setData(test1);
     };
 
     test();
   }, []);
 
-  console.log('DSDASDAASDSDAAS', d);
+  console.log('RESULT', data);
 
   // --- CALLBACKS ---
 
