@@ -2,7 +2,14 @@
   "pages": {
     "home": {
       "headline": "Interval Timer",
-      "menuOption": "Timer"
+      "menuOption": "Timer",
+      "intervalTimer": {
+        "optionOne": "Work",
+        "optionTwo": "Rest",
+        "optionThree": "Exercises",
+        "optionFour": "Rounds",
+        "optionFive": "Round Reset"
+      }
     },
     "settings": {
       "headline": "Einstellungen",

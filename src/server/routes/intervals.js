@@ -5,9 +5,33 @@ const db = require('../../database/database');
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const result = await db.promise().query(`SELECT * FROM INTERVALS`);
+  try {
+    const result = await db
+      .promise()
+      .query(`SELECT * FROM INTERVALS WHERE user_id = ${32}`);
 
-  res.status(200).send(result);
+    const [data] = result;
+
+    const {
+      user_id: userId,
+      work_time: workTime,
+      rest_time: restTime,
+      exercise_count: exerciseCount,
+      round_count: roundCount,
+      round_reset_time: roundResetTime,
+    } = data[0];
+
+    res.status(200).send({
+      exerciseCount,
+      restTime,
+      roundCount,
+      roundResetTime,
+      userId,
+      workTime,
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.post('/', async (req, res) => {

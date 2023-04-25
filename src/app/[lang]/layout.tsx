@@ -7,7 +7,6 @@ import { getTFunction } from 'i18n/get-t-function';
 import { Locale, Page } from 'utils/types';
 
 const manrope = Manrope({
-  display: 'swap',
   style: ['normal'],
   subsets: ['latin'],
   variable: '--font-manrope',
