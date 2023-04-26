@@ -1,17 +1,17 @@
-export const ClockIcon = ({
+export const PauseIcon = ({
   className: propsClassName,
 }: {
   className?: string;
 }) => {
-  const defaultClassnames = 'h-6 w-6 stroke-black-dark';
+  const defaultClassname = 'stroke-black-dark h-9 w-9';
 
-  const classNames = propsClassName
-    ? `${defaultClassnames} ${propsClassName}`
-    : defaultClassnames;
+  const className = propsClassName
+    ? `${defaultClassname} ${propsClassName}`
+    : defaultClassname;
 
   return (
     <svg
-      className={classNames}
+      className={className}
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
@@ -19,9 +19,9 @@ export const ClockIcon = ({
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
+        d="M14.25 9v6m-4.5 0V9M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
       />
     </svg>
   );

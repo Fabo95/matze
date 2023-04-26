@@ -3,11 +3,11 @@ export const ChartIcon = ({
 }: {
   className?: string;
 }) => {
-  const defaultClassnames = 'h-6 w-6 stroke-black-900';
+  const defaultClassname = 'h-6 w-6 stroke-black-dark';
 
   const className = propsClassName
-    ? `${defaultClassnames} ${propsClassName}`
-    : defaultClassnames;
+    ? `${defaultClassname} ${propsClassName}`
+    : defaultClassname;
 
   return (
     <svg

@@ -64,7 +64,7 @@ export const MenuSlidingPaneOption = ({
       >
         {MENU_OPTION_TO_ICON_MAP[menuOption.page]}
         <Text
-          className={`font-medium text-black-900 ${
+          className={`text-black-dark font-medium ${
             isSelected && 'text-red-primary'
           }`}
         >

@@ -1,8 +1,8 @@
 import { Box } from 'base/box';
 import { Interval } from 'app/[lang]/page';
 import { getIntervalTimerSettingOptions } from 'ui/intervalTimer/intervalTimerHelpers';
-import { getTFunction } from 'i18n/get-t-function';
-import { Locale, TFunction } from 'utils/types';
+import { TFunction } from 'utils/types';
+import { Row } from 'base/row';
 
 export const IntervalTimer = ({
   interval,
@@ -11,18 +11,30 @@ export const IntervalTimer = ({
   interval: Interval;
   t: TFunction;
 }) => {
+  // --- HELPERS ---
+
   const intervalTimerSettingOptions = getIntervalTimerSettingOptions({
     interval,
     t,
   });
 
+  // --- RENDER ---
+
   return (
-    <Box className="bg-transparent h-2/3 rounded-t-lg bg-white-full p-4">
+    <Box className="bg-transparent h-2/3 rounded-t-lg bg-white-full p-4 pt-24">
       {intervalTimerSettingOptions.map(
         ({ className, icon, title, intensity }) => (
-          <Box className="font-semibold text-black-900" key={title}>
-            {title}
-          </Box>
+          <Row
+            className={`${className} mb-4 flex items-center justify-between rounded-2xl p-6 text-2xl font-semibold`}
+            key={title}
+          >
+            <Row className="text-black-dark">
+              {icon}
+              {title}
+            </Row>
+
+            {intensity}
+          </Row>
         )
       )}
     </Box>
