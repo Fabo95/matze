@@ -8,8 +8,10 @@ export const MenuBackgroundBlur = ({
   handleUnblur: () => void;
 }) => (
   <Box
-    className={`absolute bottom-0 left-0 right-0 top-0 backdrop-blur transition-backdrop duration-700 ${
-      !isBlurred && 'translate-x-full-left'
+    className={` absolute bottom-0 left-0 right-0 top-0 ${
+      isBlurred
+        ? 'animate-backdrop-filter-animation-in'
+        : 'translate-x-full-left animate-backdrop-filter-animation-out transition-transform delay-250'
     }`}
     onClick={() => isBlurred && handleUnblur()}
   />

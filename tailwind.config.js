@@ -50,11 +50,30 @@ module.exports = {
       },
     },
     extend: {
+      animation: {
+        'backdrop-filter-animation-in':
+          'backdrop-filter-in 250ms ease-in forwards',
+        'backdrop-filter-animation-out':
+          'backdrop-filter-out 250ms ease-in forwards',
+      },
       fontFamily: {
         sans: ['var(--font-manrope)'],
       },
+      keyframes: {
+        'backdrop-filter-in': {
+          '0%': { 'backdrop-filter': 'blur(0px)' },
+          '100%': { 'backdrop-filter': 'blur(8px)' },
+        },
+        'backdrop-filter-out': {
+          '0%': { 'backdrop-filter': 'blur(8px)' },
+          '100%': { 'backdrop-filter': 'blur(0px)' },
+        },
+      },
+      transitionDelay: {
+        250: '250ms',
+      },
       transitionProperty: {
-        backdrop: 'backdrop-filter',
+        transform: 'transform',
       },
     },
     translate: {
