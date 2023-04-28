@@ -1,12 +1,11 @@
 import { ReactNode } from 'react';
 
-export const Text = ({
-  className: propsClassName,
-  children,
-}: {
+type TextProps = {
   className?: string;
   children: ReactNode;
-}) => {
+};
+
+export const Text = ({ className: propsClassName, children }: TextProps) => {
   const defaultClassnames = 'text-inherit';
 
   const classNames = propsClassName

@@ -1,14 +1,16 @@
 import { ReactNode } from 'react';
 
+type UnstyledButtonProps = {
+  className?: string;
+  children: ReactNode;
+  onClick?: () => void;
+};
+
 export const UnstyledButton = ({
   className: propsClassName,
   children,
   onClick,
-}: {
-  className?: string;
-  children: ReactNode;
-  onClick?: () => void;
-}) => {
+}: UnstyledButtonProps) => {
   const defaultClassnames = 'inline-block max-w-max';
 
   const classNames = propsClassName

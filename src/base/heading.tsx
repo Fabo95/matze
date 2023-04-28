@@ -1,12 +1,14 @@
 import { ReactNode } from 'react';
 
+type HeadingProps = {
+  className?: string;
+  children: ReactNode;
+};
+
 export const Heading = ({
   className: propsClassName,
   children,
-}: {
-  className?: string;
-  children: ReactNode;
-}) => {
+}: HeadingProps) => {
   const defaultClassnames = 'text-inherit text-2xl font-semibold';
 
   const classNames = propsClassName

@@ -1,7 +1,7 @@
 'use client';
 
 import { useBoolean } from 'utils/hooks';
-import { MenuBackgroundBlur } from 'ui/menu/components/menuBackgroundBlur';
+import { BackgroundBlur } from 'base/backgroundBlur';
 import { MenuSlidingPane } from 'ui/menu/components/menuSlidingPane/menuSlidingPane';
 import { MenuHeader } from 'ui/menu/components/menuHeader';
 import { Page } from 'utils/types';
@@ -28,7 +28,7 @@ export const Menu = ({
     <Box className="p-4">
       <MenuHeader headline={headline} toggleMenu={toggleMenu} />
 
-      <MenuBackgroundBlur handleUnblur={closeMenu} isBlurred={isOpen} />
+      <BackgroundBlur handleUnblur={closeMenu} isBlurred={isOpen} />
 
       <MenuSlidingPane
         headline={headline}

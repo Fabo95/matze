@@ -1,14 +1,15 @@
 import { ReactNode } from 'react';
 
+type BoxProps = {
+  className?: string;
+  children?: ReactNode;
+  onClick?: () => void;
+};
 export const Box = ({
   className: propsClassName,
   children,
   onClick,
-}: {
-  className?: string;
-  children?: ReactNode;
-  onClick?: () => void;
-}) => {
+}: BoxProps) => {
   const defaultClassnames = 'flex flex-col';
 
   const classNames = propsClassName
