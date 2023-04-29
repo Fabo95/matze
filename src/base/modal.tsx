@@ -2,16 +2,30 @@ import { ReactNode } from 'react';
 import { Box } from 'base/box';
 
 type ModalProps = {
+  contentClassName: string;
   isOpen: boolean;
+  closeModal: () => void;
   children: ReactNode;
 };
 
-export const Modal = ({ children, isOpen }: ModalProps) => (
+export const Modal = ({
+  contentClassName,
+  children,
+  closeModal,
+  isOpen,
+}: ModalProps) => (
   <Box
-    className={`absolute inset-x-8 inset-y-11 z-50 rounded-lg bg-white-full ${
-      isOpen ? 'block' : 'hidden'
+    className={`absolute bottom-0 left-0 right-0 top-0 ${
+      isOpen
+        ? 'animate-opacity-animation-up'
+        : 'translate-x-full-left animate-opacity-animation-down transition-transform delay-250'
     }`}
+    onClick={closeModal}
   >
-    {children}
+    <Box
+      className={`${contentClassName} absolute inset-x-8 inset-y-11 z-50 rounded-lg p-4 duration-300`}
+    >
+      {children}
+    </Box>
   </Box>
 );

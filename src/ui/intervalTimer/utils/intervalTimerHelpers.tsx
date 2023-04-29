@@ -10,12 +10,12 @@ import { StopIcon } from 'icons/stopIcon';
 import { getFormattedSecondsToMinutes } from 'utils/helpers';
 
 export type IntervalTimerSettingOptionProps = {
-  className: string;
+  className: { button: string; modal: string };
   icon: ReactElement;
-  intensity: string | number;
+  intensity: number;
   title: string;
 };
-export const getIntervalTimerSettingOptions = ({
+export const getIntervalTimerSettingOptionsProps = ({
   t,
   interval,
 }: {
@@ -23,33 +23,48 @@ export const getIntervalTimerSettingOptions = ({
   t: TFunction;
 }): IntervalTimerSettingOptionProps[] => [
   {
-    className: 'text-green-dark bg-green-light',
+    className: {
+      button: 'text-green-dark bg-green-light',
+      modal: 'bg-green-dark',
+    },
     icon: <PlayIcon className="mr-2 stroke-green-dark" />,
-    intensity: getFormattedSecondsToMinutes(interval.workTime),
+    intensity: interval.workTime,
     title: t('pages.home.intervalTimer.optionOne'),
   },
   {
-    className: 'text-red-primary bg-red-op-5',
-    icon: <PauseIcon className="mr-2 stroke-red-primary" />,
-    intensity: getFormattedSecondsToMinutes(interval.restTime),
+    className: {
+      button: 'text-red-dark bg-red-light',
+      modal: 'bg-red-dark',
+    },
+    icon: <PauseIcon className="mr-2 stroke-red-dark" />,
+    intensity: interval.restTime,
     title: t('pages.home.intervalTimer.optionTwo'),
   },
   {
-    className: 'text-gray-dark bg-gray-light',
+    className: {
+      button: 'text-gray-dark bg-gray-light',
+      modal: 'bg-gray-dark',
+    },
     icon: <RocketIcon className="mr-2 stroke-gray-dark" />,
     intensity: interval.exerciseCount,
     title: t('pages.home.intervalTimer.optionThree'),
   },
   {
-    className: 'text-blue-dark bg-blue-light',
+    className: {
+      button: 'text-blue-dark bg-blue-light',
+      modal: 'bg-blue-dark',
+    },
     icon: <RepeatIcon className="mr-2 stroke-blue-dark" />,
     intensity: interval.roundCount,
     title: t('pages.home.intervalTimer.optionFour'),
   },
   {
-    className: 'text-yellow-dark bg-yellow-light',
+    className: {
+      button: 'text-yellow-dark bg-yellow-light',
+      modal: 'bg-yellow-dark',
+    },
     icon: <StopIcon className="mr-2 stroke-yellow-dark" />,
-    intensity: getFormattedSecondsToMinutes(interval.roundResetTime),
+    intensity: interval.roundResetTime,
     title: t('pages.home.intervalTimer.optionFive'),
   },
 ];

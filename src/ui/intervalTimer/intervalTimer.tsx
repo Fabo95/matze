@@ -1,8 +1,7 @@
 import { Box } from 'base/box';
 import { Interval } from 'app/[lang]/page';
-import { getIntervalTimerSettingOptions } from 'ui/intervalTimer/intervalTimerHelpers';
+import { getIntervalTimerSettingOptionsProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 import { TFunction } from 'utils/types';
-import { Row } from 'base/row';
 import { IntervalTimerSettingOption } from 'ui/intervalTimer/intervalTimerSettingOption/intervalTimerSettingOption';
 
 export const IntervalTimer = ({
@@ -14,7 +13,7 @@ export const IntervalTimer = ({
 }) => {
   // --- HELPERS ---
 
-  const intervalTimerSettingOptions = getIntervalTimerSettingOptions({
+  const intervalTimerSettingOptionsProps = getIntervalTimerSettingOptionsProps({
     interval,
     t,
   });
@@ -23,7 +22,7 @@ export const IntervalTimer = ({
 
   return (
     <Box className="bg-transparent h-2/3 rounded-t-lg bg-white-full p-4 pt-24">
-      {intervalTimerSettingOptions.map(
+      {intervalTimerSettingOptionsProps.map(
         ({ className, icon, title, intensity }) => (
           <IntervalTimerSettingOption
             className={className}

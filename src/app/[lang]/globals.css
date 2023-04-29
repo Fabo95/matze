@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/**
+* Baseline, reset styles
+* @see https://range-input-css.netlify.app/
+*/
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: slider-vertical;
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+    outline: none;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+}
+
+/*********** Firefox styles ***********/
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+    border: none; /*Removes extra border that FF applies*/
+}
+
+
+

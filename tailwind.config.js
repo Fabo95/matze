@@ -6,6 +6,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './base/**/*.{js,ts,jsx,tsx}',
   ],
+  mode: 'jit',
   plugins: [],
   theme: {
     colors: {
@@ -29,6 +30,8 @@ module.exports = {
         light: '#E6B4A5',
       },
       red: {
+        dark: '#F63053',
+        light: '#FAEDEF',
         'op-33': '#F0115133',
         'op-5': '#F011510D',
         primary: '#F01151',
@@ -55,6 +58,8 @@ module.exports = {
           'backdrop-filter-in 250ms ease-in forwards',
         'backdrop-filter-animation-out':
           'backdrop-filter-out 250ms ease-in forwards',
+        'opacity-animation-down': 'opacity-down 250ms ease-in forwards',
+        'opacity-animation-up': 'opacity-up 250ms ease-in forwards',
       },
       fontFamily: {
         sans: ['var(--font-manrope)'],
@@ -68,11 +73,28 @@ module.exports = {
           '0%': { 'backdrop-filter': 'blur(8px)' },
           '100%': { 'backdrop-filter': 'blur(0px)' },
         },
+        'opacity-down': {
+          '0%': {
+            opacity: '1',
+          },
+          '100%': {
+            opacity: '0',
+          },
+        },
+        'opacity-up': {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
       },
       transitionDelay: {
         250: '250ms',
       },
       transitionProperty: {
+        display: 'display',
         transform: 'transform',
       },
     },
