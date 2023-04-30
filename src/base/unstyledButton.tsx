@@ -11,7 +11,7 @@ export const UnstyledButton = ({
   children,
   onClick,
 }: UnstyledButtonProps) => {
-  const defaultClassnames = 'inline-block max-w-max';
+  const defaultClassnames = 'inline-block';
 
   const classNames = propsClassName
     ? `${defaultClassnames} ${propsClassName}`

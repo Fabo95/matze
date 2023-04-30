@@ -33,8 +33,6 @@ export const IntervalTimerConfigurationOption = ({
     mapIntensityToIndex({ intensity: propsIntensity, maxIntensity: range.to })
   );
 
-  console.log(index);
-
   const {
     value: isOpen,
     setFalse: closeModal,

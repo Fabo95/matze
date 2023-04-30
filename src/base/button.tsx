@@ -18,7 +18,7 @@ export const Button = ({
   onClick,
 }: ButtonProps) => (
   <UnstyledButton
-    className={`${className} mb-4 flex w-full max-w-full items-center justify-between rounded-2xl p-4 text-xl font-semibold`}
+    className={`${className} mb-4 flex w-full items-center justify-between rounded-2xl p-4 text-xl font-semibold`}
     key={title}
     onClick={onClick}
   >

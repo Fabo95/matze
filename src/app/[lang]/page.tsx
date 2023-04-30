@@ -24,8 +24,6 @@ export default async function Home({
 
   const interval = await getInterval();
 
-  console.log('interval', interval);
-
   return (
     <>
       <Box className="bg-transparent h-1/3 items-center justify-center p-4 text-6xl font-bold text-white-full">
