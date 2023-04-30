@@ -10,7 +10,7 @@ const intervalsRouter = require('./routes/intervals');
 
 app.use(
   cors({
-    // If the requests come from another origin we need this to set the cookies correctly.
+    // We need this to set the cookies correctly if the requests come from another origin.
     credentials: true,
     origin: 'http://localhost:3000',
   })

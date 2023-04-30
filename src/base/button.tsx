@@ -3,30 +3,30 @@ import { UnstyledButton } from 'base/unstyledButton';
 import { Row } from 'base/row';
 
 type ButtonProps = {
-  title: string;
-  icon: ReactElement;
-  intensity: string | number;
+  inlineCenterLeft: string;
+  inlineStart: ReactElement;
+  inlineEnd: string | number;
   className?: string;
   onClick?: () => void;
 };
 
 export const Button = ({
-  title,
-  icon,
-  intensity,
+  inlineCenterLeft,
+  inlineStart,
+  inlineEnd,
   className,
   onClick,
 }: ButtonProps) => (
   <UnstyledButton
     className={`${className} mb-4 flex w-full items-center justify-between rounded-2xl p-4 text-xl font-semibold`}
-    key={title}
+    key={inlineCenterLeft}
     onClick={onClick}
   >
     <Row className="items-center text-black-dark">
-      {icon}
-      {title}
+      {inlineStart}
+      {inlineCenterLeft}
     </Row>
 
-    {intensity}
+    {inlineEnd}
   </UnstyledButton>
 );

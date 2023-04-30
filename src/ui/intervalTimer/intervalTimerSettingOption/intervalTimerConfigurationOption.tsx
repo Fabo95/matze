@@ -1,7 +1,7 @@
 'use client';
 
-import React, { SyntheticEvent, useEffect, useMemo, useState } from 'react';
-import { BehaviorSubject, distinctUntilChanged, map } from 'rxjs';
+import React, { SyntheticEvent, useCallback, useMemo, useState } from 'react';
+import { BehaviorSubject } from 'rxjs';
 
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 import { BackgroundBlur } from 'base/backgroundBlur';
@@ -16,9 +16,11 @@ import {
   mapIndexToIntensity,
   mapIntensityToIndex,
 } from 'utils/helpers';
-import { Row } from 'base/row';
-import { Text } from 'base/text';
+
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
+import { useIntensityPipe } from 'ui/intervalTimer/utils/intervalTimerHooks';
+import { Box } from 'base/box';
+import { ModalHeader } from 'base/modalHeader';
 
 export const IntervalTimerConfigurationOption = ({
   className,
@@ -27,7 +29,6 @@ export const IntervalTimerConfigurationOption = ({
   title,
   type,
   intensity: propsIntensity,
-  required,
 }: IntervalTimerConfigurationOptionProps) => {
   // --- STATE ---
 
@@ -37,6 +38,12 @@ export const IntervalTimerConfigurationOption = ({
 
   const [intensity, setIntensity] = useState<number>(0);
 
+  const {
+    value: isOpen,
+    setFalse: closeModal,
+    setTrue: openModal,
+  } = useBoolean(false);
+
   // --- SUBJECT ---
 
   const intensitySubject = useMemo(
@@ -44,27 +51,36 @@ export const IntervalTimerConfigurationOption = ({
     [propsIntensity]
   );
 
-  const {
-    value: isOpen,
-    setFalse: closeModal,
-    setTrue: openModal,
-  } = useBoolean(false);
-
   // --- CALLBACKS ---
 
-  const handleIndexChange = (event: SyntheticEvent<HTMLInputElement>) => {
-    intensitySubject.next(
-      mapIndexToIntensity({
-        index: +event.currentTarget.value,
-        maxIntensity: range.to,
-      })
-    );
-    setIndex(+event.currentTarget.value);
-  };
+  const handleIndexChange = useCallback(
+    (event: SyntheticEvent<HTMLInputElement>) => {
+      intensitySubject.next(
+        mapIndexToIntensity({
+          index: +event.currentTarget.value,
+          maxIntensity: range.to,
+        })
+      );
+      setIndex(+event.currentTarget.value);
+    },
+    [intensitySubject, range.to]
+  );
+
+  const handleIntensityChange = useCallback(
+    (result: number) => {
+      setIntensity(result);
+    },
+    [setIntensity]
+  );
 
   // --- HELPERS ---
 
   const translateYOffset = `${index}%`;
+
+  const sliderTrackDividingLinesAmount =
+    type === IntervalTimerConfigurationType.TIME
+      ? (range.to - range.from) / 5
+      : range.to - range.from;
 
   // There is probably an easier way to do that but cloning is cool.
   const clonedIcon = React.cloneElement(icon, {
@@ -74,37 +90,12 @@ export const IntervalTimerConfigurationOption = ({
 
   // --- EFFECTS ---
 
-  useEffect(() => {
-    intensitySubject
-      .pipe(
-        distinctUntilChanged((prevIntensity, currentIntensity) => {
-          if (type === IntervalTimerConfigurationType.COUNT) {
-            return false;
-          }
-
-          return Math.abs(currentIntensity - prevIntensity) <= 5;
-        }),
-        map((changedIntensity) => {
-          if (type === IntervalTimerConfigurationType.COUNT) {
-            return Math.round(changedIntensity);
-          }
-
-          const roundingNumber = 5;
-          const rest = changedIntensity % roundingNumber;
-
-          if (rest <= roundingNumber / 2) {
-            return changedIntensity - rest;
-          }
-
-          return changedIntensity + (roundingNumber - rest);
-        })
-      )
-      .subscribe({
-        next: (result) => {
-          setIntensity(result);
-        },
-      });
-  }, [intensitySubject, range.to, type]);
+  useIntensityPipe({
+    handleIntensityChange,
+    intensitySubject,
+    range,
+    type,
+  });
 
   // --- MEMOIZED DATA ---
 
@@ -124,9 +115,9 @@ export const IntervalTimerConfigurationOption = ({
 
       <Button
         className={className.button}
-        icon={icon}
-        intensity={formattedIntensity}
-        title={title}
+        inlineCenterLeft={title}
+        inlineEnd={formattedIntensity}
+        inlineStart={icon}
         onClick={openModal}
       />
 
@@ -135,13 +126,11 @@ export const IntervalTimerConfigurationOption = ({
         contentClassName={className.modal}
         isOpen={isOpen}
       >
-        <Row className="mb-8 justify-center">
-          {clonedIcon}
-          <Text className="text-3xl font-semibold">{title}</Text>
-        </Row>
-        <Text className="mb-10 text-center text-8xl font-bold text-white-full">
-          {formattedIntensity}
-        </Text>
+        <ModalHeader
+          blockEnd={formattedIntensity}
+          inlineEnd={title}
+          inlineStart={clonedIcon}
+        />
 
         <SliderContainer>
           <>
@@ -151,7 +140,11 @@ export const IntervalTimerConfigurationOption = ({
               onChange={handleIndexChange}
             />
             <SliderThumb translateYOffset={translateYOffset} />
-            {}
+            <Box className="absolute h-full justify-around">
+              {new Array(sliderTrackDividingLinesAmount).fill('').map(() => (
+                <Box className="h-0.5 w-10 bg-white-full opacity-50" />
+              ))}
+            </Box>
           </>
         </SliderContainer>
       </Modal>

@@ -16,7 +16,6 @@ export type IntervalTimerConfigurationOptionProps = {
   title: string;
   type: IntervalTimerConfigurationType;
   range: { from: number; to: number };
-  required: boolean;
 };
 export const getIntervalTimerConfigurationOptionsProps = ({
   t,
@@ -35,7 +34,6 @@ export const getIntervalTimerConfigurationOptionsProps = ({
     range: { from: 5, to: 180 },
     title: t('pages.home.intervalTimer.optionOne'),
     type: IntervalTimerConfigurationType.TIME,
-    required: true,
   },
   {
     className: {
@@ -47,7 +45,6 @@ export const getIntervalTimerConfigurationOptionsProps = ({
     range: { from: 0, to: 60 },
     title: t('pages.home.intervalTimer.optionTwo'),
     type: IntervalTimerConfigurationType.TIME,
-    required: false,
   },
   {
     className: {
@@ -59,7 +56,6 @@ export const getIntervalTimerConfigurationOptionsProps = ({
     range: { from: 1, to: 20 },
     title: t('pages.home.intervalTimer.optionThree'),
     type: IntervalTimerConfigurationType.COUNT,
-    required: true,
   },
   {
     className: {
@@ -71,7 +67,6 @@ export const getIntervalTimerConfigurationOptionsProps = ({
     range: { from: 1, to: 25 },
     title: t('pages.home.intervalTimer.optionFour'),
     type: IntervalTimerConfigurationType.COUNT,
-    required: true,
   },
   {
     className: {
@@ -83,6 +78,5 @@ export const getIntervalTimerConfigurationOptionsProps = ({
     range: { from: 0, to: 180 },
     title: t('pages.home.intervalTimer.optionFive'),
     type: IntervalTimerConfigurationType.TIME,
-    required: false,
   },
 ];

@@ -14,6 +14,8 @@ input[type="range"] {
     cursor: pointer;
     width: 50%;
     height: 100%;
+    opacity: 0;
+    z-index: 1000;
 }
 
 /* Removes default focus */
