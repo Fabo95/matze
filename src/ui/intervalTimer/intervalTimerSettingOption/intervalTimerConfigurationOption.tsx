@@ -1,6 +1,7 @@
 'use client';
 
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useMemo, useState } from 'react';
+import { BehaviorSubject, distinctUntilChanged, map } from 'rxjs';
 
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 import { BackgroundBlur } from 'base/backgroundBlur';
@@ -26,11 +27,21 @@ export const IntervalTimerConfigurationOption = ({
   title,
   type,
   intensity: propsIntensity,
+  required,
 }: IntervalTimerConfigurationOptionProps) => {
   // --- STATE ---
 
-  const [index, setIndex] = useState(
+  const [index, setIndex] = useState<number>(
     mapIntensityToIndex({ intensity: propsIntensity, maxIntensity: range.to })
+  );
+
+  const [intensity, setIntensity] = useState<number>(0);
+
+  // --- SUBJECT ---
+
+  const intensitySubject = useMemo(
+    () => new BehaviorSubject(propsIntensity),
+    [propsIntensity]
   );
 
   const {
@@ -42,8 +53,13 @@ export const IntervalTimerConfigurationOption = ({
   // --- CALLBACKS ---
 
   const handleIndexChange = (event: SyntheticEvent<HTMLInputElement>) => {
-    const currentIndex = +event.currentTarget.value;
-    setIndex(currentIndex);
+    intensitySubject.next(
+      mapIndexToIntensity({
+        index: +event.currentTarget.value,
+        maxIntensity: range.to,
+      })
+    );
+    setIndex(+event.currentTarget.value);
   };
 
   // --- HELPERS ---
@@ -56,12 +72,49 @@ export const IntervalTimerConfigurationOption = ({
     className: 'stroke-white-full h-9 w-9 mr-2 stroke-green-dark',
   });
 
-  const intensity = mapIndexToIntensity({ index, maxIntensity: range.to });
+  // --- EFFECTS ---
 
-  const formattedIntensity =
-    type === IntervalTimerConfigurationType.COUNT
-      ? intensity
-      : getFormattedSecondsToMinutes(intensity);
+  useEffect(() => {
+    intensitySubject
+      .pipe(
+        distinctUntilChanged((prevIntensity, currentIntensity) => {
+          if (type === IntervalTimerConfigurationType.COUNT) {
+            return false;
+          }
+
+          return Math.abs(currentIntensity - prevIntensity) <= 5;
+        }),
+        map((changedIntensity) => {
+          if (type === IntervalTimerConfigurationType.COUNT) {
+            return Math.round(changedIntensity);
+          }
+
+          const roundingNumber = 5;
+          const rest = changedIntensity % roundingNumber;
+
+          if (rest <= roundingNumber / 2) {
+            return changedIntensity - rest;
+          }
+
+          return changedIntensity + (roundingNumber - rest);
+        })
+      )
+      .subscribe({
+        next: (result) => {
+          setIntensity(result);
+        },
+      });
+  }, [intensitySubject, range.to, type]);
+
+  // --- MEMOIZED DATA ---
+
+  const formattedIntensity = useMemo(() => {
+    if (type === IntervalTimerConfigurationType.COUNT) {
+      return intensity;
+    }
+
+    return getFormattedSecondsToMinutes(intensity);
+  }, [intensity, type]);
 
   // --- RENDER ---
 
@@ -89,6 +142,7 @@ export const IntervalTimerConfigurationOption = ({
         <Text className="mb-10 text-center text-8xl font-bold text-white-full">
           {formattedIntensity}
         </Text>
+
         <SliderContainer>
           <>
             <Slider
