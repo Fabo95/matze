@@ -1,7 +1,7 @@
 import { getTFunction } from 'i18n/get-t-function';
 import { Locale } from 'utils/types';
 import { Box } from 'base/box';
-import { IntervalTimer } from 'ui/intervalTimer/intervalTimer';
+import { IntervalTimerConfiguration } from 'ui/intervalTimer/intervalTimerConfiguration';
 
 export type Interval = {
   userId: number;
@@ -31,7 +31,7 @@ export default async function Home({
       <Box className="bg-transparent h-1/3 items-center justify-center p-4 text-6xl font-bold text-white-full">
         00:30:00
       </Box>
-      <IntervalTimer interval={interval} t={t} />
+      <IntervalTimerConfiguration interval={interval} t={t} />
     </>
   );
 }

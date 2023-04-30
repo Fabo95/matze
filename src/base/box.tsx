@@ -1,12 +1,14 @@
-import { ReactNode, Ref } from 'react';
+import { CSSProperties, ReactNode, Ref } from 'react';
 
 type BoxProps = {
+  style?: CSSProperties;
   className?: string;
   children?: ReactNode;
   onClick?: () => void;
   ref?: Ref<any>;
 };
 export const Box = ({
+  style,
   className: propsClassName,
   children,
   onClick,
@@ -19,7 +21,7 @@ export const Box = ({
     : defaultClassnames;
 
   return (
-    <div className={classNames} ref={ref} onClick={onClick}>
+    <div className={classNames} ref={ref} style={style} onClick={onClick}>
       {children}
     </div>
   );

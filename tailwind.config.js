@@ -45,6 +45,7 @@ module.exports = {
       white: {
         full: '#FFF',
         half: '#ffffff80',
+        'op-0': 'rgba(17, 17, 17, 0)',
         'op-20': 'rgba(17, 17, 17, 0.2)',
       },
       yellow: {

@@ -8,6 +8,7 @@ type SliderProps = {
 
 export const Slider = ({
   className: propsClassName,
+
   value,
   onChange,
 }: SliderProps) => {

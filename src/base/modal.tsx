@@ -23,7 +23,7 @@ export const Modal = ({
     onClick={closeModal}
   >
     <Box
-      className={`${contentClassName} absolute inset-x-8 inset-y-11 z-50 rounded-lg p-4 duration-300`}
+      className={`${contentClassName} absolute inset-x-8 inset-y-11 z-50 rounded-lg p-8 duration-300`}
     >
       {children}
     </Box>

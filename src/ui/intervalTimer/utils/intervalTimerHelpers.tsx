@@ -7,21 +7,23 @@ import { PauseIcon } from 'icons/pauseIcon';
 import { RocketIcon } from 'icons/rocketIcon';
 import { RepeatIcon } from 'icons/repeatIcon';
 import { StopIcon } from 'icons/stopIcon';
-import { getFormattedSecondsToMinutes } from 'utils/helpers';
+import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 
-export type IntervalTimerSettingOptionProps = {
+export type IntervalTimerConfigurationOptionProps = {
   className: { button: string; modal: string };
   icon: ReactElement;
   intensity: number;
   title: string;
+  type: IntervalTimerConfigurationType;
+  range: { from: number; to: number };
 };
-export const getIntervalTimerSettingOptionsProps = ({
+export const getIntervalTimerConfigurationOptionsProps = ({
   t,
   interval,
 }: {
   interval: Interval;
   t: TFunction;
-}): IntervalTimerSettingOptionProps[] => [
+}): IntervalTimerConfigurationOptionProps[] => [
   {
     className: {
       button: 'text-green-dark bg-green-light',
@@ -29,7 +31,9 @@ export const getIntervalTimerSettingOptionsProps = ({
     },
     icon: <PlayIcon className="mr-2 stroke-green-dark" />,
     intensity: interval.workTime,
+    range: { from: 5, to: 180 },
     title: t('pages.home.intervalTimer.optionOne'),
+    type: IntervalTimerConfigurationType.TIME,
   },
   {
     className: {
@@ -38,7 +42,9 @@ export const getIntervalTimerSettingOptionsProps = ({
     },
     icon: <PauseIcon className="mr-2 stroke-red-dark" />,
     intensity: interval.restTime,
+    range: { from: 0, to: 60 },
     title: t('pages.home.intervalTimer.optionTwo'),
+    type: IntervalTimerConfigurationType.TIME,
   },
   {
     className: {
@@ -47,7 +53,9 @@ export const getIntervalTimerSettingOptionsProps = ({
     },
     icon: <RocketIcon className="mr-2 stroke-gray-dark" />,
     intensity: interval.exerciseCount,
+    range: { from: 0, to: 20 },
     title: t('pages.home.intervalTimer.optionThree'),
+    type: IntervalTimerConfigurationType.COUNT,
   },
   {
     className: {
@@ -56,7 +64,9 @@ export const getIntervalTimerSettingOptionsProps = ({
     },
     icon: <RepeatIcon className="mr-2 stroke-blue-dark" />,
     intensity: interval.roundCount,
+    range: { from: 1, to: 25 },
     title: t('pages.home.intervalTimer.optionFour'),
+    type: IntervalTimerConfigurationType.COUNT,
   },
   {
     className: {
@@ -65,6 +75,8 @@ export const getIntervalTimerSettingOptionsProps = ({
     },
     icon: <StopIcon className="mr-2 stroke-yellow-dark" />,
     intensity: interval.roundResetTime,
+    range: { from: 0, to: 180 },
     title: t('pages.home.intervalTimer.optionFive'),
+    type: IntervalTimerConfigurationType.TIME,
   },
 ];
