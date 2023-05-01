@@ -1,5 +1,7 @@
 import { ReactNode } from 'react';
 import { Box } from 'base/box';
+import { XMarkIcon } from 'icons/xMarkIcon';
+import { UnstyledButton } from 'base/unstyledButton';
 
 type ModalProps = {
   contentClassName: string;
@@ -15,17 +17,16 @@ export const Modal = ({
   isOpen,
 }: ModalProps) => (
   <Box
-    className={`absolute bottom-0 left-0 right-0 top-0 ${
+    className={`${contentClassName} absolute inset-x-8 inset-y-11 z-50 rounded-lg p-10 ${
       isOpen
         ? 'animate-opacity-animation-up'
         : 'translate-x-full-left animate-opacity-animation-down transition-transform delay-250'
     }`}
-    onClick={closeModal}
   >
-    <Box
-      className={`${contentClassName} absolute inset-x-8 inset-y-11 z-50 rounded-lg p-8 duration-300`}
-    >
-      {children}
-    </Box>
+    <UnstyledButton onClick={closeModal}>
+      <XMarkIcon className="absolute right-10 top-10 stroke-white-full" />
+    </UnstyledButton>
+
+    {children}
   </Box>
 );

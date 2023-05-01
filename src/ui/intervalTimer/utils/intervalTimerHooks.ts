@@ -8,13 +8,16 @@ import { mapIndexToIntensity } from 'utils/helpers';
 type UseIntensityPipeProps = {
   handleIntensityChange: (result: number) => void;
   intensitySubject: BehaviorSubject<number>;
-} & Pick<IntervalTimerConfigurationOptionProps, 'range' | 'type'>;
+} & Pick<
+  IntervalTimerConfigurationOptionProps,
+  'sliderRange' | 'configurationType'
+>;
 
 export const useIntensityPipe = ({
   handleIntensityChange,
   intensitySubject,
-  type,
-  range,
+  configurationType,
+  sliderRange,
 }: UseIntensityPipeProps) => {
   // --- EFFECTS ---
 
@@ -22,7 +25,7 @@ export const useIntensityPipe = ({
     intensitySubject
       .pipe(
         map((intensity) => {
-          if (type === IntervalTimerConfigurationType.COUNT) {
+          if (configurationType === IntervalTimerConfigurationType.COUNT) {
             return Math.round(intensity);
           }
 
@@ -45,5 +48,11 @@ export const useIntensityPipe = ({
           handleIntensityChange(result);
         },
       });
-  }, [handleIntensityChange, intensitySubject, range.from, range.to, type]);
+  }, [
+    handleIntensityChange,
+    intensitySubject,
+    sliderRange.from,
+    sliderRange.to,
+    configurationType,
+  ]);
 };

@@ -18,7 +18,7 @@ export const ModalHeader = ({
       {inlineStart}
       <Text className="text-3xl font-semibold">{inlineEnd}</Text>
     </Row>
-    <Text className="mb-10 text-center text-8xl font-bold text-white-full">
+    <Text className="mb-14 text-center text-6xl font-bold text-white-full">
       {blockEnd}
     </Text>
   </>

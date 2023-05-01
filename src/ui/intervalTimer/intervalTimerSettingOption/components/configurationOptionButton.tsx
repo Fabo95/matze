@@ -10,7 +10,7 @@ type ButtonProps = {
   onClick?: () => void;
 };
 
-export const Button = ({
+export const ConfigurationOptionButton = ({
   inlineCenterLeft,
   inlineStart,
   inlineEnd,

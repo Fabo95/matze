@@ -6,7 +6,6 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './base/**/*.{js,ts,jsx,tsx}',
   ],
-  mode: 'jit',
   plugins: [],
   theme: {
     colors: {

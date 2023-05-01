@@ -10,25 +10,30 @@ import { Modal } from 'base/modal';
 import { Slider } from 'base/slider';
 import { SliderThumb } from 'base/sliderThumb';
 import { SliderContainer } from 'base/sliderContainer';
-import { Button } from 'base/button';
+import { ConfigurationOptionButton } from 'ui/intervalTimer/intervalTimerSettingOption/components/configurationOptionButton';
 import { getFormattedSecondsToMinutes } from 'utils/helpers';
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { useIntensityPipe } from 'ui/intervalTimer/utils/intervalTimerHooks';
 import { ModalHeader } from 'base/modalHeader';
 import { SliderTrack } from 'base/sliderTrack';
+import { UnstyledButton } from 'base/unstyledButton';
 
 export const IntervalTimerConfigurationOption = ({
   className,
   icon,
-  range,
+  primaryButtonTitle,
+  sliderRange,
   title,
-  type,
+  configurationType,
   intensity: propsIntensity,
-}: IntervalTimerConfigurationOptionProps) => {
+  intensityType,
+}: IntervalTimerConfigurationOptionProps & { primaryButtonTitle: string }) => {
   // --- STATE ---
 
+  console.log(className);
+
   const [intensity, setIntensity] = useState<number>(propsIntensity);
-  const [testIntensity, setTestIntensity] = useState<number>(0);
+  const [filteredIntensity, setFilteredIntensity] = useState<number>(0);
 
   const {
     value: isOpen,
@@ -54,14 +59,26 @@ export const IntervalTimerConfigurationOption = ({
   );
 
   const handleIntensityChange = useCallback((result: number) => {
-    setTestIntensity(result);
+    setFilteredIntensity(result);
   }, []);
 
-  // --- HELPERS ---
+  const handleConfirmIntensity = async () => {
+    try {
+      await fetch('http://localhost:8080/intervals', {
+        body: JSON.stringify({ [intensityType]: filteredIntensity }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'PATCH',
+      });
+    } catch (e) {
+      console.log(e);
+    }
 
-  const translateYOffset = `${
-    ((intensity - range.from) / (range.to - range.from)) * 100
-  }%`;
+    closeModal();
+  };
+
+  // --- HELPERS ---
 
   // There is probably an easier way to do that but cloning is cool.
   const clonedIcon = React.cloneElement(icon, {
@@ -72,21 +89,21 @@ export const IntervalTimerConfigurationOption = ({
   // --- EFFECTS ---
 
   useIntensityPipe({
+    configurationType,
     handleIntensityChange,
     intensitySubject,
-    range,
-    type,
+    sliderRange,
   });
 
   // --- MEMOIZED DATA ---
 
   const formattedIntensity = useMemo(() => {
-    if (type === IntervalTimerConfigurationType.COUNT) {
-      return testIntensity;
+    if (configurationType === IntervalTimerConfigurationType.COUNT) {
+      return filteredIntensity;
     }
 
-    return getFormattedSecondsToMinutes(testIntensity);
-  }, [testIntensity, type]);
+    return getFormattedSecondsToMinutes(filteredIntensity);
+  }, [configurationType, filteredIntensity]);
 
   // --- RENDER ---
 
@@ -94,7 +111,7 @@ export const IntervalTimerConfigurationOption = ({
     <>
       <BackgroundBlur handleUnblur={closeModal} isBlurred={isOpen} />
 
-      <Button
+      <ConfigurationOptionButton
         className={className.button}
         inlineCenterLeft={title}
         inlineEnd={formattedIntensity}
@@ -118,15 +135,25 @@ export const IntervalTimerConfigurationOption = ({
             <Slider
               className="appearance-none"
               // We multiply it by 10 to have a smooth slider transition even for small ranges.
-              max={range.to * 10}
-              min={range.from * 10}
+              max={sliderRange.to * 10}
+              min={sliderRange.from * 10}
               value={intensity * 10}
               onChange={handleIndexChange}
             />
-            <SliderThumb translateYOffset={translateYOffset} />
-            <SliderTrack range={range} type={type} />
+            <SliderThumb intensity={intensity} sliderRange={sliderRange} />
+            <SliderTrack
+              configurationType={configurationType}
+              sliderRange={sliderRange}
+            />
           </>
         </SliderContainer>
+
+        <UnstyledButton
+          className={`rounded bg-white-full p-4 text-xl font-semibold ${className.button}`}
+          onClick={handleConfirmIntensity}
+        >
+          {primaryButtonTitle}
+        </UnstyledButton>
       </Modal>
     </>
   );

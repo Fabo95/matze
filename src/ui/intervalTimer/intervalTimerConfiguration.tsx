@@ -21,20 +21,32 @@ export const IntervalTimerConfiguration = ({
       t,
     });
 
+  const primaryButtonTitle = t('cta.confirm');
+
   // --- RENDER ---
 
   return (
     <Box className="bg-transparent h-2/3 rounded-t-lg bg-white-full p-4 pt-24">
       {intervalTimerSettingOptionsProps.map(
-        ({ className, icon, title, intensity, range, type }) => (
+        ({
+          className,
+          icon,
+          title,
+          intensity,
+          intensityType,
+          sliderRange,
+          configurationType,
+        }) => (
           <IntervalTimerConfigurationOption
             className={className}
+            configurationType={configurationType}
             icon={icon}
             intensity={intensity}
+            intensityType={intensityType}
             key={title}
-            range={range}
+            primaryButtonTitle={primaryButtonTitle}
+            sliderRange={sliderRange}
             title={title}
-            type={type}
           />
         )
       )}

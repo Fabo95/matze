@@ -23,5 +23,8 @@
       "headline": "Statistics",
       "menuOption": "Statistics"
     }
+  },
+  "cta": {
+    "confirm": "Confirm"
   }
 }

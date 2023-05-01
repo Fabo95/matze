@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Box } from 'base/box';
@@ -6,45 +6,69 @@ import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalT
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 
 export const SliderTrack = ({
-  type,
-  range,
-}: Pick<IntervalTimerConfigurationOptionProps, 'type' | 'range'>) => {
+  configurationType,
+  sliderRange,
+}: Pick<
+  IntervalTimerConfigurationOptionProps,
+  'configurationType' | 'sliderRange'
+>) => {
+  // --- CALLBACKS ---
+
+  const getTotalDividingLines = useCallback(
+    (additionalStepSize = 0) => {
+      // We want a 5-step track for configuration options of type time and a 1-step track for configuration options of type count.
+      if (configurationType === IntervalTimerConfigurationType.COUNT) {
+        return sliderRange.to;
+      }
+
+      return (sliderRange.to + additionalStepSize) / 5;
+    },
+    [sliderRange.to, configurationType]
+  );
+
   // --- MEMOIZED DATA ---
-
-  const dividingLinesAmount = useMemo(() => {
-    // We want a 5-step track for configuration options of type time and a 1-step track for configuration options of type count.
-    if (type === IntervalTimerConfigurationType.COUNT) {
-      return range.to;
-    }
-
-    return (range.to + (!range.from ? 5 : 0)) / 5;
-  }, [range.from, range.to, type]);
 
   const sliderTrack = useMemo(
     () =>
-      new Array(dividingLinesAmount)
+      new Array(getTotalDividingLines(!sliderRange.from ? 5 : 0))
         .fill('')
         // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-shadow
         .map((_, dividingLineIndex) => {
           const dividingTimeStyle = dividingLineIndex % 6 === 0 && 'w-16';
           const dividingCountStyle = dividingLineIndex % 5 === 0 && 'w-16';
 
-          const dividingStyle =
-            type === IntervalTimerConfigurationType.COUNT
+          const dividingLineStyle =
+            configurationType === IntervalTimerConfigurationType.COUNT
               ? dividingCountStyle
               : dividingTimeStyle;
 
+          const totalDividingLines = getTotalDividingLines();
+          const invertedDividingLineIndex = Math.abs(
+            dividingLineIndex - totalDividingLines
+          );
+
+          const dividingLineLabel =
+            (invertedDividingLineIndex / totalDividingLines) * sliderRange.to;
+
           return (
-            <Box
-              className={`h-0.5 w-10 self-center bg-white-full opacity-50 ${dividingStyle}`}
-              key={uuidv4()}
-            />
+            <Box className="relative w-full" key={uuidv4()}>
+              {dividingLineStyle && (
+                <Box className="absolute left-0 translate-y-[-50%] text-xl font-semibold">
+                  {dividingLineLabel}
+                </Box>
+              )}
+              <Box
+                className={`${dividingLineStyle} h-0.5 w-10 self-center bg-white-half`}
+              />
+            </Box>
           );
         }),
-    [dividingLinesAmount, type]
+    [configurationType, getTotalDividingLines, sliderRange.from, sliderRange.to]
   );
 
   // --- RENDER ---
 
-  return <Box className="absolute h-full justify-between">{sliderTrack}</Box>;
+  return (
+    <Box className="absolute h-full w-full justify-between">{sliderTrack}</Box>
+  );
 };
