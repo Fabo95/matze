@@ -17,6 +17,7 @@ import { useIntensityPipe } from 'ui/intervalTimer/utils/intervalTimerHooks';
 import { ModalHeader } from 'base/modalHeader';
 import { SliderTrack } from 'base/sliderTrack';
 import { UnstyledButton } from 'base/unstyledButton';
+import { Button } from 'base/button';
 
 export const IntervalTimerConfigurationOption = ({
   className,
@@ -148,12 +149,11 @@ export const IntervalTimerConfigurationOption = ({
           </>
         </SliderContainer>
 
-        <UnstyledButton
-          className={`rounded bg-white-full p-4 text-xl font-semibold ${className.button}`}
+        <Button
+          buttonTitle={primaryButtonTitle}
+          className={className.button}
           onClick={handleConfirmIntensity}
-        >
-          {primaryButtonTitle}
-        </UnstyledButton>
+        />
       </Modal>
     </>
   );
