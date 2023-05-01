@@ -11,16 +11,11 @@ import { Slider } from 'base/slider';
 import { SliderThumb } from 'base/sliderThumb';
 import { SliderContainer } from 'base/sliderContainer';
 import { Button } from 'base/button';
-import {
-  getFormattedSecondsToMinutes,
-  mapIndexToIntensity,
-  mapIntensityToIndex,
-} from 'utils/helpers';
-
+import { getFormattedSecondsToMinutes } from 'utils/helpers';
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { useIntensityPipe } from 'ui/intervalTimer/utils/intervalTimerHooks';
-import { Box } from 'base/box';
 import { ModalHeader } from 'base/modalHeader';
+import { SliderTrack } from 'base/sliderTrack';
 
 export const IntervalTimerConfigurationOption = ({
   className,
@@ -32,11 +27,8 @@ export const IntervalTimerConfigurationOption = ({
 }: IntervalTimerConfigurationOptionProps) => {
   // --- STATE ---
 
-  const [index, setIndex] = useState<number>(
-    mapIntensityToIndex({ intensity: propsIntensity, maxIntensity: range.to })
-  );
-
-  const [intensity, setIntensity] = useState<number>(0);
+  const [intensity, setIntensity] = useState<number>(propsIntensity);
+  const [testIntensity, setTestIntensity] = useState<number>(0);
 
   const {
     value: isOpen,
@@ -55,32 +47,21 @@ export const IntervalTimerConfigurationOption = ({
 
   const handleIndexChange = useCallback(
     (event: SyntheticEvent<HTMLInputElement>) => {
-      intensitySubject.next(
-        mapIndexToIntensity({
-          index: +event.currentTarget.value,
-          maxIntensity: range.to,
-        })
-      );
-      setIndex(+event.currentTarget.value);
+      intensitySubject.next(+event.currentTarget.value / 10);
+      setIntensity(+event.currentTarget.value / 10);
     },
-    [intensitySubject, range.to]
+    [intensitySubject]
   );
 
-  const handleIntensityChange = useCallback(
-    (result: number) => {
-      setIntensity(result);
-    },
-    [setIntensity]
-  );
+  const handleIntensityChange = useCallback((result: number) => {
+    setTestIntensity(result);
+  }, []);
 
   // --- HELPERS ---
 
-  const translateYOffset = `${index}%`;
-
-  const sliderTrackDividingLinesAmount =
-    type === IntervalTimerConfigurationType.TIME
-      ? (range.to - range.from) / 5
-      : range.to - range.from;
+  const translateYOffset = `${
+    ((intensity - range.from) / (range.to - range.from)) * 100
+  }%`;
 
   // There is probably an easier way to do that but cloning is cool.
   const clonedIcon = React.cloneElement(icon, {
@@ -101,11 +82,11 @@ export const IntervalTimerConfigurationOption = ({
 
   const formattedIntensity = useMemo(() => {
     if (type === IntervalTimerConfigurationType.COUNT) {
-      return intensity;
+      return testIntensity;
     }
 
-    return getFormattedSecondsToMinutes(intensity);
-  }, [intensity, type]);
+    return getFormattedSecondsToMinutes(testIntensity);
+  }, [testIntensity, type]);
 
   // --- RENDER ---
 
@@ -136,15 +117,14 @@ export const IntervalTimerConfigurationOption = ({
           <>
             <Slider
               className="appearance-none"
-              value={index}
+              // We multiply it by 10 to have a smooth slider transition even for small ranges.
+              max={range.to * 10}
+              min={range.from * 10}
+              value={intensity * 10}
               onChange={handleIndexChange}
             />
             <SliderThumb translateYOffset={translateYOffset} />
-            <Box className="absolute h-full justify-around">
-              {new Array(sliderTrackDividingLinesAmount).fill('').map(() => (
-                <Box className="h-0.5 w-10 bg-white-full opacity-50" />
-              ))}
-            </Box>
+            <SliderTrack range={range} type={type} />
           </>
         </SliderContainer>
       </Modal>

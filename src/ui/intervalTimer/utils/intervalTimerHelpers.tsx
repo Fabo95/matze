@@ -42,7 +42,7 @@ export const getIntervalTimerConfigurationOptionsProps = ({
     },
     icon: <PauseIcon className="mr-2 stroke-red-dark" />,
     intensity: interval.restTime,
-    range: { from: 0, to: 60 },
+    range: { from: 0, to: 180 },
     title: t('pages.home.intervalTimer.optionTwo'),
     type: IntervalTimerConfigurationType.TIME,
   },

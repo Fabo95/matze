@@ -2,13 +2,16 @@ import { SyntheticEvent } from 'react';
 
 type SliderProps = {
   className?: string;
+  max: number;
+  min: number;
   onChange?: (event: SyntheticEvent<HTMLInputElement>) => void;
   value: number;
 };
 
 export const Slider = ({
   className: propsClassName,
-
+  max,
+  min,
   value,
   onChange,
 }: SliderProps) => {
@@ -21,6 +24,8 @@ export const Slider = ({
   return (
     <input
       className={`${classNames} slider`}
+      max={max}
+      min={min}
       orient="vertical"
       type="range"
       value={value}

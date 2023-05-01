@@ -3,6 +3,7 @@ import { BehaviorSubject, distinctUntilChanged, map } from 'rxjs';
 
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
+import { mapIndexToIntensity } from 'utils/helpers';
 
 type UseIntensityPipeProps = {
   handleIntensityChange: (result: number) => void;
@@ -20,32 +21,23 @@ export const useIntensityPipe = ({
   useEffect(() => {
     intensitySubject
       .pipe(
-        map((changedIntensity) => {
+        map((intensity) => {
           if (type === IntervalTimerConfigurationType.COUNT) {
-            return Math.round(changedIntensity);
+            return Math.round(intensity);
           }
 
           const roundingNumber = 5;
-          const rest = changedIntensity % roundingNumber;
+          const rest = intensity % roundingNumber;
 
-          if (rest <= roundingNumber / 2) {
-            return changedIntensity - rest;
+          if (rest < roundingNumber / 2) {
+            return intensity - rest;
           }
 
-          return changedIntensity + (roundingNumber - rest);
+          return intensity + (roundingNumber - rest);
         }),
 
-        distinctUntilChanged(
-          (prevIntensity, currentIntensity) =>
-            currentIntensity === prevIntensity
-        ),
-
-        map((changedIntensity) => {
-          if (changedIntensity < range.from) {
-            return range.from;
-          }
-
-          return changedIntensity;
+        distinctUntilChanged((prevIntensity, currentIntensity) => {
+          return currentIntensity === prevIntensity;
         })
       )
       .subscribe({

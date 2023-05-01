@@ -57,4 +57,4 @@ export const mapIntensityToIndex = ({
   intensity: number;
   maxIndex?: number;
   maxIntensity: number;
-}) => (intensity * maxIndex) / maxIntensity;
+}) => Math.round((intensity * maxIndex) / maxIntensity);
