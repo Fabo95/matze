@@ -18,6 +18,8 @@ import { ModalHeader } from 'base/modalHeader';
 import { SliderTrack } from 'base/sliderTrack';
 import { UnstyledButton } from 'base/unstyledButton';
 import { Button } from 'base/button';
+import { getFetchOptions } from 'api/apiHelpers';
+import { HttpMethod } from 'api/apiTypes';
 
 export const IntervalTimerConfigurationOption = ({
   className,
@@ -65,13 +67,13 @@ export const IntervalTimerConfigurationOption = ({
 
   const handleConfirmIntensity = async () => {
     try {
-      await fetch('http://localhost:8080/intervals', {
-        body: JSON.stringify({ [intensityType]: filteredIntensity }),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        method: 'PATCH',
-      });
+      await fetch(
+        'http://localhost:8080/intervals',
+        getFetchOptions({
+          body: { [intensityType]: filteredIntensity },
+          method: HttpMethod.PATCH,
+        })
+      );
     } catch (e) {
       console.log(e);
     }

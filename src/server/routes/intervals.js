@@ -57,31 +57,28 @@ router.post('/', async (req, res) => {
 });
 
 router.patch('/', async (req, res) => {
-  const { workTime, restTime, exerciseCount, roundCount, roundResetTime } =
-    req.body;
+  const {
+    workTime = null,
+    restTime = null,
+    exerciseCount = null,
+    roundCount = null,
+    roundResetTime = null,
+  } = req.body;
+
+  const query =
+    'UPDATE INTERVALS SET work_time = IFNULL(?, work_time), rest_time = IFNULL(?, rest_time),  exercise_count = IFNULL(?, exercise_count), round_count = IFNULL(?, round_count), round_reset_time = IFNULL(?, round_reset_time) WHERE user_id = ?';
+
+  const values = [
+    workTime,
+    restTime,
+    exerciseCount,
+    roundCount,
+    roundResetTime,
+    32,
+  ];
 
   try {
-    await db.promise().query(
-      `UPDATE INTERVALS
-    SET work_time = COALESCE(${workTime !== undefined ? workTime : 'work_time'},
-        work_time),
-        rest_time = COALESCE(${restTime !== undefined ? restTime : 'rest_time'},
-            rest_time),
-        exercise_count = COALESCE(${
-          exerciseCount !== undefined ? exerciseCount : 'exercise_count'
-        },
-            exercise_count),
-        round_count = COALESCE(${
-          roundCount !== undefined ? roundCount : 'round_count'
-        },
-            round_count),
-        round_reset_time = COALESCE(${
-          roundResetTime !== undefined ? roundResetTime : 'round_reset_time'
-        },
-            round_reset_time)
-    WHERE user_id = ${32}
-`
-    );
+    await db.promise().query(query, values);
     res.send(200);
   } catch (error) {
     res.status(500).send({ message: error });
