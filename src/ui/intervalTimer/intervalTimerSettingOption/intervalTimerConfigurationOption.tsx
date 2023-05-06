@@ -16,7 +16,6 @@ import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalT
 import { useIntensityPipe } from 'ui/intervalTimer/utils/intervalTimerHooks';
 import { ModalHeader } from 'base/modalHeader';
 import { SliderTrack } from 'base/sliderTrack';
-import { UnstyledButton } from 'base/unstyledButton';
 import { Button } from 'base/button';
 import { getFetchOptions } from 'api/apiHelpers';
 import { HttpMethod } from 'api/apiTypes';
@@ -32,8 +31,6 @@ export const IntervalTimerConfigurationOption = ({
   intensityType,
 }: IntervalTimerConfigurationOptionProps & { primaryButtonTitle: string }) => {
   // --- STATE ---
-
-  console.log(className);
 
   const [intensity, setIntensity] = useState<number>(propsIntensity);
   const [filteredIntensity, setFilteredIntensity] = useState<number>(0);
