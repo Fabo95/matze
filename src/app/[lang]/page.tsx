@@ -2,6 +2,8 @@ import { getTFunction } from 'i18n/get-t-function';
 import { Locale } from 'utils/types';
 import { Box } from 'base/box';
 import { IntervalTimerConfiguration } from 'ui/intervalTimer/intervalTimerConfiguration';
+import { IntervalTimerCountDown } from 'ui/intervalTimer/intervalTimerCountDown';
+import React from 'react';
 
 export type Interval = {
   userId: number;
@@ -22,13 +24,16 @@ export default async function Home({
 }) {
   const t = await getTFunction(lang);
 
+  // --- DATA ---
+
   const interval = await getInterval();
+
+  // --- RENDER ---
 
   return (
     <>
-      <Box className="bg-transparent h-1/3 items-center justify-center p-4 text-6xl font-bold text-white-full">
-        00:30:00
-      </Box>
+      {/* @ts-expect-error Server Component */}
+      <IntervalTimerCountDown />
       <IntervalTimerConfiguration interval={interval} t={t} />
     </>
   );

@@ -1,6 +1,12 @@
 'use client';
 
-import React, { SyntheticEvent, useCallback, useMemo, useState } from 'react';
+import React, {
+  SyntheticEvent,
+  useCallback,
+  useMemo,
+  useState,
+  useTransition,
+} from 'react';
 import { BehaviorSubject } from 'rxjs';
 
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
@@ -17,8 +23,7 @@ import { useIntensityPipe } from 'ui/intervalTimer/utils/intervalTimerHooks';
 import { ModalHeader } from 'base/modalHeader';
 import { SliderTrack } from 'base/sliderTrack';
 import { Button } from 'base/button';
-import { getFetchOptions } from 'api/apiHelpers';
-import { HttpMethod } from 'api/apiTypes';
+import { apiPatchIntensity } from 'api/serverActions';
 
 export const IntervalTimerConfigurationOption = ({
   className,
@@ -34,6 +39,8 @@ export const IntervalTimerConfigurationOption = ({
 
   const [intensity, setIntensity] = useState<number>(propsIntensity);
   const [filteredIntensity, setFilteredIntensity] = useState<number>(0);
+
+  const [isPending, startTransition] = useTransition();
 
   const {
     value: isOpen,
@@ -62,18 +69,10 @@ export const IntervalTimerConfigurationOption = ({
     setFilteredIntensity(result);
   }, []);
 
-  const handleConfirmIntensity = async () => {
-    try {
-      await fetch(
-        'http://localhost:8080/intervals',
-        getFetchOptions({
-          body: { [intensityType]: filteredIntensity },
-          method: HttpMethod.PATCH,
-        })
-      );
-    } catch (e) {
-      console.log(e);
-    }
+  const handleConfirmIntensity = () => {
+    startTransition(() =>
+      apiPatchIntensity({ filteredIntensity, intensityType })
+    );
 
     closeModal();
   };

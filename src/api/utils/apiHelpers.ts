@@ -1,4 +1,4 @@
-import { HttpMethod } from 'api/apiTypes';
+import { HttpMethod } from 'api/utils/apiTypes';
 
 type GetFechtOptions = Omit<RequestInit, 'body'> & {
   body: { [key: string]: unknown };
