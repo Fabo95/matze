@@ -71,6 +71,8 @@ export const IntervalTimerConfigurationOption = ({
 
   const handleConfirmIntensity = () => {
     startTransition(() =>
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       apiPatchIntensity({ filteredIntensity, intensityType })
     );
 

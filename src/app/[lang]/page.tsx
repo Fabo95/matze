@@ -1,6 +1,5 @@
 import { getTFunction } from 'i18n/get-t-function';
 import { Locale } from 'utils/types';
-import { Box } from 'base/box';
 import { IntervalTimerConfiguration } from 'ui/intervalTimer/intervalTimerConfiguration';
 import { IntervalTimerCountDown } from 'ui/intervalTimer/intervalTimerCountDown';
 import React from 'react';

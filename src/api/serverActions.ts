@@ -3,7 +3,6 @@
 import { getFetchOptions } from 'api/utils/apiHelpers';
 import { HttpMethod } from 'api/utils/apiTypes';
 import { IntervalTimerIntensityType } from 'ui/intervalTimer/utils/intervalTimerTypes';
-import { revalidatePath, revalidateTag } from 'next/cache';
 
 export const apiPatchIntensity = async ({
   intensityType,
@@ -20,8 +19,6 @@ export const apiPatchIntensity = async ({
         method: HttpMethod.PATCH,
       })
     );
-
-    revalidateTag('312312312312312312');
   } catch (e) {
     console.log(e);
   }
