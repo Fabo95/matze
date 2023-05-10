@@ -1,8 +1,10 @@
+import React from 'react';
+
 import { getTFunction } from 'i18n/get-t-function';
 import { Locale } from 'utils/types';
 import { IntervalTimerConfiguration } from 'ui/intervalTimer/intervalTimerConfiguration';
 import { IntervalTimerCountDown } from 'ui/intervalTimer/intervalTimerCountDown';
-import React from 'react';
+import { useIntervalStore } from 'store/intervalStore';
 
 export type Interval = {
   userId: number;
@@ -26,6 +28,10 @@ export default async function Home({
   // --- DATA ---
 
   const interval = await getInterval();
+
+  // --- CALLBACKS ---
+
+  useIntervalStore.setState(interval);
 
   // --- RENDER ---
 
