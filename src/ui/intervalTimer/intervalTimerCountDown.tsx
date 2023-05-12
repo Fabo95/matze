@@ -1,31 +1,31 @@
-import { Interval } from 'app/[lang]/page';
-import { getFormattedSecondsToMinutes } from 'utils/helpers';
+'use client';
+
+import { getFormattedSeconds } from 'utils/helpers';
 import { Box } from 'base/box';
+import { useIntervalStore } from 'store/intervalStore';
+import { selectInterval } from 'store/intervalSelectors';
 
-const getInterval = async (): Promise<Interval> =>
-  fetch('http://localhost:8080/intervals', {
-    next: { revalidate: 30, tags: ['312312312312312312'] },
-  }).then((data) => data.json());
-
-export const IntervalTimerCountDown = async () => {
+export const IntervalTimerCountDown = () => {
   // --- DATA ---
 
-  const interval = await getInterval();
+  const interval = useIntervalStore(selectInterval);
+
+  console.log('interval', interval);
 
   // --- HELPERS ---
 
-  const totalIntervalTime = getFormattedSecondsToMinutes(
+  const totalIntervalTime =
     (interval.restTime + interval.workTime) *
-      interval.exerciseCount *
-      interval.roundCount +
-      interval.roundCount * interval.roundResetTime
-  );
+      (interval.exerciseCount * interval.roundCount) +
+    interval.roundCount * interval.roundResetTime;
+
+  const formattedIntervalTime = getFormattedSeconds(totalIntervalTime);
 
   // --- RENDER ---
 
   return (
     <Box className="bg-transparent h-1/3 items-center justify-center p-4 text-6xl font-bold text-white-full">
-      {totalIntervalTime}
+      {formattedIntervalTime}
     </Box>
   );
 };

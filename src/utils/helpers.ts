@@ -22,19 +22,25 @@ export const getNestedObjectValue = (
 };
 
 /**
- * Takes a duration in seconds and returns the formatted time in minutes with the proportionate seconds of the minute started.
+ * Takes a duration in seconds and returns either the formatted time in hours or minutes with the proportionate minutes and seconds of the minute started.
  *
  * @param propsSeconds Is the duration in seconds.
  * @see https://momentjs.com/docs/#/durations/
  */
-export const getFormattedSecondsToMinutes = (propsSeconds: number) => {
+export const getFormattedSeconds = (propsSeconds: number) => {
   const duration = moment.duration(propsSeconds, 'seconds');
 
+  const hours = duration.hours();
   const minutes = duration.minutes();
   const seconds = duration.seconds();
 
+  const formattedHours = hours < 10 ? `0${hours}` : hours;
   const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
   const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+  if (propsSeconds >= 3600) {
+    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+  }
 
   return `${formattedMinutes}:${formattedSeconds}`;
 };

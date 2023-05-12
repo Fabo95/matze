@@ -1,9 +1,8 @@
 import { Box } from 'base/box';
-import { Interval } from 'app/[lang]/page';
+import { Interval } from 'api/utils/apiTypes';
 import { getIntervalTimerConfigurationOptionsProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 import { TFunction } from 'utils/types';
 import { IntervalTimerConfigurationOption } from 'ui/intervalTimer/intervalTimerSettingOption/intervalTimerConfigurationOption';
-import { useIntervalStore } from 'store/intervalStore';
 
 type IntervalTimerConfigurationProps = {
   interval: Interval;

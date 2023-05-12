@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 
 import { TFunction } from 'utils/types';
-import { Interval } from 'app/[lang]/page';
+import { Interval } from 'api/utils/apiTypes';
 import { PlayIcon } from 'icons/playIcon';
 import { PauseIcon } from 'icons/pauseIcon';
 import { RocketIcon } from 'icons/rocketIcon';

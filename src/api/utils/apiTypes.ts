@@ -1,11 +1,8 @@
-export const enum HttpMethod {
-  GET = 'GET',
-  POST = 'POST',
-  PUT = 'PUT',
-  HEAD = 'HEAD',
-  DELETE = 'DELETE',
-  PATCH = 'PATCH',
-  OPTIONS = 'OPTIONS',
-  CONNECT = 'CONNECT',
-  TRACE = 'TRACE',
-}
+export type Interval = {
+  userId: number;
+  workTime: number;
+  restTime: number;
+  exerciseCount: number;
+  roundCount: number;
+  roundResetTime: number;
+};

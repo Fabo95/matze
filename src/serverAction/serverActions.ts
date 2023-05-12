@@ -1,7 +1,7 @@
 'use server';
 
-import { getFetchOptions } from 'api/utils/apiHelpers';
-import { HttpMethod } from 'api/utils/apiTypes';
+import { getFetchOptions } from 'serverAction/utils/serverActionHelpers';
+import { HttpMethod } from 'serverAction/utils/serverActionTypes';
 import { IntervalTimerIntensityType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 
 export const apiPatchIntensity = async ({

@@ -4,19 +4,8 @@ import { getTFunction } from 'i18n/get-t-function';
 import { Locale } from 'utils/types';
 import { IntervalTimerConfiguration } from 'ui/intervalTimer/intervalTimerConfiguration';
 import { IntervalTimerCountDown } from 'ui/intervalTimer/intervalTimerCountDown';
-import { useIntervalStore } from 'store/intervalStore';
-
-export type Interval = {
-  userId: number;
-  workTime: number;
-  restTime: number;
-  exerciseCount: number;
-  roundCount: number;
-  roundResetTime: number;
-};
-
-const getInterval = async (): Promise<Interval> =>
-  fetch('http://localhost:8080/intervals').then((data) => data.json());
+import { apiGetInterval } from 'api/api';
+import { ClientStoreInitializer } from 'store/clientStoreInitializer';
 
 export default async function Home({
   params: { lang },
@@ -27,17 +16,13 @@ export default async function Home({
 
   // --- DATA ---
 
-  const interval = await getInterval();
-
-  // --- CALLBACKS ---
-
-  useIntervalStore.setState(interval);
+  const interval = await apiGetInterval();
 
   // --- RENDER ---
 
   return (
     <>
-      {/* @ts-expect-error Server Component */}
+      <ClientStoreInitializer interval={interval} />
       <IntervalTimerCountDown />
       <IntervalTimerConfiguration interval={interval} t={t} />
     </>

@@ -17,13 +17,15 @@ import { Slider } from 'base/slider';
 import { SliderThumb } from 'base/sliderThumb';
 import { SliderContainer } from 'base/sliderContainer';
 import { ConfigurationOptionButton } from 'ui/intervalTimer/intervalTimerSettingOption/components/configurationOptionButton';
-import { getFormattedSecondsToMinutes } from 'utils/helpers';
+import { getFormattedSeconds } from 'utils/helpers';
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { useIntensityPipe } from 'ui/intervalTimer/utils/intervalTimerHooks';
 import { ModalHeader } from 'base/modalHeader';
 import { SliderTrack } from 'base/sliderTrack';
 import { Button } from 'base/button';
-import { apiPatchIntensity } from 'api/serverActions';
+import { apiPatchIntensity } from 'serverAction/serverActions';
+import { useIntervalStore } from 'store/intervalStore';
+import { selectSetInterval } from 'store/intervalSelectors';
 
 export const IntervalTimerConfigurationOption = ({
   className,
@@ -35,12 +37,14 @@ export const IntervalTimerConfigurationOption = ({
   intensity: propsIntensity,
   intensityType,
 }: IntervalTimerConfigurationOptionProps & { primaryButtonTitle: string }) => {
+  const setInterval = useIntervalStore(selectSetInterval);
+
   // --- STATE ---
 
   const [intensity, setIntensity] = useState<number>(propsIntensity);
   const [filteredIntensity, setFilteredIntensity] = useState<number>(0);
 
-  const [isPending, startTransition] = useTransition();
+  const [_, startTransition] = useTransition();
 
   const {
     value: isOpen,
@@ -76,6 +80,8 @@ export const IntervalTimerConfigurationOption = ({
       apiPatchIntensity({ filteredIntensity, intensityType })
     );
 
+    setInterval({ [intensityType]: filteredIntensity });
+
     closeModal();
   };
 
@@ -103,7 +109,7 @@ export const IntervalTimerConfigurationOption = ({
       return filteredIntensity;
     }
 
-    return getFormattedSecondsToMinutes(filteredIntensity);
+    return getFormattedSeconds(filteredIntensity);
   }, [configurationType, filteredIntensity]);
 
   // --- RENDER ---
