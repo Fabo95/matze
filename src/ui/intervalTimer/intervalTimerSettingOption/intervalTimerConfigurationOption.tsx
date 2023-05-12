@@ -8,6 +8,7 @@ import React, {
   useTransition,
 } from 'react';
 import { BehaviorSubject } from 'rxjs';
+import { useParams } from 'next/navigation';
 
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 import { BackgroundBlur } from 'base/backgroundBlur';
@@ -24,8 +25,6 @@ import { ModalHeader } from 'base/modalHeader';
 import { SliderTrack } from 'base/sliderTrack';
 import { Button } from 'base/button';
 import { apiPatchIntensity } from 'serverAction/serverActions';
-import { useIntervalStore } from 'store/intervalStore';
-import { selectSetInterval } from 'store/intervalSelectors';
 
 export const IntervalTimerConfigurationOption = ({
   className,
@@ -37,14 +36,13 @@ export const IntervalTimerConfigurationOption = ({
   intensity: propsIntensity,
   intensityType,
 }: IntervalTimerConfigurationOptionProps & { primaryButtonTitle: string }) => {
-  const setInterval = useIntervalStore(selectSetInterval);
-
   // --- STATE ---
 
   const [intensity, setIntensity] = useState<number>(propsIntensity);
   const [filteredIntensity, setFilteredIntensity] = useState<number>(0);
 
   const [_, startTransition] = useTransition();
+  const params = useParams();
 
   const {
     value: isOpen,
@@ -74,13 +72,15 @@ export const IntervalTimerConfigurationOption = ({
   }, []);
 
   const handleConfirmIntensity = () => {
-    startTransition(() =>
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      apiPatchIntensity({ filteredIntensity, intensityType })
-    );
-
-    setInterval({ [intensityType]: filteredIntensity });
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    startTransition(async () => {
+      await apiPatchIntensity({
+        filteredIntensity,
+        intensityType,
+        path: params.lang,
+      });
+    });
 
     closeModal();
   };

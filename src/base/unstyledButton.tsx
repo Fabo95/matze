@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ForwardedRef, forwardRef, ReactNode } from 'react';
 
 type UnstyledButtonProps = {
   className?: string;
@@ -6,20 +6,21 @@ type UnstyledButtonProps = {
   onClick?: () => void;
 };
 
-export const UnstyledButton = ({
-  className: propsClassName,
-  children,
-  onClick,
-}: UnstyledButtonProps) => {
-  const defaultClassnames = 'inline-block';
+export const UnstyledButton = forwardRef(
+  (
+    { className: propsClassName, children, onClick }: UnstyledButtonProps,
+    ref: ForwardedRef<HTMLButtonElement>
+  ) => {
+    const defaultClassnames = 'inline-block';
 
-  const classNames = propsClassName
-    ? `${defaultClassnames} ${propsClassName}`
-    : defaultClassnames;
+    const classNames = propsClassName
+      ? `${defaultClassnames} ${propsClassName}`
+      : defaultClassnames;
 
-  return (
-    <button className={classNames} type="button" onClick={onClick}>
-      {children}
-    </button>
-  );
-};
+    return (
+      <button className={classNames} ref={ref} type="button" onClick={onClick}>
+        {children}
+      </button>
+    );
+  }
+);

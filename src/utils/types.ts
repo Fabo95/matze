@@ -4,7 +4,7 @@ export enum Locale {
 }
 
 export enum Page {
-  HOME = 'home',
+  HOME = '/',
   HISTORY = 'history',
   SETTINGS = 'settings',
   STATISTICS = 'statistics',

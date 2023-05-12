@@ -1,5 +1,6 @@
 import { RecursiveObjectType } from 'utils/types';
 import moment from 'moment';
+import { Interval } from 'api/utils/apiTypes';
 
 /**
  * Takes an nested object and an array of keys and returnes the corresponding nested string value.
@@ -45,22 +46,7 @@ export const getFormattedSeconds = (propsSeconds: number) => {
   return `${formattedMinutes}:${formattedSeconds}`;
 };
 
-export const mapIndexToIntensity = ({
-  index,
-  maxIndex = 100,
-  maxIntensity,
-}: {
-  index: number;
-  maxIndex?: number;
-  maxIntensity: number;
-}) => (index * maxIntensity) / maxIndex;
-
-export const mapIntensityToIndex = ({
-  intensity,
-  maxIndex = 100,
-  maxIntensity,
-}: {
-  intensity: number;
-  maxIndex?: number;
-  maxIntensity: number;
-}) => Math.round((intensity * maxIndex) / maxIntensity);
+export const getTotalIntervalTime = (interval: Interval) =>
+  (interval.restTime + interval.workTime) *
+    (interval.exerciseCount * interval.roundCount) +
+  interval.roundCount * interval.roundResetTime;

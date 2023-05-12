@@ -5,7 +5,6 @@ import { Locale } from 'utils/types';
 import { IntervalTimerConfiguration } from 'ui/intervalTimer/intervalTimerConfiguration';
 import { IntervalTimerCountDown } from 'ui/intervalTimer/intervalTimerCountDown';
 import { apiGetInterval } from 'api/api';
-import { ClientStoreInitializer } from 'store/clientStoreInitializer';
 
 export default async function Home({
   params: { lang },
@@ -22,8 +21,7 @@ export default async function Home({
 
   return (
     <>
-      <ClientStoreInitializer interval={interval} />
-      <IntervalTimerCountDown />
+      <IntervalTimerCountDown interval={interval} />
       <IntervalTimerConfiguration interval={interval} t={t} />
     </>
   );

@@ -31,7 +31,7 @@ export const MenuSlidingPane = ({
 
   return (
     <Box
-      className={`absolute bottom-0 left-0 right-0 top-0 w-8/12 overflow-hidden rounded-r-lg bg-white-full text-white-full duration-300 ${
+      className={`absolute bottom-0 left-0 right-0 top-0 z-20 w-8/12 overflow-hidden rounded-r-lg bg-white-full text-white-full duration-300 ${
         !isOpen && 'translate-x-full-left'
       }`}
     >
