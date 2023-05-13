@@ -52,28 +52,35 @@ export const IntervalTimerConfigurationOption = ({
 
   const [handleIntensitySubject, intensity$] = useReactiveCallback<number>();
 
+  const filteredIntensity$ = useMemo(
+    () =>
+      intensity$.pipe(
+        map((intensityValue) => {
+          if (configurationType === IntervalTimerConfigurationType.COUNT) {
+            return Math.round(intensityValue);
+          }
+
+          const roundingNumber = 5;
+          const rest = intensityValue % roundingNumber;
+
+          if (rest < roundingNumber / 2) {
+            return intensityValue - rest;
+          }
+
+          return intensityValue + (roundingNumber - rest);
+        }),
+
+        distinctUntilChanged(
+          (prevIntensity, currentIntensity) =>
+            currentIntensity === prevIntensity
+        )
+      ),
+    [configurationType, intensity$]
+  );
+
   const filteredIntensity = useObservable({
     initialState: 0,
-    source$: intensity$.pipe(
-      map((intensityValue) => {
-        if (configurationType === IntervalTimerConfigurationType.COUNT) {
-          return Math.round(intensityValue);
-        }
-
-        const roundingNumber = 5;
-        const rest = intensityValue % roundingNumber;
-
-        if (rest < roundingNumber / 2) {
-          return intensityValue - rest;
-        }
-
-        return intensityValue + (roundingNumber - rest);
-      }),
-
-      distinctUntilChanged(
-        (prevIntensity, currentIntensity) => currentIntensity === prevIntensity
-      )
-    ),
+    source$: filteredIntensity$,
   });
 
   // --- CALLBACKS ---

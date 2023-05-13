@@ -14,6 +14,8 @@
     "@types/node": "^18.16.0",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
+    "@xstate/cli": "^0.5.1",
+    "@xstate/react": "^3.2.2",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -29,6 +31,7 @@
     "react-dom": "^18.2.0",
     "rxjs": "^7.8.1",
     "uuid": "^9.0.0",
+    "xstate": "^4.37.2",
     "zustand": "^4.3.8"
   },
   "devDependencies": {

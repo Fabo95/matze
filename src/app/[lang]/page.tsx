@@ -3,7 +3,7 @@ import React from 'react';
 import { getTFunction } from 'i18n/get-t-function';
 import { Locale } from 'utils/types';
 import { IntervalTimerConfiguration } from 'ui/intervalTimer/intervalTimerConfiguration';
-import { IntervalTimerCountDown } from 'ui/intervalTimer/intervalTimerCountDown';
+import { IntervalTimerExecution } from 'ui/intervalTimer/intervalTimerExecution';
 import { apiGetInterval } from 'api/api';
 
 export default async function Home({
@@ -21,7 +21,7 @@ export default async function Home({
 
   return (
     <>
-      <IntervalTimerCountDown interval={interval} />
+      <IntervalTimerExecution interval={interval} />
       <IntervalTimerConfiguration interval={interval} t={t} />
     </>
   );
