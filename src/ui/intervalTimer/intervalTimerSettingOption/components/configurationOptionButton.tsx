@@ -1,11 +1,12 @@
 import { ReactElement } from 'react';
 import { UnstyledButton } from 'base/unstyledButton';
 import { Row } from 'base/row';
+import { Span } from 'base/span';
 
 type ButtonProps = {
   inlineCenterLeft: string;
   inlineStart: ReactElement;
-  inlineEnd: string | number;
+  inlineEnd?: string | number;
   className?: string;
   onClick?: () => void;
 };
@@ -23,10 +24,10 @@ export const ConfigurationOptionButton = ({
     onClick={onClick}
   >
     <Row className="items-center text-black-dark">
-      {inlineStart}
-      {inlineCenterLeft}
+      <Span>{inlineStart}</Span>
+      <Span>{inlineCenterLeft}</Span>
     </Row>
 
-    {inlineEnd}
+    {inlineEnd && <Span>{inlineEnd}</Span>}
   </UnstyledButton>
 );

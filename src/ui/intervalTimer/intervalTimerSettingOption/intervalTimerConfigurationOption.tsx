@@ -7,12 +7,12 @@ import React, {
   useState,
   useTransition,
 } from 'react';
-import { BehaviorSubject } from 'rxjs';
+import { distinctUntilChanged, map } from 'rxjs';
 import { useParams } from 'next/navigation';
 
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 import { BackgroundBlur } from 'base/backgroundBlur';
-import { useBoolean } from 'utils/hooks';
+import { useBoolean, useObservable, useReactiveCallback } from 'utils/hooks';
 import { Modal } from 'base/modal';
 import { Slider } from 'base/slider';
 import { SliderThumb } from 'base/sliderThumb';
@@ -20,7 +20,6 @@ import { SliderContainer } from 'base/sliderContainer';
 import { ConfigurationOptionButton } from 'ui/intervalTimer/intervalTimerSettingOption/components/configurationOptionButton';
 import { getFormattedSeconds } from 'utils/helpers';
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
-import { useIntensityPipe } from 'ui/intervalTimer/utils/intervalTimerHooks';
 import { ModalHeader } from 'base/modalHeader';
 import { SliderTrack } from 'base/sliderTrack';
 import { Button } from 'base/button';
@@ -39,7 +38,6 @@ export const IntervalTimerConfigurationOption = ({
   // --- STATE ---
 
   const [intensity, setIntensity] = useState<number>(propsIntensity);
-  const [filteredIntensity, setFilteredIntensity] = useState<number>(0);
 
   const [_, startTransition] = useTransition();
   const params = useParams();
@@ -50,26 +48,43 @@ export const IntervalTimerConfigurationOption = ({
     setTrue: openModal,
   } = useBoolean(false);
 
-  // --- SUBJECT ---
+  // --- REACTIVE ---
 
-  const intensitySubject = useMemo(
-    () => new BehaviorSubject(propsIntensity),
-    [propsIntensity]
-  );
+  const [handleIntensitySubject, intensity$] = useReactiveCallback<number>();
+
+  const filteredIntensity = useObservable({
+    initialState: 0,
+    source$: intensity$.pipe(
+      map((intensityValue) => {
+        if (configurationType === IntervalTimerConfigurationType.COUNT) {
+          return Math.round(intensityValue);
+        }
+
+        const roundingNumber = 5;
+        const rest = intensityValue % roundingNumber;
+
+        if (rest < roundingNumber / 2) {
+          return intensityValue - rest;
+        }
+
+        return intensityValue + (roundingNumber - rest);
+      }),
+
+      distinctUntilChanged(
+        (prevIntensity, currentIntensity) => currentIntensity === prevIntensity
+      )
+    ),
+  });
 
   // --- CALLBACKS ---
 
   const handleIndexChange = useCallback(
     (event: SyntheticEvent<HTMLInputElement>) => {
-      intensitySubject.next(+event.currentTarget.value / 10);
+      handleIntensitySubject(+event.currentTarget.value / 10);
       setIntensity(+event.currentTarget.value / 10);
     },
-    [intensitySubject]
+    [handleIntensitySubject]
   );
-
-  const handleIntensityChange = useCallback((result: number) => {
-    setFilteredIntensity(result);
-  }, []);
 
   const handleConfirmIntensity = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -93,18 +108,13 @@ export const IntervalTimerConfigurationOption = ({
     className: 'stroke-white-full h-9 w-9 mr-2 stroke-green-dark',
   });
 
-  // --- EFFECTS ---
-
-  useIntensityPipe({
-    configurationType,
-    handleIntensityChange,
-    intensitySubject,
-    sliderRange,
-  });
-
   // --- MEMOIZED DATA ---
 
   const formattedIntensity = useMemo(() => {
+    if (!filteredIntensity) {
+      return undefined;
+    }
+
     if (configurationType === IntervalTimerConfigurationType.COUNT) {
       return filteredIntensity;
     }

@@ -12,7 +12,7 @@ export const apiPatchIntensity = async ({
   path,
 }: {
   intensityType: IntervalTimerIntensityType;
-  filteredIntensity: number;
+  filteredIntensity?: number;
   path: string;
 }) => {
   try {
