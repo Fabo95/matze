@@ -32,7 +32,7 @@ export const IntervalTimerExecution = ({
     startClick$,
   });
 
-  const [state, send] = useMachine(intervalTimerExecutionMachine as any);
+  const [state, send] = useMachine(intervalTimerExecutionMachine);
 
   // --- HELPERS ---
 
