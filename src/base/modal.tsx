@@ -17,16 +17,18 @@ export const Modal = ({
   isOpen,
 }: ModalProps) => (
   <Box
-    className={`${contentClassName} absolute inset-x-8 inset-y-11 z-50 rounded-lg p-10 ${
+    className={`absolute inset-x-0 inset-y-0 z-50  p-11 ${
       isOpen
         ? 'animate-opacity-animation-up'
         : 'translate-x-full-left animate-opacity-animation-down transition-transform delay-250'
     }`}
   >
-    <UnstyledButton onClick={closeModal}>
-      <XMarkIcon className="absolute right-10 top-10 stroke-white-full" />
-    </UnstyledButton>
+    <Box className={`${contentClassName} relative h-full rounded-lg p-10`}>
+      <UnstyledButton onClick={closeModal}>
+        <XMarkIcon className="absolute right-10 top-10 stroke-white-full" />
+      </UnstyledButton>
 
-    {children}
+      {children}
+    </Box>
   </Box>
 );
