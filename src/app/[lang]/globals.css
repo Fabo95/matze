@@ -41,4 +41,24 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
+.custom-circle-cut-off {
+    position: relative;
+    overflow: hidden;
+    /* Needed because otherwise there is a weird border on mobile devices */
+    bottom: -1px;
+}
+
+.custom-circle-cut-off:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border-width: 0;
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 0 2000px white;
+}
+
 
