@@ -2,9 +2,10 @@ import React from 'react';
 
 import { getTFunction } from 'i18n/get-t-function';
 import { Locale } from 'utils/types';
-import { IntervalTimerConfiguration } from 'ui/intervalTimer/intervalTimerConfiguration';
-import { IntervalTimerExecution } from 'ui/intervalTimer/intervalTimerExecution';
+import { IntervalTimerConfiguration } from 'ui/intervalTimer/IntervalTimerConfiguration/intervalTimerConfiguration';
+import { IntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecution/intervalTimerExecution';
 import { apiGetInterval } from 'api/api';
+import { Box } from 'base/box';
 
 export default async function Home({
   params: { lang },
@@ -20,9 +21,12 @@ export default async function Home({
   // --- RENDER ---
 
   return (
-    <>
-      <IntervalTimerExecution interval={interval} />
+    <Box className="justify-self-stretch">
+      <IntervalTimerExecution
+        interval={interval}
+        key={JSON.stringify(interval)}
+      />
       <IntervalTimerConfiguration interval={interval} t={t} />
-    </>
+    </Box>
   );
 }
