@@ -12,7 +12,7 @@ import { Text } from 'base/text';
 import { StopIcon } from 'icons/stopIcon';
 import { PauseIcon } from 'icons/pauseIcon';
 import { useReactiveCallback } from 'utils/hooks';
-import { createIntervalTimerExecutionMachine } from 'ui/intervalTimer/intervalTimerSettingOption/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
+import { createIntervalTimerExecutionMachine } from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 
 export const IntervalTimerExecution = ({
   interval: propsInterval,
@@ -30,15 +30,26 @@ export const IntervalTimerExecution = ({
     ...propsInterval,
     pauseClick$,
     startClick$,
+    totalTime: getTotalIntervalTime(propsInterval),
   });
 
-  const [state, send] = useMachine(intervalTimerExecutionMachine);
+  const [intervalTimerExecutionState, send] = useMachine(
+    intervalTimerExecutionMachine as any
+  );
 
   // --- HELPERS ---
 
-  const totalIntervalTime = getTotalIntervalTime(propsInterval);
+  const { intervalTime, totalTime } = intervalTimerExecutionState.context;
 
-  const formattedIntervalTime = getFormattedSeconds(totalIntervalTime);
+  const formattedTotalTime = getFormattedSeconds(totalTime);
+
+  const formattedIntervalTime = getFormattedSeconds(intervalTime);
+
+  console.log(
+    intervalTimerExecutionState.context,
+    'state:',
+    intervalTimerExecutionState.value
+  );
 
   // --- CALLBACKS ---
 
@@ -50,8 +61,8 @@ export const IntervalTimerExecution = ({
 
   return (
     <Box className="bg-transparent relative h-1/3 items-center justify-center p-4 text-6xl font-bold text-white-full">
+      <Text className="mb-8 ">{formattedTotalTime}</Text>
       <Text className="mb-8 ">{formattedIntervalTime}</Text>
-      <Text className="mb-8 ">{'time'}</Text>
 
       <Row>
         <UnstyledButton onClick={() => handleStartSubject(true)}>

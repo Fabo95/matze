@@ -28,6 +28,6 @@ export const ConfigurationOptionButton = ({
       <Span>{inlineCenterLeft}</Span>
     </Row>
 
-    {inlineEnd && <Span>{inlineEnd}</Span>}
+    <Span>{inlineEnd}</Span>
   </UnstyledButton>
 );

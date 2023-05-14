@@ -2,7 +2,7 @@ import { Box } from 'base/box';
 import { Interval } from 'api/utils/apiTypes';
 import { getIntervalTimerConfigurationOptionsProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 import { TFunction } from 'utils/types';
-import { IntervalTimerConfigurationOption } from 'ui/intervalTimer/intervalTimerSettingOption/intervalTimerConfigurationOption';
+import { IntervalTimerConfigurationOption } from 'ui/intervalTimer/IntervalTimerConfiguration/components/intervalTimerConfigurationOption';
 
 type IntervalTimerConfigurationProps = {
   interval: Interval;

@@ -1,7 +1,9 @@
 import {
   EMPTY,
+  from,
   map,
   merge,
+  mergeMap,
   Observable,
   scan,
   startWith,
@@ -13,7 +15,7 @@ import { interval as rxInterval } from 'rxjs/internal/observable/interval';
 import {
   IntervalTimerExecutionMachineContext,
   IntervalTimerExecutionMachineEvents,
-} from 'ui/intervalTimer/intervalTimerSettingOption/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
+} from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
 import { ValueOf } from 'utils/types';
 
 export const getIntervalTimerExecution = <T>({
@@ -28,7 +30,7 @@ export const getIntervalTimerExecution = <T>({
   isAutoExecution: ValueOf<
     Pick<IntervalTimerExecutionMachineContext, 'isAutoExecution'>
   >;
-  event: IntervalTimerExecutionMachineEvents;
+  event: IntervalTimerExecutionMachineEvents[];
   contextValue: ValueOf<
     Omit<IntervalTimerExecutionMachineContext, 'isAutoExecution'>
   >;
@@ -41,6 +43,6 @@ export const getIntervalTimerExecution = <T>({
       (accumulator: number, currentValue: number) => accumulator + currentValue,
       contextValue
     ),
-    map(() => event),
-    take(contextValue)
+    mergeMap(() => from(event)),
+    take(contextValue * 2)
   );

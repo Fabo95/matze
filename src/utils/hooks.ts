@@ -35,7 +35,7 @@ export const useObservable = <T>({
   errorHandler,
 }: {
   source$: Observable<T>;
-  initialState?: T;
+  initialState: T;
   errorHandler?: (error: any) => void;
 }) => {
   // --- STATE ---

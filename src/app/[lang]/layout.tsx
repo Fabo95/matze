@@ -1,5 +1,5 @@
 import React from 'react';
-import { Manrope } from 'next/font/google';
+import { Open_Sans } from 'next/font/google';
 import { Metadata } from 'next';
 
 import 'app/[lang]/globals.css';
@@ -7,7 +7,7 @@ import { Menu } from 'ui/menu/menu';
 import { getTFunction } from 'i18n/get-t-function';
 import { Locale, Page } from 'utils/types';
 
-const manrope = Manrope({
+const manrope = Open_Sans({
   style: ['normal'],
   subsets: ['latin'],
   variable: '--font-manrope',

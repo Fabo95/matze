@@ -1,5 +1,6 @@
 import { RecursiveObjectType } from 'utils/types';
 import moment from 'moment';
+
 import { Interval } from 'api/utils/apiTypes';
 
 /**
@@ -47,6 +48,6 @@ export const getFormattedSeconds = (propsSeconds: number) => {
 };
 
 export const getTotalIntervalTime = (interval: Interval) =>
-  (interval.restTime + interval.workTime) *
-    (interval.exerciseCount * interval.roundCount) +
-  interval.roundCount * interval.roundResetTime;
+  interval.workTime * interval.exerciseCount * interval.roundCount +
+  interval.restTime * (interval.exerciseCount - 1) * interval.roundCount +
+  interval.roundResetTime * (interval.roundCount - 1);

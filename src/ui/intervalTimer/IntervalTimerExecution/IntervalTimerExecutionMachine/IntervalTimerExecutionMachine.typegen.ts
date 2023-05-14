@@ -25,18 +25,18 @@ export interface Typegen0 {
   };
   eventsCausingActions: {
     decreaseExerciseCount: 'done.invoke.intervalTimerExecutionMachine.workTimeState:invocation[0]';
-    decreaseRestTime: 'DECREASE_REST_TIME';
+    decreaseIntervalTime: 'DECREASE_INTERVAL_TIME';
     decreaseRoundCount: '';
-    decreaseRoundResetTime: 'DECREASE_ROUND_RESET_TIME';
-    decreaseWorkTime: 'DECREASE_WORK_TIME';
+    decreaseTotalTime: 'DECREASE_TOTAL_TIME';
     resetExerciseCount: '' | 'STOP_EXECUTION';
-    resetRestTime: '' | 'STOP_EXECUTION';
-    resetRoundResetTime: '' | 'STOP_EXECUTION';
-    resetWorkTime: '' | 'STOP_EXECUTION';
+    resetTotalTime: 'STOP_EXECUTION';
     setIsAutoExecution:
       | 'done.invoke.intervalTimerExecutionMachine.workTimeState:invocation[0]'
       | 'xstate.stop';
     setIsNoAutoExecution: 'STOP_EXECUTION';
+    setRestTime: '';
+    setRoundResetTime: '';
+    setWorkTime: '' | 'STOP_EXECUTION' | 'xstate.init';
   };
   eventsCausingDelays: {};
   eventsCausingGuards: {

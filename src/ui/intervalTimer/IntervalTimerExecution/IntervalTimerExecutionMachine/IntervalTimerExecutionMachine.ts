@@ -7,11 +7,12 @@ import { Interval } from 'api/utils/apiTypes';
 import {
   IntervalTimerExecutionMachineContext,
   IntervalTimerExecutionMachineEvents,
-} from 'ui/intervalTimer/intervalTimerSettingOption/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
-import { getIntervalTimerExecution } from 'ui/intervalTimer/intervalTimerSettingOption/IntervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
+} from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
+import { getIntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
 
 type CreateIntervalTimerExecutionMachineProps<T> = Interval & {
   startClick$: Observable<T>;
+  totalTime: number;
   pauseClick$: Observable<T>;
 };
 
@@ -26,11 +27,11 @@ export const createIntervalTimerExecutionMachine = <T>({
   roundResetTime,
   workTime,
   startClick$,
+  totalTime,
   pauseClick$,
 }: CreateIntervalTimerExecutionMachineProps<T>) =>
   createMachine(
     {
-      // Machine identifier
       id: 'intervalTimerExecutionMachine',
       tsTypes: {} as import('./IntervalTimerExecutionMachine.typegen').Typegen0,
       preserveActionOrder: true,
@@ -44,16 +45,17 @@ export const createIntervalTimerExecutionMachine = <T>({
         restTime,
         roundCount,
         roundResetTime,
+        totalTime,
         workTime,
+        intervalTime: 0,
         isAutoExecution: false,
       },
 
-      // Initial state
       initial: 'workTimeState',
 
-      // State definitions
       states: {
         workTimeState: {
+          entry: 'setWorkTime',
           invoke: {
             src: 'workTimeExecution',
             onDone: {
@@ -62,7 +64,8 @@ export const createIntervalTimerExecutionMachine = <T>({
             },
           },
           on: {
-            DECREASE_WORK_TIME: { actions: 'decreaseWorkTime' },
+            DECREASE_INTERVAL_TIME: { actions: 'decreaseIntervalTime' },
+            DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
           exit: 'setIsAutoExecution',
         },
@@ -70,21 +73,17 @@ export const createIntervalTimerExecutionMachine = <T>({
           always: [
             {
               cond: 'isExerciseCountZero',
-              actions: [
-                'resetExerciseCount',
-                'decreaseRoundCount',
-                'resetWorkTime',
-              ],
+              actions: ['resetExerciseCount', 'decreaseRoundCount'],
               target: 'roundResetTimeState',
             },
             {
-              actions: 'resetWorkTime',
               target: 'restTimeState',
             },
           ],
         },
 
         restTimeState: {
+          entry: 'setRestTime',
           invoke: {
             src: 'restTimeExecution',
             onDone: {
@@ -92,17 +91,18 @@ export const createIntervalTimerExecutionMachine = <T>({
             },
           },
           on: {
-            DECREASE_REST_TIME: { actions: 'decreaseRestTime' },
+            DECREASE_INTERVAL_TIME: { actions: 'decreaseIntervalTime' },
+            DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
         },
         restTimeDoneState: {
           always: {
-            actions: 'resetRestTime',
             target: 'workTimeState',
           },
         },
 
         roundResetTimeState: {
+          entry: 'setRoundResetTime',
           always: { cond: 'isRoundCountZero', target: 'complete' },
           invoke: {
             src: 'roundResetTimeExecution',
@@ -111,12 +111,12 @@ export const createIntervalTimerExecutionMachine = <T>({
             },
           },
           on: {
-            DECREASE_ROUND_RESET_TIME: { actions: 'decreaseRoundResetTime' },
+            DECREASE_INTERVAL_TIME: { actions: 'decreaseIntervalTime' },
+            DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
         },
         roundResetTimeDoneState: {
           always: {
-            actions: 'resetRoundResetTime',
             target: 'workTimeState',
           },
         },
@@ -127,10 +127,8 @@ export const createIntervalTimerExecutionMachine = <T>({
         STOP_EXECUTION: {
           actions: [
             'setIsNoAutoExecution',
-            'resetWorkTime',
-            'resetRestTime',
-            'resetRoundResetTime',
             'resetExerciseCount',
+            'resetTotalTime',
           ],
           target: 'workTimeState',
         },
@@ -138,6 +136,30 @@ export const createIntervalTimerExecutionMachine = <T>({
     },
     {
       actions: {
+        // --- DECREASE ACTIONS ---
+        decreaseIntervalTime: assign({
+          intervalTime: (context) => context.intervalTime - 1,
+        }),
+        decreaseTotalTime: assign({
+          totalTime: (context) => context.totalTime - 1,
+        }),
+        decreaseRoundCount: assign({
+          roundCount: (context) => context.roundCount - 1,
+        }),
+        decreaseExerciseCount: assign({
+          exerciseCount: (context) => context.exerciseCount - 1,
+        }),
+
+        // --- SET ACTIONS ---
+        setWorkTime: assign({
+          intervalTime: (context) => context.workTime,
+        }),
+        setRestTime: assign({
+          intervalTime: (context) => context.restTime,
+        }),
+        setRoundResetTime: assign({
+          intervalTime: (context) => context.roundResetTime,
+        }),
         setIsAutoExecution: assign({
           isAutoExecution: () => true,
         }),
@@ -145,36 +167,12 @@ export const createIntervalTimerExecutionMachine = <T>({
           isAutoExecution: () => false,
         }),
 
-        resetWorkTime: assign({
-          workTime: () => workTime,
-        }),
-        decreaseWorkTime: assign({
-          workTime: (context) => context.workTime - 1,
-        }),
-
-        resetRestTime: assign({
-          restTime: () => restTime,
-        }),
-        decreaseRestTime: assign({
-          restTime: (context) => context.restTime - 1,
-        }),
-
-        resetRoundResetTime: assign({
-          roundResetTime: () => roundResetTime,
-        }),
-        decreaseRoundResetTime: assign({
-          roundResetTime: (context) => context.roundResetTime - 1,
-        }),
-
-        decreaseRoundCount: assign({
-          roundCount: (context) => context.roundCount - 1,
-        }),
-
+        // --- RESET ACTIONS ---
         resetExerciseCount: assign({
           exerciseCount: () => exerciseCount,
         }),
-        decreaseExerciseCount: assign({
-          exerciseCount: (context) => context.exerciseCount - 1,
+        resetTotalTime: assign({
+          totalTime: () => totalTime,
         }),
       },
       delays: {},
@@ -188,7 +186,10 @@ export const createIntervalTimerExecutionMachine = <T>({
             startClick$,
             pauseClick$,
             isAutoExecution: context.isAutoExecution,
-            event: { type: 'DECREASE_WORK_TIME' },
+            event: [
+              { type: 'DECREASE_INTERVAL_TIME' },
+              { type: 'DECREASE_TOTAL_TIME' },
+            ],
             contextValue: context.workTime,
           }),
 
@@ -197,7 +198,10 @@ export const createIntervalTimerExecutionMachine = <T>({
             startClick$,
             pauseClick$,
             isAutoExecution: context.isAutoExecution,
-            event: { type: 'DECREASE_REST_TIME' },
+            event: [
+              { type: 'DECREASE_INTERVAL_TIME' },
+              { type: 'DECREASE_TOTAL_TIME' },
+            ],
             contextValue: context.restTime,
           }),
 
@@ -206,9 +210,10 @@ export const createIntervalTimerExecutionMachine = <T>({
             startClick$,
             pauseClick$,
             isAutoExecution: context.isAutoExecution,
-            event: {
-              type: 'DECREASE_ROUND_RESET_TIME',
-            },
+            event: [
+              { type: 'DECREASE_INTERVAL_TIME' },
+              { type: 'DECREASE_TOTAL_TIME' },
+            ],
             contextValue: context.roundResetTime,
           }),
       },

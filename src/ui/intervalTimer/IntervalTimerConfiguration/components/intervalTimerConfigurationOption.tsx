@@ -17,7 +17,7 @@ import { Modal } from 'base/modal';
 import { Slider } from 'base/slider';
 import { SliderThumb } from 'base/sliderThumb';
 import { SliderContainer } from 'base/sliderContainer';
-import { ConfigurationOptionButton } from 'ui/intervalTimer/intervalTimerSettingOption/components/configurationOptionButton';
+import { ConfigurationOptionButton } from 'ui/intervalTimer/IntervalTimerConfiguration/components/configurationOptionButton';
 import { getFormattedSeconds } from 'utils/helpers';
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { ModalHeader } from 'base/modalHeader';
@@ -78,8 +78,8 @@ export const IntervalTimerConfigurationOption = ({
     [configurationType, intensity$]
   );
 
-  const filteredIntensity = useObservable({
-    initialState: 0,
+  const filteredIntensity = useObservable<number>({
+    initialState: intensity,
     source$: filteredIntensity$,
   });
 
@@ -118,10 +118,6 @@ export const IntervalTimerConfigurationOption = ({
   // --- MEMOIZED DATA ---
 
   const formattedIntensity = useMemo(() => {
-    if (!filteredIntensity) {
-      return undefined;
-    }
-
     if (configurationType === IntervalTimerConfigurationType.COUNT) {
       return filteredIntensity;
     }
