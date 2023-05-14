@@ -61,7 +61,6 @@ export const IntervalTimerExecution = ({
 
   return (
     <Box className="bg-transparent relative h-1/3 items-center justify-center p-4 text-6xl font-bold text-white-full">
-      <Text className="mb-8 ">{formattedTotalTime}</Text>
       <Text className="mb-8 ">{formattedIntervalTime}</Text>
 
       <Row>

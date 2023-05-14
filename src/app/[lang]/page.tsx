@@ -21,7 +21,7 @@ export default async function Home({
   // --- RENDER ---
 
   return (
-    <Box className="justify-self-stretch">
+    <Box className="grow overflow-hidden">
       <IntervalTimerExecution
         interval={interval}
         key={JSON.stringify(interval)}

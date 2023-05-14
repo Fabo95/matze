@@ -6,8 +6,9 @@ import 'app/[lang]/globals.css';
 import { Menu } from 'ui/menu/menu';
 import { getTFunction } from 'i18n/get-t-function';
 import { Locale, Page } from 'utils/types';
+import { Box } from 'base/box';
 
-const manrope = Open_Sans({
+const openSans = Open_Sans({
   style: ['normal'],
   subsets: ['latin'],
   variable: '--font-manrope',
@@ -46,10 +47,12 @@ const RootLayout = async ({
   // --- RENDER ---
 
   return (
-    <html className={manrope.variable} lang={lang}>
+    <html className={openSans.variable} lang={lang}>
       <body className="box-border h-screen bg-gradient-to-tl from-red-primary via-red-secondary to-red-tertiary tracking-wide text-white-full">
-        <Menu headline={t(`pages.home.headline`)} menuOptions={menuOptions} />
-        {children}
+        <Box className="h-screen max-h-screen overflow-hidden">
+          <Menu headline={t(`pages.home.headline`)} menuOptions={menuOptions} />
+          {children}
+        </Box>
       </body>
     </html>
   );

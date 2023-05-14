@@ -26,7 +26,7 @@ export const IntervalTimerConfiguration = ({
   // --- RENDER ---
 
   return (
-    <Box className="bg-transparent h-2/3 rounded-t-lg bg-white-full p-4 pt-24">
+    <Box className="grow overflow-auto rounded-t-lg bg-white-full p-4 pt-12 ">
       {intervalTimerSettingOptionsProps.map(
         ({
           className,
