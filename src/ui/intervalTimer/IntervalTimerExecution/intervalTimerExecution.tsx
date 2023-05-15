@@ -7,12 +7,12 @@ import { Box } from 'base/box';
 import { Interval } from 'api/utils/apiTypes';
 import { UnstyledButton } from 'base/unstyledButton';
 import { Row } from 'base/row';
-import { PlayIcon } from 'icons/playIcon';
 import { Text } from 'base/text';
-import { StopIcon } from 'icons/stopIcon';
-import { PauseIcon } from 'icons/pauseIcon';
 import { useReactiveCallback } from 'utils/hooks';
 import { createIntervalTimerExecutionMachine } from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
+import { PlayIcon } from 'icons/playIcon';
+import { useRef } from 'react';
+import { HLine } from 'base/HLine';
 
 export const IntervalTimerExecution = ({
   interval: propsInterval,
@@ -21,20 +21,22 @@ export const IntervalTimerExecution = ({
 }) => {
   // --- REACTIVE ---
 
-  const [handleStartSubject, startClick$] = useReactiveCallback();
-  const [handlePauseSubject, pauseClick$] = useReactiveCallback();
+  const [startNext, start$] = useReactiveCallback();
+  const [pauseNext, pause$] = useReactiveCallback();
+
+  const formattedIntervalTimeRef = useRef<HTMLHRElement>(null);
 
   // --- STATE ---
 
   const intervalTimerExecutionMachine = createIntervalTimerExecutionMachine({
     ...propsInterval,
-    pauseClick$,
-    startClick$,
+    pause$,
+    start$,
     totalTime: getTotalIntervalTime(propsInterval),
   });
 
   const [intervalTimerExecutionState, send] = useMachine(
-    intervalTimerExecutionMachine as any
+    intervalTimerExecutionMachine
   );
 
   // --- HELPERS ---
@@ -45,12 +47,6 @@ export const IntervalTimerExecution = ({
 
   const formattedIntervalTime = getFormattedSeconds(intervalTime);
 
-  console.log(
-    intervalTimerExecutionState.context,
-    'state:',
-    intervalTimerExecutionState.value
-  );
-
   // --- CALLBACKS ---
 
   const handleStopIntervalTimerExecution = () => {
@@ -60,18 +56,26 @@ export const IntervalTimerExecution = ({
   // --- RENDER ---
 
   return (
-    <Box className="bg-transparent relative h-1/3 items-center justify-center p-4 text-6xl font-bold text-white-full">
-      <Text className="mb-8 ">{formattedIntervalTime}</Text>
+    <Box className="bg-transparent relative h-1/3 items-center justify-center p-4 ">
+      <Text
+        className="mb-4 text-6xl font-bold text-white-full"
+        ref={formattedIntervalTimeRef}
+      >
+        {formattedIntervalTime}
+      </Text>
+      <HLine
+        className="mb-4 h-0.5 transition"
+        style={{ width: formattedIntervalTimeRef?.current?.offsetWidth }}
+      />
+
+      <Text className="text-2xl">{formattedTotalTime}</Text>
 
       <Row>
-        <UnstyledButton onClick={() => handleStartSubject(true)}>
-          <PlayIcon className="h-20 w-20 stroke-white-full" />
-        </UnstyledButton>
-        <UnstyledButton onClick={handleStopIntervalTimerExecution}>
-          <StopIcon className="h-20 w-20 stroke-white-full" />
-        </UnstyledButton>
-        <UnstyledButton onClick={() => handlePauseSubject(false)}>
-          <PauseIcon className="h-20 w-20 stroke-white-full" />
+        <UnstyledButton
+          className="absolute bottom-0 left-1/2 z-10 flex h-24 w-24 translate-x-[-50%] translate-y-[50%] transform items-center justify-center rounded-full bg-white-full"
+          onClick={() => startNext(true)}
+        >
+          <PlayIcon className="relative left-0.5" />
         </UnstyledButton>
       </Row>
     </Box>

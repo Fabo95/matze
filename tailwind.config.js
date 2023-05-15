@@ -58,8 +58,13 @@ module.exports = {
           'backdrop-filter-in 250ms ease-in forwards',
         'backdrop-filter-animation-out':
           'backdrop-filter-out 250ms ease-in forwards',
+        'background-gradient-animation':
+          'bg-animation-gradient 7s ease infinite alternate',
         'opacity-animation-down': 'opacity-down 250ms ease-in forwards',
         'opacity-animation-up': 'opacity-up 250ms ease-in forwards',
+      },
+      backgroundSize: {
+        400: '400%',
       },
       fontFamily: {
         sans: ['var(--font-manrope)'],
@@ -72,6 +77,10 @@ module.exports = {
         'backdrop-filter-out': {
           '0%': { 'backdrop-filter': 'blur(8px)' },
           '100%': { 'backdrop-filter': 'blur(0px)' },
+        },
+        'bg-animation-gradient': {
+          '0%': { 'background-position': 'left' },
+          '100%': { 'background-position': 'right' },
         },
         'opacity-down': {
           '0%': {

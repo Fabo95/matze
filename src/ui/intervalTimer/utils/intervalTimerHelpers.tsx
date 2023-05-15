@@ -2,11 +2,11 @@ import { ReactElement } from 'react';
 
 import { TFunction } from 'utils/types';
 import { Interval } from 'api/utils/apiTypes';
-import { PlayIcon } from 'icons/playIcon';
-import { PauseIcon } from 'icons/pauseIcon';
+import { PlayCircleIcon } from 'icons/playCircleIcon';
+import { PauseCircleIcon } from 'icons/pauseCircleIcon';
 import { RocketIcon } from 'icons/rocketIcon';
 import { RepeatIcon } from 'icons/repeatIcon';
-import { StopIcon } from 'icons/stopIcon';
+import { StopCircleIcon } from 'icons/stopCircleIcon';
 import {
   IntervalTimerConfigurationType,
   IntervalTimerIntensityType,
@@ -34,7 +34,7 @@ export const getIntervalTimerConfigurationOptionsProps = ({
       modal: 'bg-green-dark',
     },
     configurationType: IntervalTimerConfigurationType.TIME,
-    icon: <PlayIcon className="mr-2 stroke-green-dark" />,
+    icon: <PlayCircleIcon className="mr-2 stroke-green-dark" />,
     intensity: interval.workTime,
     intensityType: IntervalTimerIntensityType.WORK_TIME,
     sliderRange: { from: 5, to: 180 },
@@ -46,7 +46,7 @@ export const getIntervalTimerConfigurationOptionsProps = ({
       modal: 'bg-red-dark',
     },
     configurationType: IntervalTimerConfigurationType.TIME,
-    icon: <PauseIcon className="mr-2 stroke-red-dark" />,
+    icon: <PauseCircleIcon className="mr-2 stroke-red-dark" />,
     intensity: interval.restTime,
     intensityType: IntervalTimerIntensityType.REST_TIME,
     sliderRange: { from: 0, to: 180 },
@@ -82,7 +82,7 @@ export const getIntervalTimerConfigurationOptionsProps = ({
       modal: 'bg-yellow-dark',
     },
     configurationType: IntervalTimerConfigurationType.TIME,
-    icon: <StopIcon className="mr-2 stroke-yellow-dark" />,
+    icon: <StopCircleIcon className="mr-2 stroke-yellow-dark" />,
     intensity: interval.roundResetTime,
     intensityType: IntervalTimerIntensityType.ROUND_RESET_TIME,
     sliderRange: { from: 0, to: 180 },

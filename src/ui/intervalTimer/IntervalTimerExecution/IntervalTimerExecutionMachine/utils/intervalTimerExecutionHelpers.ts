@@ -19,14 +19,14 @@ import {
 import { ValueOf } from 'utils/types';
 
 export const getIntervalTimerExecution = <T>({
-  startClick$,
-  pauseClick$,
+  start$,
+  pause$,
   isAutoExecution,
   event,
   contextValue,
 }: {
-  startClick$: Observable<T>;
-  pauseClick$: Observable<T>;
+  start$: Observable<T>;
+  pause$: Observable<T>;
   isAutoExecution: ValueOf<
     Pick<IntervalTimerExecutionMachineContext, 'isAutoExecution'>
   >;
@@ -35,7 +35,7 @@ export const getIntervalTimerExecution = <T>({
     Omit<IntervalTimerExecutionMachineContext, 'isAutoExecution'>
   >;
 }) =>
-  merge(startClick$, pauseClick$).pipe(
+  merge(start$, pause$).pipe(
     startWith(isAutoExecution),
     switchMap((shouldStart) => (shouldStart ? rxInterval(1000) : EMPTY)),
     map(() => -1),

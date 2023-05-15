@@ -11,9 +11,9 @@ import {
 import { getIntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
 
 type CreateIntervalTimerExecutionMachineProps<T> = Interval & {
-  startClick$: Observable<T>;
+  start$: Observable<T>;
   totalTime: number;
-  pauseClick$: Observable<T>;
+  pause$: Observable<T>;
 };
 
 export type ApplicationProcessMachine = StateFrom<
@@ -26,9 +26,9 @@ export const createIntervalTimerExecutionMachine = <T>({
   roundCount,
   roundResetTime,
   workTime,
-  startClick$,
+  start$,
   totalTime,
-  pauseClick$,
+  pause$,
 }: CreateIntervalTimerExecutionMachineProps<T>) =>
   createMachine(
     {
@@ -183,8 +183,8 @@ export const createIntervalTimerExecutionMachine = <T>({
       services: {
         workTimeExecution: (context) =>
           getIntervalTimerExecution({
-            startClick$,
-            pauseClick$,
+            start$,
+            pause$,
             isAutoExecution: context.isAutoExecution,
             event: [
               { type: 'DECREASE_INTERVAL_TIME' },
@@ -195,8 +195,8 @@ export const createIntervalTimerExecutionMachine = <T>({
 
         restTimeExecution: (context) =>
           getIntervalTimerExecution({
-            startClick$,
-            pauseClick$,
+            start$,
+            pause$,
             isAutoExecution: context.isAutoExecution,
             event: [
               { type: 'DECREASE_INTERVAL_TIME' },
@@ -207,8 +207,8 @@ export const createIntervalTimerExecutionMachine = <T>({
 
         roundResetTimeExecution: (context) =>
           getIntervalTimerExecution({
-            startClick$,
-            pauseClick$,
+            start$,
+            pause$,
             isAutoExecution: context.isAutoExecution,
             event: [
               { type: 'DECREASE_INTERVAL_TIME' },

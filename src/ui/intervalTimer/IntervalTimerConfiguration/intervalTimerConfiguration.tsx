@@ -24,9 +24,9 @@ export const IntervalTimerConfiguration = ({
   const primaryButtonTitle = t('cta.confirm');
 
   // --- RENDER ---
-  // TODO MAKE AN COMPONENT!
   return (
     <Box className="grow overflow-hidden rounded-t-lg">
+      {/* This box styling enables circle cut off on to of the interval timer configuration box. */}
       <Box className="custom-circle-cut-off p-4 pt-12" />
       <Box className="grow overflow-auto bg-white-full p-4 pt-12">
         {intervalTimerSettingOptionsProps.map(

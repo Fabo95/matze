@@ -1,9 +1,11 @@
 export const PlayIcon = ({
   className: propsClassName,
+  fill,
 }: {
   className?: string;
+  fill?: string;
 }) => {
-  const defaultClassname = 'stroke-black-dark h-9 w-9';
+  const defaultClassname = 'stroke-red-primary h-12 w-12';
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`
@@ -12,21 +14,14 @@ export const PlayIcon = ({
   return (
     <svg
       className={className}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
+      fill={fill || '#F01151'}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        clipRule="evenodd"
+        d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z"
+        fillRule="evenodd"
       />
     </svg>
   );

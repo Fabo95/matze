@@ -1,4 +1,4 @@
-export const StopIcon = ({
+export const StopCircleIcon = ({
   className: propsClassName,
 }: {
   className?: string;
