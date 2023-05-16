@@ -1,14 +1,14 @@
 import React from 'react';
-import { Open_Sans } from 'next/font/google';
+import { Manrope } from 'next/font/google';
 import { Metadata } from 'next';
 
-import 'app/[lang]/globals.css';
+import 'app/global.scss';
 import { Menu } from 'ui/menu/menu';
 import { getTFunction } from 'i18n/get-t-function';
 import { Locale, Page } from 'utils/types';
 import { Box } from 'base/box';
 
-const openSans = Open_Sans({
+const manrope = Manrope({
   style: ['normal'],
   subsets: ['latin'],
   variable: '--font-manrope',
@@ -47,7 +47,7 @@ const RootLayout = async ({
   // --- RENDER ---
 
   return (
-    <html className={openSans.variable} lang={lang}>
+    <html className={manrope.variable} lang={lang}>
       <body className="box-border h-screen bg-gradient-to-tl from-red-primary via-red-secondary to-red-tertiary tracking-wide text-white-full">
         <Box className="h-screen max-h-screen overflow-hidden">
           <Menu headline={t(`pages.home.headline`)} menuOptions={menuOptions} />

@@ -12,7 +12,7 @@ import { useReactiveCallback } from 'utils/hooks';
 import { createIntervalTimerExecutionMachine } from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 import { PlayIcon } from 'icons/playIcon';
 import { useRef } from 'react';
-import { HLine } from 'base/HLine';
+import { HLine } from 'base/hLine';
 
 export const IntervalTimerExecution = ({
   interval: propsInterval,

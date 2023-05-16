@@ -1,4 +1,5 @@
 import { SyntheticEvent } from 'react';
+import styles from 'base/Slider/slider.module.scss';
 
 type SliderProps = {
   className?: string;
@@ -15,15 +16,13 @@ export const Slider = ({
   value,
   onChange,
 }: SliderProps) => {
-  const defaultClassnames = 'flex flex-row';
-
   const classNames = propsClassName
-    ? `${defaultClassnames} ${propsClassName}`
-    : defaultClassnames;
+    ? `${styles.slider} ${propsClassName}`
+    : styles.slider;
 
   return (
     <input
-      className={`${classNames} slider`}
+      className={classNames}
       max={max}
       min={min}
       orient="vertical"
