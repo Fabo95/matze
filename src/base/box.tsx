@@ -4,7 +4,7 @@ type BoxProps = {
   style?: CSSProperties;
   className?: string;
   children?: ReactNode;
-  onClick?: () => void;
+  onClick?: (event?: any) => void;
   ref?: Ref<any>;
 };
 export const Box = ({

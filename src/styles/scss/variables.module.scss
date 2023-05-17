@@ -1,0 +1,69 @@
+/* Colors */
+
+$blackDark: #050505;
+
+$blueDark: #6578f1;
+$blueLight: #e8ebfc;
+
+$grayDark: #b3b3b3;
+$grayLight: #f3f3f3;
+
+$greenDark: #6fdeaa;
+$greenLight: #e6fcf2;
+
+$orangeDark: #e68063;
+$orangeLight: #e6b4a5;
+
+$redDark: #f63053;
+$redLight: #faedef;
+$redOpacity33: #f0115133;
+$redOpacity5: #f011510d;
+$redPrimary: #f01151;
+$redSecondary: #f53e52;
+$redTertiary: #fd6854;
+
+$turquoiseDark: #4cb0aa;
+$turquoiseLight: #9bc2c0;
+
+$whiteDark: #fff;
+$whiteOpacity50: #ffffff80;
+$whiteOpacity0: rgba(17, 17, 17, 0);
+$whiteOpacity20: rgba(17, 17, 17, 0.2);
+
+$yellowDark: #f4ce65;
+$yellowLight: #fdf7e7;
+
+:export {
+  $blackDark: $blackDark;
+
+  $blueDark: $blueDark;
+  $blueLight: $blueLight;
+
+  $grayDark: $grayDark;
+  $grayLight: $grayLight;
+
+  $greenDark: $greenDark;
+  $greenLight: $greenLight;
+
+  $orangeDark: $orangeDark;
+  $orangeLight: $orangeLight;
+
+  $redDark: $redDark;
+  $redLight: $redLight;
+  $redOpacity33: $redOpacity33;
+  $redOpacity5: $redOpacity5;
+  $redPrimary: $redPrimary;
+  $redSecondary: $redSecondary;
+  $redTertiary: $redTertiary;
+
+  $turquoiseDark: $turquoiseDark;
+  $turquoiseLight: $turquoiseLight;
+
+  $whiteDark: $whiteDark;
+  $whiteOpacity50: $whiteOpacity50;
+  $whiteOpacity0: $whiteOpacity0;
+  $whiteOpacity20: $whiteOpacity20;
+
+  $yellowDark: $yellowDark;
+  $yellowLight: $yellowLight;
+}
