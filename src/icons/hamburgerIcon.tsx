@@ -3,7 +3,7 @@ export const HamburgerIcon = ({
 }: {
   className?: string;
 }) => {
-  const defaultClassname = 'w-9 stroke-black-dark';
+  const defaultClassname = 'icon-width-2-25 stroke-white-dark';
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`

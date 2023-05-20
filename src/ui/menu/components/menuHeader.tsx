@@ -11,9 +11,9 @@ export const MenuHeader = ({
   toggleMenu: () => void;
   headline: string;
 }) => (
-  <Row className="items-center justify-between">
+  <Row className="align-items-center justify-content-space-between">
     <UnstyledButton onClick={toggleMenu}>
-      <HamburgerIcon className="stroke-white-full" />
+      <HamburgerIcon />
     </UnstyledButton>
 
     <Text className="text-xl font-semibold">{headline}</Text>

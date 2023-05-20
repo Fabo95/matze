@@ -83,6 +83,93 @@
 }
 
 /* Colors */
+.icon-size-1-5 {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.icon-size-2-25 {
+  height: 2.25rem;
+  width: 2.25rem;
+}
+
+.icon-width-2-25 {
+  width: 2.25rem;
+}
+
+.stroke-red-primary__SCSS {
+  stroke: #f01151;
+}
+
+.stroke-white-dark {
+  stroke: #fff;
+}
+
+.stroke-black-dark__SCSS {
+  stroke: #050505;
+}
+
+.stroke-green-dark {
+  stroke: #6fdeaa;
+}
+
+.stroke-red-dark {
+  stroke: #f63053;
+}
+
+.stroke-gray-dark {
+  stroke: #b3b3b3;
+}
+
+.stroke-blue-dark {
+  stroke: #6578f1;
+}
+
+.stroke-black-50 {
+  stroke: rgba(0, 0, 0, 0.5);
+}
+
+/* Colors */
+body {
+  box-sizing: border-box;
+  height: 100vh;
+  background: linear-gradient(to top left, #f01151 33%, #f53e52 66%, #fd6854 100%);
+  color: #fff;
+  letter-spacing: 0.025em;
+}
+
+.background-green-dark {
+  background: #6fdeaa;
+}
+
+.background-red-dark {
+  background: #f63053;
+}
+
+.background-gray-dark {
+  background: #b3b3b3;
+}
+
+.background-blue-dark {
+  background: #6578f1;
+}
+
+.background-yellow-dark {
+  background: #f4ce65;
+}
+
+.margin-right-4 {
+  margin-right: 0.5rem;
+}
+
+.height-screen {
+  height: 100vh;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .custom-circle-cut-off {
   position: relative;
   overflow: hidden;

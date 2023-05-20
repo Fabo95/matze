@@ -3,7 +3,7 @@ export const ChevronUp = ({
 }: {
   className?: string;
 }) => {
-  const defaultClassname = 'h-6 w-6 stroke-black-dark';
+  const defaultClassname = 'icon-size-1-5 stroke-black-dark';
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`

@@ -14,15 +14,15 @@ import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/in
 import { BackgroundBlur } from 'base/backgroundBlur';
 import { useBoolean, useObservable, useReactiveCallback } from 'utils/hooks';
 import { Modal } from 'base/modal';
-import { Slider } from 'base/slider';
-import { SliderThumb } from 'base/sliderThumb';
-import { SliderContainer } from 'base/sliderContainer';
+import { Slider } from 'base/Slider/slider';
+import { SliderThumb } from 'base/Slider/components/sliderThumb';
+import { SliderContainer } from 'base/Slider/components/sliderContainer';
 import { ConfigurationOptionButton } from 'ui/intervalTimer/IntervalTimerConfiguration/components/configurationOptionButton';
 import { getFormattedSeconds } from 'utils/helpers';
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { ModalHeader } from 'base/modalHeader';
-import { SliderTrack } from 'base/sliderTrack';
-import { Button } from 'base/button';
+import { SliderTrack } from 'base/Slider/components/sliderTrack';
+import { Button } from 'base/Button/button';
 import { apiPatchIntensity } from 'serverAction/serverActions';
 
 export const IntervalTimerConfigurationOption = ({
@@ -103,8 +103,6 @@ export const IntervalTimerConfigurationOption = ({
         path: params.lang,
       });
     });
-
-    closeModal();
   };
 
   // --- HELPERS ---
@@ -154,7 +152,7 @@ export const IntervalTimerConfigurationOption = ({
           <>
             <Slider
               className="appearance-none"
-              // We multiply it by 10 to have a smooth slider transition even for small ranges.
+              // We multiply it by 10 to have a smooth Slider transition even for small ranges.
               max={sliderRange.to * 10}
               min={sliderRange.from * 10}
               value={intensity * 10}
@@ -170,7 +168,6 @@ export const IntervalTimerConfigurationOption = ({
 
         <Button
           buttonTitle={primaryButtonTitle}
-          className={className.button}
           onClick={handleConfirmIntensity}
         />
       </Modal>

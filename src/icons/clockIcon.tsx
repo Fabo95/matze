@@ -3,10 +3,10 @@ export const ClockIcon = ({
 }: {
   className?: string;
 }) => {
-  const defaultClassnames = 'h-6 w-6 stroke-black-dark';
+  const defaultClassnames = 'icon-size-1-5';
 
   const classNames = propsClassName
-    ? `${defaultClassnames} ${propsClassName}`
+    ? `${propsClassName} ${defaultClassnames}`
     : defaultClassnames;
 
   return (

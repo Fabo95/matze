@@ -5,7 +5,62 @@
 // TODO USE @use when tailwind is removed.
 @import '../../base/Button/button';
 @import '../../../src/ui/intervalTimer/intervalTimer';
+@import '../../../src/icons/icon';
+
 @import './variables.module';
+
+body {
+  box-sizing: border-box;
+  height: 100vh;
+  background: linear-gradient(
+    to top left,
+    $redPrimary 33%,
+    $redSecondary 66%,
+    $redTertiary 100%
+  );
+  color: $whiteDark;
+  letter-spacing: 0.025em;
+}
+
+@mixin background($background) {
+  background: $background;
+}
+
+.background-green-dark {
+  @include background($greenDark);
+}
+.background-red-dark {
+  @include background($redDark);
+}
+.background-gray-dark {
+  @include background($grayDark);
+}
+.background-blue-dark {
+  @include background($blueDark);
+}
+.background-yellow-dark {
+  @include background($yellowDark);
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
+.margin-right-0-5 {
+  margin-right: 0.5rem;
+}
+
+.height-screen {
+  height: 100vh;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
 
 .custom-circle-cut-off {
   position: relative;

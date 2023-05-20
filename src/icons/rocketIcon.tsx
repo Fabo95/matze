@@ -3,7 +3,7 @@ export const RocketIcon = ({
 }: {
   className?: string;
 }) => {
-  const defaultClassname = 'stroke-black-dark h-9 w-9';
+  const defaultClassname = 'stroke-black-dark icon-size-2-25';
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`

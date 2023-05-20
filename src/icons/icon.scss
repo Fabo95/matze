@@ -1,0 +1,48 @@
+@import '../styles/scss/variables.module';
+
+@mixin stroke($color) {
+  stroke: $color;
+}
+
+@mixin icon-size($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+.icon-size-1-5 {
+  @include icon-size(1.5rem, 1.5rem);
+}
+
+.icon-size-2-25 {
+  @include icon-size(2.25rem, 2.25rem);
+}
+
+.icon-width-2-25 {
+  width: 2.25rem;
+}
+
+.stroke-red-primary__SCSS {
+  @include stroke($redPrimary);
+}
+.stroke-white-dark {
+  @include stroke($whiteDark);
+}
+.stroke-black-dark__SCSS {
+  @include stroke($blackDark);
+}
+.stroke-green-dark {
+  @include stroke($greenDark);
+}
+.stroke-red-dark {
+  @include stroke($redDark);
+}
+.stroke-gray-dark {
+  @include stroke($grayDark);
+}
+.stroke-blue-dark {
+  @include stroke($blueDark);
+}
+
+.stroke-black-50 {
+  @include stroke($blackOpacity50);
+}

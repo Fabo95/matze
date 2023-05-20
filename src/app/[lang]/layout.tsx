@@ -48,8 +48,8 @@ const RootLayout = async ({
 
   return (
     <html className={manrope.variable} lang={lang}>
-      <body className="box-border h-screen bg-gradient-to-tl from-red-primary via-red-secondary to-red-tertiary tracking-wide text-white-full">
-        <Box className="h-screen max-h-screen overflow-hidden">
+      <body>
+        <Box className="height-screen overflow-hidden">
           <Menu headline={t(`pages.home.headline`)} menuOptions={menuOptions} />
           {children}
         </Box>

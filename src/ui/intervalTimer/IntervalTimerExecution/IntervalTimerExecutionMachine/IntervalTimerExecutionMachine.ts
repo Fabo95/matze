@@ -33,7 +33,8 @@ export const createIntervalTimerExecutionMachine = <T>({
   createMachine(
     {
       id: 'intervalTimerExecutionMachine',
-      tsTypes: {} as import('./IntervalTimerExecutionMachine.typegen').Typegen0,
+      tsTypes:
+        {} as import('ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine.typegen').Typegen0,
       preserveActionOrder: true,
       predictableActionArguments: true,
       schema: {
