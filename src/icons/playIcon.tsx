@@ -5,7 +5,7 @@ export const PlayIcon = ({
   className?: string;
   fill?: string;
 }) => {
-  const defaultClassname = 'stroke-red-primary h-12 w-12';
+  const defaultClassname = 'stroke-red-primary__SCSS icon-size-2-25';
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`

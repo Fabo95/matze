@@ -1,5 +1,4 @@
 import { SyntheticEvent } from 'react';
-import styles from 'base/Slider/slider.module.scss';
 
 type SliderProps = {
   className?: string;
@@ -16,9 +15,7 @@ export const Slider = ({
   value,
   onChange,
 }: SliderProps) => {
-  const classNames = propsClassName
-    ? `${styles.slider} ${propsClassName}`
-    : styles.slider;
+  const classNames = propsClassName ? `slider ${propsClassName}` : 'slider';
 
   return (
     <input

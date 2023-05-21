@@ -11,7 +11,7 @@ export const UnstyledButton = forwardRef(
     { className: propsClassName, children, onClick }: UnstyledButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
-    const defaultClassnames = 'inline-block';
+    const defaultClassnames = 'display-inline-block';
 
     const classNames = propsClassName
       ? `${defaultClassnames} ${propsClassName}`

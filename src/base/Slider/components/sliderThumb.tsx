@@ -19,10 +19,10 @@ export const SliderThumb = ({
   // --- RENDER ---
   return (
     <Box
-      className="h absolute z-10 h-11 w-16 translate-y-[50%] items-center justify-center rounded-full bg-white-full"
+      className="position-absolute z-index-10 slider-thumb align-items-center background-white-dark border-radius-full justify-center"
       style={{ bottom: `${translateYOffset}` }}
     >
-      <Box className="absolute top-1/2 h-2 w-80 translate-y-[-50%] bg-gradient-to-r from-white-op-0 via-white-full to-white-op-0" />
+      <Box className="position-absolute slider-thumb-line" />
 
       <ChevronUp className="stroke-gray-dark" />
 

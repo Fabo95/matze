@@ -30,7 +30,7 @@ export const getIntervalTimerConfigurationOptionsProps = ({
 }): IntervalTimerConfigurationOptionProps[] => [
   {
     className: {
-      button: 'work-time-configuration-button',
+      button: 'configuration-option-button-work-time',
       modal: 'background-green-dark',
     },
     configurationType: IntervalTimerConfigurationType.TIME,
@@ -42,7 +42,7 @@ export const getIntervalTimerConfigurationOptionsProps = ({
   },
   {
     className: {
-      button: 'rest-time-configuration-button',
+      button: 'configuration-option-button-rest-time',
       modal: 'background-red-dark',
     },
     configurationType: IntervalTimerConfigurationType.TIME,
@@ -54,7 +54,7 @@ export const getIntervalTimerConfigurationOptionsProps = ({
   },
   {
     className: {
-      button: 'exercise-count-configuration-button',
+      button: 'configuration-option-button-exercise-count',
       modal: 'background-gray-dark',
     },
     configurationType: IntervalTimerConfigurationType.COUNT,
@@ -66,7 +66,7 @@ export const getIntervalTimerConfigurationOptionsProps = ({
   },
   {
     className: {
-      button: 'round-count-configuration-button',
+      button: 'configuration-option-button-round-count',
       modal: 'background-blue-dark',
     },
     configurationType: IntervalTimerConfigurationType.COUNT,
@@ -78,7 +78,7 @@ export const getIntervalTimerConfigurationOptionsProps = ({
   },
   {
     className: {
-      button: 'round-reset-time-configuration-button',
+      button: 'configuration-option-button-round-reset-time',
       modal: 'background-yellow-dark',
     },
     configurationType: IntervalTimerConfigurationType.TIME,

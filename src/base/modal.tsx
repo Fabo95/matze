@@ -1,34 +1,31 @@
-import { ReactNode } from 'react';
-import { Box } from 'base/box';
+import { forwardRef, ReactNode, Ref } from 'react';
+
 import { XMarkIcon } from 'icons/xMarkIcon';
 import { UnstyledButton } from 'base/unstyledButton';
+import { Dialog } from 'base/dialog';
+import { Box } from 'base/box';
 
 type ModalProps = {
   contentClassName: string;
-  isOpen: boolean;
   closeModal: () => void;
   children: ReactNode;
 };
 
-export const Modal = ({
-  contentClassName,
-  children,
-  closeModal,
-  isOpen,
-}: ModalProps) => (
-  <Box
-    className={`absolute inset-x-0 inset-y-0 z-50  p-11 ${
-      isOpen
-        ? 'animate-opacity-animation-up'
-        : 'translate-x-full-left animate-opacity-animation-down transition-transform delay-250'
-    }`}
-  >
-    <Box className={`${contentClassName} relative h-full rounded-lg p-10`}>
-      <UnstyledButton onClick={closeModal}>
-        <XMarkIcon className="absolute right-10 top-10 stroke-white-full" />
-      </UnstyledButton>
-
-      {children}
-    </Box>
-  </Box>
+export const Modal = forwardRef(
+  (
+    { contentClassName, children, closeModal }: ModalProps,
+    ref: Ref<HTMLDialogElement>
+  ) => (
+    <Dialog
+      className={`${contentClassName} modal padding-2-25 border-radius-0-5`}
+      ref={ref}
+    >
+      <Box className="position-relative height-full width-full">
+        <UnstyledButton onClick={closeModal}>
+          <XMarkIcon className="modal-x-mark-icon-position position-absolute" />
+        </UnstyledButton>
+        {children}
+      </Box>
+    </Dialog>
+  )
 );

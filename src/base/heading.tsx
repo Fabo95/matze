@@ -9,7 +9,7 @@ export const Heading = ({
   className: propsClassName,
   children,
 }: HeadingProps) => {
-  const defaultClassnames = 'text-inherit text-2xl font-semibold';
+  const defaultClassnames = 'text-inherit text-size-1-5 font-semibold';
 
   const classNames = propsClassName
     ? `${defaultClassnames} ${propsClassName}`

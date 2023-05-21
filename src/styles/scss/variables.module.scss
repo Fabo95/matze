@@ -34,6 +34,17 @@ $whiteOpacity20: rgba(17, 17, 17, 0.2);
 $yellowDark: #f4ce65;
 $yellowLight: #fdf7e7;
 
+/* Transitions */
+
+$transition250: 250ms;
+
+/* Borders */
+
+$borderRadiusS: 0.25em;
+$borderRadiusM: 0.5em;
+$borderRadiusL: 1em;
+$borderRadiusFull: 9999px;
+
 :export {
   $blackDark: $blackDark;
 
@@ -67,4 +78,11 @@ $yellowLight: #fdf7e7;
 
   $yellowDark: $yellowDark;
   $yellowLight: $yellowLight;
+
+  $transition250: $transition250;
+
+  $borderRadiusS: $borderRadiusS;
+  $borderRadiusM: $borderRadiusM;
+  $borderRadiusL: $borderRadiusL;
+  $borderRadiusFull: $borderRadiusFull;
 }

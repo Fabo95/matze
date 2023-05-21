@@ -24,29 +24,29 @@ export const MenuSlidingPaneOption = ({
   const MENU_OPTION_TO_ICON_MAP = {
     [Page.SETTINGS]: (
       <SettingsIcon
-        className={`mr-1.5 ${
-          isSelected ? 'stroke-red-primary' : 'stroke-black-200'
+        className={`margin-right-0-5 ${
+          isSelected ? 'stroke-red-primary__SCSS' : 'stroke-black-50'
         }`}
       />
     ),
     [Page.HISTORY]: (
       <CalendarIcon
-        className={`mr-1.5 ${
-          isSelected ? 'stroke-red-primary' : 'stroke-black-200'
+        className={`margin-right-0-5 ${
+          isSelected ? 'stroke-red-primary__SCSS' : 'stroke-black-50'
         }`}
       />
     ),
     [Page.HOME]: (
       <ClockIcon
-        className={`mr-1.5 ${
-          isSelected ? 'stroke-red-primary' : 'stroke-black-200'
+        className={`margin-right-0-5 ${
+          isSelected ? 'stroke-red-primary__SCSS' : 'stroke-black-50'
         }`}
       />
     ),
     [Page.STATISTICS]: (
       <ChartIcon
-        className={`mr-1.5 ${
-          isSelected ? 'stroke-red-primary' : 'stroke-black-200'
+        className={`margin-right-0-5 ${
+          isSelected ? 'stroke-red-primary__SCSS' : 'stroke-black-50'
         }`}
       />
     ),
@@ -57,15 +57,15 @@ export const MenuSlidingPaneOption = ({
   return (
     <Link href={`/${currentLocale}/${menuOption.page}`}>
       <Row
-        className={`mb-2 items-center p-4 ${
-          isSelected && 'bg-gradient-to-r from-red-op-33 to-red-op-5'
+        className={`align-items-center padding-1 margin-bottom-0-5 ${
+          isSelected && 'gradient-to-right-from-redOpacity33-to-redOpacity-5'
         }`}
         onClick={onClick}
       >
         {MENU_OPTION_TO_ICON_MAP[menuOption.page]}
         <Text
-          className={`text-black-dark font-medium ${
-            isSelected && 'text-red-primary'
+          className={`text-color-black-dark font-medium ${
+            isSelected && 'text-color-red-primary'
           }`}
         >
           {menuOption.translation}

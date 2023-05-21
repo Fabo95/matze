@@ -2,10 +2,10 @@ import { Row } from 'base/row';
 import { Text } from 'base/text';
 
 export const MenuSlidingPaneHeader = ({ headline }: { headline: string }) => (
-  <Row className="items-center bg-gradient-to-tl from-red-primary via-red-secondary to-red-tertiary p-4 pt-8">
-    <Row className="mr-2 h-12 w-12 items-center justify-center rounded-full border border-white-half">
-      <Text className="text-sm">0:30</Text>
+  <Row className="align-items-center linear-gradient-to-top-left-from-redPrimary-via-redSecondary-to-redTertiary padding-1 padding-top-3">
+    <Row className="align-items-center justify-content-center border-radius-full margin-right-0-5 height-48 width-48 border-white-1 border-white-opacity-50">
+      <Text className="text-size-0-875">0:30</Text>
     </Row>
-    <Text className="text-center text-xl font-semibold"> {headline}</Text>
+    <Text className="text-size-1-25 text-center font-semibold">{headline}</Text>
   </Row>
 );

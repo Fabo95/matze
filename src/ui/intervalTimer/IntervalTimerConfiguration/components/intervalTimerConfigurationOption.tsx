@@ -4,6 +4,7 @@ import React, {
   SyntheticEvent,
   useCallback,
   useMemo,
+  useRef,
   useState,
   useTransition,
 } from 'react';
@@ -11,8 +12,7 @@ import { distinctUntilChanged, map } from 'rxjs';
 import { useParams } from 'next/navigation';
 
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
-import { BackgroundBlur } from 'base/backgroundBlur';
-import { useBoolean, useObservable, useReactiveCallback } from 'utils/hooks';
+import { useObservable, useReactiveCallback } from 'utils/hooks';
 import { Modal } from 'base/modal';
 import { Slider } from 'base/Slider/slider';
 import { SliderThumb } from 'base/Slider/components/sliderThumb';
@@ -22,7 +22,7 @@ import { getFormattedSeconds } from 'utils/helpers';
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { ModalHeader } from 'base/modalHeader';
 import { SliderTrack } from 'base/Slider/components/sliderTrack';
-import { Button } from 'base/Button/button';
+import { Button } from 'base/button';
 import { apiPatchIntensity } from 'serverAction/serverActions';
 
 export const IntervalTimerConfigurationOption = ({
@@ -42,11 +42,7 @@ export const IntervalTimerConfigurationOption = ({
   const [_, startTransition] = useTransition();
   const params = useParams();
 
-  const {
-    value: isOpen,
-    setFalse: closeModal,
-    setTrue: openModal,
-  } = useBoolean(false);
+  const modalRef = useRef<HTMLDialogElement>(null);
 
   // --- REACTIVE ---
 
@@ -85,6 +81,14 @@ export const IntervalTimerConfigurationOption = ({
 
   // --- CALLBACKS ---
 
+  const openModal = () => {
+    modalRef?.current?.showModal();
+  };
+
+  const closeModal = () => {
+    modalRef?.current?.close();
+  };
+
   const handleIndexChange = useCallback(
     (event: SyntheticEvent<HTMLInputElement>) => {
       handleIntensitySubject(+event.currentTarget.value / 10);
@@ -110,7 +114,7 @@ export const IntervalTimerConfigurationOption = ({
   // There is probably an easier way to do that but cloning is cool.
   const clonedIcon = React.cloneElement(icon, {
     ...icon.props,
-    className: 'stroke-white-full h-9 w-9 mr-2 stroke-green-dark',
+    className: 'stroke-white-dark icon-size-2-25 margin-right-0-5',
   });
 
   // --- MEMOIZED DATA ---
@@ -127,8 +131,6 @@ export const IntervalTimerConfigurationOption = ({
 
   return (
     <>
-      <BackgroundBlur handleUnblur={closeModal} isBlurred={isOpen} />
-
       <ConfigurationOptionButton
         className={className.button}
         inlineCenterLeft={title}
@@ -140,7 +142,7 @@ export const IntervalTimerConfigurationOption = ({
       <Modal
         closeModal={closeModal}
         contentClassName={className.modal}
-        isOpen={isOpen}
+        ref={modalRef}
       >
         <ModalHeader
           blockEnd={formattedIntensity}

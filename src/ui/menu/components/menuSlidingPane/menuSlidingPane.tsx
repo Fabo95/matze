@@ -31,13 +31,13 @@ export const MenuSlidingPane = ({
 
   return (
     <Box
-      className={`absolute bottom-0 left-0 right-0 top-0 z-20 w-8/12 overflow-hidden rounded-r-lg bg-white-full text-white-full duration-300 ${
+      className={`position-absolute-0 z-index-20 width-two-third border-radius-top-left-top-right-0-5 background-white-dark text-color-white-dark transition-duration-300 overflow-hidden ${
         !isOpen && 'translate-x-full-left'
       }`}
     >
       <MenuSlidingPaneHeader headline={headline} />
 
-      <Box className="pb-8 pt-8">
+      <Box className="padding-top-bottom-2">
         {menuOptions.map((menuOption) => (
           <MenuSlidingPaneOption
             currentLocale={params.lang}

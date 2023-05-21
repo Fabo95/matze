@@ -19,11 +19,12 @@ export const ConfigurationOptionButton = ({
   onClick,
 }: ButtonProps) => (
   <UnstyledButton
-    className={`${className} mb-4 flex w-full items-center justify-between rounded-2xl p-4 text-xl font-semibold`}
+    //
+    className={`${className} text-size-1-25 margin-bottom-1 width-full align-items-center justify-content-space-between padding-1 configuration-option-button flex font-semibold`}
     key={inlineCenterLeft}
     onClick={onClick}
   >
-    <Row className="items-center text-black-dark">
+    <Row className="align-items-center text-color-black-dark">
       <Span>{inlineStart}</Span>
       <Span>{inlineCenterLeft}</Span>
     </Row>

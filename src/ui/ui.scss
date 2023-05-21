@@ -1,0 +1,63 @@
+@import '../styles/scss/variables.module';
+
+/* Configuration option button */
+@mixin configuration-option-button($background, $textColor) {
+  background: $background;
+  color: $textColor;
+}
+
+.configuration-option-button-work-time {
+  @include configuration-option-button($greenLight, $greenDark);
+}
+
+.configuration-option-button-rest-time {
+  @include configuration-option-button($redLight, $redDark);
+}
+
+.configuration-option-button-exercise-count {
+  @include configuration-option-button($grayLight, $grayDark);
+}
+
+.configuration-option-button-round-count {
+  @include configuration-option-button($blueLight, $blueDark);
+}
+
+.configuration-option-button-round-reset-time {
+  @include configuration-option-button($yellowLight, $yellowDark);
+}
+
+.configuration-option-button {
+  border-radius: $borderRadiusL;
+}
+
+/* Circle cut off */
+
+.circle-cut-off {
+  position: relative;
+  overflow: hidden;
+  /* Needed because otherwise there is a weird uncolored border on mobile devices */
+  bottom: -1px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border-width: 0;
+    width: 120px;
+    height: 120px;
+    box-shadow: 0 0 0 2000px white;
+  }
+}
+
+.interval-timer-execution-play-button {
+  width: 96px;
+  height: 96px;
+  transform: translate(-50%, 50%);
+
+  svg {
+    left: 2px;
+  }
+}

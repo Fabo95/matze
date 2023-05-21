@@ -10,7 +10,7 @@ export const Text = forwardRef(
     { className: propsClassName, children }: TextProps,
     ref: Ref<HTMLParagraphElement>
   ) => {
-    const defaultClassnames = 'text-inherit';
+    const defaultClassnames = '';
 
     const classNames = propsClassName
       ? `${defaultClassnames} ${propsClassName}`

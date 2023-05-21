@@ -14,11 +14,13 @@ export const ModalHeader = ({
   inlineEnd,
 }: ModalHeaderProps) => (
   <>
-    <Row className="mb-8 justify-center">
+    <Row className="justify-content-center margin-bottom-2">
       {inlineStart}
-      <Text className="text-3xl font-semibold">{inlineEnd}</Text>
+      <Text className="text-size-1-875 text-color-white-dark font-semibold">
+        {inlineEnd}
+      </Text>
     </Row>
-    <Text className="mb-14 text-center text-6xl font-bold text-white-full">
+    <Text className="margin-bottom-3-5 text-size-3-75 text-color-white-dark text-center font-bold">
       {blockEnd}
     </Text>
   </>

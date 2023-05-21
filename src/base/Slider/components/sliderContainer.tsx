@@ -4,5 +4,7 @@ import { Box } from 'base/box';
 
 type SliderContainerProps = { children: ReactElement };
 export const SliderContainer = ({ children }: SliderContainerProps) => (
-  <Box className="relative mb-24 h-full items-center">{children}</Box>
+  <Box className="position-relative height-full margin-bottom-6 align-items-center">
+    {children}
+  </Box>
 );

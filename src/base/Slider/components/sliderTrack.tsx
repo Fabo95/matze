@@ -34,8 +34,10 @@ export const SliderTrack = ({
         .fill('')
         // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-shadow
         .map((_, dividingLineIndex) => {
-          const dividingTimeStyle = dividingLineIndex % 6 === 0 && 'w-16';
-          const dividingCountStyle = dividingLineIndex % 5 === 0 && 'w-16';
+          const dividingTimeStyle =
+            dividingLineIndex % 6 === 0 && 'slider-track-dividing-line-long';
+          const dividingCountStyle =
+            dividingLineIndex % 5 === 0 && 'slider-track-dividing-line-long';
 
           const dividingLineStyle =
             configurationType === IntervalTimerConfigurationType.COUNT
@@ -51,24 +53,27 @@ export const SliderTrack = ({
             (invertedDividingLineIndex / totalDividingLines) * sliderRange.to;
 
           return (
-            <Box className="relative w-full" key={uuidv4()}>
+            <Box className="position-relative width-full" key={uuidv4()}>
               {dividingLineStyle && (
-                <Box className="absolute left-0 translate-y-[-50%] text-xl font-semibold">
+                <Box className="position-absolute slider-track-dividing-line-label text-size-1-25 text-color-white-dark font-semibold">
                   {dividingLineLabel}
                 </Box>
               )}
               <Box
-                className={`${dividingLineStyle} h-0.5 w-10 self-center bg-white-half`}
+                className={`${dividingLineStyle} slider-track-dividing-line`}
               />
             </Box>
           );
         }),
     [configurationType, getTotalDividingLines, sliderRange.from, sliderRange.to]
   );
+  //
 
   // --- RENDER ---
 
   return (
-    <Box className="absolute h-full w-full justify-between">{sliderTrack}</Box>
+    <Box className="position-absolute height-full width-full justify-content-space-between">
+      {sliderTrack}
+    </Box>
   );
 };
