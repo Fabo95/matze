@@ -1,4 +1,4 @@
-import { Box } from 'base/box';
+import { Box } from 'common/box';
 
 type BackgroundBlurProps = {
   isBlurred: boolean;

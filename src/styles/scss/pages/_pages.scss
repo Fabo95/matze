@@ -1,0 +1,33 @@
+@import '../abstracts/_variables';
+
+/* Circle cut off */
+
+.circle-cut-off {
+  position: relative;
+  overflow: hidden;
+  /* Needed because otherwise there is a weird uncolored border on mobile devices */
+  bottom: -1px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border-width: 0;
+    width: 120px;
+    height: 120px;
+    box-shadow: 0 0 0 2000px white;
+  }
+}
+
+.interval-timer-execution-play-button {
+  width: 96px;
+  height: 96px;
+  transform: translate(-50%, 50%);
+
+  svg {
+    left: 2px;
+  }
+}

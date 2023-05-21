@@ -1,4 +1,4 @@
-import { Box } from 'base/box';
+import { Box } from 'common/box';
 import { Interval } from 'api/utils/apiTypes';
 import { getIntervalTimerConfigurationOptionsProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 import { TFunction } from 'utils/types';

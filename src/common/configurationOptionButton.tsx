@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
-import { UnstyledButton } from 'base/unstyledButton';
-import { Row } from 'base/row';
-import { Span } from 'base/span';
+import { UnstyledButton } from 'common/unstyledButton';
+import { Row } from 'common/row';
+import { Span } from 'common/span';
 
 type ButtonProps = {
   inlineCenterLeft: string;
@@ -19,7 +19,6 @@ export const ConfigurationOptionButton = ({
   onClick,
 }: ButtonProps) => (
   <UnstyledButton
-    //
     className={`${className} text-size-1-25 margin-bottom-1 width-full align-items-center justify-content-space-between padding-1 configuration-option-button flex font-semibold`}
     key={inlineCenterLeft}
     onClick={onClick}

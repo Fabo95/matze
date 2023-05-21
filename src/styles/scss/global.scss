@@ -1,18 +1,13 @@
-// TODO USE @use when tailwind is removed.
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@use './abstracts/_mixins';
+@use './abstracts/_variables';
+@use './base/_resets';
+@use "./components/_common";
+@use "./components/icons";
+@use "./pages/_pages";
 
-@import '../../base/base';
-@import '../../../src/ui/ui';
-@import '../../../src/icons/icon';
-
-@import './variables.module';
+@import './abstracts/_variables';
 
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   letter-spacing: 0.025em;
 }
 
@@ -22,6 +17,9 @@ body {
   background: $background;
 }
 
+.background-white-opacity-50 {
+  @include background($whiteOpacity50);
+}
 .background-white-dark {
   @include background($whiteDark);
 }
@@ -174,6 +172,10 @@ body {
 
 /* Text */
 
+.line-height-0 {
+  line-height: 1rem;
+}
+
 .text-color-white-dark {
   color: $whiteDark;
 }
@@ -195,8 +197,8 @@ body {
 }
 
 .text-size-0-875 {
-  font-size: 1.25rem;
-  line-height: 1.25em;
+  font-size: 0.875rem;
+  line-height: 1em;
 }
 
 .text-size-1-25 {
@@ -245,6 +247,10 @@ body {
   flex-direction: column;
 }
 
+.align-self-center {
+  align-self: center;
+}
+
 .align-items-center {
   align-items: center;
 }
@@ -291,6 +297,10 @@ body {
 
 .border-white-opacity-50 {
   border: 1px solid $whiteOpacity50;
+}
+
+.border-white-dark {
+  border: 1px solid $whiteDark;
 }
 
 /* Border radius */

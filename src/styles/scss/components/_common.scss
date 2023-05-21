@@ -1,4 +1,6 @@
-@import '../styles/scss/variables.module';
+@use '../abstracts/_mixins' as mixins;
+
+@import '../abstracts/_variables';
 
 /* Backdrop blur */
 .backdrop-blur-animation-backdrop-filter-in {
@@ -61,7 +63,7 @@
         rgba($whiteDark, 0.5) 70%,
         rgba($whiteDark, 0.5) 100%
       );
-      animation: scale-keyframe 700ms ease-out forwards;
+      animation: scale-keyframe 400ms ease-out forwards;
     }
   }
 }
@@ -79,6 +81,31 @@
     scale: 1.1;
     opacity: 0;
   }
+}
+
+/* Configuration option button */
+.configuration-option-button-work-time {
+  @include mixins.configuration-option-button($greenLight, $greenDark);
+}
+
+.configuration-option-button-rest-time {
+  @include mixins.configuration-option-button($redLight, $redDark);
+}
+
+.configuration-option-button-exercise-count {
+  @include mixins.configuration-option-button($grayLight, $grayDark);
+}
+
+.configuration-option-button-round-count {
+  @include mixins.configuration-option-button($blueLight, $blueDark);
+}
+
+.configuration-option-button-round-reset-time {
+  @include mixins.configuration-option-button($yellowLight, $yellowDark);
+}
+
+.configuration-option-button {
+  border-radius: $borderRadiusL;
 }
 
 /* Modal*/

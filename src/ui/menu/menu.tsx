@@ -1,11 +1,11 @@
 'use client';
 
 import { useBoolean } from 'utils/hooks';
-import { BackgroundBlur } from 'base/backgroundBlur';
+import { BackgroundBlur } from 'common/backgroundBlur';
 import { MenuSlidingPane } from 'ui/menu/components/menuSlidingPane/menuSlidingPane';
 import { MenuHeader } from 'ui/menu/components/menuHeader';
 import { Page } from 'utils/types';
-import { Box } from 'base/box';
+import { Box } from 'common/box';
 
 export const Menu = ({
   headline,

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import { Box } from 'base/box';
+import { Box } from 'common/box';
 
 type SliderContainerProps = { children: ReactElement };
 export const SliderContainer = ({ children }: SliderContainerProps) => (

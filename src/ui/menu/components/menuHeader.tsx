@@ -1,8 +1,8 @@
-import { Row } from 'base/row';
-import { UnstyledButton } from 'base/unstyledButton';
+import { Row } from 'common/row';
+import { UnstyledButton } from 'common/unstyledButton';
 import { HamburgerIcon } from 'icons/hamburgerIcon';
-import { Box } from 'base/box';
-import { Text } from 'base/text';
+import { Box } from 'common/box';
+import { Text } from 'common/text';
 
 export const MenuHeader = ({
   toggleMenu,
@@ -12,7 +12,7 @@ export const MenuHeader = ({
   headline: string;
 }) => (
   <Row className="align-items-center justify-content-space-between">
-    <UnstyledButton onClick={toggleMenu}>
+    <UnstyledButton className="background-transparent" onClick={toggleMenu}>
       <HamburgerIcon />
     </UnstyledButton>
 

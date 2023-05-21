@@ -1,0 +1,44 @@
+@use '../abstracts/_mixins' as mixins;
+
+@import '../abstracts/_variables';
+
+
+.icon-size-1-5 {
+  @include mixins.icon-size(1.5rem, 1.5rem);
+}
+
+.icon-size-2-25 {
+  @include mixins.icon-size(2.25rem, 2.25rem);
+}
+
+.icon-width-2-25 {
+  width: 2.25rem;
+}
+
+.stroke-red-primary {
+  @include mixins.stroke($redPrimary);
+}
+.stroke-white-dark {
+  @include mixins.stroke($whiteDark);
+}
+.stroke-black-dark {
+  @include mixins.stroke($blackDark);
+}
+.stroke-green-dark {
+  @include mixins.stroke($greenDark);
+}
+.stroke-red-dark {
+  @include mixins.stroke($redDark);
+}
+.stroke-gray-dark {
+  @include mixins.stroke($grayDark);
+}
+.stroke-blue-dark {
+  @include mixins.stroke($blueDark);
+}
+.stroke-yellow-dark {
+  @include mixins.stroke($yellowDark);
+}
+.stroke-black-50 {
+  @include mixins.stroke($blackOpacity50);
+}

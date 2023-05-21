@@ -6,7 +6,7 @@ import 'styles/global.css';
 import { Menu } from 'ui/menu/menu';
 import { getTFunction } from 'i18n/get-t-function';
 import { Locale, Page } from 'utils/types';
-import { Box } from 'base/box';
+import { Box } from 'common/box';
 
 const manrope = Manrope({
   style: ['normal'],
@@ -47,7 +47,7 @@ const RootLayout = async ({
   // --- RENDER ---
 
   return (
-    <html className={manrope.variable} lang={lang}>
+    <html className={manrope.className} lang={lang}>
       <body className="linear-gradient-to-top-left-from-redPrimary-via-redSecondary-to-redTertiary text-color-white-dark height-screen">
         <Box className="height-screen overflow-hidden">
           <Menu headline={t(`pages.home.headline`)} menuOptions={menuOptions} />

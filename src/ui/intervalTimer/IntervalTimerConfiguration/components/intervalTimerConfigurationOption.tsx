@@ -13,16 +13,16 @@ import { useParams } from 'next/navigation';
 
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 import { useObservable, useReactiveCallback } from 'utils/hooks';
-import { Modal } from 'base/modal';
-import { Slider } from 'base/Slider/slider';
-import { SliderThumb } from 'base/Slider/components/sliderThumb';
-import { SliderContainer } from 'base/Slider/components/sliderContainer';
-import { ConfigurationOptionButton } from 'ui/intervalTimer/IntervalTimerConfiguration/components/configurationOptionButton';
+import { Modal } from 'common/modal';
+import { Slider } from 'common/Slider/slider';
+import { SliderThumb } from 'common/Slider/components/sliderThumb';
+import { SliderContainer } from 'common/Slider/components/sliderContainer';
+import { ConfigurationOptionButton } from 'common/configurationOptionButton';
 import { getFormattedSeconds } from 'utils/helpers';
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
-import { ModalHeader } from 'base/modalHeader';
-import { SliderTrack } from 'base/Slider/components/sliderTrack';
-import { Button } from 'base/button';
+import { ModalHeader } from 'common/modalHeader';
+import { SliderTrack } from 'common/Slider/components/sliderTrack';
+import { Button } from 'common/button';
 import { apiPatchIntensity } from 'serverAction/serverActions';
 
 export const IntervalTimerConfigurationOption = ({
@@ -107,6 +107,8 @@ export const IntervalTimerConfigurationOption = ({
         path: params.lang,
       });
     });
+
+    closeModal()
   };
 
   // --- HELPERS ---

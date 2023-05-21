@@ -3,16 +3,16 @@
 import { useMachine } from '@xstate/react';
 
 import { getFormattedSeconds, getTotalIntervalTime } from 'utils/helpers';
-import { Box } from 'base/box';
+import { Box } from 'common/box';
 import { Interval } from 'api/utils/apiTypes';
-import { UnstyledButton } from 'base/unstyledButton';
-import { Row } from 'base/row';
-import { Text } from 'base/text';
+import { UnstyledButton } from 'common/unstyledButton';
+import { Row } from 'common/row';
+import { Text } from 'common/text';
 import { useReactiveCallback } from 'utils/hooks';
 import { createIntervalTimerExecutionMachine } from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 import { PlayIcon } from 'icons/playIcon';
 import { useRef } from 'react';
-import { HLine } from 'base/hLine';
+import { HLine } from 'common/hLine';
 
 export const IntervalTimerExecution = ({
   interval: propsInterval,

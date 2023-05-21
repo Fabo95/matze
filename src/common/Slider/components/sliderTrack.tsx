@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Box } from 'base/box';
+import { Box } from 'common/box';
 import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 

@@ -1,0 +1,32 @@
+@import '../abstracts/_variables';
+
+@function getTextColorBasedOnBG($color) {
+  @if (lightness($color) > 50) {
+    @return $project-dark-text;
+  } @else {
+    @return $project-light-text;
+  }
+}
+
+@mixin applyBgWithCorrectTextColor($color){
+  background: $color;
+  color: getTextColorBasedOnBG($color)
+}
+
+
+/* Configuration option button */
+@mixin configuration-option-button($background, $textColor) {
+  background: $background;
+  color: $textColor;
+}
+
+/* Icon */
+
+@mixin stroke($color) {
+  stroke: $color;
+}
+
+@mixin icon-size($height, $width) {
+  height: $height;
+  width: $width;
+}

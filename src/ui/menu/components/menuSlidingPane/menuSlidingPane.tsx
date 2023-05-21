@@ -1,7 +1,7 @@
 import { useParams } from 'next/navigation';
 import { useState } from 'react';
 
-import { Box } from 'base/box';
+import { Box } from 'common/box';
 import { MenuSlidingPaneOption } from 'ui/menu/components/menuSlidingPane/components/menuSlidingPaneOption';
 import { Page } from 'utils/types';
 import { MenuSlidingPaneHeader } from 'ui/menu/components/menuSlidingPane/components/menuSlidingPaneHeader';

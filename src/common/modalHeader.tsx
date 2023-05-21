@@ -1,5 +1,5 @@
-import { Row } from 'base/row';
-import { Text } from 'base/text';
+import { Row } from 'common/row';
+import { Text } from 'common/text';
 import React, { ReactElement, ReactNode } from 'react';
 
 type ModalHeaderProps = {

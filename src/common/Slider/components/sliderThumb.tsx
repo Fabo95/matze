@@ -1,4 +1,4 @@
-import { Box } from 'base/box';
+import { Box } from 'common/box';
 import { ChevronUp } from 'icons/chevronUp';
 import { ChevronDown } from 'icons/chevronDown';
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';

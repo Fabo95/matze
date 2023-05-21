@@ -1,5 +1,5 @@
-import { Row } from 'base/row';
-import { Text } from 'base/text';
+import { Row } from 'common/row';
+import { Text } from 'common/text';
 
 export const MenuSlidingPaneHeader = ({ headline }: { headline: string }) => (
   <Row className="align-items-center linear-gradient-to-top-left-from-redPrimary-via-redSecondary-to-redTertiary padding-1 padding-top-3">

@@ -5,7 +5,7 @@ import { Locale } from 'utils/types';
 import { IntervalTimerConfiguration } from 'ui/intervalTimer/IntervalTimerConfiguration/intervalTimerConfiguration';
 import { IntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecution/intervalTimerExecution';
 import { apiGetInterval } from 'api/api';
-import { Box } from 'base/box';
+import { Box } from 'common/box';
 
 export default async function Home({
   params: { lang },

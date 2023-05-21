@@ -1,9 +1,9 @@
 import { forwardRef, ReactNode, Ref } from 'react';
 
 import { XMarkIcon } from 'icons/xMarkIcon';
-import { UnstyledButton } from 'base/unstyledButton';
-import { Dialog } from 'base/dialog';
-import { Box } from 'base/box';
+import { UnstyledButton } from 'common/unstyledButton';
+import { Dialog } from 'common/dialog';
+import { Box } from 'common/box';
 
 type ModalProps = {
   contentClassName: string;

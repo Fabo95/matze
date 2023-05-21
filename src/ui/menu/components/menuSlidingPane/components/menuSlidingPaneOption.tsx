@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
-import { Row } from 'base/row';
+import { Row } from 'common/row';
 import { ClockIcon } from 'icons/clockIcon';
-import { Text } from 'base/text';
+import { Text } from 'common/text';
 import { SettingsIcon } from 'icons/settingsIcon';
 import { CalendarIcon } from 'icons/calendarIcon';
 import { Page } from 'utils/types';
