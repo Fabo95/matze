@@ -21,13 +21,13 @@
   width: 2.25rem;
 }
 
-.stroke-red-primary__SCSS {
+.stroke-red-primary {
   @include stroke($redPrimary);
 }
 .stroke-white-dark {
   @include stroke($whiteDark);
 }
-.stroke-black-dark__SCSS {
+.stroke-black-dark {
   @include stroke($blackDark);
 }
 .stroke-green-dark {

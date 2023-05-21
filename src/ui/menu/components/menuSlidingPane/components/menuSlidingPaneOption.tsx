@@ -25,28 +25,28 @@ export const MenuSlidingPaneOption = ({
     [Page.SETTINGS]: (
       <SettingsIcon
         className={`margin-right-0-5 ${
-          isSelected ? 'stroke-red-primary__SCSS' : 'stroke-black-50'
+          isSelected ? 'stroke-red-primary' : 'stroke-black-50'
         }`}
       />
     ),
     [Page.HISTORY]: (
       <CalendarIcon
         className={`margin-right-0-5 ${
-          isSelected ? 'stroke-red-primary__SCSS' : 'stroke-black-50'
+          isSelected ? 'stroke-red-primary' : 'stroke-black-50'
         }`}
       />
     ),
     [Page.HOME]: (
       <ClockIcon
         className={`margin-right-0-5 ${
-          isSelected ? 'stroke-red-primary__SCSS' : 'stroke-black-50'
+          isSelected ? 'stroke-red-primary' : 'stroke-black-50'
         }`}
       />
     ),
     [Page.STATISTICS]: (
       <ChartIcon
         className={`margin-right-0-5 ${
-          isSelected ? 'stroke-red-primary__SCSS' : 'stroke-black-50'
+          isSelected ? 'stroke-red-primary' : 'stroke-black-50'
         }`}
       />
     ),

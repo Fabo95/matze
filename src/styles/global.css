@@ -232,7 +232,7 @@
   width: 2.25rem;
 }
 
-.stroke-red-primary__SCSS {
+.stroke-red-primary {
   stroke: #f01151;
 }
 
@@ -240,7 +240,7 @@
   stroke: #fff;
 }
 
-.stroke-black-dark__SCSS {
+.stroke-black-dark {
   stroke: #050505;
 }
 
