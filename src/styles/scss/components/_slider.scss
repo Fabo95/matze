@@ -1,0 +1,77 @@
+@use '../abstracts/mixins' as mixins;
+
+@import '../abstracts/_variables';
+
+/**
+* @see https://range-input-css.netlify.app/
+*/
+.slider {
+  -webkit-appearance: none;
+  appearance: slider-vertical;
+  cursor: pointer;
+  width: 50%;
+  height: 100%;
+  opacity: 0;
+  z-index: 1000;
+
+  &:focus {
+    outline: none;
+  }
+
+  /**
+ * Slider track
+ * Chrome, Safari, Opera and Edge Chromium styles
+ */
+  &::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+  }
+  /* Slider thumb */
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+  }
+
+  /**
+  * Slider thumb
+  * Firefox styles
+  */
+  &::-moz-range-thumb {
+    border: none; /*Removes extra border that FF applies*/
+  }
+}
+
+/* Slider thumb */
+.slider-thumb {
+  height: 44px;
+  width: 64px;
+  transform: translateY(50%);
+
+  .slider-thumb-line {
+    top: 50%;
+    width: 320px;
+    height: 8px;
+    transform: translateY(-50%);
+    background: linear-gradient(
+      to right,
+      $whiteOpacity0 0%,
+      $whiteDark 50%,
+      $whiteOpacity0 100%
+    );
+  }
+}
+
+/* Slider track */
+.slider-track-dividing-line {
+  height: 2px;
+  width: 40px;
+  align-self: center;
+  background: $whiteOpacity50;
+}
+
+.slider-track-dividing-line-long {
+  width: 64px;
+}
+
+.slider-track-dividing-line-label {
+  left: 0;
+  transform: translateY(-50%);
+}

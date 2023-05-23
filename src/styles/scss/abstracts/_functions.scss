@@ -1,0 +1,13 @@
+@import '../abstracts/_variables';
+
+@function getContrastingTextColor($color) {
+  @if (lightness($color) > 50) {
+    @return $blackDark;
+  } @else {
+    @return $whiteDark;
+  }
+}
+
+@function spacingPixel($factor) {
+  @return $factor * $basePixel;
+}

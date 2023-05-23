@@ -1,10 +1,17 @@
 /* Colors */
 /* Transitions */
 /* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 /* Configuration option button */
+/* Icon */
 /* Colors */
 /* Transitions */
 /* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 /* This scss file is copied from tailwind css preflight and sets some common styles.
 /* @see https://tailwindcss.com/docs/preflight */
 /*
@@ -324,24 +331,9 @@ video {
 /* Colors */
 /* Transitions */
 /* Borders */
-/* Backdrop blur */
-.backdrop-blur-animation-backdrop-filter-in {
-  animation: backdrop-filter-in-keyframe 250ms ease-in forwards;
-}
-
-.backdrop-blur-animation-backdrop-filter-out {
-  animation: backdrop-filter-out-keyframe 250ms ease-in forwards;
-}
-
-.backdrop-blur-transition-transform-delay-250 {
-  transition: transform 0ms linear 250ms;
-}
-
-.translate-x-full-left {
-  transform: translateX(-100%);
-}
-
-/* Button */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 .button {
   width: max-content;
   border: none;
@@ -393,7 +385,12 @@ video {
     opacity: 0;
   }
 }
-/* Configuration option button */
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 .configuration-option-button-work-time {
   background: #e6fcf2;
   color: #6fdeaa;
@@ -423,7 +420,12 @@ video {
   border-radius: 1em;
 }
 
-/* Modal*/
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 .modal {
   height: 95vh;
   width: 95vw;
@@ -437,7 +439,12 @@ video {
   right: 0;
 }
 
-/* Slider */
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 /**
 * @see https://range-input-css.netlify.app/
 */
@@ -506,6 +513,34 @@ video {
 /* Colors */
 /* Transitions */
 /* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
+.background-blur {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.backdrop-blur-animation-backdrop-filter-in {
+  animation: backdrop-filter-in-keyframe 250ms ease-in forwards;
+}
+
+.backdrop-blur-animation-backdrop-filter-out {
+  animation: backdrop-filter-out-keyframe 250ms ease-in forwards;
+  transition: transform 0ms linear 250ms;
+  transform: translateX(-100%);
+}
+
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 .icon-size-1-5 {
   height: 1.5rem;
   width: 1.5rem;
@@ -559,14 +594,79 @@ video {
 /* Colors */
 /* Transitions */
 /* Borders */
-/* Circle cut off */
-.circle-cut-off {
+/* Spacing */
+/* Font-weight */
+/* z-Index */
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
+.home-page {
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.interval-timer-execution {
+  background: transparent;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  height: 33%;
+}
+.interval-timer-execution .interval-timer-execution-intro {
+  margin-bottom: 16px;
+  font-size: 60px;
+  color: #fff;
+  font-weight: 700;
+}
+.interval-timer-execution .interval-timer-execution-dividing-line {
+  margin-bottom: 16px;
+  height: 1px;
+}
+.interval-timer-execution .interval-timer-execution-text {
+  font-size: 24px;
+}
+.interval-timer-execution .interval-timer-execution-play-button {
+  position: absolute;
+  left: 50%;
+  z-index: 10;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #fff;
+  bottom: 0;
+  display: flex;
+}
+.interval-timer-execution .interval-timer-execution-play-button svg {
+  position: relative;
+}
+.interval-timer-execution .interval-timer-execution-play-button {
+  width: 96px;
+  height: 96px;
+  transform: translate(-50%, 50%);
+}
+.interval-timer-execution .interval-timer-execution-play-button svg {
+  left: 2px;
+}
+
+.interval-timer-configuration {
+  flex-grow: 1;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  overflow: hidden;
+  /* Circle cut off */
+}
+.interval-timer-configuration .interval-timer-configuration-circle-cut-off {
   position: relative;
   overflow: hidden;
   /* Needed because otherwise there is a weird uncolored border on mobile devices */
   bottom: -1px;
+  padding: 48px 16px 16px;
 }
-.circle-cut-off:after {
+.interval-timer-configuration .interval-timer-configuration-circle-cut-off:after {
   content: "";
   position: absolute;
   top: 0;
@@ -578,19 +678,124 @@ video {
   height: 120px;
   box-shadow: 0 0 0 2000px white;
 }
-
-.interval-timer-execution-play-button {
-  width: 96px;
-  height: 96px;
-  transform: translate(-50%, 50%);
-}
-.interval-timer-execution-play-button svg {
-  left: 2px;
+.interval-timer-configuration .interval-timer-configuration-setting-options {
+  padding: 48px 16px 16px;
+  flex-grow: 1;
+  overflow: auto;
+  background: #fff;
 }
 
 /* Colors */
 /* Transitions */
 /* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
+body {
+  height: 100vh;
+  color: #fff;
+  background: linear-gradient(to top left, #f01151 33%, #f53e52 66%, #fd6854 100%);
+}
+
+.root-layout {
+  height: 100vh;
+  overflow: hidden;
+}
+.root-layout .menu {
+  padding: 16px;
+}
+.root-layout .menu .menu-header {
+  align-items: center;
+  justify-content: space-between;
+}
+.root-layout .menu .menu-header .menu-header-hamburger-button {
+  background: transparent;
+}
+.root-layout .menu .menu-header .menu-header-headline {
+  font-weight: 600;
+}
+.root-layout .menu .menu-sliding-pane {
+  background: #fff;
+  color: #050505;
+  transition: 300ms;
+  position: absolute;
+  z-index: 20;
+  width: 66%;
+  overflow: hidden;
+  border-top-right-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+  transform: translateX(-100%);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-header {
+  color: #fff;
+  align-items: center;
+  padding: 48px 16px 16px;
+  background: linear-gradient(to top left, #f01151 33%, #f53e52 66%, #fd6854 100%);
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-header .menu-sliding-pane-header-time-icon {
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  margin-right: 8px;
+  height: 48px;
+  width: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.5019607843);
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-header .menu-sliding-pane-header-time-icon p {
+  font-size: 14px;
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-header .menu-sliding-pane-header-time-text {
+  font-size: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-options {
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-options .menu-sliding-pane-option {
+  align-items: center;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-options .menu-sliding-pane-option svg {
+  stroke: rgba(0, 0, 0, 0.5);
+  margin-right: 8px;
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-options .menu-sliding-pane-option .menu-sliding-pane-option-text {
+  color: #050505;
+  font-weight: 600;
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-options .menu-sliding-pane-option .menu-sliding-pane-option-text-selected {
+  color: #f01151;
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-options .menu-sliding-pane-option-selected {
+  background: linear-gradient(to right, rgba(240, 17, 81, 0.2) 0%, rgba(240, 17, 81, 0.0509803922) 100%);
+}
+.root-layout .menu .menu-sliding-pane .menu-sliding-pane-options .menu-sliding-pane-option-selected svg {
+  stroke: #f01151;
+  margin-right: 8px;
+}
+.root-layout .menu .menu-sliding-pane-open {
+  transform: translateX(0);
+}
+
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 body {
   letter-spacing: 0.025em;
 }
@@ -629,14 +834,6 @@ body {
 }
 
 /* Linear-gradient */
-.gradient-to-right-from-redOpacity33-to-redOpacity-5 {
-  background: linear-gradient(to right, rgba(240, 17, 81, 0.2) 0%, rgba(240, 17, 81, 0.0509803922) 100%);
-}
-
-.linear-gradient-to-top-left-from-redPrimary-via-redSecondary-to-redTertiary {
-  background: linear-gradient(to top left, #f01151 33%, #f53e52 66%, #fd6854 100%);
-}
-
 /* Display */
 .display-inline-block {
   display: inline-block;

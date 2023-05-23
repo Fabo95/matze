@@ -1,33 +1,96 @@
 @import '../abstracts/_variables';
 
-/* Circle cut off */
+@import '../abstracts/_functions';
 
-.circle-cut-off {
-  position: relative;
+.home-page {
+  flex-grow: 1;
   overflow: hidden;
-  /* Needed because otherwise there is a weird uncolored border on mobile devices */
-  bottom: -1px;
+}
 
-  &:after {
-    content: '';
+.interval-timer-execution {
+  background: transparent;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  padding: spacingPixel(1);
+  height: 33%;
+
+  .interval-timer-execution-intro {
+    margin-bottom: spacingPixel(2);
+    font-size: 60px;
+    color: $whiteDark;
+    font-weight: $weightBig;
+  }
+
+  .interval-timer-execution-dividing-line {
+    margin-bottom: spacingPixel(2);
+    height: 1px;
+  }
+
+  .interval-timer-execution-text {
+    font-size: 24px;
+  }
+
+  .interval-timer-execution-play-button {
     position: absolute;
-    top: 0;
     left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border-width: 0;
-    width: 120px;
-    height: 120px;
-    box-shadow: 0 0 0 2000px white;
+    z-index: $zIndexXs;
+    align-items: center;
+    justify-content: center;
+    border-radius: $borderRadiusFull;
+    background: $whiteDark;
+    bottom: 0;
+    display: flex;
+
+    svg {
+      position: relative;
+    }
+  }
+
+  .interval-timer-execution-play-button {
+    width: 96px;
+    height: 96px;
+    transform: translate(-50%, 50%);
+
+    svg {
+      left: 2px;
+    }
   }
 }
 
-.interval-timer-execution-play-button {
-  width: 96px;
-  height: 96px;
-  transform: translate(-50%, 50%);
+.interval-timer-configuration {
+  flex-grow: 1;
+  border-top-left-radius: spacingPixel(1);
+  border-top-right-radius: spacingPixel(1);
+  overflow: hidden;
 
-  svg {
-    left: 2px;
+  /* Circle cut off */
+
+  .interval-timer-configuration-circle-cut-off {
+    position: relative;
+    overflow: hidden;
+    /* Needed because otherwise there is a weird uncolored border on mobile devices */
+    bottom: -1px;
+    padding: spacingPixel(6) spacingPixel(2) spacingPixel(2);
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      border-width: 0;
+      width: 120px;
+      height: 120px;
+      box-shadow: 0 0 0 2000px white;
+    }
+  }
+
+  .interval-timer-configuration-setting-options {
+    padding: spacingPixel(6) spacingPixel(2) spacingPixel(2);
+    flex-grow: 1;
+    overflow: auto;
+    background: $whiteDark;
   }
 }

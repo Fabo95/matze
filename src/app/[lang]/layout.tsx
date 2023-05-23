@@ -35,7 +35,7 @@ const RootLayout = async ({
 }) => {
   const t = await getTFunction(lang);
 
-  // --- HELPERS ---
+  // --- HELPERS ˛
 
   const menuOptions = [
     { translation: t('pages.home.menuOption'), page: Page.HOME },
@@ -48,8 +48,8 @@ const RootLayout = async ({
 
   return (
     <html className={manrope.className} lang={lang}>
-      <body className="linear-gradient-to-top-left-from-redPrimary-via-redSecondary-to-redTertiary text-color-white-dark height-screen">
-        <Box className="height-screen overflow-hidden">
+      <body>
+        <Box className="root-layout">
           <Menu headline={t(`pages.home.headline`)} menuOptions={menuOptions} />
           {children}
         </Box>

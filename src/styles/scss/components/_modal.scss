@@ -1,0 +1,20 @@
+@use '../abstracts/mixins' as mixins;
+
+@import '../abstracts/_variables';
+
+.modal {
+  height: 95vh;
+  width: 95vw;
+
+  &::backdrop {
+    animation: backdrop-filter-in-keyframe $transitionM ease-in forwards;
+  }
+
+  .modal-x-mark-icon-position {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.modal

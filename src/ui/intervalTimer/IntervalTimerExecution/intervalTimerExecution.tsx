@@ -56,26 +56,28 @@ export const IntervalTimerExecution = ({
   // --- RENDER ---
 
   return (
-    <Box className="background-transparent position-relative align-items-center justify-content-center padding-1 height-one-third">
+    <Box className="interval-timer-execution">
       <Text
-        className="margin-bottom-1 text-size-3-75 text-color-white-dark font-bold"
+        className="interval-timer-execution-intro"
         ref={formattedIntervalTimeRef}
       >
         {formattedIntervalTime}
       </Text>
       <HLine
-        className="margin-bottom-1 transition-150 height-2"
+        className="interval-timer-execution-dividing-line"
         style={{ width: formattedIntervalTimeRef?.current?.offsetWidth }}
       />
 
-      <Text className="text-size-1-5">{formattedTotalTime}</Text>
+      <Text className="interval-timer-execution-text">
+        {formattedTotalTime}
+      </Text>
 
       <Row>
         <UnstyledButton
-          className="interval-timer-execution-play-button position-absolute left-half z-index-10 align-items-center justify-content-center border-radius-full background-white-dark bottom-0 flex"
+          className="interval-timer-execution-play-button"
           onClick={() => startNext(true)}
         >
-          <PlayIcon className="position-relative" />
+          <PlayIcon />
         </UnstyledButton>
       </Row>
     </Box>

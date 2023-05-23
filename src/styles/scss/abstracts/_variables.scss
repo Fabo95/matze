@@ -36,7 +36,9 @@ $yellowLight: #fdf7e7;
 
 /* Transitions */
 
-$transition250: 250ms;
+$transitionS: 250ms;
+$transitionM: 250ms;
+$transitionL: 300ms;
 
 /* Borders */
 
@@ -44,6 +46,25 @@ $borderRadiusS: 0.25em;
 $borderRadiusM: 0.5em;
 $borderRadiusL: 1em;
 $borderRadiusFull: 9999px;
+
+/* Spacing */
+
+$basePixel: 8px;
+
+/* Font-weight */
+
+$weightLight: 300;
+$weightRegular: 400;
+$weightBigger: 600;
+$weightBig: 700;
+
+/* z-Index */
+
+$zIndexXs: 10;
+$zIndexS: 20;
+$zIndexM: 30;
+$zIndexL: 40;
+$zIndexXl: 40;
 
 :export {
   $blackDark: $blackDark;
@@ -79,10 +100,12 @@ $borderRadiusFull: 9999px;
   $yellowDark: $yellowDark;
   $yellowLight: $yellowLight;
 
-  $transition250: $transition250;
+  $transitionM: $transitionM;
 
   $borderRadiusS: $borderRadiusS;
   $borderRadiusM: $borderRadiusM;
   $borderRadiusL: $borderRadiusL;
   $borderRadiusFull: $borderRadiusFull;
+
+  $basePixel: $basePixel;
 }

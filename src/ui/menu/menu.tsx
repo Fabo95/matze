@@ -25,7 +25,7 @@ export const Menu = ({
   // --- RENDER ---
 
   return (
-    <Box className="padding-1">
+    <Box className="menu">
       <MenuHeader headline={headline} toggleMenu={toggleMenu} />
 
       <BackgroundBlur handleUnblur={closeMenu} isBlurred={isOpen} />

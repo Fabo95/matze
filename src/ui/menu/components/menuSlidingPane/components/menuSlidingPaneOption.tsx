@@ -22,34 +22,10 @@ export const MenuSlidingPaneOption = ({
   // --- HELPERS ---
 
   const MENU_OPTION_TO_ICON_MAP = {
-    [Page.SETTINGS]: (
-      <SettingsIcon
-        className={`margin-right-0-5 ${
-          isSelected ? 'stroke-red-primary' : 'stroke-black-50'
-        }`}
-      />
-    ),
-    [Page.HISTORY]: (
-      <CalendarIcon
-        className={`margin-right-0-5 ${
-          isSelected ? 'stroke-red-primary' : 'stroke-black-50'
-        }`}
-      />
-    ),
-    [Page.HOME]: (
-      <ClockIcon
-        className={`margin-right-0-5 ${
-          isSelected ? 'stroke-red-primary' : 'stroke-black-50'
-        }`}
-      />
-    ),
-    [Page.STATISTICS]: (
-      <ChartIcon
-        className={`margin-right-0-5 ${
-          isSelected ? 'stroke-red-primary' : 'stroke-black-50'
-        }`}
-      />
-    ),
+    [Page.SETTINGS]: <SettingsIcon />,
+    [Page.HISTORY]: <CalendarIcon />,
+    [Page.HOME]: <ClockIcon />,
+    [Page.STATISTICS]: <ChartIcon />,
   };
 
   // --- RENDER ---
@@ -57,15 +33,15 @@ export const MenuSlidingPaneOption = ({
   return (
     <Link href={`/${currentLocale}/${menuOption.page}`}>
       <Row
-        className={`align-items-center padding-1 margin-bottom-0-5 ${
-          isSelected && 'gradient-to-right-from-redOpacity33-to-redOpacity-5'
+        className={`menu-sliding-pane-option ${
+          isSelected && 'menu-sliding-pane-option-selected '
         }`}
         onClick={onClick}
       >
         {MENU_OPTION_TO_ICON_MAP[menuOption.page]}
         <Text
-          className={`text-color-black-dark font-medium ${
-            isSelected && 'text-color-red-primary'
+          className={`menu-sliding-pane-option-text ${
+            isSelected && 'menu-sliding-pane-option-text-selected'
           }`}
         >
           {menuOption.translation}

@@ -25,10 +25,10 @@ export const IntervalTimerConfiguration = ({
 
   // --- RENDER ---
   return (
-    <Box className="flex-grow-1 border-radius-top-left-top-right-0-5 overflow-hidden">
+    <Box className="interval-timer-configuration">
       {/* This box styling enables circle cut off on to of the interval timer configuration box. */}
-      <Box className="circle-cut-off padding-1 padding-top-3" />
-      <Box className="background-white-dark padding-1 padding-top-3 flex-grow-1 overflow-auto">
+      <Box className="interval-timer-configuration-circle-cut-off" />
+      <Box className="interval-timer-configuration-setting-options">
         {intervalTimerSettingOptionsProps.map(
           ({
             className,

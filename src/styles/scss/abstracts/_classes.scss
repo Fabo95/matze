@@ -1,0 +1,22 @@
+@use '../abstracts/_mixins';
+
+@import '../abstracts/_variables';
+
+.background-white-dark {
+  background: $whiteDark;
+}
+.background-green-dark {
+  background: $greenDark;
+}
+.background-red-dark {
+  background: $redDark;
+}
+.background-gray-dark {
+  background: $grayDark;
+}
+.background-blue-dark {
+  background: $blueDark;
+}
+.background-yellow-dark {
+  background: $yellowDark;
+}

@@ -1,0 +1,115 @@
+@use '../abstracts/mixins' as mixins;
+
+@import '../abstracts/_functions';
+@import '../abstracts/_variables';
+
+body {
+  height: 100vh;
+  color: $whiteDark;
+  @include mixins.primaryLinearGradient();
+}
+
+.root-layout {
+  height: 100vh;
+  overflow: hidden;
+
+  .menu {
+    padding: spacingPixel(2);
+
+    .menu-header {
+      align-items: center;
+      justify-content: space-between;
+
+      .menu-header-hamburger-button {
+        background: transparent;
+      }
+
+      .menu-header-headline {
+        font-weight: $weightBigger;
+      }
+    }
+
+    .menu-sliding-pane {
+      background: $whiteDark;
+      color: getContrastingTextColor($whiteDark);
+      transition: $transitionL;
+      position: absolute;
+      z-index: $zIndexS;
+      width: 66%;
+      overflow: hidden;
+      border-top-right-radius: $borderRadiusM;
+      border-bottom-right-radius: $borderRadiusM;
+      transform: translateX(-100%);
+      @include mixins.topRightBottomLeft();
+
+      .menu-sliding-pane-header {
+        color: $whiteDark;
+        align-items: center;
+        padding: spacingPixel(6) spacingPixel(2) spacingPixel(2);
+        @include mixins.primaryLinearGradient();
+
+        .menu-sliding-pane-header-time-icon {
+          align-items: center;
+          justify-content: center;
+          border-radius: $borderRadiusFull;
+          margin-right: spacingPixel(1);
+          height: spacingPixel(6);
+          width: spacingPixel(6);
+          border: 1px solid $whiteOpacity50;
+
+          p {
+            font-size: 14px;
+          }
+        }
+
+        .menu-sliding-pane-header-time-text {
+          font-size: 20px;
+          text-align: center;
+          font-weight: $weightBigger;
+        }
+      }
+
+      .menu-sliding-pane-options {
+        padding-top: spacingPixel(4);
+        padding-bottom: spacingPixel(4);
+
+        .menu-sliding-pane-option {
+          align-items: center;
+          padding: spacingPixel(2);
+          margin-bottom: spacingPixel(1);
+
+          svg {
+            stroke: $blackOpacity50;
+            margin-right: spacingPixel(1);
+          }
+
+          .menu-sliding-pane-option-text {
+            color: $blackDark;
+            font-weight: $weightBigger;
+          }
+
+          .menu-sliding-pane-option-text-selected {
+            color: $redPrimary;
+          }
+        }
+
+        .menu-sliding-pane-option-selected {
+          background: linear-gradient(
+            to right,
+            $redOpacity33 0%,
+            $redOpacity5 100%
+          );
+
+          svg {
+            stroke: $redPrimary;
+            margin-right: spacingPixel(1);
+          }
+        }
+      }
+    }
+
+    .menu-sliding-pane-open {
+      transform: translateX(0);
+    }
+  }
+}

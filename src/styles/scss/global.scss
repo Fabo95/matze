@@ -1,9 +1,15 @@
 @use './abstracts/_mixins';
 @use './abstracts/_variables';
 @use './base/_resets';
-@use "./components/_common";
-@use "./components/icons";
-@use "./pages/_pages";
+@use './components/_button';
+@use './components/configurationOptionButton';
+@use './components/_modal';
+@use './components/_slider';
+@use './components/_backgroundBlur';
+
+@use './components/icons';
+@use './pages/_pages';
+@use './layout/_layout';
 
 @import './abstracts/_variables';
 
@@ -43,19 +49,6 @@ body {
 }
 
 /* Linear-gradient */
-
-.gradient-to-right-from-redOpacity33-to-redOpacity-5 {
-  background: linear-gradient(to right, $redOpacity33 0%, $redOpacity5 100%);
-}
-
-.linear-gradient-to-top-left-from-redPrimary-via-redSecondary-to-redTertiary {
-  background: linear-gradient(
-    to top left,
-    $redPrimary 33%,
-    $redSecondary 66%,
-    $redTertiary 100%
-  );
-}
 
 /* Display */
 

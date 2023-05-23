@@ -1,19 +1,5 @@
 @import '../abstracts/_variables';
 
-@function getTextColorBasedOnBG($color) {
-  @if (lightness($color) > 50) {
-    @return $project-dark-text;
-  } @else {
-    @return $project-light-text;
-  }
-}
-
-@mixin applyBgWithCorrectTextColor($color){
-  background: $color;
-  color: getTextColorBasedOnBG($color)
-}
-
-
 /* Configuration option button */
 @mixin configuration-option-button($background, $textColor) {
   background: $background;
@@ -21,7 +7,6 @@
 }
 
 /* Icon */
-
 @mixin stroke($color) {
   stroke: $color;
 }
@@ -29,4 +14,32 @@
 @mixin icon-size($height, $width) {
   height: $height;
   width: $width;
+}
+
+@mixin flex-box(
+  $display: flex,
+  $justify-content: start,
+  $align-items: stretch,
+  $direction: row
+) {
+  display: $display;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-direction: $direction;
+}
+
+@mixin topRightBottomLeft($top: 0, $right: 0, $bottom: 0, $left: 0) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $bottom;
+}
+
+@mixin primaryLinearGradient() {
+  background: linear-gradient(
+    to top left,
+    $redPrimary 33%,
+    $redSecondary 66%,
+    $redTertiary 100%
+  );
 }
