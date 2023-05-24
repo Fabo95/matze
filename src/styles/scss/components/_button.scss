@@ -1,8 +1,14 @@
 @use '../abstracts/mixins' as mixins;
 
 @import '../abstracts/_variables';
+@import '../abstracts/_functions';
 
 .button {
+  border-radius: $borderRadiusM;
+  padding: spacingPixel(2);
+  font-weight: $weightBigger;
+  background: $whiteOpacity50;
+  align-self: center;
   width: max-content;
   border: none;
   color: $whiteDark;
@@ -20,6 +26,7 @@
     scale: 0.98;
   }
   .button-content {
+    font-size: spacingPixel(2.25);
     position: relative;
     z-index: 3;
     pointer-events: none;

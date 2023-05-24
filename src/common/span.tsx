@@ -6,7 +6,7 @@ type SpanProps = {
 };
 
 export const Span = ({ className: propsClassName, children }: SpanProps) => {
-  const defaultClassnames = 'text-inherit';
+  const defaultClassnames = 'span';
 
   const classNames = propsClassName
     ? `${defaultClassnames} ${propsClassName}`

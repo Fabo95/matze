@@ -13,7 +13,7 @@ import {
 } from 'ui/intervalTimer/utils/intervalTimerTypes';
 
 export type IntervalTimerConfigurationOptionProps = {
-  className: { button: string; modal: string };
+  className: { configurationOptionButton: string; modalContainer: string };
   icon: ReactElement;
   intensity: number;
   intensityType: IntervalTimerIntensityType;
@@ -30,11 +30,11 @@ export const getIntervalTimerConfigurationOptionsProps = ({
 }): IntervalTimerConfigurationOptionProps[] => [
   {
     className: {
-      button: 'configuration-option-button-work-time',
-      modal: 'background-green-dark',
+      configurationOptionButton: 'configuration-option-button-work-time',
+      modalContainer: 'background-green-dark',
     },
     configurationType: IntervalTimerConfigurationType.TIME,
-    icon: <PlayCircleIcon className="margin-right-0-5 stroke-green-dark" />,
+    icon: <PlayCircleIcon className="stroke-green-dark" />,
     intensity: interval.workTime,
     intensityType: IntervalTimerIntensityType.WORK_TIME,
     sliderRange: { from: 5, to: 180 },
@@ -42,11 +42,11 @@ export const getIntervalTimerConfigurationOptionsProps = ({
   },
   {
     className: {
-      button: 'configuration-option-button-rest-time',
-      modal: 'background-red-dark',
+      configurationOptionButton: 'configuration-option-button-rest-time',
+      modalContainer: 'background-red-dark',
     },
     configurationType: IntervalTimerConfigurationType.TIME,
-    icon: <PauseCircleIcon className="margin-right-0-5 stroke-red-dark" />,
+    icon: <PauseCircleIcon className="stroke-red-dark" />,
     intensity: interval.restTime,
     intensityType: IntervalTimerIntensityType.REST_TIME,
     sliderRange: { from: 0, to: 180 },
@@ -54,11 +54,11 @@ export const getIntervalTimerConfigurationOptionsProps = ({
   },
   {
     className: {
-      button: 'configuration-option-button-exercise-count',
-      modal: 'background-gray-dark',
+      configurationOptionButton: 'configuration-option-button-exercise-count',
+      modalContainer: 'background-gray-dark',
     },
     configurationType: IntervalTimerConfigurationType.COUNT,
-    icon: <RocketIcon className="margin-right-0-5 stroke-gray-dark" />,
+    icon: <RocketIcon className="stroke-gray-dark" />,
     intensity: interval.exerciseCount,
     intensityType: IntervalTimerIntensityType.EXERCISE_COUNT,
     sliderRange: { from: 1, to: 20 },
@@ -66,11 +66,11 @@ export const getIntervalTimerConfigurationOptionsProps = ({
   },
   {
     className: {
-      button: 'configuration-option-button-round-count',
-      modal: 'background-blue-dark',
+      configurationOptionButton: 'configuration-option-button-round-count',
+      modalContainer: 'background-blue-dark',
     },
     configurationType: IntervalTimerConfigurationType.COUNT,
-    icon: <RepeatIcon className="margin-right-0-5 stroke-blue-dark" />,
+    icon: <RepeatIcon className="stroke-blue-dark" />,
     intensity: interval.roundCount,
     intensityType: IntervalTimerIntensityType.ROUND_COUNT,
     sliderRange: { from: 1, to: 25 },
@@ -78,11 +78,11 @@ export const getIntervalTimerConfigurationOptionsProps = ({
   },
   {
     className: {
-      button: 'configuration-option-button-round-reset-time',
-      modal: 'background-yellow-dark',
+      configurationOptionButton: 'configuration-option-button-round-reset-time',
+      modalContainer: 'background-yellow-dark',
     },
     configurationType: IntervalTimerConfigurationType.TIME,
-    icon: <StopCircleIcon className="margin-right-0-5 stroke-yellow-dark" />,
+    icon: <StopCircleIcon className="stroke-yellow-dark" />,
     intensity: interval.roundResetTime,
     intensityType: IntervalTimerIntensityType.ROUND_RESET_TIME,
     sliderRange: { from: 0, to: 180 },

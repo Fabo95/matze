@@ -1,77 +1,105 @@
 @use '../abstracts/mixins' as mixins;
 
 @import '../abstracts/_variables';
+@import '../abstracts/_functions';
 
-/**
-* @see https://range-input-css.netlify.app/
-*/
-.slider {
-  -webkit-appearance: none;
-  appearance: slider-vertical;
-  cursor: pointer;
-  width: 50%;
+.slider-container {
+  position: relative;
   height: 100%;
-  opacity: 0;
-  z-index: 1000;
+  margin-bottom: spacingPixel(12);
+  align-items: center;
 
-  &:focus {
-    outline: none;
-  }
+  .slider {
+    -webkit-appearance: none;
+    appearance: slider-vertical;
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+    opacity: 0;
+    z-index: 1000;
 
-  /**
+    &:focus {
+      outline: none;
+    }
+
+    /**
  * Slider track
  * Chrome, Safari, Opera and Edge Chromium styles
  */
-  &::-webkit-slider-runnable-track {
-    -webkit-appearance: none;
-  }
-  /* Slider thumb */
-  &::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
-  }
+    &::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+    }
+    /* Slider thumb */
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none; /* Override default look */
+    }
 
-  /**
+    /**
   * Slider thumb
   * Firefox styles
   */
-  &::-moz-range-thumb {
-    border: none; /*Removes extra border that FF applies*/
+    &::-moz-range-thumb {
+      border: none; /*Removes extra border that FF applies*/
+    }
   }
-}
 
-/* Slider thumb */
-.slider-thumb {
-  height: 44px;
-  width: 64px;
-  transform: translateY(50%);
+  /* Slider thumb */
+  .slider-thumb {
+    height: 44px;
+    width: 64px;
+    transform: translateY(50%);
+    position: absolute;
+    z-index: $zIndexXs;
+    align-items: center;
+    background: $whiteDark;
+    border-radius: $borderRadiusFull;
+    justify-content: center;
 
-  .slider-thumb-line {
-    top: 50%;
-    width: 320px;
-    height: 8px;
-    transform: translateY(-50%);
-    background: linear-gradient(
-      to right,
-      $whiteOpacity0 0%,
-      $whiteDark 50%,
-      $whiteOpacity0 100%
-    );
+    .slider-thumb-line {
+      position: absolute;
+      top: 50%;
+      width: 320px;
+      height: 8px;
+      transform: translateY(-50%);
+      background: linear-gradient(
+        to right,
+        $whiteOpacity0 0%,
+        $whiteDark 50%,
+        $whiteOpacity0 100%
+      );
+    }
   }
-}
 
-/* Slider track */
-.slider-track-dividing-line {
-  height: 2px;
-  width: 40px;
-  align-self: center;
-  background: $whiteOpacity50;
-}
+  .slider-track {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
 
-.slider-track-dividing-line-long {
-  width: 64px;
-}
+    .slider-track-dividing-line-container {
+      position: relative;
+      width: 100%;
 
-.slider-track-dividing-line-label {
-  left: 0;
-  transform: translateY(-50%);
+      /* Slider track */
+      .slider-track-dividing-line {
+        height: 2px;
+        width: 40px;
+        align-self: center;
+        background: $whiteOpacity50;
+      }
+
+      .slider-track-dividing-line-long {
+        width: 64px;
+      }
+
+      .slider-track-dividing-line-label {
+        font-size: spacingPixel(2.5);
+        color: $whiteDark;
+        font-weight: $weightBigger;
+        position: absolute;
+        left: 0;
+        transform: translateY(-50%);
+      }
+    }
+  }
 }

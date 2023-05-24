@@ -14,7 +14,7 @@ export const Box = ({
   onClick,
   ref,
 }: BoxProps) => {
-  const defaultClassnames = 'flex direction-column';
+  const defaultClassnames = 'box';
 
   const classNames = propsClassName
     ? `${defaultClassnames} ${propsClassName}`

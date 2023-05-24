@@ -36,18 +36,15 @@ export const Button = ({ onClick, className, buttonTitle }: ButtonProps) => {
     wavesWrapper.appendChild(wave);
 
     setTimeout(() => {
-      onClick()
+      onClick();
       wavesWrapper.removeChild(wave);
-
     }, 400);
   };
 
   // --- RENDER ---
   return (
-    <UnstyledButton
-      className={`text-size-1-25 button border-radius-0-5 padding-1 font-semibold background-white-opacity-50 align-self-center ${className}`}
-    >
-      <Box className="text-size-1-25 button-content">{buttonTitle}</Box>
+    <UnstyledButton className={`button ${className}`}>
+      <Box className="button-content">{buttonTitle}</Box>
 
       <Box className="wave-wrapper" onClick={handleWaveAnimation} />
     </UnstyledButton>

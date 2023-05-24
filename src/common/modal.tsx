@@ -6,23 +6,20 @@ import { Dialog } from 'common/dialog';
 import { Box } from 'common/box';
 
 type ModalProps = {
-  contentClassName: string;
+  containerClassName: string;
   closeModal: () => void;
   children: ReactNode;
 };
 
 export const Modal = forwardRef(
   (
-    { contentClassName, children, closeModal }: ModalProps,
+    { containerClassName, children, closeModal }: ModalProps,
     ref: Ref<HTMLDialogElement>
   ) => (
-    <Dialog
-      className={`${contentClassName} modal padding-2-25 border-radius-0-5`}
-      ref={ref}
-    >
-      <Box className="position-relative height-full width-full">
+    <Dialog className={`${containerClassName} modal`} ref={ref}>
+      <Box className="modal-content">
         <UnstyledButton onClick={closeModal}>
-          <XMarkIcon className="modal-x-mark-icon-position position-absolute" />
+          <XMarkIcon className="modal-content-close-icon" />
         </UnstyledButton>
         {children}
       </Box>

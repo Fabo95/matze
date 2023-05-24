@@ -108,7 +108,7 @@ export const IntervalTimerConfigurationOption = ({
       });
     });
 
-    closeModal()
+    closeModal();
   };
 
   // --- HELPERS ---
@@ -134,7 +134,7 @@ export const IntervalTimerConfigurationOption = ({
   return (
     <>
       <ConfigurationOptionButton
-        className={className.button}
+        className={className.configurationOptionButton}
         inlineCenterLeft={title}
         inlineEnd={formattedIntensity}
         inlineStart={icon}
@@ -143,7 +143,7 @@ export const IntervalTimerConfigurationOption = ({
 
       <Modal
         closeModal={closeModal}
-        contentClassName={className.modal}
+        containerClassName={className.modalContainer}
         ref={modalRef}
       >
         <ModalHeader

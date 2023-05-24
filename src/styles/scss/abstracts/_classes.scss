@@ -1,6 +1,7 @@
 @use '../abstracts/_mixins';
 
 @import '../abstracts/_variables';
+@import '../abstracts/_functions';
 
 .background-white-dark {
   background: $whiteDark;
@@ -19,4 +20,26 @@
 }
 .background-yellow-dark {
   background: $yellowDark;
+}
+
+.slider-track-dividing-line-long {
+  width: spacingPixel(8);
+}
+
+@keyframes backdrop-filter-in-keyframe {
+  0% {
+    backdrop-filter: blur(0);
+  }
+  100% {
+    backdrop-filter: blur(8px);
+  }
+}
+
+@keyframes backdrop-filter-out-keyframe {
+  0% {
+    backdrop-filter: blur(8px);
+  }
+  100% {
+    backdrop-filter: blur(0);
+  }
 }

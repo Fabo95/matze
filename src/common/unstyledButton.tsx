@@ -11,7 +11,7 @@ export const UnstyledButton = forwardRef(
     { className: propsClassName, children, onClick }: UnstyledButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
-    const defaultClassnames = 'display-inline-block flex align-items-center';
+    const defaultClassnames = 'unstyled-button';
 
     const classNames = propsClassName
       ? `${defaultClassnames} ${propsClassName}`

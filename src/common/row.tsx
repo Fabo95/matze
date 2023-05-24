@@ -11,7 +11,7 @@ export const Row = ({
   children,
   onClick,
 }: RowProps) => {
-  const defaultClassnames = 'flex direction-row';
+  const defaultClassnames = 'row';
 
   const classNames = propsClassName
     ? `${defaultClassnames} ${propsClassName}`

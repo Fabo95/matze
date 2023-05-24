@@ -5,7 +5,7 @@ type HLineProps = {
   className?: string;
 };
 export const HLine = ({ className: propsClassName, style }: HLineProps) => {
-  const defaultClassnames = 'background-white-dark';
+  const defaultClassnames = 'hLine';
 
   const classNames = propsClassName
     ? `${defaultClassnames} ${propsClassName}`

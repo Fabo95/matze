@@ -34,15 +34,15 @@ export const SliderTrack = ({
         .fill('')
         // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-shadow
         .map((_, dividingLineIndex) => {
-          const dividingTimeStyle =
+          const dividingTimeClassName =
             dividingLineIndex % 6 === 0 && 'slider-track-dividing-line-long';
-          const dividingCountStyle =
+          const dividingCountClassName =
             dividingLineIndex % 5 === 0 && 'slider-track-dividing-line-long';
 
-          const dividingLineStyle =
+          const dividingLineClassName =
             configurationType === IntervalTimerConfigurationType.COUNT
-              ? dividingCountStyle
-              : dividingTimeStyle;
+              ? dividingCountClassName
+              : dividingTimeClassName;
 
           const totalDividingLines = getTotalDividingLines();
           const invertedDividingLineIndex = Math.abs(
@@ -53,14 +53,17 @@ export const SliderTrack = ({
             (invertedDividingLineIndex / totalDividingLines) * sliderRange.to;
 
           return (
-            <Box className="position-relative width-full" key={uuidv4()}>
-              {dividingLineStyle && (
-                <Box className="position-absolute slider-track-dividing-line-label text-size-1-25 text-color-white-dark font-semibold">
+            <Box
+              className="slider-track-dividing-line-container"
+              key={uuidv4()}
+            >
+              {dividingLineClassName && (
+                <Box className="slider-track-dividing-line-label">
                   {dividingLineLabel}
                 </Box>
               )}
               <Box
-                className={`${dividingLineStyle} slider-track-dividing-line`}
+                className={`${dividingLineClassName} slider-track-dividing-line`}
               />
             </Box>
           );
@@ -71,9 +74,5 @@ export const SliderTrack = ({
 
   // --- RENDER ---
 
-  return (
-    <Box className="position-absolute height-full width-full justify-content-space-between">
-      {sliderTrack}
-    </Box>
-  );
+  return <Box className="slider-track">{sliderTrack}</Box>;
 };

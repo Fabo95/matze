@@ -6,6 +6,7 @@
 body {
   height: 100vh;
   color: $whiteDark;
+  letter-spacing: 0.025em;
   @include mixins.primaryLinearGradient();
 }
 

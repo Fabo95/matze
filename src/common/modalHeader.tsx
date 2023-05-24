@@ -14,14 +14,10 @@ export const ModalHeader = ({
   inlineEnd,
 }: ModalHeaderProps) => (
   <>
-    <Row className="justify-content-center margin-bottom-2">
+    <Row className="modal-header">
       {inlineStart}
-      <Text className="text-size-1-875 text-color-white-dark font-semibold">
-        {inlineEnd}
-      </Text>
+      <Text className="modal-header-intro">{inlineEnd}</Text>
     </Row>
-    <Text className="margin-bottom-3-5 text-size-3-75 text-color-white-dark text-center font-bold">
-      {blockEnd}
-    </Text>
+    <Text className="modal-header-intensity">{blockEnd}</Text>
   </>
 );
