@@ -733,6 +733,24 @@ video {
 /* Spacing */
 /* Font-weight */
 /* z-Index */
+.swiper {
+  position: relative;
+  overflow: hidden;
+  flex-grow: 1;
+  background: #fff;
+}
+.swiper .swiper-items {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: 150ms;
+}
+
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 .icon-size-1-5 {
   height: 1.5rem;
   width: 1.5rem;
@@ -875,6 +893,8 @@ video {
   flex-grow: 1;
   overflow: auto;
   background: #fff;
+  flex-shrink: 0;
+  width: 100%;
 }
 
 /* Colors */
@@ -893,6 +913,7 @@ body {
   height: 100vh;
   color: #fff;
   letter-spacing: 0.025em;
+  overflow-x: hidden;
   background: linear-gradient(to top left, #f01151 33%, #f53e52 66%, #fd6854 100%);
 }
 

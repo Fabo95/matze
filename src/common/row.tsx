@@ -1,6 +1,7 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 type RowProps = {
+  style?: CSSProperties;
   className?: string;
   children?: ReactNode;
   onClick?: () => void;
@@ -10,6 +11,7 @@ export const Row = ({
   className: propsClassName,
   children,
   onClick,
+  style,
 }: RowProps) => {
   const defaultClassnames = 'row';
 
@@ -18,7 +20,7 @@ export const Row = ({
     : defaultClassnames;
 
   return (
-    <div className={classNames} onClick={onClick}>
+    <div className={classNames} style={style} onClick={onClick}>
       {children}
     </div>
   );

@@ -6,6 +6,7 @@ import { IntervalTimerConfiguration } from 'ui/intervalTimer/IntervalTimerConfig
 import { IntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecution/intervalTimerExecution';
 import { apiGetInterval } from 'api/api';
 import { Box } from 'common/box';
+import { getIntervalTimerConfigurationOptionsProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 
 export default async function Home({
   params: { lang },
@@ -18,6 +19,15 @@ export default async function Home({
 
   const interval = await apiGetInterval();
 
+  // --- HELPERS ---
+
+  const configurationOptionsProps = getIntervalTimerConfigurationOptionsProps({
+    interval,
+    t,
+  });
+
+  const primaryButtonTitle = t('cta.confirm');
+
   // --- RENDER ---
 
   return (
@@ -26,7 +36,10 @@ export default async function Home({
         interval={interval}
         key={JSON.stringify(interval)}
       />
-      <IntervalTimerConfiguration interval={interval} t={t} />
+      <IntervalTimerConfiguration
+        configurationOptionsProps={configurationOptionsProps}
+        primaryButtonTitle={primaryButtonTitle}
+      />
     </Box>
   );
 }
