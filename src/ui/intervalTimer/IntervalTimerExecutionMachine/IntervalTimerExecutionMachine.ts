@@ -7,13 +7,12 @@ import { Interval } from 'api/utils/apiTypes';
 import {
   IntervalTimerExecutionMachineContext,
   IntervalTimerExecutionMachineEvents,
-} from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
-import { getIntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
+} from 'ui/intervalTimer/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
+import { getIntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
 
 type CreateIntervalTimerExecutionMachineProps<T> = Interval & {
-  start$: Observable<T>;
+  isExecuting$: Observable<T>;
   totalTime: number;
-  pause$: Observable<T>;
 };
 
 export type ApplicationProcessMachine = StateFrom<
@@ -22,19 +21,17 @@ export type ApplicationProcessMachine = StateFrom<
 
 export const createIntervalTimerExecutionMachine = <T>({
   exerciseCount,
+  isExecuting$,
   restTime,
   roundCount,
   roundResetTime,
   workTime,
-  start$,
   totalTime,
-  pause$,
 }: CreateIntervalTimerExecutionMachineProps<T>) =>
   createMachine(
     {
       id: 'intervalTimerExecutionMachine',
-      tsTypes:
-        {} as import('ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine.typegen').Typegen0,
+      tsTypes: {} as import('./IntervalTimerExecutionMachine.typegen').Typegen0,
       preserveActionOrder: true,
       predictableActionArguments: true,
       schema: {
@@ -42,6 +39,7 @@ export const createIntervalTimerExecutionMachine = <T>({
         events: {} as IntervalTimerExecutionMachineEvents,
       },
       context: {
+        isExecuting: false,
         exerciseCount,
         restTime,
         roundCount,
@@ -125,6 +123,12 @@ export const createIntervalTimerExecutionMachine = <T>({
         complete: {},
       },
       on: {
+        START_EXECUTION: {
+          actions: 'setIsStarted',
+        },
+        PAUSE_EXECUTION: {
+          actions: 'setIsPaused',
+        },
         STOP_EXECUTION: {
           actions: [
             'setIsNoAutoExecution',
@@ -161,11 +165,19 @@ export const createIntervalTimerExecutionMachine = <T>({
         setRoundResetTime: assign({
           intervalTime: (context) => context.roundResetTime,
         }),
+
         setIsAutoExecution: assign({
           isAutoExecution: () => true,
         }),
         setIsNoAutoExecution: assign({
           isAutoExecution: () => false,
+        }),
+
+        setIsStarted: assign({
+          isExecuting: () => true,
+        }),
+        setIsPaused: assign({
+          isExecuting: () => false,
         }),
 
         // --- RESET ACTIONS ---
@@ -184,8 +196,7 @@ export const createIntervalTimerExecutionMachine = <T>({
       services: {
         workTimeExecution: (context) =>
           getIntervalTimerExecution({
-            start$,
-            pause$,
+            isExecuting$,
             isAutoExecution: context.isAutoExecution,
             event: [
               { type: 'DECREASE_INTERVAL_TIME' },
@@ -196,8 +207,7 @@ export const createIntervalTimerExecutionMachine = <T>({
 
         restTimeExecution: (context) =>
           getIntervalTimerExecution({
-            start$,
-            pause$,
+            isExecuting$,
             isAutoExecution: context.isAutoExecution,
             event: [
               { type: 'DECREASE_INTERVAL_TIME' },
@@ -208,8 +218,7 @@ export const createIntervalTimerExecutionMachine = <T>({
 
         roundResetTimeExecution: (context) =>
           getIntervalTimerExecution({
-            start$,
-            pause$,
+            isExecuting$,
             isAutoExecution: context.isAutoExecution,
             event: [
               { type: 'DECREASE_INTERVAL_TIME' },

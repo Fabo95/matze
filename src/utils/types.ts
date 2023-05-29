@@ -1,3 +1,5 @@
+import { Observable, Subject } from 'rxjs';
+
 export enum Locale {
   DE = 'de',
   EN = 'en',
@@ -21,3 +23,7 @@ export type ValueOf<T> = T[keyof T];
 export type RecursiveObjectType = {
   [key: string]: string | RecursiveObjectType;
 };
+
+export type ReactiveType<T> =
+  | null
+  | [callback: Subject<T>, observable$: Observable<T>];

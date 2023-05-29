@@ -839,9 +839,12 @@ video {
 .interval-timer-execution .interval-timer-execution-text {
   font-size: 24px;
 }
-.interval-timer-execution .interval-timer-execution-play-button {
+.interval-timer-execution .interval-timer-execution-button {
   position: absolute;
   left: 50%;
+  width: 96px;
+  height: 96px;
+  transform: translate(-50%, 50%);
   z-index: 10;
   align-items: center;
   justify-content: center;
@@ -850,16 +853,8 @@ video {
   bottom: 0;
   display: flex;
 }
-.interval-timer-execution .interval-timer-execution-play-button svg {
+.interval-timer-execution .interval-timer-execution-button svg {
   position: relative;
-}
-.interval-timer-execution .interval-timer-execution-play-button {
-  width: 96px;
-  height: 96px;
-  transform: translate(-50%, 50%);
-}
-.interval-timer-execution .interval-timer-execution-play-button svg {
-  left: 2px;
 }
 
 .interval-timer-configuration {

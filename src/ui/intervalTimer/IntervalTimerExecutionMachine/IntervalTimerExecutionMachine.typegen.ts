@@ -18,7 +18,7 @@ export interface Typegen0 {
     workTimeExecution: 'done.invoke.intervalTimerExecutionMachine.workTimeState:invocation[0]';
   };
   missingImplementations: {
-    actions: never;
+    actions: 'setIsAutoExecution' | 'setIsNoAutoExecution';
     delays: never;
     guards: never;
     services: never;
@@ -34,6 +34,8 @@ export interface Typegen0 {
       | 'done.invoke.intervalTimerExecutionMachine.workTimeState:invocation[0]'
       | 'xstate.stop';
     setIsNoAutoExecution: 'STOP_EXECUTION';
+    setIsPaused: 'PAUSE_EXECUTION';
+    setIsStarted: 'START_EXECUTION';
     setRestTime: '';
     setRoundResetTime: '';
     setWorkTime: '' | 'STOP_EXECUTION' | 'xstate.init';

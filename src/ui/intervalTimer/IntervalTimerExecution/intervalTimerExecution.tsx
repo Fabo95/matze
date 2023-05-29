@@ -1,47 +1,26 @@
-'use client';
-
-import { useMachine } from '@xstate/react';
-
-import { getFormattedSeconds, getTotalIntervalTime } from 'utils/helpers';
+import { getFormattedSeconds } from 'utils/helpers';
 import { Box } from 'common/box';
-import { Interval } from 'api/utils/apiTypes';
 import { UnstyledButton } from 'common/unstyledButton';
 import { Row } from 'common/row';
 import { Text } from 'common/text';
-import { useReactiveCallback } from 'utils/hooks';
-import { createIntervalTimerExecutionMachine } from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 import { PlayIcon } from 'icons/playIcon';
-import { useRef } from 'react';
 import { HLine } from 'common/hLine';
+import { PauseIcon } from 'icons/pauseIcon';
 
 export const IntervalTimerExecution = ({
-  interval: propsInterval,
+  isExecuting,
+  startIntervalTimerExecution,
+  pauseIntervalTimerExecution,
+  intervalTime,
+  totalTime,
 }: {
-  interval: Interval;
+  isExecuting: boolean;
+  startIntervalTimerExecution: () => void;
+  pauseIntervalTimerExecution: () => void;
+  intervalTime: number;
+  totalTime: number;
 }) => {
-  // --- REACTIVE ---
-
-  const [startNext, start$] = useReactiveCallback();
-  const [pauseNext, pause$] = useReactiveCallback();
-
-  const formattedIntervalTimeRef = useRef<HTMLHRElement>(null);
-
-  // --- STATE ---
-
-  const intervalTimerExecutionMachine = createIntervalTimerExecutionMachine({
-    ...propsInterval,
-    pause$,
-    start$,
-    totalTime: getTotalIntervalTime(propsInterval),
-  });
-
-  const [intervalTimerExecutionState, send] = useMachine(
-    intervalTimerExecutionMachine
-  );
-
   // --- HELPERS ---
-
-  const { intervalTime, totalTime } = intervalTimerExecutionState.context;
 
   const formattedTotalTime = getFormattedSeconds(totalTime);
 
@@ -49,24 +28,18 @@ export const IntervalTimerExecution = ({
 
   // --- CALLBACKS ---
 
-  const handleStopIntervalTimerExecution = () => {
-    send({ type: 'STOP_EXECUTION' });
-  };
+  const handleIntervalTimerExecution = isExecuting
+    ? pauseIntervalTimerExecution
+    : startIntervalTimerExecution;
 
   // --- RENDER ---
 
   return (
     <Box className="interval-timer-execution">
-      <Text
-        className="interval-timer-execution-intro"
-        ref={formattedIntervalTimeRef}
-      >
+      <Text className="interval-timer-execution-intro">
         {formattedIntervalTime}
       </Text>
-      <HLine
-        className="interval-timer-execution-dividing-line"
-        style={{ width: formattedIntervalTimeRef?.current?.offsetWidth }}
-      />
+      <HLine className="interval-timer-execution-dividing-line" />
 
       <Text className="interval-timer-execution-text">
         {formattedTotalTime}
@@ -74,10 +47,10 @@ export const IntervalTimerExecution = ({
 
       <Row>
         <UnstyledButton
-          className="interval-timer-execution-play-button"
-          onClick={() => startNext(true)}
+          className="interval-timer-execution-button"
+          onClick={handleIntervalTimerExecution}
         >
-          <PlayIcon />
+          {isExecuting ? <PauseIcon /> : <PlayIcon />}
         </UnstyledButton>
       </Row>
     </Box>

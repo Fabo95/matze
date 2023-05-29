@@ -31,9 +31,12 @@
     font-size: 24px;
   }
 
-  .interval-timer-execution-play-button {
+  .interval-timer-execution-button {
     position: absolute;
     left: 50%;
+    width: spacingPixel(12);
+    height: spacingPixel(12);
+    transform: translate(-50%, 50%);
     z-index: $zIndexXs;
     align-items: center;
     justify-content: center;
@@ -44,16 +47,6 @@
 
     svg {
       position: relative;
-    }
-  }
-
-  .interval-timer-execution-play-button {
-    width: 96px;
-    height: 96px;
-    transform: translate(-50%, 50%);
-
-    svg {
-      left: 2px;
     }
   }
 }

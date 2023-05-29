@@ -1,11 +1,9 @@
 import {
   EMPTY,
   from,
-  map,
   merge,
   mergeMap,
   Observable,
-  scan,
   startWith,
   switchMap,
   take,
@@ -15,34 +13,28 @@ import { interval as rxInterval } from 'rxjs/internal/observable/interval';
 import {
   IntervalTimerExecutionMachineContext,
   IntervalTimerExecutionMachineEvents,
-} from 'ui/intervalTimer/IntervalTimerExecution/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
+} from 'ui/intervalTimer/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
 import { ValueOf } from 'utils/types';
 
 export const getIntervalTimerExecution = <T>({
-  start$,
-  pause$,
-  isAutoExecution,
+  isExecuting$,
   event,
   contextValue,
+  isAutoExecution,
 }: {
-  start$: Observable<T>;
-  pause$: Observable<T>;
-  isAutoExecution: ValueOf<
-    Pick<IntervalTimerExecutionMachineContext, 'isAutoExecution'>
-  >;
+  isExecuting$: Observable<T>;
   event: IntervalTimerExecutionMachineEvents[];
   contextValue: ValueOf<
-    Omit<IntervalTimerExecutionMachineContext, 'isAutoExecution'>
+    Omit<
+      IntervalTimerExecutionMachineContext,
+      'isAutoExecution' | 'isExecuting'
+    >
   >;
+  isAutoExecution: boolean;
 }) =>
-  merge(start$, pause$).pipe(
+  merge(isExecuting$).pipe(
     startWith(isAutoExecution),
     switchMap((shouldStart) => (shouldStart ? rxInterval(1000) : EMPTY)),
-    map(() => -1),
-    scan(
-      (accumulator: number, currentValue: number) => accumulator + currentValue,
-      contextValue
-    ),
     mergeMap(() => from(event)),
     take(contextValue * 2)
   );

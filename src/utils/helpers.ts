@@ -1,5 +1,6 @@
-import { RecursiveObjectType } from 'utils/types';
+import { ReactiveType, RecursiveObjectType } from 'utils/types';
 import moment from 'moment';
+import { Subject } from 'rxjs';
 
 import { Interval } from 'api/utils/apiTypes';
 import { MouseEvent, TouchEvent } from 'react';
@@ -55,3 +56,16 @@ export const getTotalIntervalTime = (interval: Interval) =>
 
 export const stopPropagation = (event: MouseEvent<any> | TouchEvent<any>) =>
   event.stopPropagation();
+
+// Musst be outside the function to assure a single instance of the "reactive" variable.
+let reactive: ReactiveType<any> = null;
+export const getReactiveCallback = <T>() => {
+  if (!reactive) {
+    const subject = new Subject<T>();
+    const observable$ = subject.asObservable();
+
+    reactive = [subject, observable$];
+  }
+
+  return reactive;
+};
