@@ -36,8 +36,12 @@ export const IntervalTimer = ({
 
   // --- HELPERS ---
 
-  const { intervalTime, totalTime, isExecuting } =
+  const { intervalTime, totalTime, isExecuting, roundCount, exerciseCount } =
     intervalTimerExecutionState.context;
+
+  const currentRound = interval.roundCount - roundCount;
+
+  const currentExercise = interval.exerciseCount - exerciseCount;
 
   // --- CALLBACKS ---
 
@@ -69,7 +73,11 @@ export const IntervalTimer = ({
       />
       <IntervalTimerConfiguration
         configurationOptionsProps={configurationOptionsProps}
+        currentExercise={currentExercise}
+        currentRound={currentRound}
         primaryButtonTitle={primaryButtonTitle}
+        totalExerciseCount={interval.exerciseCount}
+        totalRoundCount={interval.roundCount}
       />
     </>
   );
