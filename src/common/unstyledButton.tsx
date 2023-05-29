@@ -1,14 +1,20 @@
-import { ForwardedRef, forwardRef, ReactNode } from 'react';
+import { ForwardedRef, forwardRef, MouseEvent, ReactNode } from 'react';
 
 type UnstyledButtonProps = {
   className?: string;
   children: ReactNode;
-  onClick?: () => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  handleMouseDown?: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
 export const UnstyledButton = forwardRef(
   (
-    { className: propsClassName, children, onClick }: UnstyledButtonProps,
+    {
+      className: propsClassName,
+      children,
+      onClick,
+      handleMouseDown,
+    }: UnstyledButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
     const defaultClassnames = 'unstyled-button';
@@ -18,7 +24,13 @@ export const UnstyledButton = forwardRef(
       : defaultClassnames;
 
     return (
-      <button className={classNames} ref={ref} type="button" onClick={onClick}>
+      <button
+        className={classNames}
+        ref={ref}
+        type="button"
+        onClick={onClick}
+        onMouseDown={handleMouseDown}
+      >
         {children}
       </button>
     );

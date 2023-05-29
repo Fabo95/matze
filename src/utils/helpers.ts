@@ -2,6 +2,7 @@ import { RecursiveObjectType } from 'utils/types';
 import moment from 'moment';
 
 import { Interval } from 'api/utils/apiTypes';
+import { MouseEvent, TouchEvent } from 'react';
 
 /**
  * Takes an nested object and an array of keys and returnes the corresponding nested string value.
@@ -51,3 +52,6 @@ export const getTotalIntervalTime = (interval: Interval) =>
   interval.workTime * interval.exerciseCount * interval.roundCount +
   interval.restTime * (interval.exerciseCount - 1) * interval.roundCount +
   interval.roundResetTime * (interval.roundCount - 1);
+
+export const stopPropagation = (event: MouseEvent<any> | TouchEvent<any>) =>
+  event.stopPropagation();

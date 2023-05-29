@@ -91,6 +91,7 @@ export const IntervalTimerConfigurationOption = ({
 
   const handleIndexChange = useCallback(
     (event: SyntheticEvent<HTMLInputElement>) => {
+      event.stopPropagation();
       handleIntensitySubject(+event.currentTarget.value / 10);
       setIntensity(+event.currentTarget.value / 10);
     },

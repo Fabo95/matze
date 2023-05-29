@@ -1,4 +1,5 @@
 import { SyntheticEvent } from 'react';
+import { stopPropagation } from 'utils/helpers';
 
 type SliderProps = {
   className?: string;
@@ -26,6 +27,8 @@ export const Slider = ({
       type="range"
       value={value}
       onChange={onChange}
+      onMouseMove={stopPropagation}
+      onTouchMove={stopPropagation}
     />
   );
 };
