@@ -35,6 +35,8 @@ export const Swiper = ({ children }: SwiperProps) => {
 
   const childrenLength = Children.toArray(children).length;
 
+  const swiperItemsWidth = childrenLength * 100;
+
   // --- CALLBACKS ---
 
   const resetStates = () => {
@@ -128,7 +130,10 @@ export const Swiper = ({ children }: SwiperProps) => {
     <div className="swiper" ref={swiperRef}>
       <div
         className="swiper-items"
-        style={{ transform: `translateX(${currentXTranslation}px)` }}
+        style={{
+          transform: `translateX(${currentXTranslation}px)`,
+          width: `${swiperItemsWidth}%`,
+        }}
         onMouseDown={handleSwipeStart}
         onMouseLeave={handleSwipeEnd}
         onMouseMove={handleSwipe}

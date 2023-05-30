@@ -736,6 +736,7 @@ video {
 .swiper {
   position: relative;
   overflow: hidden;
+  width: 100%;
   flex-grow: 1;
   background: #fff;
 }
@@ -866,6 +867,7 @@ video {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   overflow: hidden;
+  width: 100%;
   /* Circle cut off */
 }
 .interval-timer-configuration .interval-timer-configuration-circle-cut-off {
@@ -892,7 +894,6 @@ video {
   flex-grow: 1;
   overflow: auto;
   background: #fff;
-  flex-shrink: 0;
   width: 100%;
 }
 
