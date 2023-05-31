@@ -18,14 +18,14 @@ export interface Typegen0 {
     workTimeExecution: 'done.invoke.intervalTimerExecutionMachine.workTimeState:invocation[0]';
   };
   missingImplementations: {
-    actions: 'setIsAutoExecution' | 'setIsNoAutoExecution';
+    actions: never;
     delays: never;
     guards: never;
     services: never;
   };
   eventsCausingActions: {
+    decreaseCurrentTime: 'DECREASE_CURRENT_TIME';
     decreaseExerciseCount: 'done.invoke.intervalTimerExecutionMachine.workTimeState:invocation[0]';
-    decreaseIntervalTime: 'DECREASE_INTERVAL_TIME';
     decreaseRoundCount: '';
     decreaseTotalTime: 'DECREASE_TOTAL_TIME';
     resetExerciseCount: '' | 'STOP_EXECUTION';

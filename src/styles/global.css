@@ -501,6 +501,9 @@ video {
   display: flex;
   font-weight: 600;
 }
+.configuration-option-button:last-of-type {
+  margin-bottom: 0;
+}
 .configuration-option-button .configuration-option-button-text {
   align-items: center;
   color: #050505;
@@ -735,10 +738,11 @@ video {
 /* z-Index */
 .swiper {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
   width: 100%;
   flex-grow: 1;
   background: #fff;
+  overflow-y: auto;
 }
 .swiper .swiper-items {
   display: flex;
@@ -829,7 +833,8 @@ video {
   align-items: center;
   justify-content: center;
   padding: 8px;
-  height: 33%;
+  flex-grow: 1;
+  min-height: 350px;
 }
 .interval-timer-execution .interval-timer-execution-intro {
   margin-bottom: 16px;
@@ -863,11 +868,11 @@ video {
 }
 
 .interval-timer-configuration {
-  flex-grow: 1;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   overflow: hidden;
   width: 100%;
+  height: fit-content;
   /* Circle cut off */
 }
 .interval-timer-configuration .interval-timer-configuration-circle-cut-off {
@@ -890,7 +895,7 @@ video {
   box-shadow: 0 0 0 2000px white;
 }
 .interval-timer-configuration .interval-timer-configuration-setting-options {
-  padding: 48px 16px 16px;
+  padding: 48px 16px 32px;
   flex-grow: 1;
   overflow: auto;
   background: #fff;
@@ -901,7 +906,7 @@ video {
   display: grid;
   justify-self: stretch;
   flex-grow: 1;
-  padding: 48px 16px 16px;
+  padding: 48px 16px 32px;
   background: #fff;
   grid-template-areas: ".          restTime  ." "roundCount .         exerciseCount";
   grid-template-columns: 1fr auto 1fr;
@@ -937,6 +942,7 @@ video {
 }
 .interval-timer-overview-grid .interval-timer-overview-exercises {
   grid-area: exerciseCount;
+  justify-self: end;
 }
 .interval-timer-overview-grid .interval-timer-overview-exercises p {
   color: #050505;

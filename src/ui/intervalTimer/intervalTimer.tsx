@@ -4,15 +4,15 @@ import { useReactiveCallback } from 'utils/hooks';
 import { createIntervalTimerExecutionMachine } from 'ui/intervalTimer/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 import { getTotalIntervalTime } from 'utils/helpers';
 import { IntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecution/intervalTimerExecution';
-import {
-  IntervalTimerConfiguration,
-  IntervalTimerConfigurationProps,
-} from 'ui/intervalTimer/IntervalTimerConfiguration/intervalTimerConfiguration';
+import { IntervalTimerConfiguration } from 'ui/intervalTimer/IntervalTimerConfiguration/intervalTimerConfiguration';
 import { Interval } from 'api/utils/apiTypes';
 import { useMachine } from '@xstate/react';
+import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 
-type IntervalTimerProps = IntervalTimerConfigurationProps & {
+type IntervalTimerProps = {
   interval: Interval;
+  configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
+  primaryButtonTitle: string;
 };
 
 export const IntervalTimer = ({
@@ -31,17 +31,22 @@ export const IntervalTimer = ({
   });
 
   const [intervalTimerExecutionState, send] = useMachine(
-    intervalTimerExecutionMachine as any
+    intervalTimerExecutionMachine
   );
 
   // --- HELPERS ---
 
-  const { intervalTime, totalTime, isExecuting, roundCount, exerciseCount } =
-    intervalTimerExecutionState.context;
+  const {
+    remainingCurrentTime,
+    remainingTotalTime,
+    isExecuting,
+    remainingRoundCount,
+    remainingExerciseCount,
+  } = intervalTimerExecutionState.context;
 
-  const currentRound = interval.roundCount - roundCount;
+  const currentRound = interval.roundCount - remainingRoundCount;
 
-  const currentExercise = interval.exerciseCount - exerciseCount;
+  const currentExercise = interval.exerciseCount - remainingExerciseCount;
 
   // --- CALLBACKS ---
 
@@ -64,18 +69,18 @@ export const IntervalTimer = ({
   return (
     <>
       <IntervalTimerExecution
-        intervalTime={intervalTime}
         isExecuting={isExecuting}
         key={JSON.stringify(interval)}
         pauseIntervalTimerExecution={pauseIntervalTimerExecution}
+        remainingCurrentTime={remainingCurrentTime}
         startIntervalTimerExecution={startIntervalTimerExecution}
-        totalTime={totalTime}
       />
       <IntervalTimerConfiguration
         configurationOptionsProps={configurationOptionsProps}
         currentExercise={currentExercise}
         currentRound={currentRound}
         primaryButtonTitle={primaryButtonTitle}
+        remainingTotalTime={remainingTotalTime}
         totalExerciseCount={interval.exerciseCount}
         totalRoundCount={interval.roundCount}
       />

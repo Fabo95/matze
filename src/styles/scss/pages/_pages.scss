@@ -13,7 +13,8 @@
   align-items: center;
   justify-content: center;
   padding: spacingPixel(1);
-  height: 33%;
+  flex-grow: 1;
+  min-height: 350px;
 
   .interval-timer-execution-intro {
     margin-bottom: spacingPixel(2);
@@ -52,11 +53,11 @@
 }
 
 .interval-timer-configuration {
-  flex-grow: 1;
   border-top-left-radius: spacingPixel(1);
   border-top-right-radius: spacingPixel(1);
   overflow: hidden;
   width: 100%;
+  height: fit-content;
 
   /* Circle cut off */
 
@@ -82,7 +83,7 @@
   }
 
   .interval-timer-configuration-setting-options {
-    padding: spacingPixel(6) spacingPixel(2) spacingPixel(2);
+    padding: spacingPixel(6) spacingPixel(2) spacingPixel(4);
     flex-grow: 1;
     overflow: auto;
     background: $whiteDark;
@@ -94,7 +95,7 @@
   display: grid;
   justify-self: stretch;
   flex-grow: 1;
-  padding: spacingPixel(6) spacingPixel(2) spacingPixel(2);
+  padding: spacingPixel(6) spacingPixel(2) spacingPixel(4);
   background: $whiteDark;
   grid-template-areas:
     '.          restTime  .'
@@ -138,6 +139,7 @@
 
   .interval-timer-overview-exercises {
     grid-area: exerciseCount;
+    justify-self: end;
 
     p {
       color: $blackDark;

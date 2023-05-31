@@ -39,15 +39,15 @@ export const createIntervalTimerExecutionMachine = <T>({
         events: {} as IntervalTimerExecutionMachineEvents,
       },
       context: {
-        isExecuting: false,
-        exerciseCount,
-        restTime,
-        roundCount,
-        roundResetTime,
-        totalTime,
         workTime,
-        intervalTime: 0,
+        restTime,
+        roundResetTime,
         isAutoExecution: false,
+        remainingCurrentTime: 0,
+        remainingTotalTime: totalTime,
+        isExecuting: false,
+        remainingExerciseCount: exerciseCount,
+        remainingRoundCount: roundCount,
       },
 
       initial: 'workTimeState',
@@ -63,7 +63,9 @@ export const createIntervalTimerExecutionMachine = <T>({
             },
           },
           on: {
-            DECREASE_INTERVAL_TIME: { actions: 'decreaseIntervalTime' },
+            DECREASE_CURRENT_TIME: {
+              actions: 'decreaseCurrentTime',
+            },
             DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
           exit: 'setIsAutoExecution',
@@ -90,7 +92,9 @@ export const createIntervalTimerExecutionMachine = <T>({
             },
           },
           on: {
-            DECREASE_INTERVAL_TIME: { actions: 'decreaseIntervalTime' },
+            DECREASE_CURRENT_TIME: {
+              actions: 'decreaseCurrentTime',
+            },
             DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
         },
@@ -110,7 +114,9 @@ export const createIntervalTimerExecutionMachine = <T>({
             },
           },
           on: {
-            DECREASE_INTERVAL_TIME: { actions: 'decreaseIntervalTime' },
+            DECREASE_CURRENT_TIME: {
+              actions: 'decreaseCurrentTime',
+            },
             DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
         },
@@ -142,28 +148,29 @@ export const createIntervalTimerExecutionMachine = <T>({
     {
       actions: {
         // --- DECREASE ACTIONS ---
-        decreaseIntervalTime: assign({
-          intervalTime: (context) => context.intervalTime - 1,
+        decreaseCurrentTime: assign({
+          remainingCurrentTime: (context) => context.remainingCurrentTime - 1,
         }),
         decreaseTotalTime: assign({
-          totalTime: (context) => context.totalTime - 1,
+          remainingTotalTime: (context) => context.remainingTotalTime - 1,
         }),
         decreaseRoundCount: assign({
-          roundCount: (context) => context.roundCount - 1,
+          remainingRoundCount: (context) => context.remainingRoundCount - 1,
         }),
         decreaseExerciseCount: assign({
-          exerciseCount: (context) => context.exerciseCount - 1,
+          remainingExerciseCount: (context) =>
+            context.remainingExerciseCount - 1,
         }),
 
         // --- SET ACTIONS ---
         setWorkTime: assign({
-          intervalTime: (context) => context.workTime,
+          remainingCurrentTime: (context) => context.workTime,
         }),
         setRestTime: assign({
-          intervalTime: (context) => context.restTime,
+          remainingCurrentTime: (context) => context.restTime,
         }),
         setRoundResetTime: assign({
-          intervalTime: (context) => context.roundResetTime,
+          remainingCurrentTime: (context) => context.roundResetTime,
         }),
 
         setIsAutoExecution: assign({
@@ -182,16 +189,16 @@ export const createIntervalTimerExecutionMachine = <T>({
 
         // --- RESET ACTIONS ---
         resetExerciseCount: assign({
-          exerciseCount: () => exerciseCount,
+          remainingExerciseCount: () => exerciseCount,
         }),
         resetTotalTime: assign({
-          totalTime: () => totalTime,
+          remainingTotalTime: () => totalTime,
         }),
       },
       delays: {},
       guards: {
-        isExerciseCountZero: (context) => context.exerciseCount === 0,
-        isRoundCountZero: (context) => context.roundCount === 0,
+        isExerciseCountZero: (context) => context.remainingExerciseCount === 0,
+        isRoundCountZero: (context) => context.remainingRoundCount === 0,
       },
       services: {
         workTimeExecution: (context) =>
@@ -199,7 +206,7 @@ export const createIntervalTimerExecutionMachine = <T>({
             isExecuting$,
             isAutoExecution: context.isAutoExecution,
             event: [
-              { type: 'DECREASE_INTERVAL_TIME' },
+              { type: 'DECREASE_CURRENT_TIME' },
               { type: 'DECREASE_TOTAL_TIME' },
             ],
             contextValue: context.workTime,
@@ -210,7 +217,7 @@ export const createIntervalTimerExecutionMachine = <T>({
             isExecuting$,
             isAutoExecution: context.isAutoExecution,
             event: [
-              { type: 'DECREASE_INTERVAL_TIME' },
+              { type: 'DECREASE_CURRENT_TIME' },
               { type: 'DECREASE_TOTAL_TIME' },
             ],
             contextValue: context.restTime,
@@ -221,7 +228,7 @@ export const createIntervalTimerExecutionMachine = <T>({
             isExecuting$,
             isAutoExecution: context.isAutoExecution,
             event: [
-              { type: 'DECREASE_INTERVAL_TIME' },
+              { type: 'DECREASE_CURRENT_TIME' },
               { type: 'DECREASE_TOTAL_TIME' },
             ],
             contextValue: context.roundResetTime,

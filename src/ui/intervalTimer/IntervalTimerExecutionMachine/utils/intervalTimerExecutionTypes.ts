@@ -1,14 +1,17 @@
-import { Interval } from 'api/utils/apiTypes';
-
-export type IntervalTimerExecutionMachineContext = Omit<Interval, 'userId'> & {
+export type IntervalTimerExecutionMachineContext = {
   isAutoExecution: boolean;
-  intervalTime: number;
-  totalTime: number;
+  remainingCurrentTime: number;
+  remainingTotalTime: number;
   isExecuting: boolean;
+  workTime: number;
+  restTime: number;
+  remainingExerciseCount: number;
+  remainingRoundCount: number;
+  roundResetTime: number;
 };
 
 export type IntervalTimerExecutionMachineEvents =
-  | { type: 'DECREASE_INTERVAL_TIME' }
+  | { type: 'DECREASE_CURRENT_TIME' }
   | { type: 'DECREASE_TOTAL_TIME' }
   | { type: 'START_EXECUTION' }
   | { type: 'PAUSE_EXECUTION' }

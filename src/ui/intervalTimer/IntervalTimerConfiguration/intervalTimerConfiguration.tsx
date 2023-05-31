@@ -10,6 +10,7 @@ import { Row } from 'common/row';
 import { IntervalTimerConfigurationDots } from 'ui/intervalTimer/IntervalTimerConfiguration/components/intervalTimerConfigurationDots';
 import { Text } from 'common/text';
 import { Grid } from 'common/grid';
+import { getFormattedSeconds } from 'utils/helpers';
 
 export type IntervalTimerConfigurationProps = {
   currentRound: number;
@@ -18,6 +19,7 @@ export type IntervalTimerConfigurationProps = {
   totalExerciseCount: number;
   configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
   primaryButtonTitle: string;
+  remainingTotalTime: number;
 };
 
 export const IntervalTimerConfiguration = ({
@@ -27,8 +29,11 @@ export const IntervalTimerConfiguration = ({
   totalExerciseCount,
   configurationOptionsProps,
   primaryButtonTitle,
+  remainingTotalTime,
 }: IntervalTimerConfigurationProps) => {
   // --- HELPERS ---
+
+  const formattedTotalTime = getFormattedSeconds(remainingTotalTime);
 
   const totalRoundDots = new Array(totalRoundCount).fill(
     'interval-timer-overview-dot'
