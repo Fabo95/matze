@@ -2,6 +2,17 @@
 
 @import '../abstracts/_functions';
 
+// abstracts
+
+@mixin detail-execution-overview-rounds-text() {
+  color: $blackDark;
+  font-size: spacingPixel(2.25);
+  font-weight: $weightBigger;
+  margin-bottom: spacingPixel(0.5);
+}
+
+// scss
+
 .home-page {
   flex-grow: 1;
   overflow: hidden;
@@ -52,7 +63,7 @@
   }
 }
 
-.interval-timer-configuration {
+.interval-timer-detail {
   border-top-left-radius: spacingPixel(1);
   border-top-right-radius: spacingPixel(1);
   overflow: hidden;
@@ -61,7 +72,7 @@
 
   /* Circle cut off */
 
-  .interval-timer-configuration-circle-cut-off {
+  .interval-timer-detail-circle-cut-off {
     position: relative;
     overflow: hidden;
     /* Needed because otherwise there is a weird uncolored border on mobile devices */
@@ -82,7 +93,7 @@
     }
   }
 
-  .interval-timer-configuration-setting-options {
+  .interval-timer-detail-configuration-options {
     padding: spacingPixel(6) spacingPixel(2) spacingPixel(4);
     flex-grow: 1;
     overflow: auto;
@@ -91,25 +102,27 @@
   }
 }
 
-.interval-timer-overview-grid {
+.interval-timer-detail-execution-overview {
   display: grid;
   justify-self: stretch;
   flex-grow: 1;
   padding: spacingPixel(6) spacingPixel(2) spacingPixel(4);
   background: $whiteDark;
   grid-template-areas:
-    '.          restTime  .'
-    'roundCount .         exerciseCount';
-  grid-template-columns: 1fr auto 1fr;
-  grid-template-rows: 1fr auto;
+    'roundCountText roundCountDots'
+    'exerciseCountText exerciseCountDots'
+    'restTime restTime';
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto 1fr;
+  grid-row-gap: spacingPixel(2.5);
   width: 100%;
 
-  .interval-timer-overview-dot {
-    width: spacingPixel(2);
-    height: spacingPixel(2);
+  .interval-timer-detail-execution-overview-dot {
+    width: spacingPixel(3);
+    height: spacingPixel(3);
     border-radius: $borderRadiusFull;
-    border: 1px solid $blackDark;
-    padding: spacingPixel(0.25);
+    border: 2px solid $grayDark;
+    padding: spacingPixel(0.5);
     margin: spacingPixel(0.25);
     display: flex;
     align-items: center;
@@ -122,35 +135,48 @@
     &:last-child {
       margin-right: 0;
     }
-  }
 
-  .interval-timer-overview-rounds {
-    grid-area: roundCount;
-
-    p {
-      color: $blackDark;
-      font-weight: $weightBigger;
+    .completed {
+      background: $grayDark;
+      width: 100%;
+      height: 100%;
+      border-radius: $borderRadiusFull;
     }
   }
 
-  .interval-timer-overview-rest {
+  .interval-timer-detail-execution-overview-rest {
     grid-area: restTime;
+    color: $blackDark;
+    font-size: spacingPixel(2.5);
+    align-self: center;
+    font-weight: $weightBigger;
   }
 
-  .interval-timer-overview-exercises {
-    grid-area: exerciseCount;
+  .interval-timer-detail-execution-overview-rounds-text {
+    grid-area: roundCountText;
+
+    @include detail-execution-overview-rounds-text();
+  }
+
+  .interval-timer-detail-execution-overview-exercises-text {
+    grid-area: exerciseCountText;
+
+    @include detail-execution-overview-rounds-text();
+  }
+
+  .interval-timer-detail-execution-overview-rounds-dots {
+    grid-area: roundCountDots;
     justify-self: end;
 
-    p {
-      color: $blackDark;
-      font-weight: $weightBigger;
-    }
+    border: 2px solid $grayLight;
+    border-radius: $borderRadiusM;
   }
 
-  .interval-timer-overview-dot-completed {
-    background: $grayDark;
-    width: 100%;
-    height: 100%;
-    border-radius: $borderRadiusFull;
+  .interval-timer-detail-execution-overview-exercises-dots {
+    grid-area: exerciseCountDots;
+    justify-self: end;
+
+    border: 2px solid $grayLight;
+    border-radius: $borderRadiusM;
   }
 }

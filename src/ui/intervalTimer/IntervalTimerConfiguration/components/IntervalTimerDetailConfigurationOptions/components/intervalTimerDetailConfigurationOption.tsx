@@ -25,7 +25,7 @@ import { SliderTrack } from 'common/Slider/components/sliderTrack';
 import { Button } from 'common/button';
 import { apiPatchIntensity } from 'serverAction/serverActions';
 
-export const IntervalTimerConfigurationOption = ({
+export const IntervalTimerDetailConfigurationOption = ({
   className,
   icon,
   primaryButtonTitle,

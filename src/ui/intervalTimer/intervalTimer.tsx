@@ -4,7 +4,7 @@ import { useReactiveCallback } from 'utils/hooks';
 import { createIntervalTimerExecutionMachine } from 'ui/intervalTimer/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 import { getTotalIntervalTime } from 'utils/helpers';
 import { IntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecution/intervalTimerExecution';
-import { IntervalTimerConfiguration } from 'ui/intervalTimer/IntervalTimerConfiguration/intervalTimerConfiguration';
+import { IntervalTimerDetail } from 'ui/intervalTimer/IntervalTimerConfiguration/intervalTimerDetail';
 import { Interval } from 'api/utils/apiTypes';
 import { useMachine } from '@xstate/react';
 import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
@@ -22,7 +22,7 @@ export const IntervalTimer = ({
 }: IntervalTimerProps) => {
   // --- STATE ---
 
-  const [startNext, isExecuting$] = useReactiveCallback();
+  const [nextIsExecution, isExecuting$] = useReactiveCallback();
 
   const intervalTimerExecutionMachine = createIntervalTimerExecutionMachine({
     ...interval,
@@ -52,12 +52,12 @@ export const IntervalTimer = ({
 
   const startIntervalTimerExecution = () => {
     send({ type: 'START_EXECUTION' });
-    startNext(true);
+    nextIsExecution(true);
   };
 
   const pauseIntervalTimerExecution = () => {
     send({ type: 'PAUSE_EXECUTION' });
-    startNext(false);
+    nextIsExecution(false);
   };
 
   const stopIntervalTimerExectuion = () => {
@@ -75,7 +75,8 @@ export const IntervalTimer = ({
         remainingCurrentTime={remainingCurrentTime}
         startIntervalTimerExecution={startIntervalTimerExecution}
       />
-      <IntervalTimerConfiguration
+
+      <IntervalTimerDetail
         configurationOptionsProps={configurationOptionsProps}
         currentExercise={currentExercise}
         currentRound={currentRound}
