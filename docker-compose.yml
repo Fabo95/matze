@@ -1,28 +1,36 @@
-# Use root/example as user/password credentials
-version: '3.1'
-
 services:
-  db:
-    image: mysql
-    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
-    # (this is just an example, not intended to be a production configuration)
-    command: --default-authentication-plugin=mysql_native_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
+  frontend:
+    image: node:18-alpine
+    volumes:
+      - ./:/home/fabi
+    command: "npm run dev --prefix /home/fabi"
+    depends_on:
+      - mysql
+    ports:
+      - 3000:3000
+    networks:
+      - mysql-network
+
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
     volumes:
       - ./db:/var/lib/mysql
-
-
-  node:
-    image: node:18-alpine
-    restart: always
-    volumes:
-      - .:/var/www
-    tty: true
+    ports:
+      - 8081:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    networks:
+      - mysql-network
 
   adminer:
-    image: adminer
-    restart: always
+    image: adminer:latest
+    container_name: adminer-container
     ports:
-      - 8080:8080
+      - 8082:8080
+    networks:
+      - mysql-network
+networks:
+  mysql-network:
+

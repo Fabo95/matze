@@ -1,0 +1,16 @@
+@import '../abstracts/_variables';
+
+.swiper {
+  position: relative;
+  overflow-x: hidden;
+  width: 100%;
+  flex-grow: 1;
+  background: $whiteDark;
+  overflow-y: auto;
+
+  .swiper-items {
+    display: flex;
+    flex-wrap: nowrap;
+    transition: 150ms;
+  }
+}

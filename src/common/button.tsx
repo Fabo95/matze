@@ -10,8 +10,6 @@ type ButtonProps = {
 };
 
 export const Button = ({ onClick, className, buttonTitle }: ButtonProps) => {
-  // --- STATE ---
-
   // --- CALLBACKS ---
 
   const handleWaveAnimation = (event: MouseEvent<HTMLDivElement>) => {

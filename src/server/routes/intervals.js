@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   try {
     const result = await db
       .promise()
-      .query(`SELECT * FROM INTERVALS WHERE user_id = ${32}`);
+      .query(`SELECT * FROM intervals WHERE user_id = ${32}`);
 
     const [data] = result;
 
@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
   try {
     await db.promise().query(
       `
-        INSERT INTO INTERVALS 
+        INSERT INTO intervals 
         VALUES ('${userId}', '${workTime}', '${restTime}','${exerciseCount}','${roundCount}','${roundResetTime}') `
     );
     res.send(200);
@@ -66,7 +66,7 @@ router.patch('/', async (req, res) => {
   } = req.body;
 
   const query =
-    'UPDATE INTERVALS SET work_time = IFNULL(?, work_time), rest_time = IFNULL(?, rest_time),  exercise_count = IFNULL(?, exercise_count), round_count = IFNULL(?, round_count), round_reset_time = IFNULL(?, round_reset_time) WHERE user_id = ?';
+    'UPDATE intervals SET work_time = IFNULL(?, work_time), rest_time = IFNULL(?, rest_time),  exercise_count = IFNULL(?, exercise_count), round_count = IFNULL(?, round_count), round_reset_time = IFNULL(?, round_reset_time) WHERE user_id = ?';
 
   const values = [
     workTime,
