@@ -2,21 +2,23 @@ services:
   frontend:
     image: node:18-alpine
     volumes:
-      - ./:/home/fabi
-    command: "npm run dev --prefix /home/fabi"
+      - type: bind
+        source: ./
+        target: /home/app
+    command: "npm run dev --prefix /home/app"
     depends_on:
       - mysql
     ports:
       - 3000:3000
     networks:
       - mysql-network
-
-
   mysql:
     image: mysql:latest
     container_name: mysql-container
     volumes:
-      - ./db:/var/lib/mysql
+      - type: volume
+        source: db-data
+        target: /var/lib/mysql
     ports:
       - 8081:3306
     environment:
@@ -33,4 +35,7 @@ services:
       - mysql-network
 networks:
   mysql-network:
+
+volumes:
+  db-data:
 
