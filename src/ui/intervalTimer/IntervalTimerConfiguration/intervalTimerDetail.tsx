@@ -1,29 +1,24 @@
 'use client';
 
 import { Box } from 'common/box';
-import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
+import {
+  IntervalTimerConfigurationOptionProps,
+  IntervalTimerExecutionOverviewButtonProps,
+} from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { Swiper } from 'common/Swiper/swiper';
 import { IntervalTimerDetailConfigurationOptions } from 'ui/intervalTimer/IntervalTimerConfiguration/components/IntervalTimerDetailConfigurationOptions/intervalTimerDetailConfigurationOptions';
 import { IntervalTimerDetailExecutionOverview } from 'ui/intervalTimer/IntervalTimerConfiguration/components/IntervalTimerDetailExecutionOverview/intervalTimerDetailExecutionOverview';
 
 export type IntervalTimerDetailProps = {
-  currentRound: number;
-  currentExercise: number;
-  totalRoundCount: number;
-  totalExerciseCount: number;
   configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
+  executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
   primaryButtonTitle: string;
-  remainingTotalTime: number;
 };
 
 export const IntervalTimerDetail = ({
-  currentRound,
-  currentExercise,
-  totalRoundCount,
-  totalExerciseCount,
   configurationOptionsProps,
+  executionOverviewButtonProps,
   primaryButtonTitle,
-  remainingTotalTime,
 }: IntervalTimerDetailProps) => (
   <Box className="interval-timer-detail">
     {/* This box styling enables circle cut off of the interval timer detail box. */}
@@ -35,11 +30,7 @@ export const IntervalTimerDetail = ({
       />
 
       <IntervalTimerDetailExecutionOverview
-        currentExercise={currentExercise}
-        currentRound={currentRound}
-        remainingTotalTime={remainingTotalTime}
-        totalExerciseCount={totalExerciseCount}
-        totalRoundCount={totalRoundCount}
+        executionOverviewButtonProps={executionOverviewButtonProps}
       />
     </Swiper>
   </Box>

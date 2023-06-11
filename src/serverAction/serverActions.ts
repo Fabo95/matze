@@ -4,14 +4,14 @@ import { revalidatePath } from 'next/cache';
 
 import { getFetchOptions } from 'serverAction/utils/serverActionHelpers';
 import { HttpMethod } from 'serverAction/utils/serverActionTypes';
-import { IntervalTimerIntensityType } from 'ui/intervalTimer/utils/intervalTimerTypes';
+import { IntervalIntensityType } from 'api/utils/apiTypes';
 
 export const apiPatchIntensity = async ({
   intensityType,
   filteredIntensity,
   path,
 }: {
-  intensityType: IntervalTimerIntensityType;
+  intensityType: Exclude<IntervalIntensityType, IntervalIntensityType.USER_ID>;
   filteredIntensity?: number;
   path: string;
 }) => {

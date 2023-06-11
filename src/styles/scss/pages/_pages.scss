@@ -2,15 +2,6 @@
 
 @import '../abstracts/_functions';
 
-// abstracts
-
-@mixin detail-execution-overview-rounds-text() {
-  color: $blackDark;
-  font-size: spacingPixel(2.25);
-  font-weight: $weightBigger;
-  margin-bottom: spacingPixel(0.5);
-}
-
 // scss
 
 .home-page {
@@ -103,18 +94,9 @@
 }
 
 .interval-timer-detail-execution-overview {
-  display: grid;
-  justify-self: stretch;
   flex-grow: 1;
   padding: spacingPixel(6) spacingPixel(2) spacingPixel(4);
   background: $whiteDark;
-  grid-template-areas:
-    'roundCountText roundCountDots'
-    'exerciseCountText exerciseCountDots'
-    'restTime restTime';
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto 1fr;
-  grid-row-gap: spacingPixel(2.5);
   width: 100%;
 
   .interval-timer-detail-execution-overview-dot {
@@ -145,38 +127,9 @@
   }
 
   .interval-timer-detail-execution-overview-rest {
-    grid-area: restTime;
     color: $blackDark;
     font-size: spacingPixel(2.5);
     align-self: center;
     font-weight: $weightBigger;
-  }
-
-  .interval-timer-detail-execution-overview-rounds-text {
-    grid-area: roundCountText;
-
-    @include detail-execution-overview-rounds-text();
-  }
-
-  .interval-timer-detail-execution-overview-exercises-text {
-    grid-area: exerciseCountText;
-
-    @include detail-execution-overview-rounds-text();
-  }
-
-  .interval-timer-detail-execution-overview-rounds-dots {
-    grid-area: roundCountDots;
-    justify-self: end;
-
-    border: 2px solid $grayLight;
-    border-radius: $borderRadiusM;
-  }
-
-  .interval-timer-detail-execution-overview-exercises-dots {
-    grid-area: exerciseCountDots;
-    justify-self: end;
-
-    border: 2px solid $grayLight;
-    border-radius: $borderRadiusM;
   }
 }

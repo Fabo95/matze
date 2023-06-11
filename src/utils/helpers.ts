@@ -69,3 +69,11 @@ export const getReactiveCallback = <T>() => {
 
   return reactive;
 };
+
+export const getArrayWithElements = ({
+  arrayLength,
+  arrayElement,
+}: {
+  arrayLength: number;
+  arrayElement: unknown;
+}) => new Array(arrayLength).fill(arrayElement);

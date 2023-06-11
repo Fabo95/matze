@@ -6,18 +6,23 @@ import { getTotalIntervalTime } from 'utils/helpers';
 import { IntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecution/intervalTimerExecution';
 import { IntervalTimerDetail } from 'ui/intervalTimer/IntervalTimerConfiguration/intervalTimerDetail';
 import { Interval } from 'api/utils/apiTypes';
-import { useMachine } from '@xstate/react';
-import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
+import {
+  IntervalTimerConfigurationOptionProps,
+  IntervalTimerExecutionOverviewButtonProps,
+} from 'ui/intervalTimer/utils/intervalTimerTypes';
+import { IntervalTimerExecutionMachineProvider } from 'ui/intervalTimer/IntervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
 
 type IntervalTimerProps = {
   interval: Interval;
   configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
+  executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
   primaryButtonTitle: string;
 };
 
 export const IntervalTimer = ({
   interval,
   configurationOptionsProps,
+  executionOverviewButtonProps,
   primaryButtonTitle,
 }: IntervalTimerProps) => {
   // --- STATE ---
@@ -30,61 +35,19 @@ export const IntervalTimer = ({
     totalTime: getTotalIntervalTime(interval),
   });
 
-  const [intervalTimerExecutionState, send] = useMachine(
-    intervalTimerExecutionMachine
-  );
-
-  // --- HELPERS ---
-
-  const {
-    remainingCurrentTime,
-    remainingTotalTime,
-    isExecuting,
-    remainingRoundCount,
-    remainingExerciseCount,
-  } = intervalTimerExecutionState.context;
-
-  const currentRound = interval.roundCount - remainingRoundCount;
-
-  const currentExercise = interval.exerciseCount - remainingExerciseCount;
-
-  // --- CALLBACKS ---
-
-  const startIntervalTimerExecution = () => {
-    send({ type: 'START_EXECUTION' });
-    nextIsExecution(true);
-  };
-
-  const pauseIntervalTimerExecution = () => {
-    send({ type: 'PAUSE_EXECUTION' });
-    nextIsExecution(false);
-  };
-
-  const stopIntervalTimerExectuion = () => {
-    send({ type: 'STOP_EXECUTION' });
-  };
-
   // --- RENDER ---
 
   return (
-    <>
-      <IntervalTimerExecution
-        isExecuting={isExecuting}
-        key={JSON.stringify(interval)}
-        pauseIntervalTimerExecution={pauseIntervalTimerExecution}
-        remainingCurrentTime={remainingCurrentTime}
-        startIntervalTimerExecution={startIntervalTimerExecution}
-      />
+    <IntervalTimerExecutionMachineProvider
+      machine={intervalTimerExecutionMachine}
+    >
+      <IntervalTimerExecution nextIsExecution={nextIsExecution} />
 
       <IntervalTimerDetail
         configurationOptionsProps={configurationOptionsProps}
-        currentExercise={currentExercise}
-        currentRound={currentRound}
+        executionOverviewButtonProps={executionOverviewButtonProps}
         primaryButtonTitle={primaryButtonTitle}
-        remainingTotalTime={remainingTotalTime}
-        totalExerciseCount={interval.exerciseCount}
-        totalRoundCount={interval.roundCount}
       />
-    </>
+    </IntervalTimerExecutionMachineProvider>
   );
 };

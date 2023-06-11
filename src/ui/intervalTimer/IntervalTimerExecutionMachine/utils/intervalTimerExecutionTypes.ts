@@ -1,13 +1,13 @@
 export type IntervalTimerExecutionMachineContext = {
+  exerciseCount: { total: number; remaining: number };
   isAutoExecution: boolean;
   remainingCurrentTime: number;
   remainingTotalTime: number;
   isExecuting: boolean;
   workTime: number;
   restTime: number;
-  remainingExerciseCount: number;
-  remainingRoundCount: number;
   roundResetTime: number;
+  roundCount: { total: number; remaining: number };
 };
 
 export type IntervalTimerExecutionMachineEvents =

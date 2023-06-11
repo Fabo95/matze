@@ -5,23 +5,42 @@ import { Row } from 'common/row';
 import { Text } from 'common/text';
 import { PlayIcon } from 'icons/playIcon';
 import { PauseIcon } from 'icons/pauseIcon';
+import {
+  useActor,
+  useSelector,
+} from 'ui/intervalTimer/IntervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
+import {
+  selectIsExecuting,
+  selectRemainingCurrentTime,
+} from 'ui/intervalTimer/IntervalTimerExecutionMachineContext/Utils/intervalTimerExecutionMachineSelectors';
 
 export const IntervalTimerExecution = ({
-  isExecuting,
-  startIntervalTimerExecution,
-  pauseIntervalTimerExecution,
-  remainingCurrentTime,
+  nextIsExecution,
 }: {
-  isExecuting: boolean;
-  startIntervalTimerExecution: () => void;
-  pauseIntervalTimerExecution: () => void;
-  remainingCurrentTime: number;
+  nextIsExecution: (value: unknown) => void;
 }) => {
+  // --- STATE ---
+
+  const isExecuting = useSelector(selectIsExecuting);
+  const remainingCurrentTime = useSelector(selectRemainingCurrentTime);
+
+  const [_, send] = useActor();
+
   // --- HELPERS ---
 
   const formattedIntervalTime = getFormattedSeconds(remainingCurrentTime);
 
   // --- CALLBACKS ---
+
+  const startIntervalTimerExecution = () => {
+    send({ type: 'START_EXECUTION' });
+    nextIsExecution(true);
+  };
+
+  const pauseIntervalTimerExecution = () => {
+    send({ type: 'PAUSE_EXECUTION' });
+    nextIsExecution(false);
+  };
 
   const handleIntervalTimerExecution = isExecuting
     ? pauseIntervalTimerExecution

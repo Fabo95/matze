@@ -11,15 +11,17 @@ import React, {
 import { distinctUntilChanged, map } from 'rxjs';
 import { useParams } from 'next/navigation';
 
-import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
+import {
+  IntervalTimerConfigurationOptionProps,
+  IntervalTimerConfigurationType,
+} from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { useObservable, useReactiveCallback } from 'utils/hooks';
 import { Modal } from 'common/modal';
 import { Slider } from 'common/Slider/slider';
 import { SliderThumb } from 'common/Slider/components/sliderThumb';
 import { SliderContainer } from 'common/Slider/components/sliderContainer';
-import { ConfigurationOptionButton } from 'common/configurationOptionButton';
+import { DetailButton } from 'common/detailButton';
 import { getFormattedSeconds } from 'utils/helpers';
-import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
 import { ModalHeader } from 'common/modalHeader';
 import { SliderTrack } from 'common/Slider/components/sliderTrack';
 import { Button } from 'common/button';
@@ -134,8 +136,8 @@ export const IntervalTimerDetailConfigurationOption = ({
 
   return (
     <>
-      <ConfigurationOptionButton
-        className={className.configurationOptionButton}
+      <DetailButton
+        className={className.detailButton}
         inlineCenterLeft={title}
         inlineEnd={formattedIntensity}
         inlineStart={icon}

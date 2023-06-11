@@ -1,7 +1,7 @@
 @import '../abstracts/_variables';
 
-/* Configuration option button */
-@mixin configuration-option-button($background, $textColor) {
+/* Configuration detail button */
+@mixin detail-button($background, $textColor) {
   background: $background;
   color: $textColor;
 }

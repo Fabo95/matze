@@ -4,7 +4,7 @@
 /* Spacing */
 /* Font-weight */
 /* z-Index */
-/* Configuration option button */
+/* Configuration detail button */
 /* Icon */
 /* Colors */
 /* Transitions */
@@ -465,32 +465,32 @@ video {
 /* Spacing */
 /* Font-weight */
 /* z-Index */
-.configuration-option-button-work-time {
+.detail-button-work-time {
   background: #e6fcf2;
   color: #6fdeaa;
 }
 
-.configuration-option-button-rest-time {
+.detail-button-rest-time {
   background: #faedef;
   color: #f63053;
 }
 
-.configuration-option-button-exercise-count {
+.detail-button-exercise-count {
   background: #f3f3f3;
   color: #b3b3b3;
 }
 
-.configuration-option-button-round-count {
+.detail-button-round-count {
   background: #e8ebfc;
   color: #6578f1;
 }
 
-.configuration-option-button-round-reset-time {
+.detail-button-round-reset-time {
   background: #fdf7e7;
   color: #f4ce65;
 }
 
-.configuration-option-button {
+.detail-button {
   border-radius: 1em;
   font-size: 20px;
   margin-bottom: 16px;
@@ -501,14 +501,14 @@ video {
   display: flex;
   font-weight: 600;
 }
-.configuration-option-button:last-of-type {
+.detail-button:last-of-type {
   margin-bottom: 0;
 }
-.configuration-option-button .configuration-option-button-text {
+.detail-button .detail-button-text {
   align-items: center;
   color: #050505;
 }
-.configuration-option-button .configuration-option-button-text svg {
+.detail-button .detail-button-text svg {
   margin-right: 8px;
 }
 
@@ -903,15 +903,9 @@ video {
 }
 
 .interval-timer-detail-execution-overview {
-  display: grid;
-  justify-self: stretch;
   flex-grow: 1;
   padding: 48px 16px 32px;
   background: #fff;
-  grid-template-areas: "roundCountText roundCountDots" "exerciseCountText exerciseCountDots" "restTime restTime";
-  grid-template-columns: 1fr auto;
-  grid-template-rows: auto auto 1fr;
-  grid-row-gap: 20px;
   width: 100%;
 }
 .interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot {
@@ -938,37 +932,10 @@ video {
   border-radius: 9999px;
 }
 .interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-rest {
-  grid-area: restTime;
   color: #050505;
   font-size: 20px;
   align-self: center;
   font-weight: 600;
-}
-.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-rounds-text {
-  grid-area: roundCountText;
-  color: #050505;
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-exercises-text {
-  grid-area: exerciseCountText;
-  color: #050505;
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-rounds-dots {
-  grid-area: roundCountDots;
-  justify-self: end;
-  border: 2px solid #f3f3f3;
-  border-radius: 0.5em;
-}
-.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-exercises-dots {
-  grid-area: exerciseCountDots;
-  justify-self: end;
-  border: 2px solid #f3f3f3;
-  border-radius: 0.5em;
 }
 
 /* Colors */

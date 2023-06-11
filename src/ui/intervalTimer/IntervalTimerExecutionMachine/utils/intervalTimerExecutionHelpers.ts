@@ -36,5 +36,10 @@ export const getIntervalTimerExecution = <T>({
     startWith(isAutoExecution),
     switchMap((shouldStart) => (shouldStart ? rxInterval(1000) : EMPTY)),
     mergeMap(() => from(event)),
-    take(contextValue * 2)
+    take(Number(contextValue) * 2)
   );
+
+export const getInitialCountContext = (count: number) => ({
+  remaining: count,
+  total: count,
+});

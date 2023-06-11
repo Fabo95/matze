@@ -3,27 +3,27 @@
 @import '../abstracts/_variables';
 @import '../abstracts/_functions.scss';
 
-.configuration-option-button-work-time {
-  @include mixins.configuration-option-button($greenLight, $greenDark);
+.detail-button-work-time {
+  @include mixins.detail-button($greenLight, $greenDark);
 }
 
-.configuration-option-button-rest-time {
-  @include mixins.configuration-option-button($redLight, $redDark);
+.detail-button-rest-time {
+  @include mixins.detail-button($redLight, $redDark);
 }
 
-.configuration-option-button-exercise-count {
-  @include mixins.configuration-option-button($grayLight, $grayDark);
+.detail-button-exercise-count {
+  @include mixins.detail-button($grayLight, $grayDark);
 }
 
-.configuration-option-button-round-count {
-  @include mixins.configuration-option-button($blueLight, $blueDark);
+.detail-button-round-count {
+  @include mixins.detail-button($blueLight, $blueDark);
 }
 
-.configuration-option-button-round-reset-time {
-  @include mixins.configuration-option-button($yellowLight, $yellowDark);
+.detail-button-round-reset-time {
+  @include mixins.detail-button($yellowLight, $yellowDark);
 }
 
-.configuration-option-button {
+.detail-button {
   border-radius: $borderRadiusL;
   font-size: spacingPixel(2.5);
   margin-bottom: spacingPixel(2);
@@ -38,7 +38,7 @@
     margin-bottom: 0;
   }
 
-  .configuration-option-button-text {
+  .detail-button-text {
     align-items: center;
     color: $blackDark;
 

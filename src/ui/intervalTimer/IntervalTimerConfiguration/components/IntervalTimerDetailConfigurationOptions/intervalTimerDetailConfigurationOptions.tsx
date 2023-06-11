@@ -1,6 +1,6 @@
 import { IntervalTimerDetailConfigurationOption } from 'ui/intervalTimer/IntervalTimerConfiguration/components/IntervalTimerDetailConfigurationOptions/components/intervalTimerDetailConfigurationOption';
 import { Box } from 'common/box';
-import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
+import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerTypes';
 
 type IntervalTimerDetailConfigurationOptionsProps = {
   configurationOptionsProps: IntervalTimerConfigurationOptionProps[];

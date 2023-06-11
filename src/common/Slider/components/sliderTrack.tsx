@@ -2,8 +2,11 @@ import React, { useCallback, useMemo } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Box } from 'common/box';
-import { IntervalTimerConfigurationType } from 'ui/intervalTimer/utils/intervalTimerTypes';
-import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/intervalTimerHelpers';
+import {
+  IntervalTimerConfigurationType,
+  IntervalTimerConfigurationOptionProps,
+} from 'ui/intervalTimer/utils/intervalTimerTypes';
+import { getArrayWithElements } from 'utils/helpers';
 
 export const SliderTrack = ({
   configurationType,
@@ -30,8 +33,10 @@ export const SliderTrack = ({
 
   const sliderTrack = useMemo(
     () =>
-      new Array(getTotalDividingLines(!sliderRange.from ? 5 : 0))
-        .fill('')
+      getArrayWithElements({
+        arrayElement: '',
+        arrayLength: getTotalDividingLines(!sliderRange.from ? 5 : 0),
+      })
         // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-shadow
         .map((_, dividingLineIndex) => {
           const dividingTimeClassName =

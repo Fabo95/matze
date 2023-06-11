@@ -8,16 +8,15 @@ import {
   IntervalTimerExecutionMachineContext,
   IntervalTimerExecutionMachineEvents,
 } from 'ui/intervalTimer/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
-import { getIntervalTimerExecution } from 'ui/intervalTimer/IntervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
+import {
+  getInitialCountContext,
+  getIntervalTimerExecution,
+} from 'ui/intervalTimer/IntervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
 
 type CreateIntervalTimerExecutionMachineProps<T> = Interval & {
   isExecuting$: Observable<T>;
   totalTime: number;
 };
-
-export type ApplicationProcessMachine = StateFrom<
-  typeof createIntervalTimerExecutionMachine
->;
 
 export const createIntervalTimerExecutionMachine = <T>({
   exerciseCount,
@@ -46,8 +45,10 @@ export const createIntervalTimerExecutionMachine = <T>({
         remainingCurrentTime: 0,
         remainingTotalTime: totalTime,
         isExecuting: false,
-        remainingExerciseCount: exerciseCount,
-        remainingRoundCount: roundCount,
+        // We make it an object with total and remaining property to assure an abstract usage.
+        exerciseCount: getInitialCountContext(exerciseCount),
+        // We make it an object with total and remaining property to assure an abstract usage.
+        roundCount: getInitialCountContext(roundCount),
       },
 
       initial: 'workTimeState',
@@ -155,11 +156,16 @@ export const createIntervalTimerExecutionMachine = <T>({
           remainingTotalTime: (context) => context.remainingTotalTime - 1,
         }),
         decreaseRoundCount: assign({
-          remainingRoundCount: (context) => context.remainingRoundCount - 1,
+          roundCount: (context) => ({
+            ...context.roundCount,
+            remaining: context.roundCount.remaining - 1,
+          }),
         }),
         decreaseExerciseCount: assign({
-          remainingExerciseCount: (context) =>
-            context.remainingExerciseCount - 1,
+          exerciseCount: (context) => ({
+            ...context.roundCount,
+            remaining: context.exerciseCount.remaining - 1,
+          }),
         }),
 
         // --- SET ACTIONS ---
@@ -189,7 +195,7 @@ export const createIntervalTimerExecutionMachine = <T>({
 
         // --- RESET ACTIONS ---
         resetExerciseCount: assign({
-          remainingExerciseCount: () => exerciseCount,
+          exerciseCount: () => getInitialCountContext(exerciseCount),
         }),
         resetTotalTime: assign({
           remainingTotalTime: () => totalTime,
@@ -197,8 +203,8 @@ export const createIntervalTimerExecutionMachine = <T>({
       },
       delays: {},
       guards: {
-        isExerciseCountZero: (context) => context.remainingExerciseCount === 0,
-        isRoundCountZero: (context) => context.remainingRoundCount === 0,
+        isExerciseCountZero: (context) => context.exerciseCount.remaining === 0,
+        isRoundCountZero: (context) => context.roundCount.remaining === 0,
       },
       services: {
         workTimeExecution: (context) =>
@@ -236,3 +242,7 @@ export const createIntervalTimerExecutionMachine = <T>({
       },
     }
   );
+
+export type ApplicationProcessMachine = StateFrom<
+  typeof createIntervalTimerExecutionMachine
+>;

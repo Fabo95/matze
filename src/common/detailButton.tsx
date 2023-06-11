@@ -1,24 +1,24 @@
-import { MouseEvent, ReactElement, useRef } from 'react';
+import { MouseEvent, ReactElement, ReactNode, useRef } from 'react';
 
 import { UnstyledButton } from 'common/unstyledButton';
 import { Row } from 'common/row';
 import { Span } from 'common/span';
 
-type ButtonProps = {
+type DetailButtonProps = {
   inlineCenterLeft: string;
   inlineStart: ReactElement;
-  inlineEnd?: string | number;
+  inlineEnd?: ReactNode;
   className?: string;
   onClick?: () => void;
 };
 
-export const ConfigurationOptionButton = ({
+export const DetailButton = ({
   inlineCenterLeft,
   inlineStart,
   inlineEnd,
   className,
   onClick,
-}: ButtonProps) => {
+}: DetailButtonProps) => {
   // --- STATE ---
 
   const startXPositionRef = useRef(0);
@@ -39,12 +39,12 @@ export const ConfigurationOptionButton = ({
   // --- RENDER ---
   return (
     <UnstyledButton
-      className={`configuration-option-button ${className}`}
+      className={`detail-button ${className}`}
       handleMouseDown={handleMouseDown}
       key={inlineCenterLeft}
       onClick={handleClick}
     >
-      <Row className="configuration-option-button-text">
+      <Row className="detail-button-text">
         <Span>{inlineStart}</Span>
         <Span>{inlineCenterLeft}</Span>
       </Row>
