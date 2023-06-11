@@ -1,17 +1,17 @@
 services:
-  frontend:
-    image: node:18-alpine
-    volumes:
-      - type: bind
-        source: ./
-        target: /home/app
-    command: "npm run dev --prefix /home/app"
-    depends_on:
-      - mysql
-    ports:
-      - 3000:3000
-    networks:
-      - mysql-network
+  #  frontend:
+  #    image: node:18-alpine
+  #    volumes:
+  #      - type: bind
+  #        source: ./
+  #        target: /home/app
+  #    command: "npm run dev --prefix /home/app"
+  #    depends_on:
+  #      - mysql
+  #    ports:
+  #      - 3000:3000
+  #    networks:
+  #      - mysql-network
   mysql:
     image: mysql:latest
     container_name: mysql-container
@@ -38,4 +38,5 @@ networks:
 
 volumes:
   db-data:
+    driver: local
 
