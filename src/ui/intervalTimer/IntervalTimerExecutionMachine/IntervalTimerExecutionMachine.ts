@@ -157,13 +157,13 @@ export const createIntervalTimerExecutionMachine = <T>({
         }),
         decreaseRoundCount: assign({
           roundCount: (context) => ({
-            ...context.roundCount,
+            total: roundCount,
             remaining: context.roundCount.remaining - 1,
           }),
         }),
         decreaseExerciseCount: assign({
           exerciseCount: (context) => ({
-            ...context.roundCount,
+            total: exerciseCount,
             remaining: context.exerciseCount.remaining - 1,
           }),
         }),

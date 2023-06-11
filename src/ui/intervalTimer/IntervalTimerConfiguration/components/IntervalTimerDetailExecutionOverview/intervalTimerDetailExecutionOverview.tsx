@@ -1,5 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import { Box } from 'common/box';
 import { getFormattedSeconds } from 'utils/helpers';
 import React from 'react';
@@ -11,13 +9,18 @@ import {
 } from 'ui/intervalTimer/IntervalTimerExecutionMachineContext/Utils/intervalTimerExecutionMachineSelectors';
 import { IntervalTimerDetailExecutionOverviewButton } from 'ui/intervalTimer/IntervalTimerConfiguration/components/IntervalTimerDetailExecutionOverview/components/intervalTimerDetailExecutionOverviewButton';
 import { IntervalTimerExecutionOverviewButtonProps } from 'ui/intervalTimer/utils/intervalTimerTypes';
+import { Row } from 'common/row';
+import { Text } from 'common/text';
+import { ClockIcon } from 'icons/clockIcon';
 
 type IntervalTimerDetailExecutionOverviewProps = {
   executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
+  timeLeft: string;
 };
 
 export const IntervalTimerDetailExecutionOverview = ({
   executionOverviewButtonProps,
+  timeLeft,
 }: IntervalTimerDetailExecutionOverviewProps) => {
   // --- STATE ---
 
@@ -43,9 +46,13 @@ export const IntervalTimerDetailExecutionOverview = ({
         )
       )}
 
-      <Box className="interval-timer-detail-execution-overview-rest">
-        {`Verbleibende Zeite: ${formattedRemainingTotalTime}`}
-      </Box>
+      <Row className="interval-timer-detail-execution-overview-rest">
+        <ClockIcon />
+        <Text>{timeLeft}</Text>
+        <Text className="interval-timer-detail-execution-overview-rest-text">
+          {formattedRemainingTotalTime}
+        </Text>
+      </Row>
     </Box>
   );
 };

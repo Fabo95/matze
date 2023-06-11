@@ -13,12 +13,14 @@ export type IntervalTimerDetailProps = {
   configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
   executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
   primaryButtonTitle: string;
+  timeLeft: string;
 };
 
 export const IntervalTimerDetail = ({
   configurationOptionsProps,
   executionOverviewButtonProps,
   primaryButtonTitle,
+  timeLeft,
 }: IntervalTimerDetailProps) => (
   <Box className="interval-timer-detail">
     {/* This box styling enables circle cut off of the interval timer detail box. */}
@@ -31,6 +33,7 @@ export const IntervalTimerDetail = ({
 
       <IntervalTimerDetailExecutionOverview
         executionOverviewButtonProps={executionOverviewButtonProps}
+        timeLeft={timeLeft}
       />
     </Swiper>
   </Box>

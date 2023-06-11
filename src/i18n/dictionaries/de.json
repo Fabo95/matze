@@ -9,6 +9,9 @@
         "optionThree": "Exercises",
         "optionFour": "Rounds",
         "optionFive": "Round Reset"
+      },
+      "intervalTimerOverview": {
+        "timeLeft": "Verbleibende Zeit:"
       }
     },
     "settings": {

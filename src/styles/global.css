@@ -934,8 +934,14 @@ video {
 .interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-rest {
   color: #050505;
   font-size: 20px;
-  align-self: center;
+  margin-top: auto;
+}
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-rest .interval-timer-detail-execution-overview-rest-text {
   font-weight: 600;
+  margin-left: 4px;
+}
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-rest svg {
+  margin-right: 4px;
 }
 
 /* Colors */

@@ -129,7 +129,15 @@
   .interval-timer-detail-execution-overview-rest {
     color: $blackDark;
     font-size: spacingPixel(2.5);
-    align-self: center;
-    font-weight: $weightBigger;
+    margin-top: auto;
+
+    .interval-timer-detail-execution-overview-rest-text {
+      font-weight: $weightBigger;
+      margin-left: spacingPixel(0.5);
+    }
+
+    svg {
+      margin-right: spacingPixel(0.5);
+    }
   }
 }

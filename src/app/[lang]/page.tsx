@@ -33,6 +33,8 @@ export default async function Home({
 
   const primaryButtonTitle = t('cta.confirm');
 
+  const timeLeft = t('pages.home.intervalTimerOverview.timeLeft');
+
   // --- RENDER ---
 
   return (
@@ -43,6 +45,7 @@ export default async function Home({
         interval={interval}
         key={JSON.stringify(interval)}
         primaryButtonTitle={primaryButtonTitle}
+        timeLeft={timeLeft}
       />
     </Box>
   );

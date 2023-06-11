@@ -26,6 +26,8 @@ export const IntervalTimerExecution = ({
 
   const [_, send] = useActor();
 
+  console.log(_);
+
   // --- HELPERS ---
 
   const formattedIntervalTime = getFormattedSeconds(remainingCurrentTime);
