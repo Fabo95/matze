@@ -937,6 +937,7 @@ video {
   margin-top: auto;
 }
 .interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-rest .interval-timer-detail-execution-overview-rest-text {
+  text-align: center;
   font-weight: 600;
   margin-left: 4px;
 }
