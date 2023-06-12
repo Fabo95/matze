@@ -17,6 +17,7 @@ const getIntervalTimerExecutionExerciseCountButtonProps = (
   className: {
     detailButton: 'detail-button-exercise-count',
     modalContainer: 'background-gray-dark',
+    overviewDot: 'overview-dot-exercise-count',
   },
   icon: <RocketIcon className="stroke-gray-dark" />,
   intensityType: IntervalIntensityType.EXERCISE_COUNT,
@@ -29,6 +30,7 @@ const getIntervalTimerExecutionRoundCountButtonProps = (
   className: {
     detailButton: 'detail-button-round-count',
     modalContainer: 'background-blue-dark',
+    overviewDot: 'overview-dot-round-count',
   },
   icon: <RepeatIcon className="stroke-blue-dark" />,
   intensityType: IntervalIntensityType.ROUND_COUNT,

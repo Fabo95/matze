@@ -12,7 +12,11 @@ export type IntervalTimerExecutionOverviewButtonProps = {
     | IntervalIntensityType.ROUND_COUNT
     | IntervalIntensityType.EXERCISE_COUNT;
   title: string;
-  className: { detailButton: string; modalContainer: string };
+  className: {
+    detailButton: string;
+    modalContainer: string;
+    overviewDot?: string;
+  };
 };
 
 export type IntervalTimerConfigurationOptionProps = Omit<

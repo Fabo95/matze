@@ -18,6 +18,7 @@ export type IntervalTimerExecutionMachineEvents =
   | { type: 'STOP_EXECUTION' };
 
 export enum State {
+  IDLE = 'idle',
   WORK_TIME_STATE = 'workTimeState',
   REST_TIME_STATE = 'restTimeState',
   ROUND_RESET_TIME_STATE = 'roundResetTimeState',

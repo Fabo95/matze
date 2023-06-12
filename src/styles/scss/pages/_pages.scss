@@ -19,8 +19,7 @@
   min-height: 350px;
 
   .interval-timer-execution-intro {
-    margin-bottom: spacingPixel(2);
-    font-size: 60px;
+    font-size: spacingPixel(6);
     color: $whiteDark;
     font-weight: $weightBig;
   }
@@ -38,8 +37,8 @@
     overflow: hidden;
     position: absolute;
     left: 50%;
-    width: spacingPixel(15.25);
-    height: spacingPixel(15.25);
+    width: spacingPixel(14.5);
+    height: spacingPixel(14.5);
     transform: translate(-50%, 50%);
     z-index: $zIndexXs;
     background: transparent;
@@ -101,11 +100,12 @@
   width: 100%;
   align-items: center;
 
-  .interval-timer-detail-execution-overview-dot {
+  // General style for overview dots.
+  .interval-timer-detail-execution-overview-dot-exercise-count,
+  .interval-timer-detail-execution-overview-dot-round-count {
     width: spacingPixel(3);
     height: spacingPixel(3);
     border-radius: $borderRadiusFull;
-    border: 2px solid $grayDark;
     padding: spacingPixel(0.5);
     margin: spacingPixel(0.25);
     display: flex;
@@ -119,6 +119,11 @@
     &:last-child {
       margin-right: 0;
     }
+  }
+
+  // Specific style for overview dots.
+  .interval-timer-detail-execution-overview-dot-exercise-count {
+    border: 2px solid $grayDark;
 
     .completed {
       background: $grayDark;
@@ -127,8 +132,20 @@
       border-radius: $borderRadiusFull;
     }
   }
+  // Specific style for overview dots.
+  .interval-timer-detail-execution-overview-dot-round-count {
+    border: 2px solid $blueDark;
+
+    .completed {
+      background: $blueDark;
+      width: 100%;
+      height: 100%;
+      border-radius: $borderRadiusFull;
+    }
+  }
 
   .interval-timer-detail-execution-overview-rest {
+    align-items: center;
     color: $blackDark;
     font-size: spacingPixel(2.5);
     margin-top: auto;

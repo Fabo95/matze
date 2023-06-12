@@ -1,4 +1,5 @@
 import { Observable, Subject } from 'rxjs';
+import { CSSProperties } from 'react';
 
 export enum Locale {
   DE = 'de',
@@ -27,3 +28,5 @@ export type RecursiveObjectType = {
 export type ReactiveType<T> =
   | null
   | [callback: Subject<T>, observable$: Observable<T>];
+
+export type CustomCSSProperties = CSSProperties & { '--my-css-var': number };

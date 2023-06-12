@@ -17,6 +17,7 @@ import {
   executeIntervalTimerExecutionBackgroundGradientStrategy,
   getIntervalTimerExecutionBackgroundGradientStrategies,
 } from 'ui/intervalTimer/IntervalTimerExecution/Utils/intervalTimerExecutionHelpers';
+import { Pulse } from 'common/pulse';
 
 export const IntervalTimerExecution = ({
   nextIsExecution,
@@ -68,6 +69,8 @@ export const IntervalTimerExecution = ({
       <Text className="interval-timer-execution-intro">
         {formattedIntervalTime}
       </Text>
+
+      <Pulse isAnimating={isExecuting} />
 
       <Row>
         <UnstyledButton

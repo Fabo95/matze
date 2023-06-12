@@ -8,19 +8,23 @@ import { useSelector } from 'ui/intervalTimer/IntervalTimerExecutionMachineConte
 import { DetailButton } from 'common/detailButton';
 import { ApplicationProcessMachine } from 'ui/intervalTimer/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 
+type IntervalTimerDetailExecutionOverviewButtonProps = {
+  className: { overviewDot?: string; detailButton: string };
+  title: string;
+  icon: ReactElement;
+  selectTotalCount: (state: ApplicationProcessMachine) => number;
+  selectRemainingCount: (state: ApplicationProcessMachine) => number;
+};
+
 export const IntervalTimerDetailExecutionOverviewButton = ({
   className: propsClassName,
   title,
   icon,
   selectTotalCount,
   selectRemainingCount,
-}: {
-  className: string;
-  title: string;
-  icon: ReactElement;
-  selectTotalCount: (state: ApplicationProcessMachine) => number;
-  selectRemainingCount: (state: ApplicationProcessMachine) => number;
-}) => {
+}: IntervalTimerDetailExecutionOverviewButtonProps) => {
+  // --- STATE ---
+
   const totalCount = useSelector(selectTotalCount);
 
   const remainingCount = useSelector(selectRemainingCount);
@@ -30,7 +34,7 @@ export const IntervalTimerDetailExecutionOverviewButton = ({
   const completedCount = totalCount - remainingCount;
 
   const executionOverviewDotElements = getArrayWithElements({
-    arrayElement: 'interval-timer-detail-execution-overview-dot',
+    arrayElement: `interval-timer-detail-execution-${propsClassName.overviewDot}`,
     arrayLength: totalCount,
   });
 
@@ -51,7 +55,7 @@ export const IntervalTimerDetailExecutionOverviewButton = ({
 
   return (
     <DetailButton
-      className={propsClassName}
+      className={propsClassName.detailButton}
       inlineCenterLeft={title}
       inlineEnd={ExecutionOverviewDots}
       inlineStart={icon}

@@ -79,6 +79,22 @@
     background-position: 0 50%;
   }
 }
+@keyframes pulse-wave-keyframe-up {
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+@keyframes pulse-wave-keyframe-down {
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 /* This scss file is copied from tailwind css preflight and sets some common styles.
 /* @see https://tailwindcss.com/docs/preflight */
 /*
@@ -771,6 +787,51 @@ video {
 /* Spacing */
 /* Font-weight */
 /* z-Index */
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
+.pulse {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: #fff;
+  opacity: 0.2;
+  border-radius: 9999px;
+}
+
+.pulse-animation .pulse-wave-one,
+.pulse-animation .pulse-wave-two,
+.pulse-animation .pulse-wave-three,
+.pulse-animation .pulse-wave-four {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  border-radius: inherit;
+  animation: pulse-wave-keyframe-up 3s ease-out infinite;
+}
+.pulse-animation .pulse-wave-one {
+  animation-delay: 0s;
+}
+.pulse-animation .pulse-wave-two {
+  animation-delay: 1s;
+}
+.pulse-animation .pulse-wave-three {
+  animation-delay: 2s;
+}
+.pulse-animation .pulse-wave-four {
+  animation-delay: 3s;
+}
+
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 .icon-size-1-5 {
   height: 1.5rem;
   width: 1.5rem;
@@ -852,8 +913,7 @@ video {
   min-height: 350px;
 }
 .interval-timer-execution .interval-timer-execution-intro {
-  margin-bottom: 16px;
-  font-size: 60px;
+  font-size: 48px;
   color: #fff;
   font-weight: 700;
 }
@@ -868,8 +928,8 @@ video {
   overflow: hidden;
   position: absolute;
   left: 50%;
-  width: 122px;
-  height: 122px;
+  width: 116px;
+  height: 116px;
   transform: translate(-50%, 50%);
   z-index: 10;
   background: transparent;
@@ -926,30 +986,45 @@ video {
   width: 100%;
   align-items: center;
 }
-.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot {
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot-exercise-count,
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot-round-count {
   width: 24px;
   height: 24px;
   border-radius: 9999px;
-  border: 2px solid #b3b3b3;
   padding: 4px;
   margin: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot:first-child {
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot-exercise-count:first-child,
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot-round-count:first-child {
   margin-left: 0;
 }
-.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot:last-child {
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot-exercise-count:last-child,
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot-round-count:last-child {
   margin-right: 0;
 }
-.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot .completed {
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot-exercise-count {
+  border: 2px solid #b3b3b3;
+}
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot-exercise-count .completed {
   background: #b3b3b3;
   width: 100%;
   height: 100%;
   border-radius: 9999px;
 }
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot-round-count {
+  border: 2px solid #6578f1;
+}
+.interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot-round-count .completed {
+  background: #6578f1;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+}
 .interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-rest {
+  align-items: center;
   color: #050505;
   font-size: 20px;
   margin-top: auto;

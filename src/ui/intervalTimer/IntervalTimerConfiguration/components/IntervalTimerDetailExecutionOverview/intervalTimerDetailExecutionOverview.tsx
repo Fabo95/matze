@@ -36,7 +36,7 @@ export const IntervalTimerDetailExecutionOverview = ({
       {executionOverviewButtonProps.map(
         ({ icon, title, intensityType, className }) => (
           <IntervalTimerDetailExecutionOverviewButton
-            className={className.detailButton}
+            className={className}
             icon={icon}
             key={intensityType}
             selectRemainingCount={makeSelectRemainingCount(intensityType)}
@@ -47,7 +47,7 @@ export const IntervalTimerDetailExecutionOverview = ({
       )}
 
       <Row className="interval-timer-detail-execution-overview-rest">
-        <ClockIcon />
+        <ClockIcon className="stroke-gray-dark" />
         <Text>{timeLeft}</Text>
         <Text className="interval-timer-detail-execution-overview-rest-text">
           {formattedRemainingTotalTime}
