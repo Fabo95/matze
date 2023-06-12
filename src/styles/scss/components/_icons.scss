@@ -2,7 +2,6 @@
 
 @import '../abstracts/_variables';
 
-
 .icon-size-1-5 {
   @include mixins.icon-size(1.5rem, 1.5rem);
 }
@@ -13,6 +12,10 @@
 
 .icon-width-2-25 {
   width: 2.25rem;
+}
+
+.stroke-transparent {
+  @include mixins.stroke(transparent);
 }
 
 .stroke-red-primary {

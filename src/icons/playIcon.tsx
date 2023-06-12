@@ -1,11 +1,9 @@
 export const PlayIcon = ({
   className: propsClassName,
-  fill,
 }: {
   className?: string;
-  fill?: string;
 }) => {
-  const defaultClassname = 'stroke-gray-dark icon-size-2-25';
+  const defaultClassname = 'stroke-transparent';
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`
@@ -14,13 +12,13 @@ export const PlayIcon = ({
   return (
     <svg
       className={className}
-      fill={fill || '#b3b3b3'}
+      fill="#fff"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
         clipRule="evenodd"
-        d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z"
+        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm14.024-.983a1.125 1.125 0 010 1.966l-5.603 3.113A1.125 1.125 0 019 15.113V8.887c0-.857.921-1.4 1.671-.983l5.603 3.113z"
         fillRule="evenodd"
       />
     </svg>
