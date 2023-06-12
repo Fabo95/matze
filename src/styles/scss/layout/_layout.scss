@@ -11,6 +11,30 @@ body {
   @include mixins.primaryLinearGradient();
 }
 
+.work-time-background-gradient {
+  @include mixins.animatedLinearGradient(
+    $greenPrimary,
+    $greenSecondary,
+    $greenTertiary
+  );
+}
+
+.rest-time-background-gradient {
+  @include mixins.animatedLinearGradient(
+    $redPrimary,
+    $redSecondary,
+    $redTertiary
+  );
+}
+
+.round-reset-time-background-gradient {
+  @include mixins.animatedLinearGradient(
+    $yellowPrimary,
+    $yellowSecondary,
+    $yellowTertiary
+  );
+}
+
 .root-layout {
   height: 100vh;
   overflow: hidden;

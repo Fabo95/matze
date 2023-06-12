@@ -1,0 +1,29 @@
+@keyframes backdrop-filter-in-keyframe {
+  0% {
+    backdrop-filter: blur(0);
+  }
+  100% {
+    backdrop-filter: blur(8px);
+  }
+}
+
+@keyframes backdrop-filter-out-keyframe {
+  0% {
+    backdrop-filter: blur(8px);
+  }
+  100% {
+    backdrop-filter: blur(0);
+  }
+}
+
+@keyframes animated-linear-gradient-keyframe {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

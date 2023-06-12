@@ -5,7 +5,7 @@ export const PauseIcon = ({
   className?: string;
   fill?: string;
 }) => {
-  const defaultClassname = 'stroke-red-primary icon-size-2-25';
+  const defaultClassname = 'stroke-gray-dark icon-size-2-25';
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`
@@ -14,7 +14,7 @@ export const PauseIcon = ({
   return (
     <svg
       className={className}
-      fill={fill || '#F01151'}
+      fill={fill || '#b3b3b3'}
       stroke="currentColor"
       strokeWidth="1.5"
       viewBox="0 0 24 24"

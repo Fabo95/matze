@@ -98,6 +98,7 @@
   padding: spacingPixel(6) spacingPixel(2) spacingPixel(4);
   background: $whiteDark;
   width: 100%;
+  align-items: center;
 
   .interval-timer-detail-execution-overview-dot {
     width: spacingPixel(3);

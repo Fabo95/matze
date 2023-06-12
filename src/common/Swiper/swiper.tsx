@@ -3,6 +3,7 @@ import React, {
   MouseEvent,
   ReactElement,
   TouchEvent,
+  useEffect,
   useRef,
   useState,
 } from 'react';
@@ -12,9 +13,15 @@ import {
   getNextItemIndex,
 } from 'common/Swiper/utils/swiperHelpers';
 
-export type SwiperProps = { children: ReactElement | ReactElement[] };
+export type SwiperProps = {
+  children: ReactElement | ReactElement[];
+  autoSwipe: {
+    shouldSwipe: boolean;
+    itemIndex: number;
+  };
+};
 
-export const Swiper = ({ children }: SwiperProps) => {
+export const Swiper = ({ children, autoSwipe }: SwiperProps) => {
   // --- STATE ---
 
   const swiperRef = useRef<HTMLDivElement>(null);
@@ -123,6 +130,15 @@ export const Swiper = ({ children }: SwiperProps) => {
     setCurrentXTranslation(-itemIndexRef.current * swiperWidth);
     resetStates();
   };
+
+  // --- EFFECTS ---
+
+  useEffect(() => {
+    if (autoSwipe.shouldSwipe) {
+      itemIndexRef.current = autoSwipe.itemIndex;
+      setCurrentXTranslation(-itemIndexRef.current * swiperWidth);
+    }
+  }, [autoSwipe.shouldSwipe, autoSwipe.itemIndex, swiperWidth]);
 
   // --- RENDER ---
 

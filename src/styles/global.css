@@ -68,6 +68,17 @@
     backdrop-filter: blur(0);
   }
 }
+@keyframes animated-linear-gradient-keyframe {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
 /* This scss file is copied from tailwind css preflight and sets some common styles.
 /* @see https://tailwindcss.com/docs/preflight */
 /*
@@ -907,6 +918,7 @@ video {
   padding: 48px 16px 32px;
   background: #fff;
   width: 100%;
+  align-items: center;
 }
 .interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-dot {
   width: 24px;
@@ -937,7 +949,6 @@ video {
   margin-top: auto;
 }
 .interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-rest .interval-timer-detail-execution-overview-rest-text {
-  text-align: center;
   font-weight: 600;
   margin-left: 4px;
 }
@@ -963,6 +974,30 @@ body {
   letter-spacing: 0.025em;
   overflow-x: hidden;
   background: linear-gradient(to top left, #f01151 33%, #f53e52 66%, #fd6854 100%);
+}
+
+.work-time-background-gradient {
+  background: linear-gradient(270deg, #6fde82, #6fde94, #6fdeaa);
+  background-size: 400% 400%;
+  -webkit-animation: animated-linear-gradient-keyframe 7s ease infinite;
+  -moz-animation: animated-linear-gradient-keyframe 7s ease infinite;
+  animation: animated-linear-gradient-keyframe 7s ease infinite;
+}
+
+.rest-time-background-gradient {
+  background: linear-gradient(270deg, #f01151, #f53e52, #fd6854);
+  background-size: 400% 400%;
+  -webkit-animation: animated-linear-gradient-keyframe 7s ease infinite;
+  -moz-animation: animated-linear-gradient-keyframe 7s ease infinite;
+  animation: animated-linear-gradient-keyframe 7s ease infinite;
+}
+
+.round-reset-time-background-gradient {
+  background: linear-gradient(270deg, #f4ad35, #f4c439, #f4c848);
+  background-size: 400% 400%;
+  -webkit-animation: animated-linear-gradient-keyframe 7s ease infinite;
+  -moz-animation: animated-linear-gradient-keyframe 7s ease infinite;
+  animation: animated-linear-gradient-keyframe 7s ease infinite;
 }
 
 .root-layout {

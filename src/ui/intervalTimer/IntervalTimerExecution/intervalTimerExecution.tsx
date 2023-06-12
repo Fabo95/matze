@@ -13,6 +13,10 @@ import {
   selectIsExecuting,
   selectRemainingCurrentTime,
 } from 'ui/intervalTimer/IntervalTimerExecutionMachineContext/Utils/intervalTimerExecutionMachineSelectors';
+import {
+  executeIntervalTimerExecutionBackgroundGradientStrategy,
+  getIntervalTimerExecutionBackgroundGradientStrategies,
+} from 'ui/intervalTimer/IntervalTimerExecution/Utils/intervalTimerExecutionHelpers';
 
 export const IntervalTimerExecution = ({
   nextIsExecution,
@@ -24,11 +28,22 @@ export const IntervalTimerExecution = ({
   const isExecuting = useSelector(selectIsExecuting);
   const remainingCurrentTime = useSelector(selectRemainingCurrentTime);
 
-  const [_, send] = useActor();
+  const [intervalTimerExecutionState, send] = useActor();
 
   // --- HELPERS ---
 
   const formattedIntervalTime = getFormattedSeconds(remainingCurrentTime);
+
+  const intervalTimerExecutionBackgroundGradientStrategies =
+    getIntervalTimerExecutionBackgroundGradientStrategies();
+
+  intervalTimerExecutionBackgroundGradientStrategies.forEach(
+    (backgroundGradientStrategy) =>
+      executeIntervalTimerExecutionBackgroundGradientStrategy({
+        backgroundGradientStrategy,
+        intervalTimerExecutionStateValue: intervalTimerExecutionState.value,
+      })
+  );
 
   // --- CALLBACKS ---
 

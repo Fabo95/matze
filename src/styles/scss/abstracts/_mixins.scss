@@ -43,3 +43,12 @@
     $redTertiary 100%
   );
 }
+
+@mixin animatedLinearGradient($primary, $secondary, $tertiary) {
+  background: linear-gradient(270deg, $primary, $secondary, $tertiary);
+  background-size: 400% 400%;
+
+  -webkit-animation: animated-linear-gradient-keyframe 7s ease infinite;
+  -moz-animation: animated-linear-gradient-keyframe 7s ease infinite;
+  animation: animated-linear-gradient-keyframe 7s ease infinite;
+}

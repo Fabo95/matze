@@ -7,6 +7,7 @@ import { Interval } from 'api/utils/apiTypes';
 import {
   IntervalTimerExecutionMachineContext,
   IntervalTimerExecutionMachineEvents,
+  State,
 } from 'ui/intervalTimer/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
 import {
   getInitialCountContext,
@@ -54,7 +55,7 @@ export const createIntervalTimerExecutionMachine = <T>({
       initial: 'workTimeState',
 
       states: {
-        workTimeState: {
+        [State.WORK_TIME_STATE]: {
           entry: 'setWorkTime',
           invoke: {
             src: 'workTimeExecution',
@@ -84,7 +85,7 @@ export const createIntervalTimerExecutionMachine = <T>({
           ],
         },
 
-        restTimeState: {
+        [State.REST_TIME_STATE]: {
           entry: 'setRestTime',
           invoke: {
             src: 'restTimeExecution',
@@ -105,7 +106,7 @@ export const createIntervalTimerExecutionMachine = <T>({
           },
         },
 
-        roundResetTimeState: {
+        [State.ROUND_RESET_TIME_STATE]: {
           entry: 'setRoundResetTime',
           always: { cond: 'isRoundCountZero', target: 'complete' },
           invoke: {
