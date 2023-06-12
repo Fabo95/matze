@@ -20,7 +20,6 @@ export const getIntervalTimerExecution = <T>({
   isExecuting$,
   event,
   contextValue,
-  isAutoExecution,
 }: {
   isExecuting$: Observable<T>;
   event: IntervalTimerExecutionMachineEvents[];
@@ -30,10 +29,9 @@ export const getIntervalTimerExecution = <T>({
       'isAutoExecution' | 'isExecuting'
     >
   >;
-  isAutoExecution: boolean;
 }) =>
   merge(isExecuting$).pipe(
-    startWith(isAutoExecution),
+    startWith(true),
     switchMap((shouldStart) => (shouldStart ? rxInterval(1000) : EMPTY)),
     mergeMap(() => from(event)),
     take(Number(contextValue) * 2)

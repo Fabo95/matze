@@ -6,7 +6,7 @@ export const getIntervalTimerExecutionBackgroundGradientStrategies =
   (): IntervalTimerExecutionBackgroundGradientStrategy[] => [
     {
       isCurrentState: (intervalTimerExecutionStateValue) =>
-        intervalTimerExecutionStateValue === State.WORK_TIME_STATE,
+        intervalTimerExecutionStateValue === State.WORK_TIME,
       setBackGroundGradient: () => {
         document.body.className = '';
         document.body.classList.add('work-time-background-gradient');
@@ -14,7 +14,7 @@ export const getIntervalTimerExecutionBackgroundGradientStrategies =
     },
     {
       isCurrentState: (intervalTimerExecutionStateValue) =>
-        intervalTimerExecutionStateValue === State.REST_TIME_STATE,
+        intervalTimerExecutionStateValue === State.REST_TIME,
       setBackGroundGradient: () => {
         document.body.className = '';
         document.body.classList.add('rest-time-background-gradient');
@@ -22,10 +22,17 @@ export const getIntervalTimerExecutionBackgroundGradientStrategies =
     },
     {
       isCurrentState: (intervalTimerExecutionStateValue) =>
-        intervalTimerExecutionStateValue === State.ROUND_RESET_TIME_STATE,
+        intervalTimerExecutionStateValue === State.ROUND_RESET_TIME,
       setBackGroundGradient: () => {
         document.body.className = '';
         document.body.classList.add('round-reset-time-background-gradient');
+      },
+    },
+    {
+      isCurrentState: (intervalTimerExecutionStateValue) =>
+        intervalTimerExecutionStateValue === State.COMPLETE,
+      setBackGroundGradient: () => {
+        document.body.className = '';
       },
     },
   ];

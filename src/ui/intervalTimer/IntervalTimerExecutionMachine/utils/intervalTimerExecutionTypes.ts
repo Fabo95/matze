@@ -1,6 +1,5 @@
 export type IntervalTimerExecutionMachineContext = {
   exerciseCount: { total: number; remaining: number };
-  isAutoExecution: boolean;
   remainingCurrentTime: number;
   remainingTotalTime: number;
   isExecuting: boolean;
@@ -19,7 +18,11 @@ export type IntervalTimerExecutionMachineEvents =
 
 export enum State {
   IDLE = 'idle',
-  WORK_TIME_STATE = 'workTimeState',
-  REST_TIME_STATE = 'restTimeState',
-  ROUND_RESET_TIME_STATE = 'roundResetTimeState',
+  COMPLETE = 'complete',
+  WORK_TIME = 'workTime',
+  REST_TIME = 'restTime',
+  ROUND_RESET_TIME = 'roundResetTime',
+  WORK_TIME_DONE = 'workTimeDone',
+  REST_TIME_DONE = 'restTimeDone',
+  ROUND_RESET_TIME_DONE = 'roundResetTimeDone',
 }
