@@ -1,5 +1,4 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-
 import { assign, createMachine, StateFrom } from 'xstate';
 import { Observable } from 'rxjs';
 
@@ -13,6 +12,8 @@ import {
   getInitialCountContext,
   getIntervalTimerExecution,
 } from 'ui/intervalTimer/IntervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
+
+// xstate typegen "src/**/*.ts?(x)" --watch
 
 type CreateIntervalTimerExecutionMachineProps<T> = Interval & {
   isExecuting$: Observable<T>;
@@ -42,7 +43,6 @@ export const createIntervalTimerExecutionMachine = <T>({
         workTime,
         restTime,
         roundResetTime,
-        isAutoExecution: false,
         remainingCurrentTime: 0,
         remainingTotalTime: totalTime,
         isExecuting: false,
@@ -52,16 +52,26 @@ export const createIntervalTimerExecutionMachine = <T>({
         roundCount: getInitialCountContext(roundCount),
       },
 
-      initial: 'workTimeState',
+      initial: State.IDLE,
 
       states: {
-        [State.WORK_TIME_STATE]: {
+        [State.IDLE]: {
+          on: {
+            // This EVENT takes precedence to the global one if we are in idle state.
+            START_EXECUTION: {
+              target: [State.WORK_TIME],
+              actions: 'setIsExecuting',
+            },
+          },
+        },
+
+        [State.WORK_TIME]: {
           entry: 'setWorkTime',
           invoke: {
             src: 'workTimeExecution',
             onDone: {
               actions: 'decreaseExerciseCount',
-              target: 'workTimeDoneState',
+              target: State.WORK_TIME_DONE,
             },
           },
           on: {
@@ -70,27 +80,26 @@ export const createIntervalTimerExecutionMachine = <T>({
             },
             DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
-          exit: 'setIsAutoExecution',
         },
-        workTimeDoneState: {
+        [State.WORK_TIME_DONE]: {
           always: [
             {
-              cond: 'isExerciseCountZero',
+              cond: 'isRemainingExerciseCountZero',
               actions: ['resetExerciseCount', 'decreaseRoundCount'],
-              target: 'roundResetTimeState',
+              target: State.ROUND_RESET_TIME,
             },
             {
-              target: 'restTimeState',
+              target: State.REST_TIME,
             },
           ],
         },
 
-        [State.REST_TIME_STATE]: {
+        [State.REST_TIME]: {
           entry: 'setRestTime',
           invoke: {
             src: 'restTimeExecution',
             onDone: {
-              target: 'restTimeDoneState',
+              target: State.REST_TIME_DONE,
             },
           },
           on: {
@@ -100,19 +109,19 @@ export const createIntervalTimerExecutionMachine = <T>({
             DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
         },
-        restTimeDoneState: {
+        [State.REST_TIME_DONE]: {
           always: {
-            target: 'workTimeState',
+            target: State.WORK_TIME,
           },
         },
 
-        [State.ROUND_RESET_TIME_STATE]: {
+        [State.ROUND_RESET_TIME]: {
           entry: 'setRoundResetTime',
-          always: { cond: 'isRoundCountZero', target: 'complete' },
+          always: { cond: 'isRemainingRoundCountZero', target: State.COMPLETE },
           invoke: {
             src: 'roundResetTimeExecution',
             onDone: {
-              target: 'roundResetTimeDoneState',
+              target: State.ROUND_RESET_TIME_DONE,
             },
           },
           on: {
@@ -122,28 +131,32 @@ export const createIntervalTimerExecutionMachine = <T>({
             DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
         },
-        roundResetTimeDoneState: {
+        [State.ROUND_RESET_TIME_DONE]: {
           always: {
-            target: 'workTimeState',
+            target: State.WORK_TIME,
           },
         },
 
-        complete: {},
+        [State.COMPLETE]: {
+          entry: 'setIsNotExecuting',
+          on: {
+            START_EXECUTION: {
+              target: [State.WORK_TIME],
+              actions: ['resetState', 'setIsExecuting'],
+            },
+          },
+        },
       },
       on: {
         START_EXECUTION: {
-          actions: 'setIsStarted',
+          actions: 'setIsExecuting',
         },
         PAUSE_EXECUTION: {
-          actions: 'setIsPaused',
+          actions: 'setIsNotExecuting',
         },
         STOP_EXECUTION: {
-          actions: [
-            'setIsNoAutoExecution',
-            'resetExerciseCount',
-            'resetTotalTime',
-          ],
-          target: 'workTimeState',
+          actions: ['resetState', 'setIsNotExecuting'],
+          target: State.IDLE,
         },
       },
     },
@@ -180,17 +193,10 @@ export const createIntervalTimerExecutionMachine = <T>({
           remainingCurrentTime: (context) => context.roundResetTime,
         }),
 
-        setIsAutoExecution: assign({
-          isAutoExecution: () => true,
-        }),
-        setIsNoAutoExecution: assign({
-          isAutoExecution: () => false,
-        }),
-
-        setIsStarted: assign({
+        setIsExecuting: assign({
           isExecuting: () => true,
         }),
-        setIsPaused: assign({
+        setIsNotExecuting: assign({
           isExecuting: () => false,
         }),
 
@@ -201,17 +207,30 @@ export const createIntervalTimerExecutionMachine = <T>({
         resetTotalTime: assign({
           remainingTotalTime: () => totalTime,
         }),
+
+        resetState: assign({
+          workTime,
+          restTime,
+          roundResetTime,
+          remainingCurrentTime: 0,
+          remainingTotalTime: totalTime,
+          // We make it an object with total and remaining property to assure an abstract usage.
+          exerciseCount: getInitialCountContext(exerciseCount),
+          // We make it an object with total and remaining property to assure an abstract usage.
+          roundCount: getInitialCountContext(roundCount),
+        }),
       },
       delays: {},
       guards: {
-        isExerciseCountZero: (context) => context.exerciseCount.remaining === 0,
-        isRoundCountZero: (context) => context.roundCount.remaining === 0,
+        isRemainingExerciseCountZero: (context) =>
+          context.exerciseCount.remaining === 0,
+        isRemainingRoundCountZero: (context) =>
+          context.roundCount.remaining === 0,
       },
       services: {
         workTimeExecution: (context) =>
           getIntervalTimerExecution({
             isExecuting$,
-            isAutoExecution: context.isAutoExecution,
             event: [
               { type: 'DECREASE_CURRENT_TIME' },
               { type: 'DECREASE_TOTAL_TIME' },
@@ -222,7 +241,6 @@ export const createIntervalTimerExecutionMachine = <T>({
         restTimeExecution: (context) =>
           getIntervalTimerExecution({
             isExecuting$,
-            isAutoExecution: context.isAutoExecution,
             event: [
               { type: 'DECREASE_CURRENT_TIME' },
               { type: 'DECREASE_TOTAL_TIME' },
@@ -233,7 +251,6 @@ export const createIntervalTimerExecutionMachine = <T>({
         roundResetTimeExecution: (context) =>
           getIntervalTimerExecution({
             isExecuting$,
-            isAutoExecution: context.isAutoExecution,
             event: [
               { type: 'DECREASE_CURRENT_TIME' },
               { type: 'DECREASE_TOTAL_TIME' },

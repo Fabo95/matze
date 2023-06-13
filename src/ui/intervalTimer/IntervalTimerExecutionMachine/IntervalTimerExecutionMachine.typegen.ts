@@ -3,20 +3,9 @@
 export interface Typegen0 {
   '@@xstate/typegen': true;
   internalEvents: {
-    '': { type: '' };
-    'done.invoke.intervalTimerExecutionMachine.workTimeState:invocation[0]': {
-      type: 'done.invoke.intervalTimerExecutionMachine.workTimeState:invocation[0]';
-      data: unknown;
-      __tip: 'See the XState TS docs to learn how to strongly type this.';
-    };
     'xstate.init': { type: 'xstate.init' };
-    'xstate.stop': { type: 'xstate.stop' };
   };
-  invokeSrcNameMap: {
-    restTimeExecution: 'done.invoke.intervalTimerExecutionMachine.restTimeState:invocation[0]';
-    roundResetTimeExecution: 'done.invoke.intervalTimerExecutionMachine.roundResetTimeState:invocation[0]';
-    workTimeExecution: 'done.invoke.intervalTimerExecutionMachine.workTimeState:invocation[0]';
-  };
+  invokeSrcNameMap: {};
   missingImplementations: {
     actions: never;
     delays: never;
@@ -39,24 +28,13 @@ export interface Typegen0 {
     setRestTime: '';
     setRoundResetTime: '';
     setWorkTime: '' | 'STOP_EXECUTION' | 'xstate.init';
+    resetState: 'STOP_EXECUTION';
+    setIsExecuting: 'START_EXECUTION';
+    setIsNotExecuting: 'PAUSE_EXECUTION' | 'STOP_EXECUTION';
   };
   eventsCausingDelays: {};
-  eventsCausingGuards: {
-    isExerciseCountZero: '';
-    isRoundCountZero: '';
-  };
-  eventsCausingServices: {
-    restTimeExecution: '';
-    roundResetTimeExecution: '';
-    workTimeExecution: '' | 'STOP_EXECUTION' | 'xstate.init';
-  };
-  matchesStates:
-    | 'complete'
-    | 'restTimeDoneState'
-    | 'restTimeState'
-    | 'roundResetTimeDoneState'
-    | 'roundResetTimeState'
-    | 'workTimeDoneState'
-    | 'workTimeState';
+  eventsCausingGuards: {};
+  eventsCausingServices: {};
+  matchesStates: undefined;
   tags: never;
 }
