@@ -77,3 +77,10 @@ export const getArrayWithElements = ({
   arrayLength: number;
   arrayElement: unknown;
 }) => new Array(arrayLength).fill(arrayElement);
+
+export function getMillisecondsDifference(dateA: Date, dateB?: Date) {
+  const millisecondsA = dateA.getTime();
+  const millisecondsB = dateB?.getTime();
+
+  return Math.abs(Number(millisecondsB) - millisecondsA);
+}

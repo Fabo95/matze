@@ -801,29 +801,15 @@ video {
   opacity: 0.2;
   border-radius: 9999px;
 }
-
-.pulse-animation .pulse-wave-one,
-.pulse-animation .pulse-wave-two,
-.pulse-animation .pulse-wave-three,
-.pulse-animation .pulse-wave-four {
+.pulse .pulse-wave-one,
+.pulse .pulse-wave-two,
+.pulse .pulse-wave-three,
+.pulse .pulse-wave-four {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: inherit;
-  border-radius: inherit;
-  animation: pulse-wave-keyframe-up 3s ease-out infinite;
-}
-.pulse-animation .pulse-wave-one {
-  animation-delay: 0s;
-}
-.pulse-animation .pulse-wave-two {
-  animation-delay: 1s;
-}
-.pulse-animation .pulse-wave-three {
-  animation-delay: 2s;
-}
-.pulse-animation .pulse-wave-four {
-  animation-delay: 3s;
+  background: #fff;
+  border-radius: 9999px;
 }
 
 /* Colors */

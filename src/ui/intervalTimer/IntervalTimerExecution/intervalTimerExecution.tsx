@@ -17,7 +17,7 @@ import {
   executeIntervalTimerExecutionBackgroundGradientStrategy,
   getIntervalTimerExecutionBackgroundGradientStrategies,
 } from 'ui/intervalTimer/IntervalTimerExecution/Utils/intervalTimerExecutionHelpers';
-import { Pulse } from 'common/pulse';
+import { Pulse } from 'common/Pulse/pulse';
 
 export const IntervalTimerExecution = ({
   nextIsExecution,

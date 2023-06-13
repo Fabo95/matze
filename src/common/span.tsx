@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { forwardRef, ReactNode, Ref } from 'react';
 import { CustomCSSProperties } from 'utils/types';
 
 type SpanProps = {
@@ -7,16 +7,21 @@ type SpanProps = {
   style?: CustomCSSProperties;
 };
 
-export const Span = ({
-  className: propsClassName,
-  children,
-  style,
-}: SpanProps) => {
-  const defaultClassnames = 'span';
+export const Span = forwardRef(
+  (
+    { className: propsClassName, children, style }: SpanProps,
+    ref: Ref<any>
+  ) => {
+    const defaultClassnames = 'span';
 
-  const classNames = propsClassName
-    ? `${defaultClassnames} ${propsClassName}`
-    : defaultClassnames;
+    const classNames = propsClassName
+      ? `${defaultClassnames} ${propsClassName}`
+      : defaultClassnames;
 
-  return <span className={classNames}>{children}</span>;
-};
+    return (
+      <span className={classNames} ref={ref}>
+        {children}
+      </span>
+    );
+  }
+);

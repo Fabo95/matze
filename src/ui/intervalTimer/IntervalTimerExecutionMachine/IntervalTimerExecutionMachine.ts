@@ -43,7 +43,7 @@ export const createIntervalTimerExecutionMachine = <T>({
         workTime,
         restTime,
         roundResetTime,
-        remainingCurrentTime: 0,
+        remainingCurrentTime: totalTime,
         remainingTotalTime: totalTime,
         isExecuting: false,
         // We make it an object with total and remaining property to assure an abstract usage.
@@ -59,7 +59,7 @@ export const createIntervalTimerExecutionMachine = <T>({
           on: {
             // This EVENT takes precedence to the global one if we are in idle state.
             START_EXECUTION: {
-              target: [State.WORK_TIME],
+              target: State.WORK_TIME,
               actions: 'setIsExecuting',
             },
           },
@@ -212,7 +212,7 @@ export const createIntervalTimerExecutionMachine = <T>({
           workTime,
           restTime,
           roundResetTime,
-          remainingCurrentTime: 0,
+          remainingCurrentTime: totalTime,
           remainingTotalTime: totalTime,
           // We make it an object with total and remaining property to assure an abstract usage.
           exerciseCount: getInitialCountContext(exerciseCount),
