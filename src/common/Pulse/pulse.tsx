@@ -1,6 +1,7 @@
+import { useEffect, useRef } from 'react';
+
 import { Box } from 'common/box';
 import { Span } from 'common/span';
-import { useEffect, useRef } from 'react';
 import { executeStopPulsing } from 'common/Pulse/Utils/pulseHelpers';
 import {
   PULSE_ANIMATION_DURATION,
@@ -24,7 +25,13 @@ export const Pulse = ({ isAnimating }: PulseProps) => {
   const waveThreeRef = useRef<HTMLSpanElement>(null);
   const waveFourRef = useRef<HTMLSpanElement>(null);
 
-  const startDateRef = useRef<Date>();
+  // --- HELPERS ---
+
+  const isAnimationsPlayState = (playState: Animation['playState']) =>
+    animationOne.playState === playState &&
+    animationTwo.playState === playState &&
+    animationThree.playState === playState &&
+    animationFour.playState === playState;
 
   // --- EFFECT ---
 
@@ -39,45 +46,55 @@ export const Pulse = ({ isAnimating }: PulseProps) => {
       const timing = {
         duration: PULSE_ANIMATION_DURATION,
         easing: 'ease-out',
-        iterations: 10,
+        iterations: Infinity,
       };
 
+      // eslint-disable-next-line no-param-reassign
       animationOne = waveOneRef.current.animate(keyframes, {
         delay: 0,
         ...timing,
       });
 
+      // eslint-disable-next-line no-param-reassign
       animationTwo = waveTwoRef.current.animate(keyframes, {
         delay: PULSE_ANIMATION_TWO_DELAY,
         ...timing,
       });
 
+      // eslint-disable-next-line no-param-reassign
       animationThree = waveThreeRef.current.animate(keyframes, {
         delay: PULSE_ANIMATION_THREE_DELAY,
         ...timing,
       });
 
+      // eslint-disable-next-line no-param-reassign
       animationFour = waveFourRef.current.animate(keyframes, {
         delay: PULSE_ANIMATION_FOUR_DELAY,
         ...timing,
       });
 
-      animationOne.pause();
-      animationTwo.pause();
-      animationThree.pause();
-      animationFour.pause();
+      animationOne.cancel();
+      animationTwo.cancel();
+      animationThree.cancel();
+      animationFour.cancel();
     }
   }, []);
 
   useEffect(() => {
-    if (
-      isAnimating &&
-      animationOne.playState === 'paused' &&
-      animationTwo.playState === 'paused' &&
-      animationThree.playState === 'paused' &&
-      animationFour.playState === 'paused'
-    ) {
-      startDateRef.current = new Date();
+    if (isAnimating && isAnimationsPlayState('idle')) {
+      animationOne.play();
+      animationTwo.play();
+      animationThree.play();
+      animationFour.play();
+    }
+  }, [isAnimating]);
+
+  useEffect(() => {
+    if (isAnimating && isAnimationsPlayState('finished')) {
+      animationOne.reverse();
+      animationTwo.reverse();
+      animationThree.reverse();
+      animationFour.reverse();
 
       animationOne.play();
       animationTwo.play();
@@ -87,44 +104,7 @@ export const Pulse = ({ isAnimating }: PulseProps) => {
   }, [isAnimating]);
 
   useEffect(() => {
-    if (
-      isAnimating &&
-      animationOne.effect?.getTiming().direction === 'reverse' &&
-      animationTwo.effect?.getTiming().direction === 'reverse' &&
-      animationThree.effect?.getTiming().direction === 'reverse' &&
-      animationFour.effect?.getTiming().direction === 'reverse'
-    ) {
-      animationOne.effect?.updateTiming({
-        direction: 'normal',
-        iterationStart: 1,
-        iterations: Infinity,
-      });
-      animationTwo.effect?.updateTiming({
-        direction: 'normal',
-        iterationStart: 1,
-        iterations: Infinity,
-      });
-      animationThree.effect?.updateTiming({
-        direction: 'normal',
-        iterationStart: 1,
-        iterations: Infinity,
-      });
-      animationFour.effect?.updateTiming({
-        direction: 'normal',
-        iterationStart: 1,
-        iterations: Infinity,
-      });
-    }
-  }, [isAnimating]);
-
-  useEffect(() => {
-    if (
-      !isAnimating &&
-      animationOne.playState === 'running' &&
-      animationTwo.playState === 'running' &&
-      animationThree.playState === 'running' &&
-      animationFour.playState === 'running'
-    ) {
+    if (!isAnimating && isAnimationsPlayState('running')) {
       executeStopPulsing({
         animationFour,
         animationOne,
