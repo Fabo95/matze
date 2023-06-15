@@ -1,27 +1,56 @@
+import { RefObject } from 'react';
+
 import {
   PULSE_ANIMATION_DURATION,
   PULSE_ANIMATION_FOUR_DELAY,
   PULSE_ANIMATION_THREE_DELAY,
   PULSE_ANIMATION_TWO_DELAY,
 } from 'common/Pulse/Utils/pulseConstants';
-import { RefObject } from 'react';
 
-export const BasePulse = class {
-  animationOne: Animation | undefined;
+class AnimationController {
+  animation: Animation | undefined;
 
-  animationTwo: Animation | undefined;
+  timeoutId: ReturnType<typeof setTimeout> | number = 0;
 
-  animationThree: Animation | undefined;
+  state = 'idle';
 
-  animationFour: Animation | undefined;
+  waveRef: RefObject<HTMLSpanElement>;
 
-  waveOneRef: RefObject<HTMLSpanElement>;
+  constructor(waveRef: RefObject<HTMLSpanElement>) {
+    this.waveRef = waveRef;
+  }
 
-  waveTwoRef: RefObject<HTMLSpanElement>;
+  initializeAnimation(
+    keyframes: Keyframe[],
+    timing: number | KeyframeAnimationOptions
+  ) {
+    this.animation = this.waveRef.current?.animate(keyframes, timing);
+    this.animation?.cancel();
+  }
 
-  waveThreeRef: RefObject<HTMLSpanElement>;
+  play() {
+    this.animation?.play();
+  }
 
-  waveFourRef: RefObject<HTMLSpanElement>;
+  reverse() {
+    this.animation?.reverse();
+  }
+
+  finish() {
+    this.animation?.finish();
+  }
+
+  set currenTimeoutId(id: ReturnType<typeof setTimeout>) {
+    this.timeoutId = id;
+  }
+
+  set currenState(state: string) {
+    this.state = state;
+  }
+}
+
+export class PulseAnimation {
+  animationControllers: AnimationController[];
 
   constructor({
     waveOneRef,
@@ -34,106 +63,87 @@ export const BasePulse = class {
     waveThreeRef: RefObject<HTMLSpanElement>;
     waveFourRef: RefObject<HTMLSpanElement>;
   }) {
-    this.waveOneRef = waveOneRef;
-    this.waveTwoRef = waveTwoRef;
-    this.waveThreeRef = waveThreeRef;
-    this.waveFourRef = waveFourRef;
+    this.animationControllers = [
+      new AnimationController(waveOneRef),
+      new AnimationController(waveTwoRef),
+      new AnimationController(waveThreeRef),
+      new AnimationController(waveFourRef),
+    ];
+
+    this.initializeAnimations();
   }
 
-  initializeAnimation() {
-    const keyframes = [{ opacity: 0, transform: 'scale(2)' }];
-    const timing = {
-      duration: PULSE_ANIMATION_DURATION,
-      easing: 'ease-out',
-      iterations: Infinity,
-    };
+  initializeAnimations() {
+    this.animationControllers.forEach((controller, index) => {
+      const keyframes = [{ opacity: 0, transform: 'scale(2)' }];
+      const timing = {
+        delay: index * 1000,
+        duration: PULSE_ANIMATION_DURATION,
+        easing: 'ease-out',
+        iterations: Infinity,
+      };
 
-    // eslint-disable-next-line no-param-reassign
-    this.animationOne = this.waveOneRef.current?.animate(keyframes, {
-      delay: 0,
-      ...timing,
+      controller.initializeAnimation(keyframes, timing);
     });
-
-    // eslint-disable-next-line no-param-reassign
-    this.animationTwo = this.waveTwoRef.current?.animate(keyframes, {
-      delay: PULSE_ANIMATION_TWO_DELAY,
-      ...timing,
-    });
-
-    // eslint-disable-next-line no-param-reassign
-    this.animationThree = this.waveThreeRef.current?.animate(keyframes, {
-      delay: PULSE_ANIMATION_THREE_DELAY,
-      ...timing,
-    });
-
-    // eslint-disable-next-line no-param-reassign
-    this.animationFour = this.waveFourRef.current?.animate(keyframes, {
-      delay: PULSE_ANIMATION_FOUR_DELAY,
-      ...timing,
-    });
-
-    this.animationOne?.cancel();
-    this.animationTwo?.cancel();
-    this.animationThree?.cancel();
-    this.animationFour?.cancel();
   }
 
   executeStartPulsing() {
-    this.animationOne?.play();
-    this.animationTwo?.play();
-    this.animationThree?.play();
-    this.animationFour?.play();
+    this.animationControllers.forEach((controller) => {
+      controller.play();
+
+      controller.currenState = 'running';
+    });
+  }
+
+  executeReverseStartPulsing() {
+    this.animationControllers.forEach((controller) => {
+      console.log('RAN==???');
+      clearTimeout(controller.currenTimeoutId);
+
+      if (controller.state === 'finished') {
+        controller.reverse();
+        controller.play();
+        controller.currenState = 'running';
+
+        return;
+      }
+
+      controller.reverse();
+      controller.currenState = 'running';
+    });
   }
 
   executeRestartPulsing() {
-    this.animationOne?.reverse();
-    this.animationTwo?.reverse();
-    this.animationThree?.reverse();
-    this.animationFour?.reverse();
-
-    this.animationOne?.play();
-    this.animationTwo?.play();
-    this.animationThree?.play();
-    this.animationFour?.play();
+    this.animationControllers.forEach((controller) => {
+      controller.reverse();
+      controller.play();
+      controller.currenState = 'running';
+    });
   }
 
   executeStopPulsing() {
-    const currentTimeOne = this.animationOne?.currentTime;
-    const currentTimeTwo = this.animationTwo?.currentTime;
-    const currentTimeThree = this.animationThree?.currentTime;
-    const currentTimeFour = this.animationFour?.currentTime;
+    this.animationControllers.forEach((controller, index: number) => {
+      // Must be typed because otherwise we can not select values with the index.
+      const pulseAnimationDelay: { [index: number]: number } = {
+        0: 0,
+        1: PULSE_ANIMATION_TWO_DELAY,
+        2: PULSE_ANIMATION_THREE_DELAY,
+        3: PULSE_ANIMATION_FOUR_DELAY,
+      };
 
-    const timeoutTimeAnimationOne =
-      Number(currentTimeOne) % PULSE_ANIMATION_DURATION;
-    const timeoutTimeAnimationTwo =
-      (Number(currentTimeTwo) - PULSE_ANIMATION_TWO_DELAY) %
-      PULSE_ANIMATION_DURATION;
-    const timeoutTimeAnimationThree =
-      (Number(currentTimeThree) - PULSE_ANIMATION_THREE_DELAY) %
-      PULSE_ANIMATION_DURATION;
-    const timeoutTimeAnimationFour =
-      (Number(currentTimeFour) - PULSE_ANIMATION_FOUR_DELAY) %
-      PULSE_ANIMATION_DURATION;
+      const currentTime = controller.animation?.currentTime;
 
-    this.animationOne?.reverse();
-    this.animationTwo?.reverse();
-    this.animationThree?.reverse();
-    this.animationFour?.reverse();
+      const timeoutTime =
+        (Number(currentTime) - pulseAnimationDelay[index]) %
+        PULSE_ANIMATION_DURATION;
 
-    setTimeout(() => {
-      this.animationOne?.finish();
-    }, timeoutTimeAnimationOne);
+      controller.reverse();
+      controller.currenState = 'reversing';
 
-    setTimeout(() => {
-      this.animationTwo?.finish();
-    }, timeoutTimeAnimationTwo);
-
-    setTimeout(() => {
-      this.animationThree?.finish();
-    }, timeoutTimeAnimationThree);
-
-    setTimeout(() => {
-      this.animationFour?.finish();
-    }, timeoutTimeAnimationFour);
+      controller.currenTimeoutId = setTimeout(() => {
+        controller.finish();
+        controller.currenState = 'finished';
+      }, timeoutTime);
+    });
   }
-};
+}

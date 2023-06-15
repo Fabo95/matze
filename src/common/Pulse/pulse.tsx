@@ -2,12 +2,12 @@ import { useEffect, useRef } from 'react';
 
 import { Box } from 'common/box';
 import { Span } from 'common/span';
-import { BasePulse } from 'common/Pulse/Utils/pulseHelpers';
-import { BaseObejct } from 'common/Pulse/Utils/pulseTypes';
+import { PulseAnimation } from 'common/Pulse/Utils/pulseHelpers';
+import { PulseAnimationProps } from 'common/Pulse/Utils/pulseTypes';
 
 type PulseProps = { isAnimating: boolean };
 
-let baseObject: BaseObejct;
+let pulseAnimation: PulseAnimationProps;
 
 export const Pulse = ({ isAnimating }: PulseProps) => {
   // --- STATE ---
@@ -19,14 +19,19 @@ export const Pulse = ({ isAnimating }: PulseProps) => {
 
   // --- HELPERS ---
 
-  const isAnimationsPlayState = (playState: Animation['playState']) => {
-    return (
-      baseObject?.animationOne?.playState === playState &&
-      baseObject?.animationTwo?.playState === playState &&
-      baseObject?.animationThree?.playState === playState &&
-      baseObject?.animationFour?.playState === playState
-    );
+  const isAnimationsPlayState = (
+    playState: 'running' | 'reversing' | 'finished' | 'idle'
+  ) => {
+    if (playState === 'reversing') {
+      return pulseAnimation.animationControllers.some((controller) => {
+        return controller.state === playState;
+      });
+    }
+    return pulseAnimation.animationControllers.every((controller) => {
+      return controller.state === playState;
+    });
   };
+
   // --- EFFECT ---
 
   useEffect(() => {
@@ -36,32 +41,30 @@ export const Pulse = ({ isAnimating }: PulseProps) => {
       waveThreeRef.current &&
       waveFourRef.current
     ) {
-      baseObject = new BasePulse({
+      pulseAnimation = new PulseAnimation({
         waveFourRef,
         waveOneRef,
         waveThreeRef,
         waveTwoRef,
       });
-
-      baseObject?.initializeAnimation();
     }
   }, []);
 
   useEffect(() => {
     if (isAnimating && isAnimationsPlayState('idle')) {
-      baseObject?.executeStartPulsing();
+      pulseAnimation?.executeStartPulsing();
     }
   }, [isAnimating]);
 
   useEffect(() => {
     if (isAnimating && isAnimationsPlayState('finished')) {
-      baseObject.executeRestartPulsing();
+      pulseAnimation.executeRestartPulsing();
     }
   }, [isAnimating]);
 
   useEffect(() => {
     if (!isAnimating && isAnimationsPlayState('running')) {
-      baseObject?.executeStopPulsing();
+      pulseAnimation?.executeStopPulsing();
     }
   }, [isAnimating]);
 
