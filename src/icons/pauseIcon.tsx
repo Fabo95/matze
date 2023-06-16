@@ -14,7 +14,7 @@ export const PauseIcon = ({
   return (
     <svg
       className={className}
-      fill={'currentColor' || '#fff'}
+      fill={fill || '#fff'}
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >

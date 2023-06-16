@@ -23,13 +23,13 @@ export const Pulse = ({ isAnimating }: PulseProps) => {
     playState: 'running' | 'reversing' | 'finished' | 'idle'
   ) => {
     if (playState === 'reversing') {
-      return pulseAnimation.animationControllers.some((controller) => {
-        return controller.state === playState;
-      });
+      return pulseAnimation.animationControllers.some(
+        (controller) => controller.state === playState
+      );
     }
-    return pulseAnimation.animationControllers.every((controller) => {
-      return controller.state === playState;
-    });
+    return pulseAnimation.animationControllers.every(
+      (controller) => controller.state === playState
+    );
   };
 
   // --- EFFECT ---

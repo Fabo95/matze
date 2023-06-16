@@ -19,7 +19,7 @@ export const Span = forwardRef(
       : defaultClassnames;
 
     return (
-      <span className={classNames} ref={ref}>
+      <span style={style} className={classNames} ref={ref}>
         {children}
       </span>
     );

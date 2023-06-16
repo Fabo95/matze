@@ -21,7 +21,13 @@ export const Box = ({
     : defaultClassnames;
 
   return (
-    <div className={classNames} ref={ref} style={style} onClick={onClick}>
+    <div
+      className={classNames}
+      ref={ref}
+      role="presentation"
+      style={style}
+      onClick={onClick}
+    >
       {children}
     </div>
   );

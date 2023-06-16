@@ -20,7 +20,12 @@ export const Row = ({
     : defaultClassnames;
 
   return (
-    <div className={classNames} style={style} onClick={onClick}>
+    <div
+      className={classNames}
+      role="presentation"
+      style={style}
+      onClick={onClick}
+    >
       {children}
     </div>
   );
