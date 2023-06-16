@@ -31,6 +31,7 @@ jobs:
         retention-days: 7
 
   docker-push:
+    needs: next-build
     runs-on: ubuntu-latest
 
     steps:
