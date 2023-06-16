@@ -8,17 +8,43 @@ on:
 
 jobs:
 
-  build:
-
+  next-build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: npm install
+
     - name: Build frontend.
-      run: | 
-        npm install
-        npm run build
+      run: npm run build
+
+    - name: Upload Next build artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: next-build-artifact
+        path: |
+          .next
+          public
+        retention-days: 7
+
+  docker-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download Next build artifact
+        uses: actions/download-artifact@v2.1.1
+        with:
+          name: next-build-artifact
+
+
+
+
       
     
     
