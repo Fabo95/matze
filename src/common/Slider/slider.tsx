@@ -23,6 +23,8 @@ export const Slider = ({
       className={classNames}
       max={max}
       min={min}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       orient="vertical"
       type="range"
       value={value}
