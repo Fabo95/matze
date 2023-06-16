@@ -41,7 +41,7 @@ export const IntervalTimerDetailConfigurationOption = ({
 
   const [intensity, setIntensity] = useState<number>(propsIntensity);
 
-  const [_, startTransition] = useTransition();
+  const [, startTransition] = useTransition();
   const params = useParams();
 
   const modalRef = useRef<HTMLDialogElement>(null);

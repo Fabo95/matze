@@ -98,7 +98,6 @@ export class PulseAnimation {
 
   executeReverseStartPulsing() {
     this.animationControllers.forEach((controller) => {
-      console.log('RAN==???');
       clearTimeout(controller.currenTimeoutId);
 
       if (controller.state === 'finished') {

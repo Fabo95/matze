@@ -3,7 +3,7 @@ import { createActorContext } from '@xstate/react';
 import { createIntervalTimerExecutionMachine } from 'ui/intervalTimer/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 import { getReactiveCallback } from 'utils/helpers';
 
-const [_, isExecuting$] = getReactiveCallback();
+const [, isExecuting$] = getReactiveCallback();
 
 const initialIntervalTimerExecutionMachine =
   createIntervalTimerExecutionMachine({

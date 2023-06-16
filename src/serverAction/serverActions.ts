@@ -26,6 +26,7 @@ export const apiPatchIntensity = async ({
 
     revalidatePath(`/${path}`);
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(e);
   }
 };
