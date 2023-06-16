@@ -1,54 +1,45 @@
 const express = require('express');
+const next = require('next');
 const session = require('express-session');
 const cors = require('cors');
 
-const app = express();
-
 const intervalsRouter = require('./routes/intervals');
 
-app.use(
-  cors({
-    // We need this to set the cookies correctly if the requests come from another origin.
-    credentials: true,
-    origin: 'http://localhost:3000',
-  })
-);
-app.use(
-  session({
-    saveUninitialized: false,
-    secret: 'My Secret',
-  })
-);
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+const dev = process.env.NODE_ENV !== 'production';
+const app = next({ dev });
+const handle = app.getRequestHandler();
 
-app.use('/intervals', intervalsRouter);
+app.prepare().then(() => {
+  const server = express();
 
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
+  server.use(
+    cors({
+      // We need this to set the cookies correctly if the requests come from another origin.
+      credentials: true,
+      origin: 'http://localhost:3000',
+    })
+  );
+  server.use(
+    session({
+      saveUninitialized: false,
+      secret: 'My Secret',
+    })
+  );
+  server.use(express.json());
+  server.use(express.urlencoded({ extended: false }));
 
-  console.log('sessionID', req.sessionID);
-  console.log('SESSION', req.session);
+  // Define your API endpoints and other server routes here
+  server.use('/intervals', intervalsRouter);
 
-  if (username && password) {
-    if (req.session.authenticated) {
-      console.log('RAN AUTHENTICATED');
-      res.send(req.session);
-    } else if (password === '123') {
-      console.log('RAN LOGIN');
-      req.session.authenticated = true;
-      req.session.user = {
-        password,
-        username,
-      };
+  // Default catch-all handler for Next.js requests
+  server.all('*', (req, res) => {
+    return handle(req, res);
+  });
 
-      res.json(req.session);
-    } else res.status(403).json({ msg: 'Not valid.' });
-  } else res.status(403).json({ msg: 'Not valid.' });
-});
+  const port = process.env.PORT || 8080;
 
-app.listen(8080, 'localhost', (err) => {
-  if (err) throw err;
-
-  console.log('Ready on http://localhost:8080');
+  server.listen(port, (err) => {
+    if (err) throw err;
+    console.log(`> Ready on http://localhost:${port}`);
+  });
 });
