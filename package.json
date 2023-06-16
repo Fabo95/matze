@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently \"next dev\" \"node src/server/app.js\"",
     "build": "next build",
-    "start": "NODE_ENV=production node src/server/app.js",
+    "start": "next start",
     "lint": "next lint",
     "compileScss": "sass src/styles/scss/global.scss src/styles/global.css"
   },
