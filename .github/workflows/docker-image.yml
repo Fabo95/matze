@@ -30,7 +30,9 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         name: next-build-artifact
-        path: .next
+        path: |
+          .next
+          public
         retention-days: 7
 
   docker-push:
@@ -55,10 +57,10 @@ jobs:
 
       - name: Build and push
         uses: docker/build-push-action@v4
-        # context sets the build context to the same location in which the Dockerfile lives and let us COPY (in Dockerfile) from this location.
-        # Hint: Dockerfile must be inside the repository.
-        # See: https://github.com/marketplace/actions/build-and-push-docker-images#customizing
         with:
+          # Sets the build context to the same location in which the Dockerfile lives and let us COPY (in Dockerfile) from this location.
+          # Hint: Dockerfile must be inside the repository.
+          # See: https://github.com/marketplace/actions/build-and-push-docker-images#customizing
           context: .
           push: true
           tags: fabo95/general
