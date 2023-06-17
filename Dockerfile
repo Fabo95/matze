@@ -16,6 +16,8 @@ RUN npm install --production
 COPY .next .next
 COPY public public
 
+RUN ls -a
+
 EXPOSE 3000
 
 CMD npm run start
