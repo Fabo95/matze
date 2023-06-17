@@ -22,13 +22,17 @@ jobs:
         node-version: 18
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
+
+    - name: Print current working directory
+      run: pwd
+
 
     - name: Build frontend.
       run: npm run build
 
     - name: log
-      run: ls
+      run: ls -a
 
     - name: Upload Next build artifact
       uses: actions/upload-artifact@v3.1.2
