@@ -24,14 +24,14 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Print current working directory
-      run: pwd
+    - name: log1
+      run: ls -a
 
 
     - name: Build frontend.
       run: npm run build
 
-    - name: log
+    - name: log2
       run: ls -a
 
     - name: Upload Next build artifact
