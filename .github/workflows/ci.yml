@@ -24,10 +24,11 @@ jobs:
       run: npm ci
 
     - name: Build frontend.
-      run: npm run build
       env:
         DB_USER: admin
         DB_PASSWORD: 73p4K-sFGgHfhpH
+      run: npm run build
+
 
     - name: Upload Next build artifact
       uses: actions/upload-artifact@v3.1.2
