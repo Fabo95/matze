@@ -20,8 +20,7 @@ jobs:
       with:
         envkey_DB_USER: ${{ secrets.DB_USER }}
         envkey_DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        directory: ./
-        file_name: .env
+        file_name: .env.local
         fail_on_empty: false
 
     - name: Setup node
