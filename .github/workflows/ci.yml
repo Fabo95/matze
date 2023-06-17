@@ -24,10 +24,10 @@ jobs:
       run: npm ci
 
     - name: Build frontend.
-      run: |
-        export DB_USER=admin
-        export DB_PASSWORD=73p4K-sFGgHfhpH
-        npm run build
+      env:
+        DB_USER: admin
+        DB_PASSWORD: 73p4K-sFGgHfhpH
+      run: npm run build
 
 
     - name: Upload Next build artifact
