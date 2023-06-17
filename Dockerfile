@@ -1,9 +1,21 @@
 FROM node:lts-alpine
 
-COPY . .
-COPY . .
+ENV NODE_ENV production
+ENV NPM_CONFIG_LOGLEVEL warn
 
-RUN ls -a
+RUN mkdir /home/node/app/ && chown -R node:node /home/node/app
+
+WORKDIR /home/node/app
+
+COPY package.json package.json
+COPY package-lock.json package-lock.json
+
+USER node
+
+RUN npm install --production
+
+COPY .next .next
+COPY public public
 
 EXPOSE 3000
 
