@@ -16,8 +16,7 @@ RUN npm install --production
 COPY . .
 COPY . .
 
-RUN ls
-
+RUN ls -a
 
 EXPOSE 3000
 
