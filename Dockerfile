@@ -16,6 +16,7 @@ RUN npm install --production
 COPY .next .next
 COPY public public
 COPY server server
+COPY database database
 
 RUN ls -a
 
