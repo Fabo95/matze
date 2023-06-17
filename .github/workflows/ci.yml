@@ -30,8 +30,7 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         name: next-build-artifact
-        path:
-          .next
+        path: .next
         retention-days: 7
 
   docker-push:
