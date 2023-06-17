@@ -1,6 +1,6 @@
 const { Router } = require('express');
 
-const db = require('../../database/database');
+const db = require('database/database');
 
 const router = Router();
 

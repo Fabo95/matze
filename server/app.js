@@ -3,7 +3,7 @@ const next = require('next');
 const session = require('express-session');
 const cors = require('cors');
 
-const intervalsRouter = require('./routes/intervals');
+const intervalsRouter = require('server/routes/intervals');
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });

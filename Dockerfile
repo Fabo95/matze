@@ -15,6 +15,7 @@ RUN npm install --production
 
 COPY .next .next
 COPY public public
+COPY server server
 
 RUN ls -a
 
