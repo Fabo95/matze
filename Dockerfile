@@ -10,11 +10,6 @@ WORKDIR /home/node/app
 COPY package.json package.json
 COPY package-lock.json package-lock.json
 
-ENV
-    DB_USER="admin"
-    DB_PASSWORD="73p4K-sFGgHfhpH"
-
-
 RUN npm install --production
 
 COPY .next .next
