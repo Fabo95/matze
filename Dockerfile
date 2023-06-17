@@ -14,8 +14,10 @@ USER node
 
 RUN npm install --production
 
-COPY ./.next .
-COPY ./public .
+COPY . .
+COPY . .
+
+RUN ls
 
 
 EXPOSE 3000
