@@ -14,8 +14,8 @@ USER node
 
 RUN npm install --production
 
-COPY --chown=node:node .next .next
-COPY --chown=node:node public public
+COPY .next .next
+COPY public public
 
 EXPOSE 3000
 
