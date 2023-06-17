@@ -7,8 +7,8 @@ on:
     branches: [ "main" ]
 
 env:
-  DB_USER: admin
-  DB_PASSWORD: 73p4K-sFGgHfhpH
+  DB_USER: ${{ secrets.DB_USER }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
 
 jobs:
 
