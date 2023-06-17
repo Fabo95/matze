@@ -24,6 +24,9 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
+    - name: PWD
+      run: pwd
+
     - name: log1
       run: ls -a
 
@@ -51,13 +54,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+
+      - name: log3.1
+        run: ls -a
+
+
       - name: Download Next build artifact
         uses: actions/download-artifact@v2.1.1
         with:
           name: next-build-artifact
           path: .
 
-      - name: log3
+      - name: log3.2
         run: ls -a
 
       - name: Login to Docker Hub
