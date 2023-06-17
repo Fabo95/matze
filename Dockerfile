@@ -14,8 +14,8 @@ USER node
 
 RUN npm install --production
 
-COPY ./interval-app/.next /interval-app
-COPY public public
+COPY .next .
+COPY public .
 
 EXPOSE 3000
 
