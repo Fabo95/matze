@@ -3,8 +3,6 @@ name: Server Image CI
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - ./server/**
 
 jobs:
 
