@@ -1,9 +1,7 @@
-name: Docker Image CI
+name: App Image CI
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -66,12 +64,13 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
-          # Sets the build context to the same location in which the Dockerfile lives and let us COPY (in Dockerfile) from this location.
-          # Hint: Dockerfile must be inside the repository.
+          # Sets the build context to the same location in which the app.Dockerfile lives and let us COPY (in app.Dockerfile) from this location.
+          # Hint: app.Dockerfile must be inside the repository.
           # See: https://github.com/marketplace/actions/build-and-push-docker-images#customizing
           context: .
           push: true
           tags: fabo95/general
+          file: ./app.Dockerfile
 
 
 

@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server/app.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server/app.js",
+    "start": "NODE_ENV=production next start",
     "lint": "next lint",
     "compileScss": "sass src/styles/scss/global.scss src/styles/global.css"
   },
