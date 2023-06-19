@@ -35,6 +35,9 @@ jobs:
     - name: Install Vercel CLI
       run: npm install --global vercel@latest
 
+    - name: LOG
+      run: ls -a
+
     - name: Pull Vercel Environment Information
       run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 
