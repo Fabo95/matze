@@ -1,6 +1,7 @@
 import { Interval } from 'api/utils/apiTypes';
+import { apiBaseUrl } from 'api/utils/apiConstants';
 
 export const apiGetInterval = async (): Promise<Interval> =>
-  fetch(`${process.env.API_BASE_URL}intervals`, {
+  fetch(`${apiBaseUrl}intervals`, {
     cache: 'no-cache',
   }).then((data) => data.json());
