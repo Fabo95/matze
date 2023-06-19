@@ -1,17 +1,20 @@
 services:
-  #  frontend:
-  #    image: node:18-alpine
-  #    volumes:
-  #      - type: bind
-  #        source: ./
-  #        target: /home/app
-  #    command: "npm run dev --prefix /home/app"
-  #    depends_on:
-  #      - mysql
-  #    ports:
-  #      - 3000:3000
-  #    networks:
-  #      - mysql-network
+  server:
+    environment:
+      - DB_DATABASE=interval_app
+      - DB_HOST=mysql-container
+      - DB_PASSWORD=password
+      - DB_PORT=3306
+      - DB_USER=root
+
+    image: fabo95/general:server
+    depends_on:
+      - mysql
+    ports:
+      - 7999:8080
+    networks:
+      - mysql-network
+
   mysql:
     image: mysql:latest
     container_name: mysql-container
@@ -33,6 +36,7 @@ services:
       - 8082:8080
     networks:
       - mysql-network
+
 networks:
   mysql-network:
 

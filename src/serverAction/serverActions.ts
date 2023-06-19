@@ -17,7 +17,7 @@ export const apiPatchIntensity = async ({
 }) => {
   try {
     await fetch(
-      'http://localhost:8080/intervals',
+      `${process.env.API_BASE_URL}intervals`,
       getFetchOptions({
         body: { [intensityType]: filteredIntensity },
         method: HttpMethod.PATCH,
