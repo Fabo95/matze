@@ -5,6 +5,7 @@ import { revalidatePath } from 'next/cache';
 import { getFetchOptions } from 'serverAction/utils/serverActionHelpers';
 import { HttpMethod } from 'serverAction/utils/serverActionTypes';
 import { IntervalIntensityType } from 'api/utils/apiTypes';
+import { apiBaseUrl } from 'api/utils/apiConstants';
 
 export const apiPatchIntensity = async ({
   intensityType,
@@ -17,7 +18,7 @@ export const apiPatchIntensity = async ({
 }) => {
   try {
     await fetch(
-      `https://interval-app-api.up.railway.app/intervals`,
+      `${apiBaseUrl}intervals/32`,
       getFetchOptions({
         body: { [intensityType]: filteredIntensity },
         method: HttpMethod.PATCH,

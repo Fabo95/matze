@@ -1,5 +1,5 @@
 services:
-  server:
+  interval-timer-api:
     environment:
       - DB_DATABASE=interval_app
       - DB_HOST=mysql-container
@@ -7,7 +7,8 @@ services:
       - DB_PORT=3306
       - DB_USER=root
 
-    image: fabo95/general:server
+    image: fabo95/general:interval-timer-api
+    container_name: interval-timer-api-container
     depends_on:
       - mysql
     ports:
@@ -43,4 +44,3 @@ networks:
 volumes:
   db-data:
     driver: local
-

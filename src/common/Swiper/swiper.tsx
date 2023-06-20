@@ -145,6 +145,7 @@ export const Swiper = ({ children, autoSwipe }: SwiperProps) => {
   return (
     <div className="swiper" ref={swiperRef}>
       <div
+        className="swiper-items"
         role="presentation"
         style={{
           transform: `translateX(${currentXTranslation}px)`,
