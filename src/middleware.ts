@@ -6,6 +6,33 @@ import { match as matchLocale } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
 
 import { i18n } from 'i18n/i18n-config';
+import { Locale, Page } from 'utils/types';
+
+function getLocaleFromPathname(pathname: NextRequest['nextUrl']['pathname']) {
+  const locale = Object.values(Locale).find((currentLocale) =>
+    pathname.includes(currentLocale)
+  );
+
+  if (!locale) {
+    return undefined;
+  }
+
+  return locale;
+}
+
+function getPagePathnameFromPathname(
+  pathname: NextRequest['nextUrl']['pathname']
+) {
+  const pagePathname = Object.values(Page).find((currentPagePathname) =>
+    pathname.includes(currentPagePathname)
+  );
+
+  if (!pagePathname) {
+    return 'home';
+  }
+
+  return pagePathname;
+}
 
 const getLocale = (request: NextRequest): string | undefined => {
   // Negotiator expects plain object so we need to transform headers
@@ -24,19 +51,15 @@ const getLocale = (request: NextRequest): string | undefined => {
 // eslint-disable-next-line consistent-return
 export const middleware = (request: NextRequest) => {
   const { pathname } = request.nextUrl;
+  const locale =
+    getLocaleFromPathname(request.nextUrl.pathname) || getLocale(request);
+  const pagePathname = getPagePathnameFromPathname(request.nextUrl.pathname);
 
-  // Check if there is any supported locale in the pathname
-  const isLocaleMissingInPathname = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  );
+  const validPathname = `/${locale}/${pagePathname}`;
+  const isPathnameValid = pathname === validPathname;
 
-  // Redirect if there is no locale
-  if (isLocaleMissingInPathname) {
-    const locale = getLocale(request);
-
-    return NextResponse.redirect(
-      new URL(`/${locale}/${pathname}`, request.url)
-    );
+  if (!isPathnameValid) {
+    return NextResponse.redirect(new URL(validPathname, request.url));
   }
 };
 
