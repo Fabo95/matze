@@ -10,14 +10,14 @@ export const Grid = ({
   className: propsClassName,
   children,
 }: GridProps) => {
-  const defaultClassnames = 'grid';
+  const defaultClassname = 'grid';
 
-  const classNames = propsClassName
-    ? `${defaultClassnames} ${propsClassName}`
-    : defaultClassnames;
+  const className = propsClassName
+    ? `${defaultClassname} ${propsClassName}`
+    : defaultClassname;
 
   return (
-    <div className={classNames} style={style}>
+    <div className={className} style={style}>
       {children}
     </div>
   );

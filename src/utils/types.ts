@@ -7,10 +7,11 @@ export enum Locale {
 }
 
 export enum Page {
-  HOME = '/',
+  HOME = 'home',
   HISTORY = 'history',
   SETTINGS = 'settings',
   STATISTICS = 'statistics',
+  LOGIN = 'login',
 }
 
 export type TFunction = (translationKeys: string) => string;

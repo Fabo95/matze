@@ -222,6 +222,33 @@ table {
   border-collapse: collapse; /* 3 */
 }
 
+button,
+input,
+optgroup,
+select,
+textarea,
+html input[type=button],
+input[type=reset],
+input[type=submit],
+button[disabled],
+html input[disabled],
+button::-moz-focus-inner,
+input::-moz-focus-inner,
+input[type=checkbox],
+input[type=radio],
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button,
+input[type=search],
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-decoration {
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
 /*
 1. Change the font styles in all browsers.
 2. Remove the margin in Firefox and Safari.
@@ -1021,6 +1048,64 @@ video {
 }
 .interval-timer-detail-execution-overview .interval-timer-detail-execution-overview-rest svg {
   margin-right: 4px;
+}
+
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-page .login-page-container {
+  background: #fff;
+  border-radius: 0.5em;
+  padding: 24px;
+}
+.login-page .login-page-container .login-page-headline {
+  margin-bottom: 24px;
+  color: #050505;
+  font-size: 32px;
+}
+.login-page .login-page-container .login-form .login-form-label {
+  display: block;
+  color: #050505;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.login-page .login-page-container .login-form .login-form-input {
+  display: block;
+  border-radius: 8px;
+  padding: 12px 20px;
+  color: #050505;
+  border: 1px solid #b3b3b3;
+  width: 350px;
+  margin-bottom: 16px;
+}
+.login-page .login-page-container .login-form .login-form-input:focus {
+  outline: none;
+}
+.login-page .login-page-container .login-form .login-form-input:last-of-type {
+  margin-bottom: 40px;
+}
+.login-page .login-page-container .login-form .login-form-cta {
+  margin-left: auto;
+  margin-right: auto;
+  background: #b3b3b3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 /* Colors */

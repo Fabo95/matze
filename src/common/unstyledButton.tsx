@@ -3,8 +3,9 @@ import { ForwardedRef, forwardRef, MouseEvent, ReactNode } from 'react';
 type UnstyledButtonProps = {
   className?: string;
   children: ReactNode;
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   handleMouseDown?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  type?: HTMLButtonElement['type'];
 };
 
 export const UnstyledButton = forwardRef(
@@ -12,8 +13,9 @@ export const UnstyledButton = forwardRef(
     {
       className: propsClassName,
       children,
-      onClick,
       handleMouseDown,
+      onClick,
+      type = 'button',
     }: UnstyledButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
@@ -27,7 +29,7 @@ export const UnstyledButton = forwardRef(
       <button
         className={classNames}
         ref={ref}
-        type="button"
+        type={type}
         onClick={onClick}
         onMouseDown={handleMouseDown}
       >

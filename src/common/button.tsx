@@ -1,15 +1,23 @@
+'use client';
+
 import { UnstyledButton } from 'common/unstyledButton';
 import React, { MouseEvent } from 'react';
 
 import { Box } from 'common/box';
 
 type ButtonProps = {
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
   buttonTitle: string;
+  type?: HTMLButtonElement['type'];
 };
 
-export const Button = ({ onClick, className, buttonTitle }: ButtonProps) => {
+export const Button = ({
+  buttonTitle,
+  className,
+  onClick,
+  type,
+}: ButtonProps) => {
   // --- CALLBACKS ---
 
   const handleWaveAnimation = (event: MouseEvent<HTMLDivElement>) => {
@@ -34,14 +42,16 @@ export const Button = ({ onClick, className, buttonTitle }: ButtonProps) => {
     wavesWrapper.appendChild(wave);
 
     setTimeout(() => {
-      onClick();
+      if (onClick) {
+        onClick();
+      }
       wavesWrapper.removeChild(wave);
     }, 400);
   };
 
   // --- RENDER ---
   return (
-    <UnstyledButton className={`button ${className}`}>
+    <UnstyledButton className={`button ${className}`} type={type}>
       <Box className="button-content">{buttonTitle}</Box>
 
       <Box className="wave-wrapper" onClick={handleWaveAnimation} />

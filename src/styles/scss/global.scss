@@ -22,7 +22,8 @@
 
 @use './components/icons';
 
-@use './pages/_pages';
+@use './pages/_home';
+@use './pages/_login';
 @use './layout/_layout';
 
 @import './abstracts/_variables';

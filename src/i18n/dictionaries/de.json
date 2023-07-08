@@ -26,6 +26,12 @@
       "headline": "Statistiken",
       "menuOption": "Statistiken"
 
+    },
+    "login": {
+      "headline": "Login",
+      "cta": "Einloggen",
+      "emailLabel": "E-Mail",
+      "passwordLabel": "Passwort"
     }
   },
   "cta": {

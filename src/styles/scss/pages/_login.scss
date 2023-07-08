@@ -1,0 +1,57 @@
+@import '../abstracts/_functions';
+@import '../abstracts/_variables';
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .login-page-container {
+    background: $whiteDark;
+    border-radius: $borderRadiusM;
+    padding: spacingPixel(3);
+
+    .login-page-headline {
+      margin-bottom: spacingPixel(3);
+      color: $blackDark;
+      font-size: spacingPixel(4);
+    }
+
+    .login-form {
+      .login-form-label {
+        display: block;
+        color: $blackDark;
+        font-size: spacingPixel(2);
+        margin-bottom: spacingPixel(1);
+      }
+
+      .login-form-input {
+        display: block;
+        border-radius: spacingPixel(1);
+        padding: spacingPixel(1.5) spacingPixel(2.5);
+        color: $blackDark;
+        border: 1px solid $grayDark;
+        width: 350px;
+        margin-bottom: spacingPixel(2);
+
+        &:focus {
+          outline: none;
+        }
+
+        &:last-of-type {
+          margin-bottom: spacingPixel(5);
+        }
+      }
+
+      .login-form-cta {
+        margin-left: auto;
+        margin-right: auto;
+        background: $grayDark;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
