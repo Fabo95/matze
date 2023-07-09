@@ -34,7 +34,7 @@ export const apiPatchIntensity = async ({
   }
 };
 
-export const handleLogin = async (formData: FormData) => {
+export const apiPostLogin = async (formData: FormData) => {
   const email = formData.get('email');
   const password = formData.get('password');
 

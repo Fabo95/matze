@@ -6,7 +6,7 @@ import { Locale } from 'utils/types';
 import { getTFunction } from 'i18n/get-t-function';
 import { Heading } from 'common/heading';
 import { Label } from 'common/label';
-import { handleLogin } from 'serverAction/serverActions';
+import { apiPostLogin } from 'serverAction/serverActions';
 
 export default async function Login({
   params: { lang },
@@ -29,7 +29,7 @@ export default async function Login({
       <Box className="login-page-container">
         <Heading className="login-page-headline">{headline}</Heading>
 
-        <Form action={handleLogin} className="login-form">
+        <Form action={apiPostLogin} className="login-form">
           <Label className="login-form-label" htmlFor="email">
             {emailLabel}
           </Label>
