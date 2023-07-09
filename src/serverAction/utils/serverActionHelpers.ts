@@ -1,7 +1,7 @@
 import { HttpMethod } from 'serverAction/utils/serverActionTypes';
 import { cookies } from 'next/headers';
 
-type GetFechtOptions = Omit<RequestInit, 'body'> & {
+type GetFetchOptions = Omit<RequestInit, 'body'> & {
   body?: { [key: string]: unknown };
   method?: HttpMethod;
   jwt?: string;
@@ -13,7 +13,7 @@ export const getFetchOptions = ({
   jwt,
   method = HttpMethod.GET,
   ...options
-}: GetFechtOptions = {}): RequestInit => ({
+}: GetFetchOptions = {}): RequestInit => ({
   body: JSON.stringify(body),
   cache: cache || 'no-cache',
   headers: {
