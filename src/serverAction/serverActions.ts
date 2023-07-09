@@ -1,11 +1,13 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { cookies } from 'next/headers';
 
 import { getFetchOptions } from 'serverAction/utils/serverActionHelpers';
 import { HttpMethod } from 'serverAction/utils/serverActionTypes';
 import { IntervalIntensityType } from 'api/utils/apiTypes';
 import { apiBaseUrl } from 'api/utils/apiConstants';
+import { validateEmail, validatePassword } from 'utils/validations';
 
 export const apiPatchIntensity = async ({
   intensityType,
@@ -18,7 +20,7 @@ export const apiPatchIntensity = async ({
 }) => {
   try {
     await fetch(
-      `${apiBaseUrl}intervals/32`,
+      `${apiBaseUrl}intervals`,
       getFetchOptions({
         body: { [intensityType]: filteredIntensity },
         method: HttpMethod.PATCH,
@@ -29,5 +31,36 @@ export const apiPatchIntensity = async ({
   } catch (e) {
     // eslint-disable-next-line no-console
     console.log(e);
+  }
+};
+
+export const handleLogin = async (formData: FormData) => {
+  const email = formData.get('email');
+  const password = formData.get('password');
+
+  const emailValidationError = validateEmail(email);
+  const passwordValidationError = validatePassword(password);
+
+  if (!emailValidationError && !passwordValidationError) {
+    try {
+      const data = await fetch(
+        `${apiBaseUrl}login`,
+        getFetchOptions({
+          body: { email, password },
+          method: HttpMethod.POST,
+        })
+      );
+
+      const { jwtToken } = await data.json();
+
+      cookies().set({
+        httpOnly: true,
+        name: 'jwtToken',
+        value: jwtToken,
+      });
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
   }
 };
