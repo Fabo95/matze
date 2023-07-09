@@ -25,7 +25,7 @@ import { getFormattedSeconds } from 'utils/helpers';
 import { ModalHeader } from 'common/modalHeader';
 import { SliderTrack } from 'common/Slider/components/sliderTrack';
 import { Button } from 'common/button';
-import { apiPatchIntensity } from 'serverAction/serverActions';
+import { apiPatchIntervals } from 'serverAction/serverActions';
 
 export const IntervalTimerDetailConfigurationOption = ({
   className,
@@ -104,7 +104,7 @@ export const IntervalTimerDetailConfigurationOption = ({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     startTransition(async () => {
-      await apiPatchIntensity({
+      await apiPatchIntervals({
         filteredIntensity,
         intensityType,
         path: params.lang,

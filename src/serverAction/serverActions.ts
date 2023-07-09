@@ -9,7 +9,7 @@ import { IntervalIntensityType } from 'api/utils/apiTypes';
 import { apiBaseUrl } from 'api/utils/apiConstants';
 import { validateEmail, validatePassword } from 'utils/validations';
 
-export const apiPatchIntensity = async ({
+export const apiPatchIntervals = async ({
   intensityType,
   filteredIntensity,
   path,
