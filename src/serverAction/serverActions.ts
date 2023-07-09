@@ -2,14 +2,15 @@
 
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { RedirectType } from 'next/dist/client/components/redirect';
 
-import { getFetchOptions } from 'serverAction/utils/serverActionHelpers';
-import { HttpMethod } from 'serverAction/utils/serverActionTypes';
 import { IntervalIntensityType } from 'api/utils/apiTypes';
-import { apiBaseUrl } from 'api/utils/apiConstants';
 import { validateEmail, validatePassword } from 'utils/validations';
+import { Page } from 'utils/types';
+import { apiPatchInterval, apiPostLogin } from 'api/api';
 
-export const apiPatchInterval = async ({
+export const apiPatchIntervalServerAction = async ({
   intensityType,
   filteredIntensity,
   path,
@@ -19,13 +20,7 @@ export const apiPatchInterval = async ({
   path: string;
 }) => {
   try {
-    await fetch(
-      `${apiBaseUrl}intervals`,
-      getFetchOptions({
-        body: { [intensityType]: filteredIntensity },
-        method: HttpMethod.PATCH,
-      })
-    );
+    await apiPatchInterval({ filteredIntensity, intensityType });
 
     revalidatePath(`/${path}`);
   } catch (e) {
@@ -34,7 +29,7 @@ export const apiPatchInterval = async ({
   }
 };
 
-export const apiPostLogin = async (formData: FormData) => {
+export const apiPostLoginServerAction = async (formData: FormData) => {
   const email = formData.get('email');
   const password = formData.get('password');
 
@@ -43,21 +38,17 @@ export const apiPostLogin = async (formData: FormData) => {
 
   if (!emailValidationError && !passwordValidationError) {
     try {
-      const data = await fetch(
-        `${apiBaseUrl}login`,
-        getFetchOptions({
-          body: { email, password },
-          method: HttpMethod.POST,
-        })
-      );
+      const data = await apiPostLogin({ email, password });
 
-      const { jwtToken } = await data.json();
+      const { authToken } = await data.json();
 
       cookies().set({
         httpOnly: true,
-        name: 'jwtToken',
-        value: jwtToken,
+        name: 'authToken',
+        value: authToken,
       });
+
+      redirect(`/de/${Page.HOME}`, RedirectType.replace);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.log(e);
