@@ -12,6 +12,7 @@ export enum Page {
   SETTINGS = 'settings',
   STATISTICS = 'statistics',
   LOGIN = 'login',
+  REGISTER = 'register',
 }
 
 export type TFunction = (translationKeys: string) => string;

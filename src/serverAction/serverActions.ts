@@ -2,13 +2,12 @@
 
 import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
-import { RedirectType } from 'next/dist/client/components/redirect';
 
 import { IntervalIntensityType } from 'api/utils/apiTypes';
 import { validateEmail, validatePassword } from 'utils/validations';
+import { apiPatchInterval, apiPostLogin, apiPostRegister } from 'api/api';
+import { redirect } from 'next/navigation';
 import { Page } from 'utils/types';
-import { apiPatchInterval, apiPostLogin } from 'api/api';
 
 export const apiPatchIntervalServerAction = async ({
   intensityType,
@@ -36,22 +35,71 @@ export const apiPostLoginServerAction = async (formData: FormData) => {
   const emailValidationError = validateEmail(email);
   const passwordValidationError = validatePassword(password);
 
-  if (!emailValidationError && !passwordValidationError) {
-    try {
-      const data = await apiPostLogin({ email, password });
-
-      const { authToken } = await data.json();
-
-      cookies().set({
-        httpOnly: true,
-        name: 'authToken',
-        value: authToken,
-      });
-
-      redirect(`/de/${Page.HOME}`, RedirectType.replace);
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.log(e);
-    }
+  if (emailValidationError || passwordValidationError) {
+    return;
   }
+
+  try {
+    const data = await apiPostLogin({ email, password });
+
+    const loginResponse = await data.json();
+
+    if ('error' in loginResponse) {
+      return;
+    }
+
+    await cookies().set({
+      httpOnly: true,
+      name: 'authToken',
+      value: loginResponse.authToken,
+    });
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
+  }
+
+  redirect(`/de/${Page.HOME}`);
+};
+
+export const apiPostRegisterServerAction = async (formData: FormData) => {
+  const email = formData.get('email');
+  const password = formData.get('password');
+  const confirmPassword = formData.get('confirmPassword');
+
+  const emailValidationError = validateEmail(email);
+  const passwordValidationError = validatePassword(password);
+  const confirmPasswordValidationError = validatePassword(confirmPassword);
+
+  if (
+    emailValidationError ||
+    passwordValidationError ||
+    confirmPasswordValidationError
+  ) {
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    return;
+  }
+
+  try {
+    const data = await apiPostRegister({ confirmPassword, email, password });
+
+    const registerResponse = await data.json();
+
+    if ('error' in registerResponse) {
+      return;
+    }
+
+    await cookies().set({
+      httpOnly: true,
+      name: 'authToken',
+      value: registerResponse.authToken,
+    });
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
+  }
+
+  redirect(`/de/${Page.HOME}`);
 };

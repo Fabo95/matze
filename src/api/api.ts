@@ -47,3 +47,20 @@ export const apiPostLogin = async ({
       method: HttpMethod.POST,
     })
   );
+
+export const apiPostRegister = async ({
+  email,
+  password,
+  confirmPassword,
+}: {
+  email: FormDataEntryValue | null;
+  password: FormDataEntryValue | null;
+  confirmPassword: FormDataEntryValue | null;
+}): Promise<Response> =>
+  fetch(
+    `${authBaseUrl}register`,
+    getFetchOptions({
+      body: { confirmPassword, email, password },
+      method: HttpMethod.POST,
+    })
+  );

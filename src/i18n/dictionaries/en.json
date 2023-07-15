@@ -31,6 +31,13 @@
       "cta": "Login",
       "emailLabel": "E-Mail",
       "passwordLabel": "Password"
+    },
+    "register": {
+      "headline": "Register",
+      "cta": "Register",
+      "emailLabel": "E-Mail",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Confirm password"
     }
   },
   "cta": {

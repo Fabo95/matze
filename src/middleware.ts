@@ -26,16 +26,27 @@ function getPage(
   authHttpStatus: number | undefined | ''
 ) {
   if (authHttpStatus === 200) {
-    const pages = Object.values(Page).filter(
-      (currentPage) => currentPage !== Page.LOGIN
+    const loggedInPages = Object.values(Page).filter(
+      (currentPage) =>
+        currentPage !== Page.LOGIN && currentPage !== Page.REGISTER
     );
 
-    const page = pages.find((currentPage) => pathname.includes(currentPage));
+    const loggedInPage = loggedInPages.find((currentPage) =>
+      pathname.includes(currentPage)
+    );
 
-    return page || Page.HOME;
+    return loggedInPage || Page.HOME;
   }
 
-  return Page.LOGIN;
+  const loggedOutPages = Object.values(Page).filter(
+    (currentPage) => currentPage === Page.LOGIN || currentPage === Page.REGISTER
+  );
+
+  const loggedOutPage = loggedOutPages.find((currentPage) =>
+    pathname.includes(currentPage)
+  );
+
+  return loggedOutPage || Page.REGISTER;
 }
 
 const getLocale = (request: NextRequest): string | undefined => {
@@ -57,8 +68,10 @@ export const middleware = async (request: NextRequest) => {
   const { pathname } = request.nextUrl;
 
   const authToken = request.cookies.get('authToken')?.value;
+
   const authTokenValidation =
     authToken && (await apiGetAuthTokenValidation(authToken));
+
   const authHttpStatus = authTokenValidation && authTokenValidation.status;
 
   const locale =

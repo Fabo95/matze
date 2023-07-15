@@ -1120,6 +1120,64 @@ video {
 /* Spacing */
 /* Font-weight */
 /* z-Index */
+.register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.register-page .register-page-container {
+  background: #fff;
+  border-radius: 0.5em;
+  padding: 24px;
+}
+.register-page .register-page-container .register-page-headline {
+  margin-bottom: 24px;
+  color: #050505;
+  font-size: 32px;
+}
+.register-page .register-page-container .register-form .register-form-label {
+  display: block;
+  color: #050505;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+.register-page .register-page-container .register-form .register-form-input {
+  display: block;
+  border-radius: 8px;
+  padding: 12px 20px;
+  color: #050505;
+  border: 1px solid #b3b3b3;
+  width: 350px;
+  margin-bottom: 16px;
+}
+.register-page .register-page-container .register-form .register-form-input:focus {
+  outline: none;
+}
+.register-page .register-page-container .register-form .register-form-input:last-of-type {
+  margin-bottom: 40px;
+}
+.register-page .register-page-container .register-form .register-form-cta {
+  margin-left: auto;
+  margin-right: auto;
+  background: #b3b3b3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
+/* Colors */
+/* Transitions */
+/* Borders */
+/* Spacing */
+/* Font-weight */
+/* z-Index */
 body {
   height: 100vh;
   color: #fff;
