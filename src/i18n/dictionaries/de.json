@@ -38,7 +38,12 @@
       "cta": "Registrieren",
       "emailLabel": "E-Mail",
       "passwordLabel": "Passwort",
-      "confirmPasswordLabel": "Passwort bestätigen"
+      "confirmPasswordLabel": "Passwort bestätigen",
+      "validationError": {
+        "invalidEmail": "Die E-Mail ist ungültig.",
+        "invalidPassword": "Das Password ist ungültig.",
+        "noPasswordMatching": "Die Passwörter stimmen nicht überein."
+      }
     }
   },
   "cta": {

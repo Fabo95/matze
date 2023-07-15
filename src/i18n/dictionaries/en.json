@@ -37,7 +37,12 @@
       "cta": "Register",
       "emailLabel": "E-Mail",
       "passwordLabel": "Password",
-      "confirmPasswordLabel": "Confirm password"
+      "confirmPasswordLabel": "Confirm password",
+      "validationError": {
+        "invalidEmail": "E-Mail is invalid.",
+        "invalidPassword": "Password is invalid.",
+        "noPasswordMatching": "Passwords do not match."
+      }
     }
   },
   "cta": {

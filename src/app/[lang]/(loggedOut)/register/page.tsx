@@ -7,6 +7,8 @@ import { getTFunction } from 'i18n/get-t-function';
 import { Heading } from 'common/heading';
 import { Label } from 'common/label';
 import { apiPostRegisterServerAction } from 'serverAction/serverActions';
+import { Text } from 'common/text';
+import { registerErrorState } from 'serverAction/utils/serverActionConstants';
 
 export default async function register({
   params: { lang },
@@ -23,6 +25,15 @@ export default async function register({
   const passwordLabel = t('pages.register.passwordLabel');
   const confirmPasswordLabel = t('pages.register.confirmPasswordLabel');
 
+  const emailError = registerErrorState.getEmailError();
+  const passwordError = registerErrorState.getPasswordError();
+
+  const emailValidationError =
+    emailError && t(`pages.register.validationError.${emailError}`);
+
+  const passwordValidationError =
+    passwordError && t(`pages.register.validationError.${passwordError}`);
+
   // --- RENDER ---
 
   return (
@@ -31,35 +42,47 @@ export default async function register({
         <Heading className="register-page-headline">{headline}</Heading>
 
         <Form action={apiPostRegisterServerAction} className="register-form">
-          <Label className="register-form-label" htmlFor="email">
-            {emailLabel}
-          </Label>
-          <Input
-            className="register-form-input"
-            id="email"
-            name="email"
-            type="text"
-          />
-          <Label className="register-form-label" htmlFor="password">
-            {passwordLabel}
-          </Label>
-          <Input
-            // TODO Build show password toggle
-            className="register-form-input"
-            id="password"
-            name="password"
-            type="password"
-          />
-          <Label className="register-form-label" htmlFor="password">
-            {confirmPasswordLabel}
-          </Label>
-          <Input
-            // TODO Build show password toggle
-            className="register-form-input"
-            id="confirmPassword"
-            name="confirmPassword"
-            type="password"
-          />
+          <Box className="register-form-email-box">
+            <Label className="register-form-label" htmlFor="email">
+              {emailLabel}
+            </Label>
+            <Input
+              className="register-form-input"
+              id="email"
+              name="email"
+              type="text"
+            />
+            <Text className="register-form-validation-error">
+              {emailValidationError}
+            </Text>
+          </Box>
+
+          <Box className="register-form-password-box">
+            <Label className="register-form-label" htmlFor="password">
+              {passwordLabel}
+            </Label>
+            <Input
+              // TODO Build show password toggle
+              className="register-form-input register-form-password-input"
+              id="password"
+              name="password"
+              type="password"
+            />
+            <Label className="register-form-label" htmlFor="password">
+              {confirmPasswordLabel}
+            </Label>
+            <Input
+              // TODO Build show password toggle
+              className="register-form-input"
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+            />
+
+            <Text className="register-form-validation-error">
+              {passwordValidationError}
+            </Text>
+          </Box>
           <Button
             buttonTitle={buttonTitle}
             className="register-form-cta"

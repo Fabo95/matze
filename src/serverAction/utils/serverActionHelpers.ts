@@ -30,3 +30,30 @@ export const getFetchOptions = ({
   method,
   ...options,
 });
+
+export class AtomicState {
+  constructor(
+    public emailError: string | undefined = undefined,
+    public passwordError: string | undefined = undefined
+  ) {}
+
+  setEmailError(message: string) {
+    this.emailError = message;
+  }
+
+  setPasswordError(message: string) {
+    this.passwordError = message;
+  }
+
+  getEmailError() {
+    const { emailError } = this;
+    this.emailError = undefined;
+    return emailError;
+  }
+
+  getPasswordError() {
+    const { passwordError } = this;
+    this.passwordError = undefined;
+    return passwordError;
+  }
+}

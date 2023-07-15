@@ -1142,6 +1142,14 @@ video {
   font-size: 16px;
   margin-bottom: 8px;
 }
+.register-page .register-page-container .register-form .register-form-email-box {
+  position: relative;
+  margin-bottom: 32px;
+}
+.register-page .register-page-container .register-form .register-form-password-box {
+  position: relative;
+  margin-bottom: 40px;
+}
 .register-page .register-page-container .register-form .register-form-input {
   display: block;
   border-radius: 8px;
@@ -1149,13 +1157,18 @@ video {
   color: #050505;
   border: 1px solid #b3b3b3;
   width: 350px;
-  margin-bottom: 16px;
 }
 .register-page .register-page-container .register-form .register-form-input:focus {
   outline: none;
 }
-.register-page .register-page-container .register-form .register-form-input:last-of-type {
-  margin-bottom: 40px;
+.register-page .register-page-container .register-form .register-form-password-input {
+  margin-bottom: 16px;
+}
+.register-page .register-page-container .register-form .register-form-validation-error {
+  color: #050505;
+  font-size: 14px;
+  position: absolute;
+  bottom: -24px;
 }
 .register-page .register-page-container .register-form .register-form-cta {
   margin-left: auto;

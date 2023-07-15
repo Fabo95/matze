@@ -8,6 +8,7 @@ import { validateEmail, validatePassword } from 'utils/validations';
 import { apiPatchInterval, apiPostLogin, apiPostRegister } from 'api/api';
 import { redirect } from 'next/navigation';
 import { Page } from 'utils/types';
+import { registerErrorState } from 'serverAction/utils/serverActionConstants';
 
 export const apiPatchIntervalServerAction = async ({
   intensityType,
@@ -70,15 +71,23 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
   const passwordValidationError = validatePassword(password);
   const confirmPasswordValidationError = validatePassword(confirmPassword);
 
-  if (
-    emailValidationError ||
-    passwordValidationError ||
-    confirmPasswordValidationError
-  ) {
+  if (emailValidationError) {
+    registerErrorState.setEmailError('invalidEmail');
+    revalidatePath('/');
+
     return;
   }
 
   if (password !== confirmPassword) {
+    registerErrorState.setPasswordError('noPasswordMatching');
+    revalidatePath('/');
+    return;
+  }
+
+  if (passwordValidationError || confirmPasswordValidationError) {
+    registerErrorState.setPasswordError('invalidPassword');
+    revalidatePath('/');
+
     return;
   }
 
@@ -88,6 +97,11 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
     const registerResponse = await data.json();
 
     if ('error' in registerResponse) {
+      const registerErrorMethod = registerResponse.error.includes('email')
+        ? registerErrorState.setEmailError
+        : registerErrorState.setPasswordError;
+
+      registerErrorMethod(registerResponse.error);
       return;
     }
 
