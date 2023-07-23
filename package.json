@@ -1,5 +1,5 @@
 {
-  "name": "intervalApp",
+  "name": "interval-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -17,27 +17,22 @@
     "@types/react-dom": "18.0.11",
     "@xstate/cli": "^0.5.1",
     "@xstate/react": "^3.2.2",
-    "body-parser": "^1.20.2",
     "concurrently": "^8.2.0",
-    "cookie-parser": "^1.4.6",
-    "cors": "^2.8.5",
     "eslint-config-next": "^13.4.1",
-    "express": "^4.18.2",
-    "express-session": "^1.17.3",
     "joi": "^17.9.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
-    "mysql2": "^3.2.3",
     "negotiator": "^0.6.3",
     "next": "^13.4.6",
-    "nodemon": "^2.0.22",
+    "next-with-workbox": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rxjs": "^7.8.1",
     "uuid": "^9.0.0",
     "watch": "^1.0.2",
-    "xstate": "^4.37.2",
-    "zustand": "^4.3.8"
+    "workbox-cli": "^7.0.0",
+    "workbox-precaching": "^7.0.0",
+    "xstate": "^4.37.2"
   },
   "devDependencies": {
     "@types/negotiator": "^0.6.1",

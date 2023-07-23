@@ -15,7 +15,10 @@ export const MenuSlidingPaneOption = ({
   isSelected,
 }: {
   currentLocale: string;
-  menuOption: { translation: string; page: Page };
+  menuOption: {
+    translation: string;
+    page: Exclude<Page, Page.LOGIN | Page.REGISTER>;
+  };
   onClick: () => void;
   isSelected: boolean;
 }) => {

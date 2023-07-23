@@ -1,7 +1,3 @@
-export const apiBaseUrl =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8080/'
-    : 'https://interval-app-api.up.railway.app/';
+export const apiBaseUrl = 'http://localhost:8080/';
 
-export const authBaseUrl =
-  process.env.NODE_ENV === 'development' ? 'http://localhost:8090/' : '';
+export const authBaseUrl = 'http://localhost:8090/';

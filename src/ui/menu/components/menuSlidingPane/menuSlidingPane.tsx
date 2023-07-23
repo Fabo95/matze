@@ -13,7 +13,10 @@ export const MenuSlidingPane = ({
 }: {
   isOpen: boolean;
   headline: string;
-  menuOptions: { translation: string; page: Page }[];
+  menuOptions: {
+    translation: string;
+    page: Exclude<Page, Page.LOGIN | Page.REGISTER>;
+  }[];
 }) => {
   // --- STATE ---
 
