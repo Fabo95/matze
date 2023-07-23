@@ -1,11 +1,11 @@
+const cacheName = `interval_app_${'v1'}`;
+
 const installEvent = () => {
   self.addEventListener('install', () => {
     console.log('service worker installed');
   });
 };
 installEvent();
-
-const cacheName = `interval_app_${'v1'}`;
 
 const activateEvent = () => {
   self.addEventListener('activate', (event) => {
@@ -41,7 +41,7 @@ const fetchEvent = () => {
 
     // @see https://developer.chrome.com/docs/workbox/caching-strategies-overview/#cache-first-falling-back-to-network
     event.respondWith(
-      caches.open('cacheName').then((cache) => {
+      caches.open(cacheName).then((cache) => {
         // Go to the cache first
         return cache.match(event.request.url).then((cachedResponse) => {
           // Return a cached response if we have one

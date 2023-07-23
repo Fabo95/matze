@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "NODE_ENV=production next start",
     "lint": "next lint",
-    "compileScss": "sass src/styles/scss/global.scss src/styles/global.css"
+    "compileScss": "sass src/styles/scss/global.scss src/styles/global.css",
+    "bundleServiceWorker": "esbuild --outfile=src/serviceWorker/serviceWorkerBundled.js --bundle src/serviceWorker/serviceWorkerRaw.js"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.2.32",
@@ -18,6 +19,7 @@
     "@xstate/cli": "^0.5.1",
     "@xstate/react": "^3.2.2",
     "concurrently": "^8.2.0",
+    "esbuild": "^0.18.16",
     "eslint-config-next": "^13.4.1",
     "joi": "^17.9.2",
     "lodash": "^4.17.21",
@@ -32,6 +34,7 @@
     "watch": "^1.0.2",
     "workbox-cli": "^7.0.0",
     "workbox-precaching": "^7.0.0",
+    "workbox-strategies": "^7.0.0",
     "xstate": "^4.37.2"
   },
   "devDependencies": {

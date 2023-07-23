@@ -52,6 +52,7 @@ styles/dist.css
 #service workers
 public/sw.js
 public/sw.js.map
+public/work*
 public/worker-*.js
 public/worker-*.js.map
 

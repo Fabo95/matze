@@ -1,15 +1,24 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Workbox } from 'workbox-window';
 
 export default function InitServiceWorker() {
-  // registers a service worker located in service-worker.js on the client side.
+  // --- EFFECTS ---
+
   useEffect(() => {
     if ('serviceWorker' in navigator) {
-      const wb = new Workbox('sw.js', { scope: '/' });
-      wb.register();
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then(() => {
+          console.log('Service worker registered!');
+        })
+        .catch((error) => {
+          console.warn('Error registering service worker:');
+          console.warn(error);
+        });
     }
   }, []);
+
+  // --- RENDER ---
   return null;
 }

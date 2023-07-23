@@ -1,11 +1,6 @@
 module.exports = {
-	globDirectory: 'src/',
-	globPatterns: [
-		'**/*.{ts,tsx,json,css,scss}'
-	],
-	swDest: './public',
-	ignoreURLParametersMatching: [
-		/^utm_/,
-		/^fbclid$/
-	]
+  globDirectory: '.next',
+  globPatterns: ['**/*.{json,html,css,woff2,ts}'],
+  swDest: './public/sw.js',
+  swSrc: 'src/serviceWorker/serviceWorkerBundled.js',
 };
