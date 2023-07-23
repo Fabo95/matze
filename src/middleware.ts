@@ -46,10 +46,11 @@ function getPage(
     pathname.includes(currentPage)
   );
 
-  return loggedOutPage || Page.REGISTER;
+  return loggedOutPage || Page.LOGIN;
 }
 
 const getLocale = (request: NextRequest): string | undefined => {
+  console.log('request', request);
   // Negotiator expects plain object so we need to transform headers
   const negotiatorHeaders: Record<string, string> = {};
   const { locales } = i18n;
@@ -88,6 +89,8 @@ export const middleware = async (request: NextRequest) => {
 };
 
 export const config = {
-  // Matcher ignoring `/_next/` and `/serverAction/`
-  matcher: ['/((?!serverAction|_next/static|_next/image|favicon.ico).*)'],
+  // Matcher ignoring `serverActions + static + _next/image + favicon.ico + serviceWorker + manifest + icon + workbox (for sw)
+  matcher: [
+    '/((?!serverAction|_next/static|_next/image|favicon.ico|service-worker|worker.ts|sw.js|manifest|icon|workbox*).*)',
+  ],
 };
