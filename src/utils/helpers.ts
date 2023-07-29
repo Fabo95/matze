@@ -84,3 +84,10 @@ export function getMillisecondsDifference(dateA: Date, dateB?: Date) {
 
   return Math.abs(Number(millisecondsB) - millisecondsA);
 }
+
+// eslint-disable-next-line consistent-return
+export const getCookie = (name: string) => {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop()?.split(';').shift();
+};
