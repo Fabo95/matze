@@ -91,6 +91,6 @@ export const middleware = async (request: NextRequest) => {
 export const config = {
   // Matcher ignoring `serverActions + static + _next/image + favicon.ico + serviceWorker + manifest + icon + workbox (for sw)
   matcher: [
-    '/((?!serverAction|_next/static|_next/image|favicon.ico|custom-service-worker|serviceWorkerRaw.js|sw.js|manifest|icon|workbox*).*)',
+    '/((?!serverAction|_next/static|_next/image|favicon.ico|custom-service-worker|manifest|icon).*)',
   ],
 };
