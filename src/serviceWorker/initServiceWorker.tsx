@@ -8,7 +8,7 @@ export default function InitServiceWorker() {
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker
-        .register('/sw.js')
+        .register('/custom-service-worker.js')
         .then(() => {
           console.log('Service worker registered!');
         })
@@ -17,6 +17,10 @@ export default function InitServiceWorker() {
           console.warn(error);
         });
     }
+
+    window.addEventListener('online', async () => {
+      const registration = await navigator.serviceWorker.ready;
+    });
   }, []);
 
   // --- RENDER ---

@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 import 'styles/global.css';
 import { Locale } from 'utils/types';
-import InitServiceWorker from 'pwa/initServiceWorker';
+import InitServiceWorker from 'serviceWorker/initServiceWorker';
 
 const manrope = Manrope({
   style: ['normal'],
