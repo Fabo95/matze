@@ -50,11 +50,8 @@ styles/dist.css
 .eslintcache
 
 #service workers
+public/asset-manifest.json
 public/sw.js
-public/sw.js.map
-public/work*
-public/worker-*.js
-public/worker-*.js.map
 
 
 
