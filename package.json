@@ -4,11 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development next dev",
-    "build": "next build",
+    "build": "esbuild --outfile=public/sw.js --bundle src/serviceWorker/swRaw.js && next build",
     "start": "NODE_ENV=production next start",
     "lint": "next lint",
-    "compileScss": "sass src/styles/scss/global.scss src/styles/global.css",
-    "bundleServiceWorker": "esbuild --outfile=public/custom-service-worker.js --bundle src/serviceWorker/serviceWorkerRaw.js"
+    "compileScss": "sass src/styles/scss/global.scss src/styles/global.css"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.2.32",
