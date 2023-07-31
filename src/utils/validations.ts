@@ -1,3 +1,5 @@
+'use server';
+
 import Joi from 'Joi';
 
 export const validateEmail = (email: FormDataEntryValue | null) => {
