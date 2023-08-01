@@ -4,7 +4,6 @@ import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
 import { IntervalIntensityType } from 'api/utils/apiTypes';
-import { validateEmail, validatePassword } from 'utils/validations';
 import { apiPatchInterval, apiPostLogin, apiPostRegister } from 'api/api';
 import { redirect } from 'next/navigation';
 import { Page } from 'utils/types';
@@ -33,8 +32,8 @@ export const apiPostLoginServerAction = async (formData: FormData) => {
   const email = formData.get('email');
   const password = formData.get('password');
 
-  const emailValidationError = validateEmail(email);
-  const passwordValidationError = validatePassword(password);
+  let emailValidationError;
+  let passwordValidationError;
 
   if (emailValidationError || passwordValidationError) {
     return;
@@ -67,9 +66,9 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
   const password = formData.get('password');
   const confirmPassword = formData.get('confirmPassword');
 
-  const emailValidationError = validateEmail(email);
-  const passwordValidationError = validatePassword(password);
-  const confirmPasswordValidationError = validatePassword(confirmPassword);
+  let emailValidationError;
+  let passwordValidationError;
+  let confirmPasswordValidationError;
 
   if (emailValidationError) {
     registerErrorState.setEmailError('invalidEmail');
