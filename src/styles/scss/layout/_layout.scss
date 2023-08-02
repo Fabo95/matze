@@ -8,6 +8,7 @@ body {
   color: $whiteDark;
   letter-spacing: 0.025em;
   overflow-x: hidden;
+  touch-action: none;
   @include mixins.primaryLinearGradient();
 }
 
