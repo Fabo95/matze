@@ -3,12 +3,16 @@
 @import '../abstracts/_functions';
 @import '../abstracts/_variables';
 
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
 body {
-  height: 100vh;
   color: $whiteDark;
   letter-spacing: 0.025em;
-  overflow-x: hidden;
-  overscroll-behavior: none;
+  height: 100%;
+  overflow: auto;
   @include mixins.primaryLinearGradient();
 }
 

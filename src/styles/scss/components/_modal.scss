@@ -8,7 +8,7 @@
   width: 95vw;
   padding: spacingPixel(4.5);
   border-radius: $borderRadiusM;
-  z-index: 1000000;
+  z-index: $zIndexXl;
 
   &::backdrop {
     animation: backdrop-filter-in-keyframe $transitionM ease-in forwards;
