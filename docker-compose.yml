@@ -1,46 +1,21 @@
 services:
-  interval-timer-api:
+  interval-app-api:
     environment:
-      - DB_DATABASE=interval_app
-      - DB_HOST=mysql-container
-      - DB_PASSWORD=password
-      - DB_PORT=3306
-      - DB_USER=root
+      - JWT_SECRET_KEY=your-secret-key
+      - PORT_API=8080
 
-    image: fabo95/general:interval-timer-api
-    container_name: interval-timer-api-container
-    depends_on:
-      - mysql
+    image: fabo95/general:interval-app-api
+    container_name: interval-app-api-container
     ports:
       - 8080:8080
-    networks:
-      - mysql-network
 
-  mysql:
-    image: mysql:latest
-    container_name: mysql-container
-    volumes:
-      - type: volume
-        source: db-data
-        target: /var/lib/mysql
-    ports:
-      - 8081:3306
+  interval-app-auth:
     environment:
-      - MYSQL_ROOT_PASSWORD=password
-    networks:
-      - mysql-network
+      - JWT_SECRET_KEY=your-secret-key
+      - PORT_AUTH=8090
 
-  adminer:
-    image: adminer:latest
-    container_name: adminer-container
+    image: fabo95/general:interval-app-auth
+    container_name: interval-app-auth-container
     ports:
-      - 8082:8080
-    networks:
-      - mysql-network
+      - 8090:8090
 
-networks:
-  mysql-network:
-
-volumes:
-  db-data:
-    driver: local
