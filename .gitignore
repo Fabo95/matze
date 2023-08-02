@@ -1,4 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# git rm --cached <path> to removed cached files.
 
 # dependencies
 /node_modules
@@ -41,17 +42,16 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# tailwind
-.turbo
-.vscode
-styles/dist.css
+# css
+global.css
+global.css.map
 
 # Optional eslint cache
 .eslintcache
 
 #service workers
-public/asset-manifest.json
-public/sw.js
+asset-manifest.json
+sw.js
 
 
 
