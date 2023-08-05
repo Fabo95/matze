@@ -16,7 +16,7 @@ const nextConfig = {
     config.plugins.push(
       new WebpackManifestPlugin({
         fileName: '../public/asset-manifest.json',
-        // Set the publicPath to an empty string to remove the /_next part
+        // Replaces '/_next' part of the file path with '/'
         publicPath: '/',
       })
     );
