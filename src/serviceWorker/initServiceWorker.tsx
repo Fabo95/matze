@@ -14,14 +14,9 @@ export default function InitServiceWorker() {
           console.log('Service worker registered!');
         })
         .catch((error) => {
-          console.warn('Error registering service worker:');
-          console.warn(error);
+          console.warn('Error registering:', error);
         });
     }
-
-    window.addEventListener('online', async () => {
-      const registration = await navigator.serviceWorker.ready;
-    });
   }, []);
 
   // --- RENDER ---

@@ -64,8 +64,6 @@ export const handlePrecaching = async () => {
 
     const staticAssetPaths = await getStaticAssetPaths();
 
-    console.log('staticAssetPaths', staticAssetPaths);
-
     return cache.addAll(staticAssetPaths);
   } catch (error) {
     console.error('Error:', error);
@@ -75,11 +73,9 @@ export const handlePrecaching = async () => {
 // @see https://developer.chrome.com/docs/workbox/service-worker-lifecycle/#activation-1
 export const handleCleanUpCache = async (cacheAllowList) => {
   return caches.keys().then((keys) => {
-    console.log('clean up cache keys', keys);
     return Promise.all(
       keys.map((key) => {
         if (!cacheAllowList.includes(key)) {
-          console.log('delete key', key);
           return caches.delete(key);
         }
       })

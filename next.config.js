@@ -16,7 +16,7 @@ const nextConfig = {
     config.plugins.push(
       new WebpackManifestPlugin({
         fileName: '../public/asset-manifest.json',
-        // Files from .next/static should be precached by the sw.
+        // We generate asset-manifest.json with files from .next/static to precache them with the sw.
         filter: (file) => file.name.includes('static'),
       })
     );

@@ -21,10 +21,6 @@ export const middleware = async (request: NextRequest) => {
 
   const validPathname = `/${locale}/${page}`;
 
-  console.log('pathname', pathname);
-
-  console.log('validPathname', validPathname);
-
   const isPathnameValid = pathname === validPathname;
 
   if (!isPathnameValid) {
