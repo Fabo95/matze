@@ -46,9 +46,7 @@ export const createIntervalTimerExecutionMachine = <T>({
         remainingCurrentTime: totalTime,
         remainingTotalTime: totalTime,
         isExecuting: false,
-        // We make it an object with total and remaining property to assure an abstract usage.
         exerciseCount: getInitialCountContext(exerciseCount),
-        // We make it an object with total and remaining property to assure an abstract usage.
         roundCount: getInitialCountContext(roundCount),
       },
 
