@@ -8,6 +8,7 @@ import { apiPatchInterval, apiPostLogin, apiPostRegister } from 'api/api';
 import { redirect } from 'next/navigation';
 import { Page } from 'utils/types';
 import { registerErrorState } from 'serverAction/utils/serverActionConstants';
+import { validateEmail, validatePassword } from 'utils/validations';
 
 export const apiPatchIntervalServerAction = async ({
   intensityType,
@@ -66,9 +67,9 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
   const password = formData.get('password');
   const confirmPassword = formData.get('confirmPassword');
 
-  let emailValidationError;
-  let passwordValidationError;
-  let confirmPasswordValidationError;
+  const emailValidationError = validateEmail(email);
+  const passwordValidationError = validatePassword(password);
+  const confirmPasswordValidationError = validatePassword(password);
 
   if (emailValidationError) {
     registerErrorState.setEmailError('invalidEmail');
@@ -94,6 +95,8 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
     const data = await apiPostRegister({ confirmPassword, email, password });
 
     const registerResponse = await data.json();
+
+    console.log('registerResponse', registerResponse);
 
     if ('error' in registerResponse) {
       const registerErrorMethod = registerResponse.error.includes('email')

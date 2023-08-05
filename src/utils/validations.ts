@@ -1,4 +1,4 @@
-import Joi from 'Joi';
+import Joi from 'joi';
 
 export const validateEmail = (email: FormDataEntryValue | null) => {
   const schema = Joi.object({
