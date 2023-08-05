@@ -16,8 +16,8 @@ const nextConfig = {
     config.plugins.push(
       new WebpackManifestPlugin({
         fileName: '../public/asset-manifest.json',
-        // Replaces '/_next' part of the file path with '/'
-        publicPath: '/',
+        // Files from .next/static should be precached by the sw.
+        filter: (file) => file.name.includes('static'),
       })
     );
     return config;

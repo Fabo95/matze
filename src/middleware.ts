@@ -8,8 +8,6 @@ import { getLocale, getLocaleFromPathname, getPage } from 'utils/routing';
 export const middleware = async (request: NextRequest) => {
   const { pathname } = request.nextUrl;
 
-  console.log('middleware request url', request.url);
-
   const authToken = request.cookies.get('authToken')?.value;
 
   const authTokenValidation =
@@ -35,8 +33,5 @@ export const middleware = async (request: NextRequest) => {
 };
 
 export const config = {
-  // Matcher ignoring `serverActions + static + _next/image + favicon.ico + serviceWorker + manifest + icon + workbox (for sw)
-  matcher: [
-    '/((?!serverAction|_next|favicon.ico|sw|manifest|asset-manifest|icon).*)',
-  ],
+  matcher: ['/de/:path*', '/en/:path*'],
 };
