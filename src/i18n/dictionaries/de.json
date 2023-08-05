@@ -42,7 +42,9 @@
       "validationError": {
         "invalidEmail": "Die E-Mail ist ungültig.",
         "invalidPassword": "Das Password ist ungültig.",
-        "noPasswordMatching": "Die Passwörter stimmen nicht überein."
+        "nonMatchingPassword": "Die Passwörter stimmen nicht überein.",
+        "existingEmail": "E-Mail ist bereits vergeben.",
+        "serverError": "Ein Fehler ist aufgetreten."
       }
     }
   },

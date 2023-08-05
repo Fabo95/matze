@@ -41,7 +41,9 @@
       "validationError": {
         "invalidEmail": "E-Mail is invalid.",
         "invalidPassword": "Password is invalid.",
-        "noPasswordMatching": "Passwords do not match."
+        "nonMatchingPassword": "Passwords do not match.",
+        "existingEmail": "E-Mail is already used.",
+        "serverError": "An error has occurred."
       }
     }
   },

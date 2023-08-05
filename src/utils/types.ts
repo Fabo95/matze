@@ -15,6 +15,14 @@ export enum Page {
   REGISTER = 'register',
 }
 
+export enum ValidationError {
+  INVALID_EMAIL = 'invalidEmail',
+  INVALID_PASSWORD = 'invalidPassword',
+  NON_MATCHING_PASSWORD = 'nonMatchingPassword',
+  EXISTING_EMAIL = 'existingEmail',
+  SERVER_ERROR = 'serverError',
+}
+
 export type TFunction = (translationKeys: string) => string;
 
 export type ValueOf<T> = T[keyof T];

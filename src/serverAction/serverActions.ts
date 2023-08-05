@@ -6,7 +6,7 @@ import { cookies } from 'next/headers';
 import { IntervalIntensityType } from 'api/utils/apiTypes';
 import { apiPatchInterval, apiPostLogin, apiPostRegister } from 'api/api';
 import { redirect } from 'next/navigation';
-import { Page } from 'utils/types';
+import { Page, ValidationError } from 'utils/types';
 import { registerErrorState } from 'serverAction/utils/serverActionConstants';
 import { validateEmail, validatePassword } from 'utils/validations';
 
@@ -72,20 +72,20 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
   const confirmPasswordValidationError = validatePassword(password);
 
   if (emailValidationError) {
-    registerErrorState.setEmailError('invalidEmail');
+    registerErrorState.setEmailError(ValidationError.INVALID_EMAIL);
     revalidatePath('/');
 
     return;
   }
 
   if (password !== confirmPassword) {
-    registerErrorState.setPasswordError('noPasswordMatching');
+    registerErrorState.setPasswordError(ValidationError.NON_MATCHING_PASSWORD);
     revalidatePath('/');
     return;
   }
 
   if (passwordValidationError || confirmPasswordValidationError) {
-    registerErrorState.setPasswordError('invalidPassword');
+    registerErrorState.setPasswordError(ValidationError.INVALID_PASSWORD);
     revalidatePath('/');
 
     return;
@@ -96,14 +96,19 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
 
     const registerResponse = await data.json();
 
-    console.log('registerResponse', registerResponse);
-
     if ('error' in registerResponse) {
-      const registerErrorMethod = registerResponse.error.includes('email')
-        ? registerErrorState.setEmailError
-        : registerErrorState.setPasswordError;
+      const isEmailValidationError = registerResponse.error.includes('email');
 
-      registerErrorMethod(registerResponse.error);
+      if (isEmailValidationError) {
+        registerErrorState.setEmailError(registerResponse.error);
+      }
+
+      if (!isEmailValidationError) {
+        registerErrorState.setPasswordError(registerResponse.error);
+      }
+
+      revalidatePath('/');
+
       return;
     }
 
@@ -117,5 +122,9 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
     console.log(e);
   }
 
-  redirect(`/de/${Page.HOME}`);
+  const authCookie = cookies().get('authToken');
+
+  if (authCookie) {
+    redirect(`/de/${Page.HOME}`);
+  }
 };
