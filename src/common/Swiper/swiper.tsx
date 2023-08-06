@@ -26,8 +26,8 @@ export const Swiper = ({ children, autoSwipe }: SwiperProps) => {
 
   const swiperRef = useRef<HTMLDivElement>(null);
   const itemIndexRef = useRef<number>(0);
-  const isDraggingRef = useRef(false);
 
+  const [isDragging, setIsDragging] = useState(false);
   const [currentXTranslation, setCurrentXTranslation] = useState(0);
   const [distanceX, setDistanceX] = useState(0);
   const [startXPosition, setStartXPosition] = useState(0);
@@ -47,7 +47,7 @@ export const Swiper = ({ children, autoSwipe }: SwiperProps) => {
   // --- CALLBACKS ---
 
   const resetStates = () => {
-    isDraggingRef.current = false;
+    setIsDragging(false);
 
     setDistanceX(0);
     setStartXPosition(0);
@@ -58,7 +58,7 @@ export const Swiper = ({ children, autoSwipe }: SwiperProps) => {
   ) => {
     const clientX = getClientX(event);
 
-    isDraggingRef.current = true;
+    setIsDragging(true);
     setStartXPosition(clientX - swiperOffsetLeft);
   };
 
@@ -73,7 +73,7 @@ export const Swiper = ({ children, autoSwipe }: SwiperProps) => {
       // We assume that the swipe movement must be at least 5 px to trigger the swipe execution.
       Math.abs(currentDistanceX) < 5 ||
       !isSwiperRefAvailable ||
-      !isDraggingRef.current
+      !isDragging
     ) {
       return;
     }
@@ -149,6 +149,7 @@ export const Swiper = ({ children, autoSwipe }: SwiperProps) => {
         role="presentation"
         style={{
           transform: `translateX(${currentXTranslation}px)`,
+          transition: isDragging ? '0ms' : '150ms',
           width: `${swiperItemsWidth}%`,
         }}
         onMouseDown={handleSwipeStart}
