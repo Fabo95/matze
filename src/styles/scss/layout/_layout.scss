@@ -3,14 +3,18 @@
 @import '../abstracts/_functions';
 @import '../abstracts/_variables';
 
+html,
+body {
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   height: 100vh;
   color: $whiteDark;
   letter-spacing: 0.025em;
   overflow-x: hidden;
   // https://stackoverflow.com/questions/33343854/input-range-slider-not-working-on-ios-safari-when-clicking-on-track
-  -webkit-tap-highlight-color: transparent;
-  overscroll-behavior: none;
   @include mixins.primaryLinearGradient();
 }
 
