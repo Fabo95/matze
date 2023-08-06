@@ -1,4 +1,7 @@
+import { Observable } from 'rxjs';
+
 export type IntervalTimerExecutionMachineContext = {
+  wakeLockSentinel?: WakeLockSentinel;
   exerciseCount: { total: number; remaining: number };
   remainingCurrentTime: number;
   remainingTotalTime: number;
@@ -16,6 +19,15 @@ export type IntervalTimerExecutionMachineEvents =
   | { type: 'PAUSE_EXECUTION' }
   | { type: 'STOP_EXECUTION' };
 
+export type IntervalTimerExecutionMachineServices = {
+  requestWakeLockSentinel: {
+    data: WakeLockSentinel | undefined;
+  };
+  releaseWakeLockSentinel: {
+    data: undefined;
+  };
+};
+
 export enum State {
   IDLE = 'idle',
   COMPLETE = 'complete',
@@ -25,4 +37,5 @@ export enum State {
   WORK_TIME_DONE = 'workTimeDone',
   REST_TIME_DONE = 'restTimeDone',
   ROUND_RESET_TIME_DONE = 'roundResetTimeDone',
+  INIT_WAKE_LOCK = 'initWakeLock',
 }

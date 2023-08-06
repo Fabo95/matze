@@ -6,7 +6,7 @@ import { Interval } from 'api/utils/apiTypes';
 import {
   IntervalTimerExecutionMachineContext,
   IntervalTimerExecutionMachineEvents,
-  State,
+  IntervalTimerExecutionMachineServices,
 } from 'ui/intervalTimer/IntervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
 import {
   getInitialCountContext,
@@ -38,6 +38,7 @@ export const createIntervalTimerExecutionMachine = <T>({
       schema: {
         context: {} as IntervalTimerExecutionMachineContext,
         events: {} as IntervalTimerExecutionMachineEvents,
+        services: {} as IntervalTimerExecutionMachineServices,
       },
       context: {
         workTime,
@@ -49,27 +50,36 @@ export const createIntervalTimerExecutionMachine = <T>({
         exerciseCount: getInitialCountContext(exerciseCount),
         roundCount: getInitialCountContext(roundCount),
       },
-
-      initial: State.IDLE,
-
+      initial: 'idle',
       states: {
-        [State.IDLE]: {
+        idle: {
           on: {
             // This EVENT takes precedence to the global one if we are in idle state.
             START_EXECUTION: {
-              target: State.WORK_TIME,
+              target: 'initWakeLockSentinel',
               actions: 'setIsExecuting',
             },
           },
         },
-
-        [State.WORK_TIME]: {
+        initWakeLockSentinel: {
+          invoke: {
+            src: 'requestWakeLockSentinel',
+            onDone: {
+              actions: 'assignWakeLockSentinel',
+              target: 'workTime',
+            },
+            onError: {
+              target: 'workTime',
+            },
+          },
+        },
+        workTime: {
           entry: 'setWorkTime',
           invoke: {
             src: 'workTimeExecution',
             onDone: {
               actions: 'decreaseExerciseCount',
-              target: State.WORK_TIME_DONE,
+              target: 'workTimeDone',
             },
           },
           on: {
@@ -79,25 +89,25 @@ export const createIntervalTimerExecutionMachine = <T>({
             DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
         },
-        [State.WORK_TIME_DONE]: {
+        workTimeDone: {
           always: [
             {
               cond: 'isRemainingExerciseCountZero',
               actions: ['resetExerciseCount', 'decreaseRoundCount'],
-              target: State.ROUND_RESET_TIME,
+              target: 'roundResetTime',
             },
             {
-              target: State.REST_TIME,
+              target: 'restTime',
             },
           ],
         },
 
-        [State.REST_TIME]: {
+        restTime: {
           entry: 'setRestTime',
           invoke: {
             src: 'restTimeExecution',
             onDone: {
-              target: State.REST_TIME_DONE,
+              target: 'restTimeDone',
             },
           },
           on: {
@@ -107,19 +117,19 @@ export const createIntervalTimerExecutionMachine = <T>({
             DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
         },
-        [State.REST_TIME_DONE]: {
+        restTimeDone: {
           always: {
-            target: State.WORK_TIME,
+            target: 'workTime',
           },
         },
 
-        [State.ROUND_RESET_TIME]: {
+        roundResetTime: {
           entry: 'setRoundResetTime',
-          always: { cond: 'isRemainingRoundCountZero', target: State.COMPLETE },
+          always: { cond: 'isRemainingRoundCountZero', target: 'complete' },
           invoke: {
             src: 'roundResetTimeExecution',
             onDone: {
-              target: State.ROUND_RESET_TIME_DONE,
+              target: 'roundResetTimeDone',
             },
           },
           on: {
@@ -129,17 +139,23 @@ export const createIntervalTimerExecutionMachine = <T>({
             DECREASE_TOTAL_TIME: { actions: 'decreaseTotalTime' },
           },
         },
-        [State.ROUND_RESET_TIME_DONE]: {
+        roundResetTimeDone: {
           always: {
-            target: State.WORK_TIME,
+            target: 'workTime',
           },
         },
 
-        [State.COMPLETE]: {
-          entry: 'setIsNotExecuting',
+        complete: {
+          entry: ['setIsNotExecuting'],
+          invoke: {
+            src: 'releaseWakeLockSentinel',
+            onDone: {
+              actions: 'assignWakeLockSentinel',
+            },
+          },
           on: {
             START_EXECUTION: {
-              target: [State.WORK_TIME],
+              target: 'workTime',
               actions: ['resetState', 'setIsExecuting'],
             },
           },
@@ -154,12 +170,15 @@ export const createIntervalTimerExecutionMachine = <T>({
         },
         STOP_EXECUTION: {
           actions: ['resetState', 'setIsNotExecuting'],
-          target: State.IDLE,
+          target: 'idle',
         },
       },
     },
     {
       actions: {
+        assignWakeLockSentinel: assign({
+          wakeLockSentinel: (context, event) => event.data,
+        }),
         // --- DECREASE ACTIONS ---
         decreaseCurrentTime: assign({
           remainingCurrentTime: (context) => context.remainingCurrentTime - 1,
@@ -202,9 +221,6 @@ export const createIntervalTimerExecutionMachine = <T>({
         resetExerciseCount: assign({
           exerciseCount: () => getInitialCountContext(exerciseCount),
         }),
-        resetTotalTime: assign({
-          remainingTotalTime: () => totalTime,
-        }),
 
         resetState: assign({
           workTime,
@@ -226,6 +242,21 @@ export const createIntervalTimerExecutionMachine = <T>({
           context.roundCount.remaining === 0,
       },
       services: {
+        requestWakeLockSentinel: async () => {
+          const wakeLockSentinel = await navigator.wakeLock?.request('screen');
+
+          return wakeLockSentinel;
+        },
+
+        releaseWakeLockSentinel: async (context) => {
+          const { wakeLockSentinel } = context;
+          if (wakeLockSentinel) {
+            await wakeLockSentinel.release();
+          }
+
+          return undefined;
+        },
+
         workTimeExecution: (context) =>
           getIntervalTimerExecution({
             isExecuting$,
