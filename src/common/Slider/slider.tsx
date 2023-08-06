@@ -31,6 +31,7 @@ export const Slider = ({
       onChange={onChange}
       onMouseMove={stopPropagation}
       onTouchMove={stopPropagation}
+      onTouchStart={onChange}
     />
   );
 };
