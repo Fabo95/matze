@@ -154,6 +154,7 @@ export const IntervalTimerDetailConfigurationOption = ({
           inlineEnd={title}
           inlineStart={clonedIcon}
         />
+        <input type="range" min="0" max="3.14" step="any" />
 
         <SliderContainer>
           <>
@@ -165,6 +166,7 @@ export const IntervalTimerDetailConfigurationOption = ({
               value={intensity * 10}
               onChange={handleIndexChange}
             />
+
             <SliderThumb intensity={intensity} sliderRange={sliderRange} />
             <SliderTrack
               configurationType={configurationType}
