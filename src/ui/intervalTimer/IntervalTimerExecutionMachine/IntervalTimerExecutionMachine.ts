@@ -69,11 +69,7 @@ export const createIntervalTimerExecutionMachine = <T>({
               actions: 'assignWakeLockSentinel',
               target: 'workTime',
             },
-
             onError: {
-              actions: () => {
-                window.alert('error in machine');
-              },
               target: 'workTime',
             },
           },
