@@ -6,8 +6,11 @@ import { cookies } from 'next/headers';
 import { IntervalIntensityType } from 'api/utils/apiTypes';
 import { apiPatchInterval, apiPostLogin, apiPostRegister } from 'api/api';
 import { redirect } from 'next/navigation';
-import { Page, ValidationError } from 'utils/types';
-import { registerErrorState } from 'serverAction/utils/serverActionConstants';
+import { Page } from 'utils/types';
+import {
+  loginErrorState,
+  registerErrorState,
+} from 'serverAction/utils/serverActionConstants';
 import { validateEmail, validatePassword } from 'utils/validations';
 
 export const apiPatchIntervalServerAction = async ({
@@ -33,10 +36,20 @@ export const apiPostLoginServerAction = async (formData: FormData) => {
   const email = formData.get('email');
   const password = formData.get('password');
 
-  let emailValidationError;
-  let passwordValidationError;
+  const emailValidationError = validateEmail(email);
+  const passwordValidationError = validatePassword(password);
 
-  if (emailValidationError || passwordValidationError) {
+  if (emailValidationError) {
+    loginErrorState.setEmailError(emailValidationError);
+    revalidatePath('/');
+
+    return;
+  }
+
+  if (passwordValidationError) {
+    loginErrorState.setPasswordError(passwordValidationError);
+    revalidatePath('/');
+
     return;
   }
 
@@ -46,6 +59,18 @@ export const apiPostLoginServerAction = async (formData: FormData) => {
     const loginResponse = await data.json();
 
     if ('error' in loginResponse) {
+      const isEmailValidationError = loginResponse.type === 'email';
+
+      if (isEmailValidationError) {
+        loginErrorState.setEmailError(loginResponse.error);
+      }
+
+      if (!isEmailValidationError) {
+        loginErrorState.setPasswordError(loginResponse.error);
+      }
+
+      revalidatePath('/');
+
       return;
     }
 
@@ -59,7 +84,11 @@ export const apiPostLoginServerAction = async (formData: FormData) => {
     console.log(e);
   }
 
-  redirect(`/de/${Page.HOME}`);
+  const authCookie = cookies().get('authToken');
+
+  if (authCookie) {
+    redirect(`/de/${Page.HOME}`);
+  }
 };
 
 export const apiPostRegisterServerAction = async (formData: FormData) => {
@@ -68,24 +97,17 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
   const confirmPassword = formData.get('confirmPassword');
 
   const emailValidationError = validateEmail(email);
-  const passwordValidationError = validatePassword(password);
-  const confirmPasswordValidationError = validatePassword(password);
+  const passwordValidationError = validatePassword(password, confirmPassword);
 
   if (emailValidationError) {
-    registerErrorState.setEmailError(ValidationError.INVALID_EMAIL);
+    registerErrorState.setEmailError(emailValidationError);
     revalidatePath('/');
 
     return;
   }
 
-  if (password !== confirmPassword) {
-    registerErrorState.setPasswordError(ValidationError.NON_MATCHING_PASSWORD);
-    revalidatePath('/');
-    return;
-  }
-
-  if (passwordValidationError || confirmPasswordValidationError) {
-    registerErrorState.setPasswordError(ValidationError.INVALID_PASSWORD);
+  if (passwordValidationError) {
+    registerErrorState.setPasswordError(passwordValidationError);
     revalidatePath('/');
 
     return;
@@ -97,7 +119,7 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
     const registerResponse = await data.json();
 
     if ('error' in registerResponse) {
-      const isEmailValidationError = registerResponse.error.includes('email');
+      const isEmailValidationError = registerResponse.type === 'email';
 
       if (isEmailValidationError) {
         registerErrorState.setEmailError(registerResponse.error);

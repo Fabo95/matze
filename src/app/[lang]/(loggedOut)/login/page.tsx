@@ -7,6 +7,8 @@ import { getTFunction } from 'i18n/get-t-function';
 import { Heading } from 'common/heading';
 import { Label } from 'common/label';
 import { apiPostLoginServerAction } from 'serverAction/serverActions';
+import { Text } from 'common/text';
+import { loginErrorState } from 'serverAction/utils/serverActionConstants';
 
 export default async function Login({
   params: { lang },
@@ -22,6 +24,15 @@ export default async function Login({
   const emailLabel = t('pages.login.emailLabel');
   const passwordLabel = t('pages.login.passwordLabel');
 
+  const emailError = loginErrorState.getEmailError();
+  const passwordError = loginErrorState.getPasswordError();
+
+  const emailValidationError =
+    emailError && t(`pages.login.validationError.${emailError}`);
+
+  const passwordValidationError =
+    passwordError && t(`pages.login.validationError.${passwordError}`);
+
   // --- RENDER ---
 
   return (
@@ -30,25 +41,36 @@ export default async function Login({
         <Heading className="login-page-headline">{headline}</Heading>
 
         <Form action={apiPostLoginServerAction} className="login-form">
-          <Label className="login-form-label" htmlFor="email">
-            {emailLabel}
-          </Label>
-          <Input
-            className="login-form-input"
-            id="email"
-            name="email"
-            type="text"
-          />
-          <Label className="login-form-label" htmlFor="password">
-            {passwordLabel}
-          </Label>
-          <Input
-            // TODO Build show password toggle
-            className="login-form-input"
-            id="password"
-            name="password"
-            type="password"
-          />
+          <Box className="login-form-email-box">
+            <Label className="login-form-label" htmlFor="email">
+              {emailLabel}
+            </Label>
+            <Input
+              className="login-form-input"
+              id="email"
+              name="email"
+              type="text"
+            />
+            <Text className="login-form-validation-error">
+              {emailValidationError}
+            </Text>
+          </Box>
+
+          <Box className="login-form-password-box">
+            <Label className="login-form-label" htmlFor="password">
+              {passwordLabel}
+            </Label>
+            <Input
+              // TODO Build show password toggle
+              className="login-form-input"
+              id="password"
+              name="password"
+              type="password"
+            />
+            <Text className="login-form-validation-error">
+              {passwordValidationError}
+            </Text>
+          </Box>
           <Button
             buttonTitle={buttonTitle}
             className="login-form-cta"

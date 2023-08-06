@@ -26,6 +26,16 @@
         margin-bottom: spacingPixel(1);
       }
 
+      .login-form-email-box {
+        position: relative;
+        margin-bottom: spacingPixel(4);
+      }
+
+      .login-form-password-box {
+        position: relative;
+        margin-bottom: spacingPixel(5);
+      }
+
       .login-form-input {
         display: block;
         border-radius: spacingPixel(1);
@@ -33,15 +43,21 @@
         color: $blackDark;
         border: 1px solid $grayDark;
         width: 350px;
-        margin-bottom: spacingPixel(2);
 
         &:focus {
           outline: none;
         }
+      }
 
-        &:last-of-type {
-          margin-bottom: spacingPixel(5);
-        }
+      .login-form-password-input {
+        margin-bottom: spacingPixel(2);
+      }
+
+      .login-form-validation-error {
+        color: $blackDark;
+        font-size: spacingPixel(1.75);
+        position: absolute;
+        bottom: spacingPixel(-3);
       }
 
       .login-form-cta {

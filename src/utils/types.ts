@@ -16,8 +16,12 @@ export enum Page {
 }
 
 export enum ValidationError {
+  REQUIRED_EMAIL = 'requiredEmail',
+  REQUIRED_PASSWORD = 'requiredPassword',
+  REQUIRED_CONFIRM_PASSWORD = 'requiredConfirmPassword',
   INVALID_EMAIL = 'invalidEmail',
   INVALID_PASSWORD = 'invalidPassword',
+  MIN_LENGTH_PASSWORD = 'minLengthPassword',
   NON_MATCHING_PASSWORD = 'nonMatchingPassword',
   EXISTING_EMAIL = 'existingEmail',
   SERVER_ERROR = 'serverError',
