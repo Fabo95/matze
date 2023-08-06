@@ -36,8 +36,6 @@ export const Swiper = ({ children, autoSwipe }: SwiperProps) => {
 
   const isSwiperRefAvailable = swiperRef.current;
 
-  // Number of pixels that the upper left corner of the current element is offset to the left within the HTMLElement.offsetParent node.
-  const swiperOffsetLeft = swiperRef.current ? swiperRef.current.offsetLeft : 0;
   const swiperWidth = swiperRef.current ? swiperRef.current.clientWidth : 0;
 
   const childrenLength = Children.toArray(children).length;
@@ -59,7 +57,7 @@ export const Swiper = ({ children, autoSwipe }: SwiperProps) => {
     const clientX = getClientX(event);
 
     setIsDragging(true);
-    setStartXPosition(clientX - swiperOffsetLeft);
+    setStartXPosition(clientX);
   };
 
   const handleSwipe = (
