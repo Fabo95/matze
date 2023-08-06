@@ -50,6 +50,7 @@
     transform: translateY(50%);
     position: absolute;
     align-items: center;
+    z-index: $zIndexXs;
     background: $whiteDark;
     border-radius: $borderRadiusFull;
     justify-content: center;
