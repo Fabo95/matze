@@ -11,6 +11,7 @@ import {
 import {
   getInitialCountContext,
   getIntervalTimerExecution,
+  requestWakeLockSentinel,
 } from 'ui/intervalTimer/IntervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
 
 // xstate typegen "src/**/*.ts?(x)" --watch
@@ -68,7 +69,11 @@ export const createIntervalTimerExecutionMachine = <T>({
               actions: 'assignWakeLockSentinel',
               target: 'workTime',
             },
+
             onError: {
+              actions: () => {
+                window.alert('error in machine');
+              },
               target: 'workTime',
             },
           },
@@ -242,11 +247,7 @@ export const createIntervalTimerExecutionMachine = <T>({
           context.roundCount.remaining === 0,
       },
       services: {
-        requestWakeLockSentinel: async () => {
-          const wakeLockSentinel = await navigator.wakeLock?.request('screen');
-
-          return wakeLockSentinel;
-        },
+        requestWakeLockSentinel: () => requestWakeLockSentinel(),
 
         releaseWakeLockSentinel: async (context) => {
           const { wakeLockSentinel } = context;

@@ -41,3 +41,13 @@ export const getInitialCountContext = (count: number) => ({
   remaining: count,
   total: count,
 });
+
+export const requestWakeLockSentinel = async () => {
+  if ('wakeLock' in navigator) {
+    const wakeLockSentinel = await navigator.wakeLock.request('screen');
+
+    return wakeLockSentinel;
+  }
+
+  return undefined;
+};
