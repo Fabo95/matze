@@ -1,9 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { Box } from 'common/box';
 import { Span } from 'common/span';
 import { PulseAnimation } from 'common/Pulse/Utils/pulseHelpers';
-import { PulseAnimationProps } from 'common/Pulse/Utils/pulseTypes';
+import {
+  AnimationPlayState,
+  PulseAnimationProps,
+} from 'common/Pulse/Utils/pulseTypes';
 
 type PulseProps = { isAnimating: boolean };
 
@@ -15,34 +18,27 @@ export const Pulse = ({ isAnimating }: PulseProps) => {
   const waveOneRef = useRef<HTMLSpanElement>(null);
   const waveTwoRef = useRef<HTMLSpanElement>(null);
   const waveThreeRef = useRef<HTMLSpanElement>(null);
-  const waveFourRef = useRef<HTMLSpanElement>(null);
 
-  // --- HELPERS ---
+  // --- CALLBACKS ---
 
-  const isAnimationsPlayState = (
-    playState: 'running' | 'reversing' | 'finished' | 'idle'
-  ) => {
-    if (playState === 'reversing') {
+  const isAnimationsPlayState = useCallback((playState: AnimationPlayState) => {
+    // We need to check this AnimationPlayState explicit because it is the only state where some animations could be in reversing state and some could be in finished state.
+    if (playState === AnimationPlayState.REVERSING) {
       return pulseAnimation.animationControllers.some(
         (controller) => controller.state === playState
       );
     }
+
     return pulseAnimation.animationControllers.every(
       (controller) => controller.state === playState
     );
-  };
+  }, []);
 
   // --- EFFECT ---
 
   useEffect(() => {
-    if (
-      waveOneRef.current &&
-      waveTwoRef.current &&
-      waveThreeRef.current &&
-      waveFourRef.current
-    ) {
+    if (waveOneRef.current && waveTwoRef.current && waveThreeRef.current) {
       pulseAnimation = new PulseAnimation({
-        waveFourRef,
         waveOneRef,
         waveThreeRef,
         waveTwoRef,
@@ -51,22 +47,28 @@ export const Pulse = ({ isAnimating }: PulseProps) => {
   }, []);
 
   useEffect(() => {
-    if (isAnimating && isAnimationsPlayState('idle')) {
+    if (isAnimating && isAnimationsPlayState(AnimationPlayState.IDLE)) {
       pulseAnimation?.executeStartPulsing();
     }
-  }, [isAnimating]);
+  }, [isAnimating, isAnimationsPlayState]);
 
   useEffect(() => {
-    if (isAnimating && isAnimationsPlayState('finished')) {
+    if (isAnimating && isAnimationsPlayState(AnimationPlayState.FINISHED)) {
       pulseAnimation.executeRestartPulsing();
     }
-  }, [isAnimating]);
+  }, [isAnimating, isAnimationsPlayState]);
 
   useEffect(() => {
-    if (!isAnimating && isAnimationsPlayState('running')) {
+    if (isAnimating && isAnimationsPlayState(AnimationPlayState.REVERSING)) {
+      pulseAnimation?.executeReverseStartPulsing();
+    }
+  }, [isAnimating, isAnimationsPlayState]);
+
+  useEffect(() => {
+    if (!isAnimating && isAnimationsPlayState(AnimationPlayState.RUNNING)) {
       pulseAnimation?.executeStopPulsing();
     }
-  }, [isAnimating]);
+  }, [isAnimating, isAnimationsPlayState]);
 
   // --- RENDER ---
 
@@ -75,7 +77,6 @@ export const Pulse = ({ isAnimating }: PulseProps) => {
       <Span className="pulse-wave-one" ref={waveOneRef} />
       <Span className="pulse-wave-two" ref={waveTwoRef} />
       <Span className="pulse-wave-three" ref={waveThreeRef} />
-      <Span className="pulse-wave-four" ref={waveFourRef} />
     </Box>
   );
 };

@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 import { getFormattedSeconds } from 'utils/helpers';
 import { Box } from 'common/box';
 import { UnstyledButton } from 'common/unstyledButton';
@@ -48,15 +50,15 @@ export const IntervalTimerExecution = ({
 
   // --- CALLBACKS ---
 
-  const startIntervalTimerExecution = () => {
+  const startIntervalTimerExecution = useCallback(() => {
     send({ type: 'START_EXECUTION' });
     nextIsExecution(true);
-  };
+  }, [nextIsExecution, send]);
 
-  const pauseIntervalTimerExecution = () => {
+  const pauseIntervalTimerExecution = useCallback(() => {
     send({ type: 'PAUSE_EXECUTION' });
     nextIsExecution(false);
-  };
+  }, [nextIsExecution, send]);
 
   const handleIntervalTimerExecution = isExecuting
     ? pauseIntervalTimerExecution

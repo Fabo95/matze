@@ -15,6 +15,13 @@ export type PulseAnimationProps = {
     play: () => void;
     reverse: () => void;
     finish: () => void;
-    state: string;
+    state: AnimationPlayState;
   }[];
 };
+
+export enum AnimationPlayState {
+  RUNNING = 'running',
+  REVERSING = 'reversing',
+  FINISHED = 'finished',
+  IDLE = 'idle',
+}

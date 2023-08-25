@@ -2,18 +2,17 @@
 import { RefObject } from 'react';
 
 import {
+  PULSE_ANIMATION_DISTANCE_IN_MS,
   PULSE_ANIMATION_DURATION,
-  PULSE_ANIMATION_FOUR_DELAY,
-  PULSE_ANIMATION_THREE_DELAY,
-  PULSE_ANIMATION_TWO_DELAY,
 } from 'common/Pulse/Utils/pulseConstants';
+import { AnimationPlayState } from 'common/Pulse/Utils/pulseTypes';
 
 class AnimationController {
   animation: Animation | undefined;
 
   timeoutId: ReturnType<typeof setTimeout> | number = 0;
 
-  state = 'idle';
+  state: AnimationPlayState = AnimationPlayState.IDLE;
 
   waveRef: RefObject<HTMLSpanElement>;
 
@@ -26,7 +25,7 @@ class AnimationController {
     timing: number | KeyframeAnimationOptions
   ) {
     this.animation = this.waveRef.current?.animate(keyframes, timing);
-    this.animation?.cancel();
+    this.cancel();
   }
 
   play() {
@@ -37,6 +36,10 @@ class AnimationController {
     this.animation?.reverse();
   }
 
+  cancel() {
+    this.animation?.cancel();
+  }
+
   finish() {
     this.animation?.finish();
   }
@@ -45,7 +48,7 @@ class AnimationController {
     this.timeoutId = id;
   }
 
-  set currenState(state: string) {
+  set currenState(state: AnimationPlayState) {
     this.state = state;
   }
 }
@@ -57,18 +60,15 @@ export class PulseAnimation {
     waveOneRef,
     waveTwoRef,
     waveThreeRef,
-    waveFourRef,
   }: {
     waveOneRef: RefObject<HTMLSpanElement>;
     waveTwoRef: RefObject<HTMLSpanElement>;
     waveThreeRef: RefObject<HTMLSpanElement>;
-    waveFourRef: RefObject<HTMLSpanElement>;
   }) {
     this.animationControllers = [
       new AnimationController(waveOneRef),
       new AnimationController(waveTwoRef),
       new AnimationController(waveThreeRef),
-      new AnimationController(waveFourRef),
     ];
 
     this.initializeAnimations();
@@ -76,11 +76,11 @@ export class PulseAnimation {
 
   initializeAnimations() {
     this.animationControllers.forEach((controller, index) => {
-      const keyframes = [{ opacity: 0, transform: 'scale(2)' }];
+      const keyframes = [{ opacity: 0, transform: 'scale(1.5)' }];
       const timing = {
-        delay: index * 1000,
+        delay: index * PULSE_ANIMATION_DISTANCE_IN_MS,
         duration: PULSE_ANIMATION_DURATION,
-        easing: 'ease-out',
+        easing: 'linear',
         iterations: Infinity,
       };
 
@@ -92,24 +92,47 @@ export class PulseAnimation {
     this.animationControllers.forEach((controller) => {
       controller.play();
 
-      controller.currenState = 'running';
+      controller.currenState = AnimationPlayState.RUNNING;
     });
   }
 
   executeReverseStartPulsing() {
+    let smallestIterationProgress: number | null | undefined;
+    let animationDistanceInMs = 0;
+
     this.animationControllers.forEach((controller) => {
-      clearTimeout(controller.currenTimeoutId);
+      const iterationProgress =
+        controller.animation?.effect?.getComputedTiming().progress;
 
-      if (controller.state === 'finished') {
-        controller.reverse();
-        controller.play();
-        controller.currenState = 'running';
+      if (
+        iterationProgress &&
+        (!smallestIterationProgress ||
+          iterationProgress < smallestIterationProgress)
+      ) {
+        smallestIterationProgress = iterationProgress;
+      }
+    });
 
-        return;
+    const smallestIterationAnimationTime =
+      (smallestIterationProgress || 0) * PULSE_ANIMATION_DURATION;
+
+    this.animationControllers.forEach((controller) => {
+      clearTimeout(controller.timeoutId);
+
+      if (controller.state === AnimationPlayState.FINISHED) {
+        animationDistanceInMs += PULSE_ANIMATION_DISTANCE_IN_MS;
+
+        controller.animation?.effect?.updateTiming({
+          delay: Math.abs(
+            smallestIterationAnimationTime - animationDistanceInMs
+          ),
+        });
       }
 
       controller.reverse();
-      controller.currenState = 'running';
+      controller.play();
+
+      controller.currenState = AnimationPlayState.RUNNING;
     });
   }
 
@@ -117,33 +140,25 @@ export class PulseAnimation {
     this.animationControllers.forEach((controller) => {
       controller.reverse();
       controller.play();
-      controller.currenState = 'running';
+      controller.currenState = AnimationPlayState.RUNNING;
     });
   }
 
   executeStopPulsing() {
-    this.animationControllers.forEach((controller, index: number) => {
-      // Must be typed because otherwise we can not select values with the index.
-      const pulseAnimationDelay: { [index: number]: number } = {
-        0: 0,
-        1: PULSE_ANIMATION_TWO_DELAY,
-        2: PULSE_ANIMATION_THREE_DELAY,
-        3: PULSE_ANIMATION_FOUR_DELAY,
-      };
+    this.animationControllers.forEach((controller) => {
+      const iterationProgress =
+        controller.animation?.effect?.getComputedTiming().progress;
 
-      const currentTime = controller.animation?.currentTime;
-
-      const timeoutTime =
-        (Number(currentTime) - pulseAnimationDelay[index]) %
-        PULSE_ANIMATION_DURATION;
+      const iterationAnimationTime =
+        (iterationProgress || 0) * PULSE_ANIMATION_DURATION;
 
       controller.reverse();
-      controller.currenState = 'reversing';
+      controller.currenState = AnimationPlayState.REVERSING;
 
       controller.currenTimeoutId = setTimeout(() => {
         controller.finish();
-        controller.currenState = 'finished';
-      }, timeoutTime);
+        controller.currenState = AnimationPlayState.FINISHED;
+      }, iterationAnimationTime);
     });
   }
 }
