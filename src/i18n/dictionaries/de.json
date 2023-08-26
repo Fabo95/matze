@@ -11,7 +11,8 @@
         "optionFive": "Round Reset"
       },
       "intervalTimerOverview": {
-        "timeLeft": "Verbleibende Zeit:"
+        "timeLeft": "Verbleibende Zeit:",
+        "completedOfTotal": "{completed} von {total}"
       }
     },
     "settings": {

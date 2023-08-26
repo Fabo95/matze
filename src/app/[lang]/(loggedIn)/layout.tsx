@@ -2,7 +2,7 @@ import React from 'react';
 
 import 'styles/global.css';
 import { Menu } from 'ui/menu/menu';
-import { getTFunction } from 'i18n/get-t-function';
+import { getTFunction } from 'i18n/tFunction';
 import { Locale, Page } from 'utils/types';
 import { Box } from 'common/box';
 

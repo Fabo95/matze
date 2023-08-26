@@ -4,12 +4,10 @@ import { IntervalTimerConfigurationOptionProps } from 'ui/intervalTimer/utils/in
 
 type IntervalTimerDetailConfigurationOptionsProps = {
   configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
-  primaryButtonTitle: string;
 };
 
 export const IntervalTimerDetailConfigurationOptions = ({
   configurationOptionsProps,
-  primaryButtonTitle,
 }: IntervalTimerDetailConfigurationOptionsProps) => (
   <Box className="interval-timer-detail-configuration-options">
     {configurationOptionsProps.map(
@@ -29,7 +27,6 @@ export const IntervalTimerDetailConfigurationOptions = ({
           intensity={intensity}
           intensityType={intensityType}
           key={title}
-          primaryButtonTitle={primaryButtonTitle}
           sliderRange={sliderRange}
           title={title}
         />

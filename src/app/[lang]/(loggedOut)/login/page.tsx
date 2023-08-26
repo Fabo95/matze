@@ -3,7 +3,7 @@ import { Form } from 'common/form';
 import { Input } from 'common/input';
 import { Button } from 'common/button';
 import { Locale } from 'utils/types';
-import { getTFunction } from 'i18n/get-t-function';
+import { getTFunction } from 'i18n/tFunction';
 import { Heading } from 'common/heading';
 import { Label } from 'common/label';
 import { apiPostLoginServerAction } from 'serverAction/serverActions';

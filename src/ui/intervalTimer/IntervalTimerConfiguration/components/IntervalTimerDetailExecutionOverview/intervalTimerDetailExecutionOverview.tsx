@@ -12,16 +12,21 @@ import { IntervalTimerExecutionOverviewButtonProps } from 'ui/intervalTimer/util
 import { Row } from 'common/row';
 import { Text } from 'common/text';
 import { ClockIcon } from 'icons/clockIcon';
+import { useParams } from 'next/navigation';
+import { getTFunction } from 'i18n/tFunction';
+import { Locale } from 'utils/types';
 
 type IntervalTimerDetailExecutionOverviewProps = {
   executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
-  timeLeft: string;
 };
 
 export const IntervalTimerDetailExecutionOverview = ({
   executionOverviewButtonProps,
-  timeLeft,
 }: IntervalTimerDetailExecutionOverviewProps) => {
+  const params = useParams();
+
+  const t = getTFunction(params.lang as Locale);
+
   // --- STATE ---
 
   const remainingTotalTime = useSelector(selectRemainingTotalTime);
@@ -48,7 +53,7 @@ export const IntervalTimerDetailExecutionOverview = ({
 
       <Row className="interval-timer-detail-execution-overview-rest">
         <ClockIcon className="stroke-gray-dark" />
-        <Text>{timeLeft}</Text>
+        <Text>{t('pages.home.intervalTimerOverview.timeLeft')}</Text>
         <Text className="interval-timer-detail-execution-overview-rest-text">
           {formattedRemainingTotalTime}
         </Text>

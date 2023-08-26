@@ -16,16 +16,12 @@ type IntervalTimerProps = {
   interval: Interval;
   configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
   executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
-  primaryButtonTitle: string;
-  timeLeft: string;
 };
 
 export const IntervalTimer = ({
   interval,
   configurationOptionsProps,
   executionOverviewButtonProps,
-  primaryButtonTitle,
-  timeLeft,
 }: IntervalTimerProps) => {
   // --- STATE ---
 
@@ -48,8 +44,6 @@ export const IntervalTimer = ({
       <IntervalTimerDetail
         configurationOptionsProps={configurationOptionsProps}
         executionOverviewButtonProps={executionOverviewButtonProps}
-        primaryButtonTitle={primaryButtonTitle}
-        timeLeft={timeLeft}
       />
     </IntervalTimerExecutionMachineProvider>
   );

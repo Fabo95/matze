@@ -16,15 +16,11 @@ import { selectIsExecuting } from 'ui/intervalTimer/IntervalTimerExecutionMachin
 export type IntervalTimerDetailProps = {
   configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
   executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
-  primaryButtonTitle: string;
-  timeLeft: string;
 };
 
 export const IntervalTimerDetail = ({
   configurationOptionsProps,
   executionOverviewButtonProps,
-  primaryButtonTitle,
-  timeLeft,
 }: IntervalTimerDetailProps) => {
   // --- STATE ---
 
@@ -46,12 +42,10 @@ export const IntervalTimerDetail = ({
       <Swiper autoSwipe={autoSwipe}>
         <IntervalTimerDetailConfigurationOptions
           configurationOptionsProps={configurationOptionsProps}
-          primaryButtonTitle={primaryButtonTitle}
         />
 
         <IntervalTimerDetailExecutionOverview
           executionOverviewButtonProps={executionOverviewButtonProps}
-          timeLeft={timeLeft}
         />
       </Swiper>
     </Box>

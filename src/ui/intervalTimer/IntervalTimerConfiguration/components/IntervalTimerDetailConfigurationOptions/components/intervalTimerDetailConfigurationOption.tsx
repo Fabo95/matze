@@ -26,23 +26,27 @@ import { ModalHeader } from 'common/modalHeader';
 import { SliderTrack } from 'common/Slider/components/sliderTrack';
 import { Button } from 'common/button';
 import { apiPatchIntervalServerAction } from 'serverAction/serverActions';
+import { getTFunction } from 'i18n/tFunction';
+import { Locale } from 'utils/types';
 
 export const IntervalTimerDetailConfigurationOption = ({
   className,
   icon,
-  primaryButtonTitle,
   sliderRange,
   title,
   configurationType,
   intensity: propsIntensity,
   intensityType,
-}: IntervalTimerConfigurationOptionProps & { primaryButtonTitle: string }) => {
+}: IntervalTimerConfigurationOptionProps) => {
+  const params = useParams();
+
+  const t = getTFunction(params.lang as Locale);
+
   // --- STATE ---
 
   const [intensity, setIntensity] = useState<number>(propsIntensity);
 
   const [, startTransition] = useTransition();
-  const params = useParams();
 
   const modalRef = useRef<HTMLDialogElement>(null);
 
@@ -175,7 +179,7 @@ export const IntervalTimerDetailConfigurationOption = ({
         </SliderContainer>
 
         <Button
-          buttonTitle={primaryButtonTitle}
+          buttonTitle={t('cta.confirm')}
           onClick={handleConfirmIntensity}
         />
       </Modal>

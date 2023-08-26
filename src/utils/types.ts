@@ -54,6 +54,8 @@ export type CustomCSSProperties = CSSProperties & { '--my-css-var': number };
 /**
  * Creates a union of tuple types with all the possible paths through the nested object structure, where each tuple represents a path of keys to a specific object value.
  *
+ * @See: https://stackoverflow.com/questions/47057649/typescript-string-dot-notation-of-nested-object
+ *
  * @Example:
  * The return type looks like the following:
  *

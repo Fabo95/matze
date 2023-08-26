@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getTFunction } from 'i18n/get-t-function';
+import { getTFunction } from 'i18n/tFunction';
 import { Locale } from 'utils/types';
 import { apiGetInterval } from 'api/api';
 import { Box } from 'common/box';
@@ -31,10 +31,6 @@ export default async function Home({
   const executionOverviewButtonProps =
     getIntervalTimerExecutionOverviewButtonProps(t);
 
-  const primaryButtonTitle = t('cta.confirm');
-
-  const timeLeft = t('pages.home.intervalTimerOverview.timeLeft');
-
   // --- RENDER ---
 
   return (
@@ -44,8 +40,6 @@ export default async function Home({
         executionOverviewButtonProps={executionOverviewButtonProps}
         interval={interval}
         key={JSON.stringify(interval)}
-        primaryButtonTitle={primaryButtonTitle}
-        timeLeft={timeLeft}
       />
     </Box>
   );

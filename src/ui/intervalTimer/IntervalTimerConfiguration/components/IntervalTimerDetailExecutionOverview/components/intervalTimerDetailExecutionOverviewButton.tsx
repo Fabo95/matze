@@ -4,6 +4,9 @@ import { Row } from 'common/row';
 import { useSelector } from 'ui/intervalTimer/IntervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
 import { DetailButton } from 'common/detailButton';
 import { ApplicationProcessMachine } from 'ui/intervalTimer/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
+import { useParams } from 'next/navigation';
+import { getTFunction } from 'i18n/tFunction';
+import { Locale } from 'utils/types';
 import { Text } from 'common/text';
 
 type IntervalTimerDetailExecutionOverviewButtonProps = {
@@ -21,6 +24,10 @@ export const IntervalTimerDetailExecutionOverviewButton = ({
   selectTotalCount,
   selectRemainingCount,
 }: IntervalTimerDetailExecutionOverviewButtonProps) => {
+  const params = useParams();
+
+  const t = getTFunction(params.lang as Locale);
+
   // --- STATE ---
 
   const totalCount = useSelector(selectTotalCount);
@@ -36,11 +43,15 @@ export const IntervalTimerDetailExecutionOverviewButton = ({
   const IntervalCompletion = useMemo(
     () => (
       <Row>
-        <Text>{completedCount} von </Text>
-        <Text>{totalCount}</Text>
+        <Text>
+          {t('pages.home.intervalTimerOverview.completedOfTotal', {
+            completed: completedCount,
+            total: totalCount,
+          })}
+        </Text>
       </Row>
     ),
-    [completedCount, totalCount]
+    [completedCount, t, totalCount]
   );
 
   // --- RENDER ---
