@@ -137,7 +137,11 @@ export class PulseAnimation {
   }
 
   executeRestartPulsing() {
-    this.animationControllers.forEach((controller) => {
+    this.animationControllers.forEach((controller, index) => {
+      controller.animation?.effect?.updateTiming({
+        delay: PULSE_ANIMATION_DISTANCE_IN_MS * index,
+      });
+
       controller.reverse();
       controller.play();
       controller.currenState = AnimationPlayState.RUNNING;
