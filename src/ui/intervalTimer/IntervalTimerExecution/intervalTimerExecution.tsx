@@ -60,6 +60,8 @@ export const IntervalTimerExecution = ({
     nextIsExecution(false);
   }, [nextIsExecution, send]);
 
+  // --- HELPERS ---
+
   const handleIntervalTimerExecution = isExecuting
     ? pauseIntervalTimerExecution
     : startIntervalTimerExecution;

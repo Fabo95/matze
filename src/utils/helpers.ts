@@ -6,7 +6,7 @@ import { Interval } from 'api/utils/apiTypes';
 import { MouseEvent, TouchEvent } from 'react';
 
 /**
- * Takes an nested object and an array of keys and returnes the corresponding nested string value.
+ * Takes a nested object and an array of keys and returns the corresponding nested string value.
  */
 export const getNestedObjectValue = (
   obj: RecursiveObjectType | string,
@@ -70,24 +70,10 @@ export const getReactiveCallback = <T>() => {
   return reactive;
 };
 
-export const getArrayWithElements = ({
+export const getArrayWithElements = <T>({
   arrayLength,
   arrayElement,
 }: {
   arrayLength: number;
-  arrayElement: unknown;
+  arrayElement: T;
 }) => new Array(arrayLength).fill(arrayElement);
-
-export function getMillisecondsDifference(dateA: Date, dateB?: Date) {
-  const millisecondsA = dateA.getTime();
-  const millisecondsB = dateB?.getTime();
-
-  return Math.abs(Number(millisecondsB) - millisecondsA);
-}
-
-// eslint-disable-next-line consistent-return
-export const getCookie = (name: string) => {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop()?.split(';').shift();
-};
