@@ -1,12 +1,10 @@
-import React, { ReactElement } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React, { ReactElement, useMemo } from 'react';
 
-import { getArrayWithElements } from 'utils/helpers';
 import { Row } from 'common/row';
-import { IntervalTimerDetailExecutionOverviewDot } from 'ui/intervalTimer/IntervalTimerConfiguration/components/IntervalTimerDetailExecutionOverview/components/intervalTimerDetailExecutionOverviewDot';
 import { useSelector } from 'ui/intervalTimer/IntervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
 import { DetailButton } from 'common/detailButton';
 import { ApplicationProcessMachine } from 'ui/intervalTimer/IntervalTimerExecutionMachine/IntervalTimerExecutionMachine';
+import { Text } from 'common/text';
 
 type IntervalTimerDetailExecutionOverviewButtonProps = {
   className: { overviewDot?: string; detailButton: string };
@@ -33,22 +31,16 @@ export const IntervalTimerDetailExecutionOverviewButton = ({
 
   const completedCount = totalCount - remainingCount;
 
-  const executionOverviewDotElements = getArrayWithElements({
-    arrayElement: `interval-timer-detail-execution-${propsClassName.overviewDot}`,
-    arrayLength: totalCount,
-  });
+  // --- MEMOIZED DATA ---
 
-  const ExecutionOverviewDots = (
-    <Row>
-      {executionOverviewDotElements.map((className, index) => (
-        <IntervalTimerDetailExecutionOverviewDot
-          completedCount={completedCount}
-          containerClassName={className}
-          index={index}
-          key={uuidv4()}
-        />
-      ))}
-    </Row>
+  const IntervalCompletion = useMemo(
+    () => (
+      <Row>
+        <Text>{completedCount} von </Text>
+        <Text>{totalCount}</Text>
+      </Row>
+    ),
+    [completedCount, totalCount]
   );
 
   // --- RENDER ---
@@ -57,7 +49,7 @@ export const IntervalTimerDetailExecutionOverviewButton = ({
     <DetailButton
       className={propsClassName.detailButton}
       inlineCenterLeft={title}
-      inlineEnd={ExecutionOverviewDots}
+      inlineEnd={IntervalCompletion}
       inlineStart={icon}
     />
   );

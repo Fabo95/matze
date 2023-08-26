@@ -3,7 +3,7 @@
     "home": {
       "headline": "Interval Timer",
       "menuOption": "Timer",
-      "intervalTimerSettingOption": {
+      "intervalTimer": {
         "optionOne": "Work",
         "optionTwo": "Rest",
         "optionThree": "Exercises",

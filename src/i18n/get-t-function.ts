@@ -1,4 +1,4 @@
-import { Locale } from 'utils/types';
+import { Dictionary, Join, Locale, ObjectPaths } from 'utils/types';
 import { getNestedObjectValue } from 'utils/helpers';
 
 const LOCALE_TO_DICTIONARY_MAP = {
@@ -9,9 +9,9 @@ const LOCALE_TO_DICTIONARY_MAP = {
 };
 
 export const getTFunction = async (locale: Locale) => {
-  const dictionary = await LOCALE_TO_DICTIONARY_MAP[locale]?.();
+  const dictionary: Dictionary = await LOCALE_TO_DICTIONARY_MAP[locale]?.();
 
-  return (translationKey: string): string => {
+  return (translationKey: Join<ObjectPaths<Dictionary>, '.'>): string => {
     const properties = translationKey.split('.');
 
     return getNestedObjectValue(dictionary, properties);
