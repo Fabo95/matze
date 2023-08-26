@@ -1,6 +1,5 @@
 import { HttpMethod } from 'serverAction/utils/serverActionTypes';
 import { cookies } from 'next/headers';
-import { ValidationError } from 'utils/types';
 
 type GetFetchOptions = Omit<RequestInit, 'body'> & {
   body?: { [key: string]: unknown };
@@ -32,17 +31,17 @@ export const getFetchOptions = ({
   ...options,
 });
 
-export class AtomicState {
+export class AtomicState<T> {
   constructor(
-    public emailError: string | ValidationError | undefined = undefined,
-    public passwordError: string | ValidationError | undefined = undefined
+    public emailError: T | undefined = undefined,
+    public passwordError: T | undefined = undefined
   ) {}
 
-  setEmailError(message: string) {
+  setEmailError(message: T) {
     this.emailError = message;
   }
 
-  setPasswordError(message: string) {
+  setPasswordError(message: T) {
     this.passwordError = message;
   }
 
