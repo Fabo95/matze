@@ -1,9 +1,9 @@
 export const apiBaseUrl =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8080/'
-    : 'https://interval-app-api.onrender.com/';
+    ? 'http://192.168.0.156/api/'
+    : 'http://192.168.0.156/api/';
 
 export const authBaseUrl =
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8090/'
-    : 'https://interval-app-auth.onrender.com/';
+    ? 'http://192.168.0.156/auth/'
+    : 'http://192.168.0.156/auth/';

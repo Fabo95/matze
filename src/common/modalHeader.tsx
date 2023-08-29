@@ -1,6 +1,7 @@
+import React, { ReactElement, ReactNode } from 'react';
+
 import { Row } from 'common/row';
 import { Text } from 'common/text';
-import React, { ReactElement, ReactNode } from 'react';
 
 type ModalHeaderProps = {
   inlineStart: ReactElement;
