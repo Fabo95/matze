@@ -12,6 +12,10 @@ import {
   registerErrorState,
 } from 'serverAction/utils/serverActionConstants';
 import { validateEmail, validatePassword } from 'utils/validations';
+import {
+  LoginError,
+  RegisterError,
+} from 'serverAction/utils/serverActionTypes';
 
 export const apiPatchIntervalServerAction = async ({
   intensityType,
@@ -40,14 +44,14 @@ export const apiPostLoginServerAction = async (formData: FormData) => {
   const passwordValidationError = validatePassword(password);
 
   if (emailValidationError) {
-    loginErrorState.setEmailError(emailValidationError);
+    loginErrorState.setEmailError(emailValidationError as LoginError);
     revalidatePath('/');
 
     return;
   }
 
   if (passwordValidationError) {
-    loginErrorState.setPasswordError(passwordValidationError);
+    loginErrorState.setPasswordError(passwordValidationError as LoginError);
     revalidatePath('/');
 
     return;
@@ -100,14 +104,16 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
   const passwordValidationError = validatePassword(password, confirmPassword);
 
   if (emailValidationError) {
-    registerErrorState.setEmailError(emailValidationError);
+    registerErrorState.setEmailError(emailValidationError as RegisterError);
     revalidatePath('/');
 
     return;
   }
 
   if (passwordValidationError) {
-    registerErrorState.setPasswordError(passwordValidationError);
+    registerErrorState.setPasswordError(
+      passwordValidationError as RegisterError
+    );
     revalidatePath('/');
 
     return;

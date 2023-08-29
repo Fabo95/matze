@@ -1,13 +1,9 @@
 import { AtomicState } from 'serverAction/utils/serverActionHelpers';
-import { ValidationError } from 'utils/types';
+import {
+  LoginError,
+  RegisterError,
+} from 'serverAction/utils/serverActionTypes';
 
-export const registerErrorState = new AtomicState<
-  Exclude<ValidationError, 'missingUser' | 'incorrectPassword'>
->();
+export const registerErrorState = new AtomicState<RegisterError>();
 
-export const loginErrorState = new AtomicState<
-  Exclude<
-    ValidationError,
-    'requiredConfirmPassword' | 'nonMatchingPassword' | 'existingEmail'
-  >
->();
+export const loginErrorState = new AtomicState<LoginError>();
