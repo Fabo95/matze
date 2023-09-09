@@ -3,7 +3,6 @@ name: App CI
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-  JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
   VERCEL_FORCE_NO_BUILD_CACHE: 1
 
 on:
