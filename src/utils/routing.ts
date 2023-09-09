@@ -20,9 +20,9 @@ export const getLocaleFromPathname = (
 
 export const getPage = (
   pathname: NextRequest['nextUrl']['pathname'],
-  authHttpStatus: number | undefined | ''
+  isAuthorized: boolean
 ) => {
-  if (authHttpStatus === 200) {
+  if (isAuthorized) {
     const loggedInPages = Object.values(Page).filter(
       (currentPage) =>
         currentPage !== Page.LOGIN && currentPage !== Page.REGISTER
