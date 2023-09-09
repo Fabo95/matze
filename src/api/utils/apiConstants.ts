@@ -1,3 +1,3 @@
-export const apiBaseUrl = 'https://api.fabian-hinz.de/';
+export const apiBaseUrl = 'https://api.wolkenassistent.de/';
 
-export const authBaseUrl = 'https://auth.fabian-hinz.de/';
+export const authBaseUrl = 'https://auth.wolkenassistent.de/';
