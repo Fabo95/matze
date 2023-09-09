@@ -16,8 +16,6 @@ export const middleware = async (request: NextRequest) => {
     try {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET_KEY);
 
-      console.log('process.env.JWT_SECRET_KEY', process.env.JWT_SECRET_KEY);
-
       await jwtVerify(authToken, secret);
 
       isAuthorized = true;
