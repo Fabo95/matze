@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 import { jwtVerify } from 'jose';
 
 import { getLocale, getLocaleFromPathname, getPage } from 'utils/routing';
-import * as process from 'process';
 
 // eslint-disable-next-line consistent-return
 export const middleware = async (request: NextRequest) => {
@@ -16,6 +15,8 @@ export const middleware = async (request: NextRequest) => {
   if (authToken) {
     try {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET_KEY);
+
+      console.log('process.env.JWT_SECRET_KEY', process.env.JWT_SECRET_KEY);
 
       await jwtVerify(authToken, secret);
 
