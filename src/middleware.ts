@@ -27,6 +27,7 @@ export const middleware = async (request: NextRequest) => {
 
   const locale =
     getLocaleFromPathname(request.nextUrl.pathname) || getLocale(request);
+
   const page = getPage(request.nextUrl.pathname, isAuthorized);
 
   const validPathname = `/${locale}/${page}`;
