@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { getFormattedSeconds } from 'utils/helpers';
 import { Box } from 'common/box';
@@ -33,19 +33,11 @@ export const IntervalTimerExecution = ({
 
   const [intervalTimerExecutionState, send] = useActor();
 
-  // --- HELPERS ---
+  // --- MEMOIZED DATA ---
 
-  const formattedIntervalTime = getFormattedSeconds(remainingCurrentTime);
-
-  const intervalTimerExecutionBackgroundGradientStrategies =
-    getIntervalTimerExecutionBackgroundGradientStrategies();
-
-  intervalTimerExecutionBackgroundGradientStrategies.forEach(
-    (backgroundGradientStrategy) =>
-      executeIntervalTimerExecutionBackgroundGradientStrategy({
-        backgroundGradientStrategy,
-        intervalTimerExecutionStateValue: intervalTimerExecutionState.value,
-      })
+  const intervalTimerExecutionBackgroundGradientStrategies = useMemo(
+    () => getIntervalTimerExecutionBackgroundGradientStrategies(),
+    []
   );
 
   // --- CALLBACKS ---
@@ -62,9 +54,26 @@ export const IntervalTimerExecution = ({
 
   // --- HELPERS ---
 
+  const formattedIntervalTime = getFormattedSeconds(remainingCurrentTime);
+
   const handleIntervalTimerExecution = isExecuting
     ? pauseIntervalTimerExecution
     : startIntervalTimerExecution;
+
+  // --- EFFECTS ---
+
+  useEffect(() => {
+    intervalTimerExecutionBackgroundGradientStrategies.forEach(
+      (backgroundGradientStrategy) =>
+        executeIntervalTimerExecutionBackgroundGradientStrategy({
+          backgroundGradientStrategy,
+          intervalTimerExecutionStateValue: intervalTimerExecutionState.value,
+        })
+    );
+  }, [
+    intervalTimerExecutionBackgroundGradientStrategies,
+    intervalTimerExecutionState.value,
+  ]);
 
   // --- RENDER ---
 

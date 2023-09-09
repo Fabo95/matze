@@ -8,6 +8,10 @@ export const getIntervalTimerExecutionBackgroundGradientStrategies =
       isCurrentState: (intervalTimerExecutionStateValue) =>
         intervalTimerExecutionStateValue === State.WORK_TIME,
       setBackGroundGradient: () => {
+        if (document.body.className === 'work-time-background-gradient') {
+          return;
+        }
+
         document.body.className = '';
         document.body.classList.add('work-time-background-gradient');
       },
@@ -16,6 +20,10 @@ export const getIntervalTimerExecutionBackgroundGradientStrategies =
       isCurrentState: (intervalTimerExecutionStateValue) =>
         intervalTimerExecutionStateValue === State.REST_TIME,
       setBackGroundGradient: () => {
+        if (document.body.className === 'rest-time-background-gradient') {
+          return;
+        }
+
         document.body.className = '';
         document.body.classList.add('rest-time-background-gradient');
       },
@@ -24,6 +32,12 @@ export const getIntervalTimerExecutionBackgroundGradientStrategies =
       isCurrentState: (intervalTimerExecutionStateValue) =>
         intervalTimerExecutionStateValue === State.ROUND_RESET_TIME,
       setBackGroundGradient: () => {
+        if (
+          document.body.className === 'round-reset-time-background-gradient'
+        ) {
+          return;
+        }
+
         document.body.className = '';
         document.body.classList.add('round-reset-time-background-gradient');
       },
@@ -44,6 +58,7 @@ export const executeIntervalTimerExecutionBackgroundGradientStrategy = ({
   backgroundGradientStrategy: IntervalTimerExecutionBackgroundGradientStrategy;
   intervalTimerExecutionStateValue: ApplicationProcessMachine['value'];
 }) => {
+  console.log('rest-time-background-gradient');
   if (
     backgroundGradientStrategy.isCurrentState(intervalTimerExecutionStateValue)
   ) {
