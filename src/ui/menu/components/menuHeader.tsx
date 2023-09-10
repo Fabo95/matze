@@ -13,7 +13,10 @@ export const MenuHeader = ({
   headline: string;
 }) => (
   <Row className="menu-header">
-    <UnstyledButton onClick={toggleMenu}>
+    <UnstyledButton
+      className="unstyled-button-transparent"
+      onClick={toggleMenu}
+    >
       <HamburgerIcon />
     </UnstyledButton>
 

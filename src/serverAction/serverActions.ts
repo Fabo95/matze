@@ -1,7 +1,6 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { cookies } from 'next/headers';
 
 import { IntervalIntensityType } from 'api/utils/apiTypes';
 import { apiPatchInterval, apiPostLogin, apiPostRegister } from 'api/api';
@@ -16,9 +15,10 @@ import {
   LoginError,
   RegisterError,
 } from 'serverAction/utils/serverActionTypes';
+import { deleteCookie, setCookie } from 'utils/cookies';
 
 export const handleLogout = async () => {
-  await cookies().delete('authToken');
+  await deleteCookie('authToken');
 
   redirect(`/de/${Page.LOGIN}`);
 };
@@ -86,9 +86,9 @@ export const apiPostLoginServerAction = async (formData: FormData) => {
       return;
     }
 
-    authCookie = await cookies().set({
+    authCookie = await setCookie({
+      cookieName: 'authToken',
       httpOnly: true,
-      name: 'authToken',
       value: loginResponse.authToken,
     });
   } catch (e) {
@@ -148,9 +148,9 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
       return;
     }
 
-    authCookie = await cookies().set({
+    authCookie = await setCookie({
+      cookieName: 'authToken',
       httpOnly: true,
-      name: 'authToken',
       value: registerResponse.authToken,
     });
   } catch (e) {

@@ -19,11 +19,14 @@ export const UnstyledButton = forwardRef(
     }: UnstyledButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
+    // --- STATE ---
     const defaultClassnames = 'unstyled-button';
 
     const classNames = propsClassName
       ? `${defaultClassnames} ${propsClassName}`
       : defaultClassnames;
+
+    // --- RENDER ---
 
     return (
       <button
