@@ -1,8 +1,9 @@
 import { Row } from 'common/row';
 import { UnstyledButton } from 'common/unstyledButton';
 import { HamburgerIcon } from 'icons/hamburgerIcon';
-import { Box } from 'common/box';
 import { Text } from 'common/text';
+import { LogOutIcon } from 'icons/logOutIcon';
+import { LogOut } from 'common/LogOut';
 
 export const MenuHeader = ({
   toggleMenu,
@@ -12,15 +13,14 @@ export const MenuHeader = ({
   headline: string;
 }) => (
   <Row className="menu-header">
-    <UnstyledButton
-      className="menu-header-hamburger-button"
-      onClick={toggleMenu}
-    >
+    <UnstyledButton onClick={toggleMenu}>
       <HamburgerIcon />
     </UnstyledButton>
 
     <Text className="menu-header-headline">{headline}</Text>
 
-    <Box>Google Login</Box>
+    <LogOut>
+      <LogOutIcon />
+    </LogOut>
   </Row>
 );

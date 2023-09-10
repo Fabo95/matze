@@ -17,6 +17,12 @@ import {
   RegisterError,
 } from 'serverAction/utils/serverActionTypes';
 
+export const handleLogout = async () => {
+  await cookies().delete('authToken');
+
+  redirect(`/de/${Page.LOGIN}`);
+};
+
 export const apiPatchIntervalServerAction = async ({
   intensityType,
   filteredIntensity,
@@ -37,6 +43,8 @@ export const apiPatchIntervalServerAction = async ({
 };
 
 export const apiPostLoginServerAction = async (formData: FormData) => {
+  let authCookie;
+
   const email = formData.get('email');
   const password = formData.get('password');
 
@@ -78,7 +86,7 @@ export const apiPostLoginServerAction = async (formData: FormData) => {
       return;
     }
 
-    await cookies().set({
+    authCookie = await cookies().set({
       httpOnly: true,
       name: 'authToken',
       value: loginResponse.authToken,
@@ -88,14 +96,14 @@ export const apiPostLoginServerAction = async (formData: FormData) => {
     console.log(e);
   }
 
-  const authCookie = cookies().get('authToken');
-
   if (authCookie) {
     redirect(`/de/${Page.HOME}`);
   }
 };
 
 export const apiPostRegisterServerAction = async (formData: FormData) => {
+  let authCookie;
+
   const email = formData.get('email');
   const password = formData.get('password');
   const confirmPassword = formData.get('confirmPassword');
@@ -140,7 +148,7 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
       return;
     }
 
-    await cookies().set({
+    authCookie = await cookies().set({
       httpOnly: true,
       name: 'authToken',
       value: registerResponse.authToken,
@@ -149,8 +157,6 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
     // eslint-disable-next-line no-console
     console.log(e);
   }
-
-  const authCookie = cookies().get('authToken');
 
   if (authCookie) {
     redirect(`/de/${Page.HOME}`);
