@@ -58,7 +58,6 @@ export const executeIntervalTimerExecutionBackgroundGradientStrategy = ({
   backgroundGradientStrategy: IntervalTimerExecutionBackgroundGradientStrategy;
   intervalTimerExecutionStateValue: ApplicationProcessMachine['value'];
 }) => {
-  console.log('rest-time-background-gradient');
   if (
     backgroundGradientStrategy.isCurrentState(intervalTimerExecutionStateValue)
   ) {

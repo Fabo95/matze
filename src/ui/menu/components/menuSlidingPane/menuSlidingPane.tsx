@@ -1,34 +1,46 @@
+import { useCallback, useMemo, useState } from 'react';
 import { useParams } from 'next/navigation';
-import { useState } from 'react';
 
 import { Box } from 'common/box';
 import { MenuSlidingPaneOption } from 'ui/menu/components/menuSlidingPane/components/menuSlidingPaneOption';
-import { Page } from 'utils/types';
+import { Locale, Page } from 'utils/types';
 import { MenuSlidingPaneHeader } from 'ui/menu/components/menuSlidingPane/components/menuSlidingPaneHeader';
+import { getTFunction } from 'i18n/tFunction';
 
 export const MenuSlidingPane = ({
   isOpen,
   headline,
-  menuOptions,
 }: {
   isOpen: boolean;
   headline: string;
-  menuOptions: {
-    translation: string;
-    page: Exclude<Page, Page.LOGIN | Page.REGISTER>;
-  }[];
 }) => {
+  const params = useParams();
+  const t = getTFunction(params.lang as Locale);
+
   // --- STATE ---
 
   const [currentPage, setCurrentPage] = useState(Page.HOME);
 
-  const params = useParams();
+  // --- MEMOIZED DATA ---
+
+  const menuOptions: {
+    page: Exclude<Page, Page.LOGIN | Page.REGISTER>;
+    translation: string;
+  }[] = useMemo(
+    () => [
+      { page: Page.HOME, translation: t('pages.home.menuOption') },
+      { page: Page.SETTINGS, translation: t('pages.settings.menuOption') },
+      { page: Page.HISTORY, translation: t('pages.history.menuOption') },
+      { page: Page.STATISTICS, translation: t('pages.statistics.menuOption') },
+    ],
+    [t]
+  );
 
   // --- CALLBACKS ---
 
-  const handleMenuOptionChange = (page: Page) => {
+  const handleMenuOptionChange = useCallback((page: Page) => {
     setCurrentPage(page);
-  };
+  }, []);
 
   // --- RENDER ---
 

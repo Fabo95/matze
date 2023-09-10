@@ -79,7 +79,7 @@ body {
         color: $whiteDark;
         align-items: center;
         padding: spacingPixel(6) spacingPixel(2) spacingPixel(2);
-        @include mixins.primaryLinearGradient();
+        background: $redDark;
 
         .menu-sliding-pane-header-time-icon {
           align-items: center;

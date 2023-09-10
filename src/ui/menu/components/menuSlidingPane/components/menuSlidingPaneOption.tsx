@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import Link from 'next/link';
 
 import { Row } from 'common/row';
@@ -22,14 +23,17 @@ export const MenuSlidingPaneOption = ({
   onClick: () => void;
   isSelected: boolean;
 }) => {
-  // --- HELPERS ---
+  // --- MEMOIZED DATA ---
 
-  const MENU_OPTION_TO_ICON_MAP = {
-    [Page.SETTINGS]: <SettingsIcon />,
-    [Page.HISTORY]: <CalendarIcon />,
-    [Page.HOME]: <ClockIcon />,
-    [Page.STATISTICS]: <ChartIcon />,
-  };
+  const MENU_OPTION_TO_ICON_MAP = useMemo(
+    () => ({
+      [Page.SETTINGS]: <SettingsIcon />,
+      [Page.HISTORY]: <CalendarIcon />,
+      [Page.HOME]: <ClockIcon />,
+      [Page.STATISTICS]: <ChartIcon />,
+    }),
+    []
+  );
 
   // --- RENDER ---
 

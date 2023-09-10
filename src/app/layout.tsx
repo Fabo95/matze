@@ -20,8 +20,6 @@ export const metadata: Metadata = {
   title: 'Interval Timer',
   // TODO Remove viewport property from metadata.
   viewport: {
-    initialScale: 0.7,
-    maximumScale: 0.7,
     width: 'device-width',
   },
 };
