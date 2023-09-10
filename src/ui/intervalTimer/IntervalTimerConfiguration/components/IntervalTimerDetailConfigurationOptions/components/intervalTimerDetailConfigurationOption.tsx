@@ -6,7 +6,7 @@ import React, {
   useMemo,
   useRef,
   useState,
-  useTransition,
+  startTransition,
 } from 'react';
 import { distinctUntilChanged, map } from 'rxjs';
 import { useParams } from 'next/navigation';
@@ -45,8 +45,6 @@ export const IntervalTimerDetailConfigurationOption = ({
   // --- STATE ---
 
   const [intensity, setIntensity] = useState<number>(propsIntensity);
-
-  const [, startTransition] = useTransition();
 
   const modalRef = useRef<HTMLDialogElement>(null);
 

@@ -30,7 +30,7 @@ export const apiPatchIntervalServerAction = async ({
 }: {
   intensityType: Exclude<IntervalIntensityType, IntervalIntensityType.USER_ID>;
   filteredIntensity?: number;
-  path: string;
+  path: string | string[];
 }) => {
   try {
     await apiPatchInterval({ filteredIntensity, intensityType });
