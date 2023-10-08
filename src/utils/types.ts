@@ -9,6 +9,7 @@ export enum Locale {
 }
 
 export enum Page {
+  CHAT = 'chat',
   HOME = 'home',
   HISTORY = 'history',
   SETTINGS = 'settings',
@@ -32,7 +33,8 @@ export enum ValidationError {
 export type Dictionary = typeof GermanTranslation;
 
 export type TFunction = (
-  translationKey: Join<ObjectPaths<Dictionary>, '.'>
+  translationKey: Join<ObjectPaths<Dictionary>, '.'>,
+  interpolation?: Record<string, string | number>
 ) => string;
 
 export type ValueOf<T> = T[keyof T];

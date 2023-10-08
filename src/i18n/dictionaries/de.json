@@ -26,7 +26,10 @@
     "statistics": {
       "headline": "Statistiken",
       "menuOption": "Statistiken"
-
+    },
+    "chat": {
+      "headline": "Chat",
+      "menuOption": "Chat"
     },
     "login": {
       "headline": "Login",

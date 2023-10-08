@@ -28,6 +28,7 @@ export const MenuSlidingPane = ({
     translation: string;
   }[] = useMemo(
     () => [
+      { page: Page.CHAT, translation: t('pages.chat.menuOption') },
       { page: Page.HOME, translation: t('pages.home.menuOption') },
       { page: Page.SETTINGS, translation: t('pages.settings.menuOption') },
       { page: Page.HISTORY, translation: t('pages.history.menuOption') },

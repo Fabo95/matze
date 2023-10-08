@@ -1,4 +1,4 @@
-import { Dictionary, Join, Locale, ObjectPaths } from 'utils/types';
+import { Dictionary, Locale, TFunction } from 'utils/types';
 import { getNestedObjectValue } from 'utils/helpers';
 import GermanTranslation from 'i18n/dictionaries/de.json';
 import EnglishTranslation from 'i18n/dictionaries/en.json';
@@ -8,13 +8,10 @@ const LOCALE_TO_DICTIONARY_MAP = {
   [Locale.DE]: GermanTranslation,
 };
 
-export const getTFunction = (locale: Locale) => {
+export const getTFunction = (locale: Locale): TFunction => {
   const dictionary: Dictionary = LOCALE_TO_DICTIONARY_MAP[locale];
 
-  return (
-    translationKey: Join<ObjectPaths<Dictionary>, '.'>,
-    interpolation?: Record<string, string | number>
-  ): string => {
+  return (translationKey, interpolation) => {
     const properties = translationKey.split('.');
 
     const translation = getNestedObjectValue(dictionary, properties);
