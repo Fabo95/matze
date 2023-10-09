@@ -121,7 +121,7 @@ export const IntervalTimerDetailConfigurationOption = ({
   // There is probably an easier way to do that but cloning is cool.
   const clonedIcon = React.cloneElement(icon, {
     ...icon.props,
-    className: 'stroke-white-dark icon-size-2-25 margin-right-0-5',
+    className: 'stroke-white-dark icon-size-1-5 margin-right-0-5',
   });
 
   // --- MEMOIZED DATA ---

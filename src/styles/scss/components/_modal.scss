@@ -28,19 +28,20 @@
 
   .modal-header {
     justify-content: center;
-    margin-bottom: spacingPixel(3);
+    margin-bottom: spacingPixel(1.5);
     align-items: center;
 
     .modal-header-intro {
-      font-size: spacingPixel(4);
+      font-size: spacingPixel(2.5);
       color: $whiteDark;
       font-weight: $weightBigger;
+      margin-left: spacingPixel(1);
     }
   }
 
   .modal-header-intensity {
-    margin-bottom: spacingPixel(7);
-    font-size: spacingPixel(7.5);
+    margin-bottom: spacingPixel(3);
+    font-size: spacingPixel(5);
     color: $whiteDark;
     text-align: center;
     font-weight: $weightBig;

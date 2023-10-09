@@ -25,12 +25,12 @@
 
 .detail-button {
   border-radius: $borderRadiusL;
-  font-size: spacingPixel(2.5);
-  margin-bottom: spacingPixel(2);
+  font-size: spacingPixel(2);
+  margin-bottom: spacingPixel(1.5);
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  padding: spacingPixel(2);
+  padding: spacingPixel(1.5);
   display: flex;
   font-weight: $weightBigger;
 

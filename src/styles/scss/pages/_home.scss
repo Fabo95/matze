@@ -16,10 +16,10 @@
   justify-content: center;
   padding: spacingPixel(1);
   flex-grow: 1;
-  min-height: 400px;
+  min-height: 300px;
 
   .interval-timer-execution-intro {
-    font-size: spacingPixel(6);
+    font-size: spacingPixel(3.5);
     color: $whiteDark;
     font-weight: $weightBig;
   }
@@ -37,8 +37,8 @@
     overflow: hidden;
     position: absolute;
     left: 50%;
-    width: spacingPixel(14.5);
-    height: spacingPixel(14.5);
+    width: spacingPixel(10);
+    height: spacingPixel(10);
     transform: translate(-50%, 50%);
     z-index: $zIndexXs;
     background: transparent;
@@ -68,7 +68,7 @@
     overflow: hidden;
     /* Needed because otherwise there is a weird uncolored border on mobile devices */
     bottom: -1px;
-    padding: spacingPixel(6) spacingPixel(2) spacingPixel(2);
+    padding: spacingPixel(6) spacingPixel(2) spacingPixel(0);
 
     &:after {
       content: '';
@@ -78,14 +78,14 @@
       transform: translate(-50%, -50%);
       border-radius: 50%;
       border-width: 0;
-      width: 120px;
-      height: 120px;
+      width: spacingPixel(10);
+      height: spacingPixel(10);
       box-shadow: 0 0 0 2000px white;
     }
   }
 
   .interval-timer-detail-configuration-options {
-    padding: spacingPixel(6) spacingPixel(2) spacingPixel(4);
+    padding: spacingPixel(3) spacingPixel(2) spacingPixel(4);
     flex-grow: 1;
     overflow: auto;
     background: $whiteDark;
@@ -95,7 +95,7 @@
 
 .interval-timer-detail-execution-overview {
   flex-grow: 1;
-  padding: spacingPixel(6) spacingPixel(2) spacingPixel(4);
+  padding: spacingPixel(3) spacingPixel(2) spacingPixel(4);
   background: $whiteDark;
   width: 100%;
   align-items: center;

@@ -3,7 +3,7 @@ export const XMarkIcon = ({
 }: {
   className?: string;
 }) => {
-  const defaultClassname = 'stroke-white-dark icon-size-2-25';
+  const defaultClassname = 'stroke-white-dark icon-size-1-5';
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`

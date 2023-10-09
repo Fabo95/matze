@@ -3,7 +3,7 @@ export const StopCircleIcon = ({
 }: {
   className?: string;
 }) => {
-  const defaultClassname = 'stroke-black-dark icon-size-2-25';
+  const defaultClassname = 'stroke-black-dark icon-size-1-5';
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`

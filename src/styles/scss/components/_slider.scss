@@ -6,7 +6,7 @@
 .slider-container {
   position: relative;
   height: 100%;
-  margin-bottom: spacingPixel(12);
+  margin-bottom: spacingPixel(5);
   align-items: center;
 
   .slider {
@@ -49,8 +49,8 @@
 
   /* Slider thumb */
   .slider-thumb {
-    height: 44px;
-    width: 64px;
+    height: spacingPixel(3.5);
+    width: spacingPixel(6);
     transform: translateY(50%);
     position: absolute;
     align-items: center;
@@ -62,8 +62,8 @@
     .slider-thumb-line {
       position: absolute;
       top: 50%;
-      width: 320px;
-      height: 8px;
+      width: 180px;
+      height: spacingPixel(0.5);
       transform: translateY(-50%);
       background: linear-gradient(
         to right,
@@ -87,17 +87,17 @@
       /* Slider track */
       .slider-track-dividing-line {
         height: 2px;
-        width: 40px;
+        width: spacingPixel(4);
         align-self: center;
         background: $whiteOpacity50;
       }
 
       .slider-track-dividing-line-long {
-        width: 64px;
+        width: spacingPixel(6);
       }
 
       .slider-track-dividing-line-label {
-        font-size: spacingPixel(2.5);
+        font-size: spacingPixel(2);
         color: $whiteDark;
         font-weight: $weightBigger;
         position: absolute;

@@ -3,7 +3,7 @@ export const LogOutIcon = ({
 }: {
   className?: string;
 }) => {
-  const defaultClassname = 'icon-width-2-25 stroke-white-dark';
+  const defaultClassname = 'icon-size-2 stroke-white-dark';
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`
