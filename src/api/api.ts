@@ -64,3 +64,6 @@ export const apiPostRegister = async ({
       method: HttpMethod.POST,
     })
   );
+
+export const apiGetUser = async (): Promise<Interval> =>
+  fetch(`${authBaseUrl}user`, getFetchOptions()).then((data) => data.json());
