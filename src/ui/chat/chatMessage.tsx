@@ -2,32 +2,36 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+import { Message } from 'ui/chat/utils/chatMessageTypes';
 
-type ChatMessageProps = { authToken: RequestCookie | undefined };
+type ChatMessageProps = {
+  authToken: RequestCookie | undefined;
+  userId: number | undefined;
+};
 
-const ChatMessage = ({ authToken }: ChatMessageProps) => {
+const ChatMessage = ({ authToken, userId }: ChatMessageProps) => {
   // --- STATE ---
-  const [messages, setMessages] = useState<
-    { content: string; sender: string }[]
-  >([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
   const socket = useRef<WebSocket | null>(null);
-
-  console.log('authToken', authToken);
 
   // --- EFFECTS ---
 
   useEffect(() => {
-    if (!socket.current && 'WebSocket' in window) {
+    if (!socket.current) {
       socket.current = new WebSocket('ws://localhost:8081');
 
       socket.current.onopen = () => {
-        console.log('WebSocket connection opened');
+        socket.current?.send(
+          JSON.stringify({
+            jwt: `Bearer ${authToken?.value}`,
+            sender_id: userId,
+            type: 'identification',
+          })
+        );
       };
 
       socket.current.onmessage = ({ data }) => {
-        console.log('MESSAGE:', JSON.parse(data));
-
         const message = JSON.parse(data);
 
         setMessages((prevMessages) => [
@@ -35,7 +39,7 @@ const ChatMessage = ({ authToken }: ChatMessageProps) => {
           {
             content: message.content,
             isMessageSaved: message.is_saved,
-            sender: 'you',
+            senderId: message.sender_id,
           },
         ]);
       };
@@ -49,7 +53,7 @@ const ChatMessage = ({ authToken }: ChatMessageProps) => {
       socket.current?.close();
       socket.current = null;
     };
-  }, []);
+  }, [authToken?.value, userId]);
 
   // --- CALLBACKS ---
 
@@ -60,19 +64,19 @@ const ChatMessage = ({ authToken }: ChatMessageProps) => {
           content: currentMessage,
           jwt: `Bearer ${authToken?.value}`,
           // TODO Use real id
-          receiver_id: 1,
-          // TODO Use real id
-          sender_id: 2,
+          receiver_id: 2,
+          sender_id: userId,
+          type: 'notification',
         })
       );
 
       setMessages((prevMessages) => [
         ...prevMessages,
-        { content: currentMessage, sender: 'me' },
+        { content: currentMessage, isMessageSaved: true, senderId: userId },
       ]);
       setCurrentMessage('');
     }
-  }, [authToken?.value, currentMessage]);
+  }, [authToken?.value, currentMessage, userId]);
 
   // --- RENDER ---
 
@@ -86,10 +90,10 @@ const ChatMessage = ({ authToken }: ChatMessageProps) => {
             <div
               style={{
                 display: 'flex',
-                justifyContent: message.sender === 'me' ? 'start' : 'end',
+                justifyContent: message.senderId === userId ? 'start' : 'end',
               }}
             >
-              <strong>{message.sender}:</strong> {message.content}
+              <strong>{message.senderId}:</strong> {message.content}
             </div>
           </div>
         ))}
