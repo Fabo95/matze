@@ -1,8 +1,5 @@
 import { AtomicState } from 'serverAction/utils/serverActionHelpers';
-import {
-  LoginError,
-  RegisterError,
-} from 'serverAction/utils/serverActionTypes';
+import { LoginError, RegisterError } from 'utils/types';
 
 export const registerErrorState = new AtomicState<RegisterError>();
 
