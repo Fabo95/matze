@@ -1,5 +1,3 @@
-import { ValidationError } from 'utils/types';
-
 export const enum HttpMethod {
   GET = 'GET',
   POST = 'POST',
@@ -11,13 +9,3 @@ export const enum HttpMethod {
   CONNECT = 'CONNECT',
   TRACE = 'TRACE',
 }
-
-export type RegisterError = Exclude<
-  ValidationError,
-  'missingUser' | 'incorrectPassword'
->;
-
-export type LoginError = Exclude<
-  ValidationError,
-  'requiredConfirmPassword' | 'nonMatchingPassword' | 'existingEmail'
->;

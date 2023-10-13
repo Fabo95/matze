@@ -1,4 +1,11 @@
-import { Interval, IntervalIntensityType } from 'api/utils/apiTypes';
+import {
+  Friendship,
+  Interval,
+  IntervalIntensityType,
+  Login,
+  Register,
+  User,
+} from 'api/utils/apiTypes';
 import { apiBaseUrl, authBaseUrl } from 'api/utils/apiConstants';
 import { getFetchOptions } from 'serverAction/utils/serverActionHelpers';
 import { HttpMethod } from 'serverAction/utils/serverActionTypes';
@@ -14,24 +21,14 @@ export const apiPatchInterval = async ({
 }: {
   intensityType: Exclude<IntervalIntensityType, IntervalIntensityType.USER_ID>;
   filteredIntensity?: number;
-}): Promise<any> =>
+}): Promise<number> =>
   fetch(
     `${apiBaseUrl}intervals`,
     getFetchOptions({
       body: { [intensityType]: filteredIntensity },
       method: HttpMethod.PATCH,
     })
-  );
-
-export const apiGetAuthTokenValidation = async (
-  authToken: string
-): Promise<{ status: number }> =>
-  fetch(
-    `${authBaseUrl}auth`,
-    getFetchOptions({
-      jwtToken: authToken,
-    })
-  );
+  ).then((data) => data.json());
 
 export const apiPostLogin = async ({
   email,
@@ -39,14 +36,14 @@ export const apiPostLogin = async ({
 }: {
   email: FormDataEntryValue | null;
   password: FormDataEntryValue | null;
-}): Promise<Response> =>
+}): Promise<Login> =>
   fetch(
     `${authBaseUrl}login`,
     getFetchOptions({
       body: { email, password },
       method: HttpMethod.POST,
     })
-  );
+  ).then((data) => data.json());
 
 export const apiPostRegister = async ({
   email,
@@ -56,14 +53,19 @@ export const apiPostRegister = async ({
   email: FormDataEntryValue | null;
   password: FormDataEntryValue | null;
   confirmPassword: FormDataEntryValue | null;
-}): Promise<Response> =>
+}): Promise<Register> =>
   fetch(
     `${authBaseUrl}register`,
     getFetchOptions({
       body: { confirmPassword, email, password },
       method: HttpMethod.POST,
     })
-  );
+  ).then((data) => data.json());
 
-export const apiGetUser = async (): Promise<Interval> =>
+export const apiGetUser = async (): Promise<User> =>
   fetch(`${authBaseUrl}user`, getFetchOptions()).then((data) => data.json());
+
+export const apiGetFriendships = async (): Promise<Friendship[]> =>
+  fetch(`${apiBaseUrl}friendships`, getFetchOptions()).then((data) =>
+    data.json()
+  );

@@ -30,6 +30,16 @@ export enum ValidationError {
   SERVER_ERROR = 'serverError',
 }
 
+export type RegisterError = Exclude<
+  ValidationError,
+  'missingUser' | 'incorrectPassword'
+>;
+
+export type LoginError = Exclude<
+  ValidationError,
+  'requiredConfirmPassword' | 'nonMatchingPassword' | 'existingEmail'
+>;
+
 export type Dictionary = typeof GermanTranslation;
 
 export type TFunction = (

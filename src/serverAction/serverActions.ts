@@ -5,16 +5,12 @@ import { revalidatePath } from 'next/cache';
 import { IntervalIntensityType } from 'api/utils/apiTypes';
 import { apiPatchInterval, apiPostLogin, apiPostRegister } from 'api/api';
 import { redirect } from 'next/navigation';
-import { Page } from 'utils/types';
 import {
   loginErrorState,
   registerErrorState,
 } from 'serverAction/utils/serverActionConstants';
 import { validateEmail, validatePassword } from 'utils/validations';
-import {
-  LoginError,
-  RegisterError,
-} from 'serverAction/utils/serverActionTypes';
+import { LoginError, RegisterError, Page } from 'utils/types';
 import { deleteCookie, setCookie } from 'utils/cookies';
 
 export const handleLogout = async () => {
@@ -66,9 +62,7 @@ export const apiPostLoginServerAction = async (formData: FormData) => {
   }
 
   try {
-    const data = await apiPostLogin({ email, password });
-
-    const loginResponse = await data.json();
+    const loginResponse = await apiPostLogin({ email, password });
 
     if ('error' in loginResponse) {
       const isEmailValidationError = loginResponse.type === 'email';
@@ -128,9 +122,11 @@ export const apiPostRegisterServerAction = async (formData: FormData) => {
   }
 
   try {
-    const data = await apiPostRegister({ confirmPassword, email, password });
-
-    const registerResponse = await data.json();
+    const registerResponse = await apiPostRegister({
+      confirmPassword,
+      email,
+      password,
+    });
 
     if ('error' in registerResponse) {
       const isEmailValidationError = registerResponse.type === 'email';
