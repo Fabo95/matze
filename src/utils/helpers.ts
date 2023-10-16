@@ -77,3 +77,19 @@ export const getArrayWithElements = <T>({
   arrayLength: number;
   arrayElement: T;
 }) => new Array(arrayLength).fill(arrayElement);
+
+export const formatDateAccordingToActuality = (date: Date) => {
+  const messageDate = moment(date);
+  const currentDate = moment();
+
+  if (messageDate.isSame(currentDate, 'day')) {
+    // Show time if it's on the same day
+    return messageDate.format('HH:mm');
+  }
+  if (messageDate.isSame(currentDate, 'week')) {
+    // Show day of the week if it's during the last week
+    return messageDate.format('dddd');
+  }
+  // Show the full date if it's none of the above
+  return messageDate.format('DD.MM.YYYY');
+};
