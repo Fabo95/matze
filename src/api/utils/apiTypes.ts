@@ -1,5 +1,7 @@
 import { LoginError, RegisterError } from 'utils/types';
 
+type RecordMetadata = { createdAt: string; updatedAt: string };
+
 export type Interval = {
   [IntervalIntensityType.USER_ID]: number;
   [IntervalIntensityType.WORK_TIME]: number;
@@ -7,7 +9,7 @@ export type Interval = {
   [IntervalIntensityType.EXERCISE_COUNT]: number;
   [IntervalIntensityType.ROUND_COUNT]: number;
   [IntervalIntensityType.ROUND_RESET_TIME]: number;
-};
+} & RecordMetadata;
 
 export enum IntervalIntensityType {
   USER_ID = 'userId',
@@ -22,17 +24,25 @@ export type User = {
   userId: number;
   email: string;
   password: string;
-  createdAt: string;
-  updatedAt: string;
-};
+  nickname: string;
+} & RecordMetadata;
 
-export type Friendship = {
+export type FriendshipMessages = {
   friendshipId: number;
   userId: number;
   friendId: number;
-  createdAt: string;
-  updatedAt: string;
-};
+  userA: User;
+  userB: User;
+  friendshipMessages: Message[];
+} & RecordMetadata;
+
+export type Message = {
+  messageId: number;
+  senderUserId: number;
+  receiverUserId: number;
+  content: string;
+  friendshipId: number;
+} & RecordMetadata;
 
 export type Login =
   | {

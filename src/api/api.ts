@@ -1,5 +1,5 @@
 import {
-  Friendship,
+  FriendshipMessages,
   Interval,
   IntervalIntensityType,
   Login,
@@ -21,14 +21,14 @@ export const apiPatchInterval = async ({
 }: {
   intensityType: Exclude<IntervalIntensityType, IntervalIntensityType.USER_ID>;
   filteredIntensity?: number;
-}): Promise<number> =>
+}): Promise<any> =>
   fetch(
     `${apiBaseUrl}intervals`,
     getFetchOptions({
       body: { [intensityType]: filteredIntensity },
       method: HttpMethod.PATCH,
     })
-  ).then((data) => data.json());
+  );
 
 export const apiPostLogin = async ({
   email,
@@ -38,7 +38,7 @@ export const apiPostLogin = async ({
   password: FormDataEntryValue | null;
 }): Promise<Login> =>
   fetch(
-    `${authBaseUrl}login`,
+    `${authBaseUrl}users/login`,
     getFetchOptions({
       body: { email, password },
       method: HttpMethod.POST,
@@ -55,17 +55,26 @@ export const apiPostRegister = async ({
   confirmPassword: FormDataEntryValue | null;
 }): Promise<Register> =>
   fetch(
-    `${authBaseUrl}register`,
+    `${authBaseUrl}users/register`,
     getFetchOptions({
       body: { confirmPassword, email, password },
       method: HttpMethod.POST,
     })
   ).then((data) => data.json());
 
-export const apiGetUser = async (): Promise<User> =>
-  fetch(`${authBaseUrl}user`, getFetchOptions()).then((data) => data.json());
+export const apiGetUserByIdOrFromToken = async ({
+  userId,
+}: {
+  userId?: number;
+} = {}): Promise<User | null> =>
+  fetch(
+    `${authBaseUrl}users/${userId ? `?userId=${userId}` : ''}`,
+    getFetchOptions()
+  ).then((data) => data.json());
 
-export const apiGetFriendships = async (): Promise<Friendship[]> =>
-  fetch(`${apiBaseUrl}friendships`, getFetchOptions()).then((data) =>
+export const apiGetFriendshipsMessages = async (): Promise<
+  FriendshipMessages[]
+> =>
+  fetch(`${apiBaseUrl}friendships/messages`, getFetchOptions()).then((data) =>
     data.json()
   );
