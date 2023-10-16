@@ -18,6 +18,29 @@ body {
   @include mixins.primaryLinearGradient();
 }
 
+.page {
+  flex-grow: 1;
+  overflow: hidden;
+
+  .page-block-start {
+    background: transparent;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: spacingPixel(1);
+    flex-grow: 1;
+    min-height: 300px;
+  }
+
+  .page-block-end {
+    border-top-left-radius: spacingPixel(1);
+    border-top-right-radius: spacingPixel(1);
+    overflow: hidden;
+    width: 100%;
+    height: fit-content;
+  }
+}
+
 .work-time-background-gradient {
   @include mixins.animatedLinearGradient(
     $greenPrimary,

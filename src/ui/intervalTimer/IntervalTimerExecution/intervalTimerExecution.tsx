@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo } from 'react';
 
 import { getFormattedSeconds } from 'utils/helpers';
-import { Box } from 'common/box';
 import { UnstyledButton } from 'common/unstyledButton';
 import { Row } from 'common/row';
 import { Text } from 'common/text';
@@ -20,6 +19,7 @@ import {
   getIntervalTimerExecutionBackgroundGradientStrategies,
 } from 'ui/intervalTimer/IntervalTimerExecution/Utils/intervalTimerExecutionHelpers';
 import { Pulse } from 'common/Pulse/pulse';
+import { PageBlockStart } from 'common/Page/components/pageBlockStart';
 
 export const IntervalTimerExecution = ({
   nextIsExecution,
@@ -78,7 +78,7 @@ export const IntervalTimerExecution = ({
   // --- RENDER ---
 
   return (
-    <Box className="interval-timer-execution">
+    <PageBlockStart>
       <Text className="interval-timer-execution-intro">
         {formattedIntervalTime}
       </Text>
@@ -93,6 +93,6 @@ export const IntervalTimerExecution = ({
           {isExecuting ? <PauseIcon /> : <PlayIcon />}
         </UnstyledButton>
       </Row>
-    </Box>
+    </PageBlockStart>
   );
 };

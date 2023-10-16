@@ -12,6 +12,7 @@ import { IntervalTimerDetailConfigurationOptions } from 'ui/intervalTimer/Interv
 import { IntervalTimerDetailExecutionOverview } from 'ui/intervalTimer/IntervalTimerConfiguration/components/IntervalTimerDetailExecutionOverview/intervalTimerDetailExecutionOverview';
 import { useSelector } from 'ui/intervalTimer/IntervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
 import { selectIsExecuting } from 'ui/intervalTimer/IntervalTimerExecutionMachineContext/Utils/intervalTimerExecutionMachineSelectors';
+import { PageBlockEnd } from 'common/Page/components/pageBlockEnd';
 
 export type IntervalTimerDetailProps = {
   configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
@@ -36,7 +37,7 @@ export const IntervalTimerDetail = ({
   // --- RENDER ---
 
   return (
-    <Box className="interval-timer-detail">
+    <PageBlockEnd>
       {/* This box styling enables circle cut off of the interval timer detail box. */}
       <Box className="interval-timer-detail-circle-cut-off" />
       <Swiper autoSwipe={autoSwipe}>
@@ -48,6 +49,6 @@ export const IntervalTimerDetail = ({
           executionOverviewButtonProps={executionOverviewButtonProps}
         />
       </Swiper>
-    </Box>
+    </PageBlockEnd>
   );
 };

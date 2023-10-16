@@ -4,12 +4,12 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import { Message } from 'ui/chat/utils/chatMessageTypes';
 
-type ChatMessageProps = {
+type ChatConversationProps = {
   authToken: RequestCookie | undefined;
   userId: number | undefined;
 };
 
-const ChatMessage = ({ authToken, userId }: ChatMessageProps) => {
+const ChatConversation = ({ authToken, userId }: ChatConversationProps) => {
   // --- STATE ---
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
@@ -110,4 +110,4 @@ const ChatMessage = ({ authToken, userId }: ChatMessageProps) => {
   );
 };
 
-export default ChatMessage;
+export default ChatConversation;

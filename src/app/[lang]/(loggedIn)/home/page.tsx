@@ -3,12 +3,12 @@ import React from 'react';
 import { getTFunction } from 'i18n/tFunction';
 import { Locale } from 'utils/types';
 import { apiGetInterval } from 'api/api';
-import { Box } from 'common/box';
 import {
   getIntervalTimerConfigurationOptionsProps,
   getIntervalTimerExecutionOverviewButtonProps,
 } from 'ui/intervalTimer/utils/intervalTimerHelpers';
 import { IntervalTimer } from 'ui/intervalTimer/intervalTimer';
+import { Page } from 'common/Page/page';
 
 export default async function Home({
   params: { lang },
@@ -34,13 +34,13 @@ export default async function Home({
   // --- RENDER ---
 
   return (
-    <Box className="home-page">
+    <Page>
       <IntervalTimer
         configurationOptionsProps={configurationOptionsProps}
         executionOverviewButtonProps={executionOverviewButtonProps}
         interval={interval}
         key={JSON.stringify(interval)}
       />
-    </Box>
+    </Page>
   );
 }
