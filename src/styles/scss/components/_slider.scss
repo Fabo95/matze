@@ -23,13 +23,13 @@
     }
 
     /**
- * Slider track
+ * slider track
  * Chrome, Safari, Opera and Edge Chromium styles
  */
     &::-webkit-slider-runnable-track {
       -webkit-appearance: none;
     }
-    /* Slider thumb */
+    /* slider thumb */
     &::-webkit-slider-thumb {
       -webkit-appearance: none; /* Override default look */
       width: 50px;
@@ -37,7 +37,7 @@
     }
 
     /**
-  * Slider thumb
+  * slider thumb
   * Firefox styles
   */
     &::-moz-range-thumb {
@@ -47,7 +47,7 @@
     }
   }
 
-  /* Slider thumb */
+  /* slider thumb */
   .slider-thumb {
     height: spacingPixel(3.5);
     width: spacingPixel(6);
@@ -84,7 +84,7 @@
       position: relative;
       width: 100%;
 
-      /* Slider track */
+      /* slider track */
       .slider-track-dividing-line {
         height: 2px;
         width: spacingPixel(4);

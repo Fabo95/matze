@@ -9,7 +9,7 @@ import InitServiceWorker from 'serviceWorker/initServiceWorker';
 const manrope = Manrope({
   style: ['normal'],
   subsets: ['latin'],
-  variable: '--font-manrope',
+  variable: '--font-manro pe',
   weight: ['400', '600', '700'],
 });
 
@@ -18,7 +18,6 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   themeColor: '#ffffff',
   title: 'Interval Timer',
-  // TODO Remove viewport property from metadata.
   viewport: {
     width: 'device-width',
   },

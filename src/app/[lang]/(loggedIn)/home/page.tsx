@@ -6,15 +6,15 @@ import { apiGetInterval } from 'api/api';
 import {
   getIntervalTimerConfigurationOptionsProps,
   getIntervalTimerExecutionOverviewButtonProps,
-} from 'ui/intervalTimer/utils/intervalTimerHelpers';
-import { IntervalTimer } from 'ui/intervalTimer/intervalTimer';
-import { Page } from 'common/Page/page';
+} from 'ui/home/components/utils/intervalTimerHelpers';
+import { IntervalTimer } from 'ui/home/components/intervalTimer';
+import { Page } from 'core/page/page';
 
-export default async function Home({
-  params: { lang },
-}: {
+type HomeProps = {
   params: { lang: Locale };
-}) {
+};
+
+export default async function Home({ params: { lang } }: HomeProps) {
   const t = await getTFunction(lang);
 
   // --- DATA ---

@@ -1,6 +1,12 @@
 @import '../abstracts/_functions';
 @import '../abstracts/_variables';
 
+.chat-messages-headline {
+  font-size: spacingPixel(3.5);
+  color: #fff;
+  font-weight: 700;
+}
+
 .chat-messages-container {
   background: $whiteDark;
   padding: spacingPixel(4) spacingPixel(2);

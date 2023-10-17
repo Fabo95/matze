@@ -4,7 +4,7 @@ import 'styles/global.css';
 import { Menu } from 'ui/menu/menu';
 import { getTFunction } from 'i18n/tFunction';
 import { Locale } from 'utils/types';
-import { Box } from 'common/box';
+import { Box } from 'core/box';
 
 const LoggedInLayout = async ({
   children,

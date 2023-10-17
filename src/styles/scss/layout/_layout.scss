@@ -107,6 +107,7 @@ body {
           margin-right: spacingPixel(1);
           height: spacingPixel(6);
           width: spacingPixel(6);
+          flex-shrink: 0;
           border: 1px solid $whiteOpacity50;
 
           p {
@@ -115,7 +116,7 @@ body {
         }
 
         .menu-sliding-pane-header-time-text {
-          font-size: 20px;
+          font-size: spacingPixel(2);
           text-align: center;
           font-weight: $weightBigger;
         }
@@ -136,6 +137,7 @@ body {
           }
 
           .menu-sliding-pane-option-text {
+            font-size: spacingPixel(1.75);
             color: $blackDark;
             font-weight: $weightBigger;
           }

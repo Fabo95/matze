@@ -1,9 +1,9 @@
-import { Row } from 'common/row';
-import { UnstyledButton } from 'common/unstyledButton';
+import { Row } from 'core/row';
+import { UnstyledButton } from 'core/unstyledButton';
 import { HamburgerIcon } from 'icons/hamburgerIcon';
-import { Text } from 'common/text';
+import { Text } from 'core/text';
 import { LogOutIcon } from 'icons/logOutIcon';
-import { LogOut } from 'common/LogOut';
+import { LogOut } from 'core/LogOut';
 
 export const MenuHeader = ({
   toggleMenu,

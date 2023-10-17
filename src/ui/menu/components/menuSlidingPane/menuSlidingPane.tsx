@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { useParams } from 'next/navigation';
 
-import { Box } from 'common/box';
+import { Box } from 'core/box';
 import { MenuSlidingPaneOption } from 'ui/menu/components/menuSlidingPane/components/menuSlidingPaneOption';
 import { Locale, Page } from 'utils/types';
 import { MenuSlidingPaneHeader } from 'ui/menu/components/menuSlidingPane/components/menuSlidingPaneHeader';
@@ -14,8 +14,8 @@ export const MenuSlidingPane = ({
   isOpen: boolean;
   headline: string;
 }) => {
-  const params = useParams();
-  const t = getTFunction(params.lang as Locale);
+  const params = useParams<{ lang: Locale }>();
+  const t = getTFunction(params.lang);
 
   // --- STATE ---
 

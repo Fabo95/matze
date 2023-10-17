@@ -2,8 +2,8 @@ import React from 'react';
 import { cookies } from 'next/headers';
 
 import { apiGetFriendshipsMessages } from 'api/api';
-import { ChatMessages } from 'ui/chat/chatMessages';
-import { Page } from 'common/Page/page';
+import { Friendships } from 'ui/chat/components/friendships/friendships';
+import { Page } from 'core/page/page';
 
 const Chat = async () => {
   // --- STATE ---
@@ -18,7 +18,7 @@ const Chat = async () => {
   // @ts-ignore
   return (
     <Page>
-      <ChatMessages friendshipsMessages={friendshipsMessages} />
+      <Friendships friendshipsMessages={friendshipsMessages} />
     </Page>
   );
 };

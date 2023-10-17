@@ -1,5 +1,5 @@
-import { Row } from 'common/row';
-import { Text } from 'common/text';
+import { Row } from 'core/row';
+import { Text } from 'core/text';
 
 export const MenuSlidingPaneHeader = ({ headline }: { headline: string }) => (
   <Row className="menu-sliding-pane-header">

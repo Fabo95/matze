@@ -1,13 +1,13 @@
-import { Box } from 'common/box';
-import { Form } from 'common/form';
-import { Input } from 'common/input';
-import { Button } from 'common/button';
+import { Box } from 'core/box';
+import { Form } from 'core/form';
+import { Input } from 'core/input';
+import { Button } from 'core/button';
 import { Locale } from 'utils/types';
 import { getTFunction } from 'i18n/tFunction';
-import { Heading } from 'common/heading';
-import { Label } from 'common/label';
+import { Heading } from 'core/heading';
+import { Label } from 'core/label';
 import { apiPostLoginServerAction } from 'serverAction/serverActions';
-import { Text } from 'common/text';
+import { Text } from 'core/text';
 import { loginErrorState } from 'serverAction/utils/serverActionConstants';
 
 export default async function Login({
