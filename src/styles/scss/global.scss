@@ -5,8 +5,6 @@
 
 @use './base/_resets';
 
-@use './components/_button';
-@use './components/detailButton';
 @use './components/_modal';
 @use './components/_slider';
 @use './components/_backgroundBlur';
@@ -15,10 +13,12 @@
 @use './components/_hLine';
 @use './components/_row';
 @use './components/_span';
-@use './components/_unstyledButton';
 @use './components/_swiper';
 @use './components/_grid';
 @use './components/_pulse';
+@use './components/_unstyledButton';
+@use './components/_button';
+@use './components/detailButton';
 
 @use './components/icons';
 

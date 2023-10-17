@@ -7,7 +7,6 @@ type LogOutProps = { children: ReactNode };
 
 export const LogOut = ({ children }: LogOutProps) => (
   <UnstyledButton
-    className="unstyled-button-transparent"
     onClick={() => {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore

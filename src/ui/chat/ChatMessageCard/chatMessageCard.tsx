@@ -1,16 +1,18 @@
-'use client';
-
 import { FriendshipMessages } from 'api/utils/apiTypes';
 import { Text } from 'common/text';
-import { Box } from 'common/box';
 import { Row } from 'common/row';
 import { formatDateAccordingToActuality } from 'utils/helpers';
 import { useMemo } from 'react';
+import { UnstyledButton } from 'common/unstyledButton';
 
 type ChatMessageCardProps = {
+  handleSelectFriendshipMessages: (
+    friendshipMessages: FriendshipMessages
+  ) => void;
   friendshipMessages: FriendshipMessages;
 };
 export const ChatMessageCard = ({
+  handleSelectFriendshipMessages,
   friendshipMessages,
 }: ChatMessageCardProps) => {
   // ---- HELPERS ---
@@ -44,7 +46,10 @@ export const ChatMessageCard = ({
   // --- RENDER ---
 
   return (
-    <Box className="chat-message-card">
+    <UnstyledButton
+      className="chat-message-card"
+      onClick={() => handleSelectFriendshipMessages(friendshipMessages)}
+    >
       <Row className="chat-message-card-metadata">
         <Text className="chat-message-card-friend-name">{friendName}</Text>
         {latestMessageDate && (
@@ -58,6 +63,6 @@ export const ChatMessageCard = ({
           {latestMessage.content}
         </Text>
       )}
-    </Box>
+    </UnstyledButton>
   );
 };
