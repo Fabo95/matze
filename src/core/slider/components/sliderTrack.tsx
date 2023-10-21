@@ -5,7 +5,7 @@ import { Box } from 'core/box';
 import {
   IntervalTimerConfigurationType,
   IntervalTimerConfigurationOptionProps,
-} from 'ui/home/components/utils/intervalTimerTypes';
+} from 'blocks/intervalTimer/components/utils/intervalTimerTypes';
 import { getArrayWithElements } from 'utils/helpers';
 
 export const SliderTrack = ({

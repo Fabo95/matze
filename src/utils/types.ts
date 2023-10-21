@@ -72,14 +72,14 @@ export type CustomCSSProperties = CSSProperties & { '--my-css-var': number };
  * The return type looks like the following:
  *
  * type ExampleReturnType =
- *   | ["pages", "home", "headline"]
- *   | ["pages", "home", "menuOption"]
- *   | ["pages", "home", "intervalTimerSettingOption", "optionOne"]
- *   | ["pages", "home", "intervalTimerSettingOption", "optionTwo"]
- *   | ["pages", "home", "intervalTimerSettingOption", "optionThree"]
- *   | ["pages", "home", "intervalTimerSettingOption", "optionFour"]
- *   | ["pages", "home", "intervalTimerSettingOption", "optionFive"]
- *   | ["pages", "home", "intervalTimerOverview", "timeLeft"]
+ *   | ["pages", "intervalTimer", "headline"]
+ *   | ["pages", "intervalTimer", "menuOption"]
+ *   | ["pages", "intervalTimer", "intervalTimerSettingOption", "optionOne"]
+ *   | ["pages", "intervalTimer", "intervalTimerSettingOption", "optionTwo"]
+ *   | ["pages", "intervalTimer", "intervalTimerSettingOption", "optionThree"]
+ *   | ["pages", "intervalTimer", "intervalTimerSettingOption", "optionFour"]
+ *   | ["pages", "intervalTimer", "intervalTimerSettingOption", "optionFive"]
+ *   | ["pages", "intervalTimer", "intervalTimerOverview", "timeLeft"]
  *   | ["pages", "settings", "headline"]
  *   | ["pages", "settings", "menuOption"]
  *

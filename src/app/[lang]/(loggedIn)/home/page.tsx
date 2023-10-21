@@ -6,8 +6,8 @@ import { apiGetInterval } from 'api/api';
 import {
   getIntervalTimerConfigurationOptionsProps,
   getIntervalTimerExecutionOverviewButtonProps,
-} from 'ui/home/components/utils/intervalTimerHelpers';
-import { IntervalTimer } from 'ui/home/components/intervalTimer';
+} from 'blocks/intervalTimer/components/utils/intervalTimerHelpers';
+import { IntervalTimerBlock } from 'blocks/intervalTimer/intervalTimerBlock';
 import { Page } from 'core/page/page';
 
 type HomeProps = {
@@ -35,7 +35,7 @@ export default async function Home({ params: { lang } }: HomeProps) {
 
   return (
     <Page>
-      <IntervalTimer
+      <IntervalTimerBlock
         configurationOptionsProps={configurationOptionsProps}
         executionOverviewButtonProps={executionOverviewButtonProps}
         interval={interval}

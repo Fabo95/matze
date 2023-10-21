@@ -1,7 +1,7 @@
 import React from 'react';
 
 import 'styles/global.css';
-import { Menu } from 'ui/menu/menu';
+import { MenuBlock } from 'blocks/menu/menuBlock';
 import { getTFunction } from 'i18n/tFunction';
 import { Locale } from 'utils/types';
 import { Box } from 'core/box';
@@ -19,7 +19,7 @@ const LoggedInLayout = async ({
 
   return (
     <Box className="root-layout">
-      <Menu headline={t(`pages.home.headline`)} />
+      <MenuBlock headline={t(`pages.home.headline`)} />
       {children}
     </Box>
   );
