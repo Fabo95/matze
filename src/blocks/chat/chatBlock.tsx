@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 
-import { FriendshipMessages } from 'api/utils/apiTypes';
+import { FriendshipMessages, User } from 'api/utils/apiTypes';
 import { Box } from 'core/box';
 import { ChatFriendshipCard } from 'blocks/chat/components/chatFriendships/chatFriendshipCard/chatFriendshipCard';
 import { PageBlockStart } from 'core/page/components/pageBlockStart';
@@ -14,9 +14,10 @@ import { useBoolean } from 'utils/hooks';
 
 type ChatBlockProps = {
   friendshipsMessages: FriendshipMessages[];
+  user: User;
 };
 
-export const ChatBlock = ({ friendshipsMessages }: ChatBlockProps) => {
+export const ChatBlock = ({ friendshipsMessages, user }: ChatBlockProps) => {
   const t = getTFunction(Locale.DE);
 
   // --- STATE ---
@@ -44,13 +45,15 @@ export const ChatBlock = ({ friendshipsMessages }: ChatBlockProps) => {
 
   // --- RENDER ---
 
-  console.log('selectedFriendshipMessages', selectedFriendshipMessages);
-
   return (
     <>
-      <ChatMessages isChatMessagesShown={isChatMessagesShown}>
-        HIIIIII
-      </ChatMessages>
+      {selectedFriendshipMessages && (
+        <ChatMessages
+          isChatMessagesShown={isChatMessagesShown}
+          selectedFriendshipMessages={selectedFriendshipMessages}
+          userId={user.userId}
+        />
+      )}
 
       <PageBlockStart className="chat-messages-headline">
         {t('pages.chat.headline')}
@@ -65,6 +68,7 @@ export const ChatBlock = ({ friendshipsMessages }: ChatBlockProps) => {
               friendshipMessages={friendshipMessages}
               handleSelectFriendshipMessages={handleSelectFriendshipMessages}
               key={index}
+              userId={user.userId}
             />
           ))}
         </Box>

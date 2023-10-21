@@ -1,13 +1,14 @@
 import React from 'react';
 import { cookies } from 'next/headers';
 
-import { apiGetFriendshipsMessages } from 'api/api';
+import { apiGetFriendshipsMessages, apiGetUserByIdOrFromToken } from 'api/api';
 import { Page } from 'core/page/page';
 import { ChatBlock } from 'blocks/chat/chatBlock';
 
 const Chat = async () => {
   // --- STATE ---
 
+  const user = await apiGetUserByIdOrFromToken();
   const friendshipsMessages = await apiGetFriendshipsMessages();
 
   const authToken = cookies().get('authToken');
@@ -18,7 +19,7 @@ const Chat = async () => {
   // @ts-ignore
   return (
     <Page className="chat-page">
-      <ChatBlock friendshipsMessages={friendshipsMessages} />
+      <ChatBlock friendshipsMessages={friendshipsMessages} user={user} />
     </Page>
   );
 };

@@ -66,9 +66,9 @@ export const apiGetUserByIdOrFromToken = async ({
   userId,
 }: {
   userId?: number;
-} = {}): Promise<User | null> =>
+} = {}): Promise<User> =>
   fetch(
-    `${authBaseUrl}users/${userId ? `?userId=${userId}` : ''}`,
+    `${authBaseUrl}users${userId ? `?userId=${userId}` : ''}`,
     getFetchOptions()
   ).then((data) => data.json());
 

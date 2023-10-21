@@ -1,20 +1,34 @@
-import { ReactNode } from 'react';
-
 import { ChatMessagesSlidingPane } from 'blocks/chat/components/chatMessages/components/chatMessagesSlidingPane';
+import { FriendshipMessages, User } from 'api/utils/apiTypes';
+import { Box } from 'core/box';
+import { Text } from 'core/text';
+import { getFriend } from 'blocks/chat/utils/chatHelpers';
 
-type ChatMessagesProps = { children: ReactNode; isChatMessagesShown: boolean };
+type ChatMessagesProps = {
+  isChatMessagesShown: boolean;
+  selectedFriendshipMessages: FriendshipMessages;
+  userId: number;
+};
 
 export const ChatMessages = ({
-  children,
   isChatMessagesShown,
+  selectedFriendshipMessages,
+  userId,
 }: ChatMessagesProps) => {
-  // --- RENDER ---
+  // --- HELPERS ---
 
-  console.log('isChatMessagesShown', isChatMessagesShown);
+  const friend = getFriend({
+    friendshipMessages: selectedFriendshipMessages,
+    userId,
+  });
+
+  // --- RENDER ---
 
   return (
     <ChatMessagesSlidingPane isOpen={isChatMessagesShown}>
-      {children}
+      <Box>
+        <Text>{friend?.nickname || friend.email}</Text>
+      </Box>
     </ChatMessagesSlidingPane>
   );
 };

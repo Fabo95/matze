@@ -1,24 +1,32 @@
+import { useMemo } from 'react';
+
 import { FriendshipMessages } from 'api/utils/apiTypes';
 import { Text } from 'core/text';
 import { Row } from 'core/row';
 import { formatDateAccordingToActuality } from 'utils/helpers';
-import { useMemo } from 'react';
 import { UnstyledButton } from 'core/unstyledButton';
+import { getFriend } from 'blocks/chat/utils/chatHelpers';
 
 type ChatFriendshipCardProps = {
   handleSelectFriendshipMessages: (
     friendshipMessages: FriendshipMessages
   ) => void;
   friendshipMessages: FriendshipMessages;
+  userId: number;
 };
 export const ChatFriendshipCard = ({
   handleSelectFriendshipMessages,
   friendshipMessages,
+  userId,
 }: ChatFriendshipCardProps) => {
   // ---- HELPERS ---
 
-  const friendName =
-    friendshipMessages.userB?.nickname || friendshipMessages.userB?.email;
+  const friend = getFriend({
+    friendshipMessages,
+    userId,
+  });
+
+  const friendName = friend.nickname || friend.email;
 
   // --- MEMOIZED DATA ---
 
