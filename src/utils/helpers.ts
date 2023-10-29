@@ -1,9 +1,9 @@
-import { ReactiveType, RecursiveObjectType } from 'utils/types';
+import { MouseEvent, RefObject, TouchEvent } from 'react';
 import moment from 'moment';
 import { Subject } from 'rxjs';
 
+import { ReactiveType, RecursiveObjectType } from 'utils/types';
 import { Interval } from 'api/utils/apiTypes';
-import { MouseEvent, TouchEvent } from 'react';
 
 /**
  * Takes a nested object and an array of keys and returns the corresponding nested string value.
@@ -92,4 +92,21 @@ export const formatDateAccordingToActuality = (date: Date) => {
   }
   // Show the full date if it's none of the above
   return messageDate.format('DD.MM.YYYY');
+};
+
+export const formatDateToTime = (date: Date) => {
+  const messageDate = moment(date);
+
+  return messageDate.format('HH:mm');
+};
+
+export const scrollToBottom = (elementRef: RefObject<HTMLDivElement>) => {
+  if (!elementRef.current) {
+    return;
+  }
+
+  elementRef.current.scroll({
+    behavior: 'smooth',
+    top: elementRef.current.scrollHeight,
+  });
 };

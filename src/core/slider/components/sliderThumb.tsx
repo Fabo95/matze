@@ -1,6 +1,5 @@
 import { Box } from 'core/box';
-import { ChevronUp } from 'icons/chevronUp';
-import { ChevronDown } from 'icons/chevronDown';
+import { Chevron } from 'icons/chevron';
 import { IntervalTimerConfigurationOptionProps } from 'blocks/intervalTimer/components/utils/intervalTimerTypes';
 
 export const SliderThumb = ({
@@ -21,9 +20,9 @@ export const SliderThumb = ({
     <Box className="slider-thumb" style={{ bottom: `${translateYOffset}` }}>
       <Box className="slider-thumb-line" />
 
-      <ChevronUp className="stroke-gray-dark" />
+      <Chevron className="stroke-gray-dark" direction="up" />
 
-      <ChevronDown className="stroke-gray-dark" />
+      <Chevron className="stroke-gray-dark" direction="down" />
     </Box>
   );
 };
