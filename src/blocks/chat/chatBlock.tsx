@@ -3,7 +3,6 @@
 import { useCallback, useState } from 'react';
 
 import { FriendshipMessages, User } from 'api/utils/apiTypes';
-import { Box } from 'core/box';
 import { ChatFriendshipCard } from 'blocks/chat/components/chatFriendships/chatFriendshipCard/chatFriendshipCard';
 import { PageBlockStart } from 'core/page/components/pageBlockStart';
 import { PageBlockEnd } from 'core/page/components/pageBlockEnd';
@@ -11,13 +10,19 @@ import { getTFunction } from 'i18n/tFunction';
 import { Locale } from 'utils/types';
 import { ChatMessages } from 'blocks/chat/components/chatMessages/chatMessages';
 import { useBoolean } from 'utils/hooks';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 type ChatBlockProps = {
+  authToken?: RequestCookie;
   friendshipsMessages: FriendshipMessages[];
   user: User;
 };
 
-export const ChatBlock = ({ friendshipsMessages, user }: ChatBlockProps) => {
+export const ChatBlock = ({
+  authToken,
+  friendshipsMessages,
+  user,
+}: ChatBlockProps) => {
   const t = getTFunction(Locale.DE);
 
   // --- STATE ---
@@ -49,29 +54,26 @@ export const ChatBlock = ({ friendshipsMessages, user }: ChatBlockProps) => {
     <>
       {selectedFriendshipMessages && (
         <ChatMessages
+          authToken={authToken}
           isChatMessagesShown={isChatMessagesShown}
           selectedFriendshipMessages={selectedFriendshipMessages}
           userId={user.userId}
         />
       )}
 
-      <PageBlockStart className="chat-messages-headline">
+      <PageBlockStart className="chat-headline">
         {t('pages.chat.headline')}
       </PageBlockStart>
 
-      <PageBlockEnd className="chat-messages-container ">
-        <Box className="chat-messages-cards">
-          {friendshipsMessages.map((friendshipMessages, index) => (
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            <ChatFriendshipCard
-              friendshipMessages={friendshipMessages}
-              handleSelectFriendshipMessages={handleSelectFriendshipMessages}
-              key={index}
-              userId={user.userId}
-            />
-          ))}
-        </Box>
+      <PageBlockEnd className="chat-friendships">
+        {friendshipsMessages.map((friendshipMessages) => (
+          <ChatFriendshipCard
+            friendshipMessages={friendshipMessages}
+            handleSelectFriendshipMessages={handleSelectFriendshipMessages}
+            key={friendshipMessages.friendshipId}
+            userId={user.userId}
+          />
+        ))}
       </PageBlockEnd>
     </>
   );

@@ -7,13 +7,13 @@
   position: relative;
 }
 
-.chat-messages-headline {
+.chat-headline {
   font-size: spacingPixel(3.5);
   color: #fff;
   font-weight: 700;
 }
 
-.chat-messages-container {
+.chat-friendships {
   background: $whiteDark;
   padding: spacingPixel(4) spacingPixel(2);
   background: $whiteDark;
@@ -22,28 +22,28 @@
   border-top-right-radius: spacingPixel(1);
   overflow: auto !important;
 
-  .chat-message-card {
+  .chat-friendship-card {
     padding-bottom: spacingPixel(2);
     padding-top: spacingPixel(2);
     border-bottom: 1px solid $grayLight;
   }
 
-  .chat-message-card-metadata {
+  .chat-friendship-card-metadata {
     justify-content: space-between;
     margin-bottom: spacingPixel(1);
   }
 
-  .chat-message-card-friend-name {
+  .chat-friendship-card-friend-name {
     font-weight: 600;
   }
 
-  .chat-message-card-friend-date {
+  .chat-friendship-card-friend-date {
     font-weight: 300;
     font-size: spacingPixel(1.75);
     color: $grayExtraDark;
   }
 
-  .chat-message-card-content {
+  .chat-friendship-card-content {
     text-align: start;
     font-size: spacingPixel(1.75);
     color: $grayExtraDark;
@@ -62,6 +62,55 @@
   border-top-left-radius: $borderRadiusM;
   transform: translateX(100%);
   @include mixins.topRightBottomLeft();
+
+  .chat-messages-nav-bar-top {
+    padding: spacingPixel(2);
+    position: relative;
+    border-bottom: 1px solid $grayLight;
+    justify-content: center;
+
+    .chat-messages-nav-bar-top-chevron {
+      position: absolute;
+      left: spacingPixel(2);
+    }
+  }
+
+  .chat-messages-content {
+    overflow-y: scroll;
+    padding: spacingPixel(2);
+    height: 100%;
+
+    .chat-message-content-self,
+    .chat-message-content-other {
+      max-width: 33%;
+      border-radius: $borderRadiusM;
+      background: $whiteDark;
+      padding: spacingPixel(1) spacingPixel(2);
+      margin-bottom: spacingPixel(1);
+
+      .chat-message-content-date {
+        font-size: spacingPixel(1.75);
+        color: $grayDark;
+      }
+    }
+
+    .chat-message-content-self + .chat-message-content-other,
+    .chat-message-content-other + .chat-message-content-self {
+      margin-top: spacingPixel(1);
+    }
+
+    .chat-message-content-self {
+      align-self: end;
+      text-align: right;
+      background: $greenLight;
+    }
+
+    .chat-message-content-other {
+      align-self: start;
+      text-align: left;
+      background: $grayLight;
+    }
+  }
 }
 
 .chat-messages-sliding-pane-open {

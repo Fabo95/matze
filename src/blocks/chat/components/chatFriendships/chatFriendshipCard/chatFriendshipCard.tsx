@@ -55,19 +55,19 @@ export const ChatFriendshipCard = ({
 
   return (
     <UnstyledButton
-      className="chat-message-card"
+      className="chat-friendship-card"
       onClick={() => handleSelectFriendshipMessages(friendshipMessages)}
     >
-      <Row className="chat-message-card-metadata">
-        <Text className="chat-message-card-friend-name">{friendName}</Text>
+      <Row className="chat-friendship-card-metadata">
+        <Text className="chat-friendship-card-friend-name">{friendName}</Text>
         {latestMessageDate && (
-          <Text className="chat-message-card-friend-date">
+          <Text className="chat-friendship-card-friend-date">
             {latestMessageDate}
           </Text>
         )}
       </Row>
       {latestMessage && (
-        <Text className="chat-message-card-content">
+        <Text className="chat-friendship-card-content">
           {latestMessage.content}
         </Text>
       )}

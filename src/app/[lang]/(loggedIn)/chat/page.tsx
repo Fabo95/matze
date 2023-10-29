@@ -19,7 +19,11 @@ const Chat = async () => {
   // @ts-ignore
   return (
     <Page className="chat-page">
-      <ChatBlock friendshipsMessages={friendshipsMessages} user={user} />
+      <ChatBlock
+        authToken={authToken}
+        friendshipsMessages={friendshipsMessages}
+        user={user}
+      />
     </Page>
   );
 };
