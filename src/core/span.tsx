@@ -1,16 +1,11 @@
-import { forwardRef, ReactNode, Ref } from 'react';
-import { CustomCSSProperties } from 'utils/types';
+import { forwardRef, HTMLAttributes, Ref } from 'react';
 
-type SpanProps = {
-  className?: string;
-  children?: ReactNode;
-  style?: CustomCSSProperties;
-};
+type SpanProps = HTMLAttributes<HTMLSpanElement>;
 
 export const Span = forwardRef(
   (
-    { className: propsClassName, children, style }: SpanProps,
-    ref: Ref<any>
+    { className: propsClassName, children, ...spanProps }: SpanProps,
+    ref: Ref<HTMLSpanElement>
   ) => {
     const defaultClassnames = 'span';
 
@@ -19,7 +14,7 @@ export const Span = forwardRef(
       : defaultClassnames;
 
     return (
-      <span className={classNames} ref={ref} style={style}>
+      <span className={classNames} ref={ref} {...spanProps}>
         {children}
       </span>
     );

@@ -1,15 +1,15 @@
-import { CSSProperties } from 'react';
+import { HTMLAttributes } from 'react';
 
-type HLineProps = {
-  style?: CSSProperties;
-  className?: string;
-};
-export const HLine = ({ className: propsClassName, style }: HLineProps) => {
+type HLineProps = HTMLAttributes<HTMLHRElement>;
+export const HLine = ({
+  className: propsClassName,
+  ...hLineProps
+}: HLineProps) => {
   const defaultClassnames = 'hLine';
 
   const classNames = propsClassName
     ? `${defaultClassnames} ${propsClassName}`
     : defaultClassnames;
 
-  return <hr className={classNames} style={style} />;
+  return <hr className={classNames} {...hLineProps} />;
 };

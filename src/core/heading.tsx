@@ -1,13 +1,11 @@
-import { ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
 
-type HeadingProps = {
-  className?: string;
-  children: ReactNode;
-};
+type HeadingProps = HTMLAttributes<HTMLHeadingElement>;
 
 export const Heading = ({
   className: propsClassName,
   children,
+  ...headingProps
 }: HeadingProps) => {
   const defaultClassnames = 'heading';
 
@@ -15,5 +13,9 @@ export const Heading = ({
     ? `${defaultClassnames} ${propsClassName}`
     : defaultClassnames;
 
-  return <h1 className={classNames}>{children}</h1>;
+  return (
+    <h1 className={classNames} {...headingProps}>
+      {children}
+    </h1>
+  );
 };

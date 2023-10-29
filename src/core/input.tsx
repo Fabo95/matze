@@ -1,14 +1,10 @@
-type InputProps = {
-  className?: string;
-  id?: string;
-  name?: string;
-  type?: HTMLInputElement['type'];
-};
+import { InputHTMLAttributes } from 'react';
+
+type InputProps = InputHTMLAttributes<HTMLInputElement>;
+
 export const Input = ({
   className: propsClassName,
-  id,
-  name,
-  type,
+  ...inputProps
 }: InputProps) => {
   const defaultClassname = 'input';
 
@@ -16,5 +12,5 @@ export const Input = ({
     ? `${defaultClassname} ${propsClassName}`
     : defaultClassname;
 
-  return <input className={className} id={id} name={name} type={type} />;
+  return <input className={className} {...inputProps} />;
 };

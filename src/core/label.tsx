@@ -1,14 +1,10 @@
-import { ReactNode } from 'react';
+import { LabelHTMLAttributes } from 'react';
 
-type LabelProps = {
-  children?: ReactNode;
-  className?: string;
-  htmlFor?: HTMLLabelElement['htmlFor'];
-};
+type LabelProps = LabelHTMLAttributes<HTMLLabelElement>;
 export const Label = ({
   children,
   className: propsClassName,
-  htmlFor,
+  ...labelProps
 }: LabelProps) => {
   const defaultClassname = 'label';
 
@@ -17,7 +13,8 @@ export const Label = ({
     : defaultClassname;
 
   return (
-    <label className={className} htmlFor={htmlFor}>
+    // eslint-disable-next-line jsx-a11y/label-has-associated-control
+    <label className={className} {...labelProps}>
       {children}
     </label>
   );

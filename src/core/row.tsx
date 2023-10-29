@@ -1,17 +1,11 @@
-import { CSSProperties, ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
 
-type RowProps = {
-  style?: CSSProperties;
-  className?: string;
-  children?: ReactNode;
-  onClick?: () => void;
-};
+type RowProps = HTMLAttributes<HTMLDivElement>;
 
 export const Row = ({
   className: propsClassName,
   children,
-  onClick,
-  style,
+  ...rowProps
 }: RowProps) => {
   const defaultClassnames = 'row';
 
@@ -20,12 +14,7 @@ export const Row = ({
     : defaultClassnames;
 
   return (
-    <div
-      className={classNames}
-      role="presentation"
-      style={style}
-      onClick={onClick}
-    >
+    <div className={classNames} role="presentation" {...rowProps}>
       {children}
     </div>
   );

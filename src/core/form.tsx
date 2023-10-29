@@ -1,16 +1,14 @@
-'use server';
-
-import { ReactNode } from 'react';
+import { FormHTMLAttributes } from 'react';
 
 type FormProps = {
   action?: (formData: FormData) => void;
-  className?: string;
-  children?: ReactNode;
-};
+} & Omit<FormHTMLAttributes<HTMLFormElement>, 'action'>;
+
 export const Form = ({
   action,
   className: propsClassName,
   children,
+  ...formProps
 }: FormProps) => {
   const defaultClassname = 'form';
 
@@ -21,7 +19,7 @@ export const Form = ({
   return (
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    <form action={action} className={className}>
+    <form action={action} className={className} {...formProps}>
       {children}
     </form>
   );

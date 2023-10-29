@@ -1,9 +1,13 @@
-export const ChevronUp = ({
-  className: propsClassName,
-}: {
+type ChevronProps = {
   className?: string;
-}) => {
-  const defaultClassname = 'icon-size-1-5 stroke-black-dark';
+  direction: 'up' | 'down' | 'right' | 'left';
+};
+
+export const Chevron = ({
+  className: propsClassName,
+  direction,
+}: ChevronProps) => {
+  const defaultClassname = `icon-size-1-5 stroke-black-dark chevron-icon-direction-${direction}`;
 
   const className = propsClassName
     ? `${defaultClassname} ${propsClassName}`

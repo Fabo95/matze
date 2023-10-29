@@ -1,14 +1,10 @@
-import { CSSProperties, ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
 
-type GridProps = {
-  style?: CSSProperties;
-  className?: string;
-  children?: ReactNode;
-};
+type GridProps = HTMLAttributes<HTMLDivElement>;
 export const Grid = ({
-  style,
   className: propsClassName,
   children,
+  ...gridProps
 }: GridProps) => {
   const defaultClassname = 'grid';
 
@@ -17,7 +13,7 @@ export const Grid = ({
     : defaultClassname;
 
   return (
-    <div className={className} style={style}>
+    <div className={className} {...gridProps}>
       {children}
     </div>
   );

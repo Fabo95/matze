@@ -1,14 +1,10 @@
-import { CSSProperties, forwardRef, ReactNode, Ref } from 'react';
+import { DialogHTMLAttributes, forwardRef, Ref } from 'react';
 
-type DialogProps = {
-  style?: CSSProperties;
-  className?: string;
-  children?: ReactNode;
-};
+type DialogProps = DialogHTMLAttributes<HTMLDialogElement>;
 
 export const Dialog = forwardRef(
   (
-    { style, className: propsClassName, children }: DialogProps,
+    { className: propsClassName, children, ...dialogProps }: DialogProps,
     ref: Ref<HTMLDialogElement>
   ) => {
     const defaultClassnames = '';
@@ -18,7 +14,7 @@ export const Dialog = forwardRef(
       : defaultClassnames;
 
     return (
-      <dialog className={classNames} ref={ref} style={style}>
+      <dialog className={classNames} ref={ref} {...dialogProps}>
         {children}
       </dialog>
     );

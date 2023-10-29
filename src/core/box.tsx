@@ -1,34 +1,22 @@
-import { CSSProperties, ReactNode, Ref } from 'react';
+import { forwardRef, HTMLAttributes, Ref } from 'react';
 
-type BoxProps = {
-  style?: CSSProperties;
-  className?: string;
-  children?: ReactNode;
-  onClick?: (event?: any) => void;
-  ref?: Ref<any>;
-};
-export const Box = ({
-  style,
-  className: propsClassName,
-  children,
-  onClick,
-  ref,
-}: BoxProps) => {
-  const defaultClassnames = 'box';
+type BoxProps = HTMLAttributes<HTMLDivElement>;
 
-  const classNames = propsClassName
-    ? `${defaultClassnames} ${propsClassName}`
-    : defaultClassnames;
+export const Box = forwardRef(
+  (
+    { className: propsClassName, children, ...boxProps }: BoxProps,
+    ref: Ref<HTMLDivElement>
+  ) => {
+    const defaultClassnames = 'box';
 
-  return (
-    <div
-      className={classNames}
-      ref={ref}
-      role="presentation"
-      style={style}
-      onClick={onClick}
-    >
-      {children}
-    </div>
-  );
-};
+    const classNames = propsClassName
+      ? `${defaultClassnames} ${propsClassName}`
+      : defaultClassnames;
+
+    return (
+      <div className={classNames} ref={ref} role="presentation" {...boxProps}>
+        {children}
+      </div>
+    );
+  }
+);

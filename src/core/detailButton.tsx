@@ -1,4 +1,10 @@
-import { MouseEvent, ReactElement, ReactNode, useRef } from 'react';
+import {
+  ButtonHTMLAttributes,
+  MouseEvent,
+  ReactElement,
+  ReactNode,
+  useRef,
+} from 'react';
 
 import { UnstyledButton } from 'core/unstyledButton';
 import { Row } from 'core/row';
@@ -8,16 +14,14 @@ type DetailButtonProps = {
   inlineCenterLeft: string;
   inlineStart: ReactElement;
   inlineEnd?: ReactNode;
-  className?: string;
-  onClick?: () => void;
-};
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const DetailButton = ({
   inlineCenterLeft,
   inlineStart,
   inlineEnd,
   className,
-  onClick,
+  ...detailButtonProps
 }: DetailButtonProps) => {
   // --- STATE ---
 
@@ -32,7 +36,7 @@ export const DetailButton = ({
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
     // Needed because otherwise the button gets clicks while swiping.
     if (Math.abs(event.clientX - startXPositionRef.current) < 5) {
-      onClick?.();
+      detailButtonProps.onClick?.(event);
     }
   };
 
@@ -43,6 +47,7 @@ export const DetailButton = ({
       handleMouseDown={handleMouseDown}
       key={inlineCenterLeft}
       onClick={handleClick}
+      {...detailButtonProps}
     >
       <Row className="detail-button-text">
         <Span>{inlineStart}</Span>

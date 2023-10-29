@@ -1,13 +1,10 @@
-import { forwardRef, ReactNode, Ref } from 'react';
+import { forwardRef, Ref, TextareaHTMLAttributes } from 'react';
 
-type TextProps = {
-  className?: string;
-  children: ReactNode;
-};
+type TextProps = TextareaHTMLAttributes<HTMLParagraphElement>;
 
 export const Text = forwardRef(
   (
-    { className: propsClassName, children }: TextProps,
+    { className: propsClassName, children, ...textProps }: TextProps,
     ref: Ref<HTMLParagraphElement>
   ) => {
     const defaultClassnames = '';
@@ -17,7 +14,7 @@ export const Text = forwardRef(
       : defaultClassnames;
 
     return (
-      <p className={classNames} ref={ref}>
+      <p className={classNames} ref={ref} {...textProps}>
         {children}
       </p>
     );
