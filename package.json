@@ -25,7 +25,7 @@
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "negotiator": "^0.6.3",
-    "next": "13.5.4",
+    "next": "^14.0.0",
     "next-with-workbox": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
