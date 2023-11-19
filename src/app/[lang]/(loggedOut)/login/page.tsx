@@ -19,11 +19,6 @@ export default async function Login({
 
   // --- HELPERS ---
 
-  const headline = t('pages.login.headline');
-  const buttonTitle = t('pages.login.cta');
-  const emailLabel = t('pages.login.emailLabel');
-  const passwordLabel = t('pages.login.passwordLabel');
-
   const emailError = loginErrorState.getEmailError();
   const passwordError = loginErrorState.getPasswordError();
 
@@ -38,12 +33,14 @@ export default async function Login({
   return (
     <Box className="login-page">
       <Box className="login-page-container">
-        <Heading className="login-page-headline">{headline}</Heading>
+        <Heading className="login-page-headline">
+          {t('pages.login.headline')}
+        </Heading>
 
         <Form action={apiPostLoginServerAction} className="login-form">
           <Box className="login-form-email-box">
             <Label className="login-form-label" htmlFor="email">
-              {emailLabel}
+              {t('pages.login.emailLabel')}
             </Label>
             <Input
               className="login-form-input"
@@ -58,7 +55,7 @@ export default async function Login({
 
           <Box className="login-form-password-box">
             <Label className="login-form-label" htmlFor="password">
-              {passwordLabel}
+              {t('pages.login.passwordLabel')}
             </Label>
             <Input
               // TODO Build show password toggle
@@ -73,7 +70,7 @@ export default async function Login({
           </Box>
 
           <Button
-            buttonTitle={buttonTitle}
+            buttonTitle={t('pages.login.cta')}
             className="login-form-cta"
             type="submit"
           />

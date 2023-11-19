@@ -1,7 +1,7 @@
 services:
   interval-app-api:
     environment:
-      - JWT_SECRET_KEY=Pd8Ji2d7mSq14Oqs?dkW!1
+      - JWT_SECRET_KEY_OLD=Pd8Ji2d7mSq14Oqs?dkW!1
     build:
       context: /Users/fabianhinz/Desktop/dev/interval_app_api
       dockerfile: Dockerfile.api
@@ -11,7 +11,7 @@ services:
 
   interval-app-auth:
     environment:
-      - JWT_SECRET_KEY=Pd8Ji2d7mSq14Oqs?dkW!1
+      - JWT_SECRET_KEY_OLD=Pd8Ji2d7mSq14Oqs?dkW!1
     build:
       context: /Users/fabianhinz/Desktop/dev/interval_app_api
       dockerfile: Dockerfile.auth
