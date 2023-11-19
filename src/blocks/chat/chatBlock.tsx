@@ -35,7 +35,7 @@ export const ChatBlock = ({
     value: isChatMessagesShown,
     setTrue: openChatMessages,
     setFalse: closeChatMessages,
-  } = useBoolean(true);
+  } = useBoolean(false);
 
   // --- CALLBACKS ---
 
@@ -52,7 +52,7 @@ export const ChatBlock = ({
 
   return (
     <>
-      {selectedFriendshipMessages && (
+      {selectedFriendshipMessages && isChatMessagesShown && (
         <ChatMessages
           authToken={authToken}
           isChatMessagesShown={isChatMessagesShown}

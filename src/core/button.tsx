@@ -1,3 +1,5 @@
+'use client';
+
 import { UnstyledButton } from 'core/unstyledButton';
 import React, {
   ButtonHTMLAttributes,

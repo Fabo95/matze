@@ -1,3 +1,5 @@
+'use client';
+
 import {
   ButtonHTMLAttributes,
   ForwardedRef,
@@ -6,7 +8,7 @@ import {
 } from 'react';
 
 type UnstyledButtonProps = {
-  handleMouseDown?: (event: MouseEvent<HTMLButtonElement>) => void;
+  handlemousedown?: (event: MouseEvent<HTMLButtonElement>) => void;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const UnstyledButton = forwardRef(

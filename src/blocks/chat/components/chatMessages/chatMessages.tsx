@@ -1,3 +1,6 @@
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+
 import { ChatMessagesSlidingPane } from 'blocks/chat/components/chatMessages/components/chatMessagesSlidingPane';
 import { FriendshipMessages, Message } from 'api/utils/apiTypes';
 import { Box } from 'core/box';
@@ -6,15 +9,11 @@ import { getFriend } from 'blocks/chat/utils/chatHelpers';
 import { Row } from 'core/row';
 import { Chevron } from 'icons/chevron';
 import { UnstyledButton } from 'core/unstyledButton';
-import { ChatMessage } from 'blocks/chat/components/chatMessages/components/chatMessage/chatMessage';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+import { ChatMessage } from 'blocks/chat/components/chatMessages/components/chatMessage';
 import { scrollToBottom } from 'utils/helpers';
 import { getInitialMessages } from 'blocks/chat/components/chatMessages/utils/chatMessagesHelpers';
 import { useWebSocket } from 'blocks/chat/components/chatMessages/utils/chatMessagesHooks';
-import { Input } from 'core/input';
-import { Form } from 'core/form';
-import { Button } from 'core/button';
+import { ChatMessageForm } from 'blocks/chat/components/chatMessages/components/chatMessageForm';
 
 type ChatMessagesProps = {
   authToken?: RequestCookie;
@@ -22,6 +21,8 @@ type ChatMessagesProps = {
   selectedFriendshipMessages: FriendshipMessages;
   userId: number;
 };
+
+let isFirstRender = true;
 
 export const ChatMessages = ({
   authToken,
@@ -33,42 +34,8 @@ export const ChatMessages = ({
 
   const chatMessagesContainer = useRef<HTMLDivElement>(null);
 
-  const [currentMessage, setCurrentMessage] = useState('');
   const [messages, setMessages] = useState(() =>
     getInitialMessages(selectedFriendshipMessages)
-  );
-
-  // --- CALLBACKS ---
-
-  const handleSetMessages = (message: Message) => {
-    setMessages((prevMessages) => [...prevMessages, message]);
-  };
-
-  const { sendMessage } = useWebSocket({
-    authToken,
-    handleSetMessages,
-    userId,
-  });
-
-  const handleSubmitMessage = useCallback(
-    ({
-      currentMessage,
-      friendshipId,
-      receiverUserId,
-    }: {
-      currentMessage: string;
-      friendshipId: number;
-      receiverUserId: number;
-    }) => {
-      sendMessage({
-        currentMessage,
-        friendshipId: selectedFriendshipMessages.friendshipId,
-        receiverUserId: friend.userId,
-      });
-
-      setCurrentMessage('');
-    },
-    []
   );
 
   // --- HELPERS ---
@@ -78,16 +45,32 @@ export const ChatMessages = ({
     userId,
   });
 
-  const isLastMessageFromUser =
-    messages[messages.length - 1].senderUserId === userId;
+  // --- CALLBACKS ---
+
+  const handleSetMessages = useCallback((message: Message) => {
+    setMessages((prevMessages) => [...prevMessages, message]);
+  }, []);
+
+  const { sendMessage } = useWebSocket({
+    authToken,
+    handleSetMessages,
+    userId,
+  });
 
   // --- EFFECTS ---
 
   useEffect(() => {
-    if (messages.length > 0 && isLastMessageFromUser) {
-      scrollToBottom(chatMessagesContainer);
+    if (isFirstRender) {
+      scrollToBottom(chatMessagesContainer, 'instant');
+
+      isFirstRender = false;
+      return;
     }
-  }, [isLastMessageFromUser, messages.length]);
+
+    if (messages.length > 0) {
+      scrollToBottom(chatMessagesContainer, 'smooth');
+    }
+  }, [messages.length]);
 
   // --- RENDER ---
 
@@ -110,20 +93,11 @@ export const ChatMessages = ({
         ))}
       </Box>
 
-      <Form
-        action={(formData) => console.log('formData', formData.get('message'))}
-      >
-        <Input
-          name="message"
-          type="text"
-          value={currentMessage}
-          onChange={(event) => setCurrentMessage(event.currentTarget.value)}
-        />
-
-        <Button buttonTitle="submit" type="submit">
-          Send
-        </Button>
-      </Form>
+      <ChatMessageForm
+        friendshipId={selectedFriendshipMessages.friendshipId}
+        receiverUserId={friend.userId}
+        sendMessage={sendMessage}
+      />
     </ChatMessagesSlidingPane>
   );
 };

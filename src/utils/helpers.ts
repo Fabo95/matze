@@ -100,13 +100,23 @@ export const formatDateToTime = (date: Date) => {
   return messageDate.format('HH:mm');
 };
 
-export const scrollToBottom = (elementRef: RefObject<HTMLDivElement>) => {
+export const scrollToBottom = (
+  elementRef: RefObject<HTMLDivElement>,
+  behavior: ScrollBehavior
+) => {
   if (!elementRef.current) {
     return;
   }
 
   elementRef.current.scroll({
-    behavior: 'smooth',
+    behavior,
     top: elementRef.current.scrollHeight,
   });
+};
+
+export const getTruncatedText = (text: string, maxChars = 20) => {
+  if (text.length <= maxChars) {
+    return text;
+  }
+  return `${text.substring(0, 20)} ...`;
 };

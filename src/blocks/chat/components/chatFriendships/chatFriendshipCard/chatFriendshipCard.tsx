@@ -3,7 +3,10 @@ import { useMemo } from 'react';
 import { FriendshipMessages } from 'api/utils/apiTypes';
 import { Text } from 'core/text';
 import { Row } from 'core/row';
-import { formatDateAccordingToActuality } from 'utils/helpers';
+import {
+  formatDateAccordingToActuality,
+  getTruncatedText,
+} from 'utils/helpers';
 import { UnstyledButton } from 'core/unstyledButton';
 import { getFriend } from 'blocks/chat/utils/chatHelpers';
 
@@ -68,7 +71,7 @@ export const ChatFriendshipCard = ({
       </Row>
       {latestMessage && (
         <Text className="chat-friendship-card-content">
-          {latestMessage.content}
+          {getTruncatedText(latestMessage.content)}
         </Text>
       )}
     </UnstyledButton>

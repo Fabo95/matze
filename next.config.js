@@ -6,6 +6,7 @@ const nextConfig = {
     // Needed because of SWC failure. https://nextjs.org/docs/messages/failed-loading-swc
     swcMinify: false,
   },
+  reactStrictMode: false,
   webpack: (config, { buildId, webpack }) => {
     config.plugins.push(
       new webpack.DefinePlugin({

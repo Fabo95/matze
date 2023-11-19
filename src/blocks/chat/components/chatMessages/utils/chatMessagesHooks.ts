@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+
 import { Message } from 'api/utils/apiTypes';
+import { SendMessage } from 'blocks/chat/components/chatMessages/utils/chatMessagesTypes';
+import { webSocketBaseUrl } from 'api/utils/apiConstants';
 
 export const useWebSocket = ({
   userId,
@@ -22,7 +25,7 @@ export const useWebSocket = ({
       return;
     }
 
-    socket.current = new WebSocket('ws://localhost:8081');
+    socket.current = new WebSocket(webSocketBaseUrl);
 
     socket.current.onopen = () => {
       socket.current?.send(
@@ -46,30 +49,22 @@ export const useWebSocket = ({
 
     // eslint-disable-next-line consistent-return
     return () => {
-      // socket.current?.close();
-      // socket.current = null;
+      socket.current?.close();
+      socket.current = null;
     };
   }, [authToken?.value, handleSetMessages, userId]);
 
   // --- CALLBACKS ---
 
-  const sendMessage = useCallback(
-    ({
-      currentMessage,
-      friendshipId,
-      receiverUserId,
-    }: {
-      currentMessage: string;
-      friendshipId: number;
-      receiverUserId: number;
-    }) => {
-      if (!socket.current || currentMessage.trim() === '') {
+  const sendMessage: SendMessage = useCallback(
+    ({ message, friendshipId, receiverUserId }) => {
+      if (!socket.current) {
         return;
       }
 
       socket.current.send(
         JSON.stringify({
-          content: currentMessage,
+          content: message,
           friendship_id: friendshipId,
           jwt: `Bearer ${authToken?.value}`,
           receiver_user_id: receiverUserId,
@@ -81,7 +76,7 @@ export const useWebSocket = ({
     [authToken?.value, userId]
   );
 
-  // --- RENDER ---
+  // --- RETURN ---
 
   return { sendMessage };
 };

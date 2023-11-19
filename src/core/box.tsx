@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef, HTMLAttributes, Ref } from 'react';
 
 type BoxProps = HTMLAttributes<HTMLDivElement>;

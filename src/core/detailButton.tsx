@@ -44,7 +44,7 @@ export const DetailButton = ({
   return (
     <UnstyledButton
       className={`detail-button ${className}`}
-      handleMouseDown={handleMouseDown}
+      handlemousedown={handleMouseDown}
       key={inlineCenterLeft}
       onClick={handleClick}
       {...detailButtonProps}

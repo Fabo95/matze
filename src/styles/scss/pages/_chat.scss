@@ -82,15 +82,20 @@
 
     .chat-message-content-self,
     .chat-message-content-other {
+      overflow-wrap: break-word;
       max-width: 33%;
       border-radius: $borderRadiusM;
       background: $whiteDark;
       padding: spacingPixel(1) spacingPixel(2);
       margin-bottom: spacingPixel(1);
 
+      .chat-message-content-text {
+        text-align: left;
+      }
+
       .chat-message-content-date {
-        font-size: spacingPixel(1.75);
-        color: $grayDark;
+        font-size: spacingPixel(1.5);
+        color: $grayExtraDark;
       }
     }
 
@@ -109,6 +114,42 @@
       align-self: start;
       text-align: left;
       background: $grayLight;
+    }
+  }
+
+  .chat-message-form {
+    display: flex;
+    background: $grayLight;
+    padding: spacingPixel(1);
+    align-items: center;
+
+    .chat-message-form-input {
+      width: 100%;
+      border-radius: $borderRadiusM;
+      border: 1px solid $grayDark;
+      padding: spacingPixel(1) spacingPixel(1.5);
+      margin-right: spacingPixel(2);
+
+      &:focus {
+        outline: unset;
+      }
+    }
+
+    .chat-message-form-submit {
+      border-radius: $borderRadiusFull;
+      background: $whiteDark;
+      padding: spacingPixel(1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: spacingPixel(1);
+
+      .chat-message-form-icon {
+        width: spacingPixel(3);
+        height: spacingPixel(3);
+        stroke: $blackDark;
+        fill: $blackDark;
+      }
     }
   }
 }
