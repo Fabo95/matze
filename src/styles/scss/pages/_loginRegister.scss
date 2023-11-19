@@ -6,11 +6,15 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100vw;
 
   .login-register-page-container {
     background: $whiteDark;
     border-radius: $borderRadiusM;
     padding: spacingPixel(3);
+    width: 40vw;
+    min-width: 280px;
+    max-width: 450px;
 
     .form-headline {
       margin-bottom: spacingPixel(2.5);
@@ -24,7 +28,7 @@
       padding: spacingPixel(1.25) spacingPixel(2);
       color: $blackDark;
       border: 1px solid $grayDark;
-      width: 300px;
+      width: 100%;
 
       &:focus {
         outline: none;
@@ -51,17 +55,17 @@
       color: $blackDark;
       font-size: spacingPixel(1.5);
       position: absolute;
-      bottom: spacingPixel(-3);
+      bottom: spacingPixel(-2.5);
     }
 
     .form-email-box {
       position: relative;
-      margin-bottom: spacingPixel(4);
+      margin-bottom: spacingPixel(3);
     }
 
     .form-password-box {
       position: relative;
-      margin-bottom: spacingPixel(5);
+      margin-bottom: spacingPixel(4);
     }
   }
 }
