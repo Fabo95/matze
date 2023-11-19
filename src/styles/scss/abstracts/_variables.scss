@@ -1,7 +1,6 @@
 /* Colors */
 
 $blackDark: #050505;
-$blackOpacity50: rgba(0, 0, 0, 0.5);
 
 $blueDark: #6578f1;
 $blueLight: #e8ebfc;
@@ -32,9 +31,6 @@ $turquoiseDark: #4cb0aa;
 $turquoiseLight: #9bc2c0;
 
 $whiteDark: #fff;
-$whiteOpacity50: #ffffff80;
-$whiteOpacity0: rgba(17, 17, 17, 0);
-$whiteOpacity20: rgba(17, 17, 17, 0.2);
 
 $yellowDark: #f4ce65;
 $yellowLight: #fdf7e7;
@@ -73,48 +69,3 @@ $zIndexS: 20;
 $zIndexM: 30;
 $zIndexL: 40;
 $zIndexXl: 40;
-
-:export {
-  $blackDark: $blackDark;
-
-  $blueDark: $blueDark;
-  $blueLight: $blueLight;
-
-  $grayExtraDark: $grayExtraDark;
-  $grayDark: $grayDark;
-  $grayLight: $grayLight;
-
-  $greenDark: $greenDark;
-  $greenLight: $greenLight;
-
-  $orangeDark: $orangeDark;
-  $orangeLight: $orangeLight;
-
-  $redDark: $redDark;
-  $redLight: $redLight;
-  $redOpacity33: $redOpacity33;
-  $redOpacity5: $redOpacity5;
-  $redPrimary: $redPrimary;
-  $redSecondary: $redSecondary;
-  $redTertiary: $redTertiary;
-
-  $turquoiseDark: $turquoiseDark;
-  $turquoiseLight: $turquoiseLight;
-
-  $whiteDark: $whiteDark;
-  $whiteOpacity50: $whiteOpacity50;
-  $whiteOpacity0: $whiteOpacity0;
-  $whiteOpacity20: $whiteOpacity20;
-
-  $yellowDark: $yellowDark;
-  $yellowLight: $yellowLight;
-
-  $transitionM: $transitionM;
-
-  $borderRadiusS: $borderRadiusS;
-  $borderRadiusM: $borderRadiusM;
-  $borderRadiusL: $borderRadiusL;
-  $borderRadiusFull: $borderRadiusFull;
-
-  $basePixel: $basePixel;
-}

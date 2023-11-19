@@ -24,10 +24,10 @@ import { DetailButton } from 'core/detailButton';
 import { getFormattedSeconds } from 'utils/helpers';
 import { ModalHeader } from 'core/modalHeader';
 import { SliderTrack } from 'core/slider/components/sliderTrack';
-import { Button } from 'core/button';
 import { apiPatchIntervalServerAction } from 'serverAction/serverActions';
 import { getTFunction } from 'i18n/tFunction';
 import { Locale } from 'utils/types';
+import { Button } from 'core/button';
 
 export const IntervalTimerDetailConfigurationOption = ({
   className,
@@ -176,10 +176,7 @@ export const IntervalTimerDetailConfigurationOption = ({
           </>
         </SliderContainer>
 
-        <Button
-          buttonTitle={t('cta.confirm')}
-          onClick={handleConfirmIntensity}
-        />
+        <Button onClick={handleConfirmIntensity}>{t('cta.confirm')}</Button>
       </Modal>
     </>
   );

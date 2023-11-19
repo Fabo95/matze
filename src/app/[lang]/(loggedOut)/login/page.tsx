@@ -1,7 +1,6 @@
 import { Box } from 'core/box';
 import { Form } from 'core/form';
 import { Input } from 'core/input';
-import { Button } from 'core/button';
 import { Locale } from 'utils/types';
 import { getTFunction } from 'i18n/tFunction';
 import { Heading } from 'core/heading';
@@ -9,6 +8,7 @@ import { Label } from 'core/label';
 import { apiPostLoginServerAction } from 'serverAction/serverActions';
 import { Text } from 'core/text';
 import { loginErrorState } from 'serverAction/utils/serverActionConstants';
+import { Button } from 'core/button';
 
 export default async function Login({
   params: { lang },
@@ -40,7 +40,9 @@ export default async function Login({
             <Label className="form-label" htmlFor="email">
               {t('pages.login.emailLabel')}
             </Label>
+
             <Input className="form-input" id="email" name="email" type="text" />
+
             <Text className="form-validation-error">
               {emailValidationError}
             </Text>
@@ -50,6 +52,7 @@ export default async function Login({
             <Label className="form-label" htmlFor="password">
               {t('pages.login.passwordLabel')}
             </Label>
+
             <Input
               // TODO Build show password toggle
               className="form-input"
@@ -62,11 +65,9 @@ export default async function Login({
             </Text>
           </Box>
 
-          <Button
-            buttonTitle={t('pages.login.cta')}
-            className="form-cta"
-            type="submit"
-          />
+          <Button className="form-cta" type="submit">
+            {t('pages.login.cta')}
+          </Button>
         </Form>
       </Box>
     </Box>

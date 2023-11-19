@@ -17,7 +17,8 @@
 @use './components/_grid';
 @use './components/_pulse';
 @use './components/_unstyledButton';
-@use './components/_button';
+@use 'components/_button_DEPRECATED';
+@use 'components/_button';
 @use './components/_detailButton';
 @use './components/_textAreaAutosize';
 

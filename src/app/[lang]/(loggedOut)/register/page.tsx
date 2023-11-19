@@ -1,7 +1,6 @@
 import { Box } from 'core/box';
 import { Form } from 'core/form';
 import { Input } from 'core/input';
-import { Button } from 'core/button';
 import { Locale } from 'utils/types';
 import { getTFunction } from 'i18n/tFunction';
 import { Heading } from 'core/heading';
@@ -9,13 +8,14 @@ import { Label } from 'core/label';
 import { apiPostRegisterServerAction } from 'serverAction/serverActions';
 import { Text } from 'core/text';
 import { registerErrorState } from 'serverAction/utils/serverActionConstants';
+import { Button } from 'core/button';
 
 export default async function register({
   params: { lang },
 }: {
   params: { lang: Locale };
 }) {
-  const t = await getTFunction(lang);
+  const t = getTFunction(lang);
 
   // --- HELPERS ---
 
@@ -78,11 +78,9 @@ export default async function register({
               {passwordValidationError}
             </Text>
           </Box>
-          <Button
-            buttonTitle={buttonTitle}
-            className="form-cta"
-            type="submit"
-          />
+          <Button className="form-cta" type="submit">
+            {buttonTitle}
+          </Button>
         </Form>
       </Box>
     </Box>

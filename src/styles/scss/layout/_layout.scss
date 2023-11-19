@@ -108,7 +108,7 @@ body {
           height: spacingPixel(6);
           width: spacingPixel(6);
           flex-shrink: 0;
-          border: 1px solid $whiteOpacity50;
+          border: 1px solid reduceOpacity($whiteDark, 0.5);
 
           p {
             font-size: 14px;
@@ -132,7 +132,7 @@ body {
           margin-bottom: spacingPixel(1);
 
           svg {
-            stroke: $blackOpacity50;
+            stroke: reduceOpacity($blackDark, 0.5);
             margin-right: spacingPixel(1);
           }
 

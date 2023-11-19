@@ -1,6 +1,7 @@
 @use '../abstracts/_mixins' as mixins;
 
 @import '../abstracts/_variables';
+@import '../abstracts/_functions';
 
 .icon-size-1-5 {
   @include mixins.icon-size(1.5rem, 1.5rem);
@@ -38,5 +39,5 @@
   @include mixins.stroke($yellowDark);
 }
 .stroke-black-50 {
-  @include mixins.stroke($blackOpacity50);
+  @include mixins.stroke(reduceOpacity($blackDark, 0.5));
 }

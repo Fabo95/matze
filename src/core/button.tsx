@@ -1,68 +1,58 @@
 'use client';
 
-import { UnstyledButton } from 'core/unstyledButton';
 import React, {
   ButtonHTMLAttributes,
   ForwardedRef,
   forwardRef,
-  MouseEvent,
+  ReactNode,
+  useCallback,
+  useState,
 } from 'react';
 
-import { Box } from 'core/box';
+import { UnstyledButton } from 'core/unstyledButton';
 
 type ButtonProps = {
-  className?: string;
-  buttonTitle: string;
+  children: ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = forwardRef(
   (
-    { buttonTitle, className, ...buttonProps }: ButtonProps,
+    { className, children, onClick, ...buttonProps }: ButtonProps,
     ref?: ForwardedRef<HTMLButtonElement>
   ) => {
+    const [isClickEffect, setIsClickEffect] = useState(false);
+
     // --- CALLBACKS ---
 
-    const handleWaveAnimation = (event: MouseEvent<HTMLDivElement>) => {
-      const wavesWrapper = event.currentTarget;
+    const handleClick = useCallback(
+      (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        setIsClickEffect(true);
 
-      const { clientX, clientY } = event;
+        setTimeout(() => {
+          setIsClickEffect(false);
 
-      // Calculate the relative position within waveWrapper div.
-      const rect = wavesWrapper.getBoundingClientRect();
-      const size = rect.width;
-
-      const posX = clientX - rect.left - size / 2;
-      const posY = clientY - rect.top - size / 2;
-
-      const wave = document.createElement('div');
-
-      wave.style.setProperty('top', `${posY}px `);
-      wave.style.setProperty('left', `${posX}px `);
-
-      wave.classList.add('wave');
-
-      wavesWrapper.appendChild(wave);
-
-      setTimeout(() => {
-        if (buttonProps.onClick) {
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          buttonProps.onClick();
-        }
-        wavesWrapper.removeChild(wave);
-      }, 400);
-    };
+          if (onClick) {
+            onClick(event);
+          }
+        }, 150);
+      },
+      [onClick]
+    );
 
     // --- RENDER ---
+
     return (
       <UnstyledButton
-        className={`button ${className}`}
+        className={`button ${className} ${
+          isClickEffect ? 'button-click-effect' : ''
+        }`}
         ref={ref}
+        onClick={(event) => {
+          handleClick(event);
+        }}
         {...buttonProps}
       >
-        <Box className="button-content">{buttonTitle}</Box>
-
-        <Box className="wave-wrapper" onClick={handleWaveAnimation} />
+        {children}
       </UnstyledButton>
     );
   }
