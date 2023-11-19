@@ -1,0 +1,67 @@
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+
+.login-register-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .login-register-page-container {
+    background: $whiteDark;
+    border-radius: $borderRadiusM;
+    padding: spacingPixel(3);
+
+    .form-headline {
+      margin-bottom: spacingPixel(2.5);
+      color: $blackDark;
+      font-size: spacingPixel(3);
+    }
+
+    .form-input {
+      display: block;
+      border-radius: spacingPixel(1);
+      padding: spacingPixel(1.25) spacingPixel(2);
+      color: $blackDark;
+      border: 1px solid $grayDark;
+      width: 300px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .form-label {
+      display: block;
+      color: $blackDark;
+      font-size: spacingPixel(1.75);
+      margin-bottom: spacingPixel(1);
+    }
+
+    .form-cta {
+      margin-left: auto;
+      margin-right: auto;
+      background: $grayDark;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .form-validation-error {
+      color: $blackDark;
+      font-size: spacingPixel(1.5);
+      position: absolute;
+      bottom: spacingPixel(-3);
+    }
+
+    .form-email-box {
+      position: relative;
+      margin-bottom: spacingPixel(4);
+    }
+
+    .form-password-box {
+      position: relative;
+      margin-bottom: spacingPixel(5);
+    }
+  }
+}

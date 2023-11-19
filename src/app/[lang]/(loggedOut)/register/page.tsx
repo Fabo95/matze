@@ -37,55 +37,50 @@ export default async function register({
   // --- RENDER ---
 
   return (
-    <Box className="register-page">
-      <Box className="register-page-container">
-        <Heading className="register-page-headline">{headline}</Heading>
+    <Box className="login-register-page">
+      <Box className="login-register-page-container">
+        <Heading className="form-headline">{headline}</Heading>
 
-        <Form action={apiPostRegisterServerAction} className="register-form">
-          <Box className="register-form-email-box">
-            <Label className="register-form-label" htmlFor="email">
+        <Form action={apiPostRegisterServerAction}>
+          <Box className="form-email-box">
+            <Label className="form-label" htmlFor="email">
               {emailLabel}
             </Label>
-            <Input
-              className="register-form-input"
-              id="email"
-              name="email"
-              type="text"
-            />
-            <Text className="register-form-validation-error">
+            <Input className="form-input" id="email" name="email" type="text" />
+            <Text className="form-validation-error">
               {emailValidationError}
             </Text>
           </Box>
 
-          <Box className="register-form-password-box">
-            <Label className="register-form-label" htmlFor="password">
+          <Box className="form-password-box">
+            <Label className="form-label" htmlFor="password">
               {passwordLabel}
             </Label>
             <Input
               // TODO Build show password toggle
-              className="register-form-input register-form-password-input"
+              className="form-input"
               id="password"
               name="password"
               type="password"
             />
-            <Label className="register-form-label" htmlFor="password">
+            <Label className="form-label" htmlFor="password">
               {confirmPasswordLabel}
             </Label>
             <Input
               // TODO Build show password toggle
-              className="register-form-input"
+              className="form-input"
               id="confirmPassword"
               name="confirmPassword"
               type="password"
             />
 
-            <Text className="register-form-validation-error">
+            <Text className="form-validation-error">
               {passwordValidationError}
             </Text>
           </Box>
           <Button
             buttonTitle={buttonTitle}
-            className="register-form-cta"
+            className="form-cta"
             type="submit"
           />
         </Form>

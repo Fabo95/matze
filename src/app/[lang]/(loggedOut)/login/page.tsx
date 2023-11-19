@@ -15,7 +15,7 @@ export default async function Login({
 }: {
   params: { lang: Locale };
 }) {
-  const t = await getTFunction(lang);
+  const t = getTFunction(lang);
 
   // --- HELPERS ---
 
@@ -31,47 +31,40 @@ export default async function Login({
   // --- RENDER ---
 
   return (
-    <Box className="login-page">
-      <Box className="login-page-container">
-        <Heading className="login-page-headline">
-          {t('pages.login.headline')}
-        </Heading>
+    <Box className="login-register-page">
+      <Box className="login-register-page-container">
+        <Heading className="form-headline">{t('pages.login.headline')}</Heading>
 
-        <Form action={apiPostLoginServerAction} className="login-form">
-          <Box className="login-form-email-box">
-            <Label className="login-form-label" htmlFor="email">
+        <Form action={apiPostLoginServerAction}>
+          <Box className="form-email-box">
+            <Label className="form-label" htmlFor="email">
               {t('pages.login.emailLabel')}
             </Label>
-            <Input
-              className="login-form-input"
-              id="email"
-              name="email"
-              type="text"
-            />
-            <Text className="login-form-validation-error">
+            <Input className="form-input" id="email" name="email" type="text" />
+            <Text className="form-validation-error">
               {emailValidationError}
             </Text>
           </Box>
 
-          <Box className="login-form-password-box">
-            <Label className="login-form-label" htmlFor="password">
+          <Box className="form-password-box">
+            <Label className="form-label" htmlFor="password">
               {t('pages.login.passwordLabel')}
             </Label>
             <Input
               // TODO Build show password toggle
-              className="login-form-input"
+              className="form-input"
               id="password"
               name="password"
               type="password"
             />
-            <Text className="login-form-validation-error">
+            <Text className="form-validation-error">
               {passwordValidationError}
             </Text>
           </Box>
 
           <Button
             buttonTitle={t('pages.login.cta')}
-            className="login-form-cta"
+            className="form-cta"
             type="submit"
           />
         </Form>

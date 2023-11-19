@@ -18,15 +18,14 @@
 @use './components/_pulse';
 @use './components/_unstyledButton';
 @use './components/_button';
-@use './components/detailButton';
-@use 'components/textAreaAutosize';
+@use './components/_detailButton';
+@use './components/_textAreaAutosize';
 
 @use './components/icons';
 @use './components/chevron';
 
 @use './pages/_home';
-@use './pages/_login';
-@use './pages/_register';
+@use './pages/_loginRegister.scss';
 @use './pages/_chat';
 @use './layout/_layout';
 
