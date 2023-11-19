@@ -45,6 +45,8 @@ export const Button = forwardRef(
 
       setTimeout(() => {
         if (buttonProps.onClick) {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           buttonProps.onClick();
         }
         wavesWrapper.removeChild(wave);
