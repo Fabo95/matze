@@ -1,57 +1,41 @@
-import { useMemo } from 'react';
-import Link from 'next/link';
-
 import { Row } from 'core/row';
-import { ClockIcon } from 'icons/clockIcon';
 import { Text } from 'core/text';
-import { SettingsIcon } from 'icons/settingsIcon';
-import { CalendarIcon } from 'icons/calendarIcon';
-import { Page } from 'utils/types';
-import { ChartIcon } from 'icons/chartIcon';
+import { LoggedInPage } from 'utils/types';
+import { ReactNode } from 'react';
+import { useClientTranslation, useParams } from 'utils/hooks';
+import { Link } from 'core/link';
 
 export const MenuSlidingPaneOption = ({
-  currentLocale,
-  menuOption,
+  page,
   onClick,
   isSelected,
+  icon,
 }: {
-  currentLocale: string | string[];
-  menuOption: {
-    translation: string;
-    page: Exclude<Page, Page.LOGIN | Page.REGISTER>;
-  };
+  page: LoggedInPage;
   onClick: () => void;
   isSelected: boolean;
+  icon: ReactNode;
 }) => {
-  // --- MEMOIZED DATA ---
-
-  const MENU_OPTION_TO_ICON_MAP = useMemo(
-    () => ({
-      [Page.SETTINGS]: <SettingsIcon />,
-      [Page.HISTORY]: <CalendarIcon />,
-      [Page.HOME]: <ClockIcon />,
-      [Page.STATISTICS]: <ChartIcon />,
-    }),
-    []
-  );
+  const t = useClientTranslation();
+  const params = useParams();
 
   // --- RENDER ---
-
   return (
-    <Link href={`/${currentLocale}/${menuOption.page}`}>
+    <Link href={`/${page}`} locale={params.lang}>
       <Row
         className={`menu-sliding-pane-option ${
           isSelected && 'menu-sliding-pane-option-selected '
         }`}
         onClick={onClick}
       >
-        {MENU_OPTION_TO_ICON_MAP[menuOption.page]}
+        {icon}
+
         <Text
           className={`menu-sliding-pane-option-text ${
             isSelected && 'menu-sliding-pane-option-text-selected'
           }`}
         >
-          {menuOption.translation}
+          {t(`pages.${page}.menuOption`)}
         </Text>
       </Row>
     </Link>

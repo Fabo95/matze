@@ -120,3 +120,7 @@ export const getTruncatedText = (text: string, maxChars = 20) => {
   }
   return `${text.substring(0, 20)} ...`;
 };
+
+export const isClientSide = () => Boolean(window);
+
+export const isServerside = () => !window;

@@ -1,11 +1,13 @@
-import { useCallback, useMemo, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { ReactNode, useCallback, useMemo, useState } from 'react';
 
 import { Box } from 'core/box';
 import { MenuSlidingPaneOption } from 'blocks/menu/components/menuSlidingPane/components/menuSlidingPaneOption';
-import { Locale, Page } from 'utils/types';
+import { LoggedInPage, Page } from 'utils/types';
 import { MenuSlidingPaneHeader } from 'blocks/menu/components/menuSlidingPane/components/menuSlidingPaneHeader';
-import { getTFunction } from 'i18n/tFunction';
+import { SettingsIcon } from 'icons/settingsIcon';
+import { CalendarIcon } from 'icons/calendarIcon';
+import { ClockIcon } from 'icons/clockIcon';
+import { ChartIcon } from 'icons/chartIcon';
 
 export const MenuSlidingPane = ({
   isOpen,
@@ -14,27 +16,26 @@ export const MenuSlidingPane = ({
   isOpen: boolean;
   headline: string;
 }) => {
-  const params = useParams<{ lang: Locale }>();
-  const t = getTFunction(params.lang);
-
   // --- STATE ---
 
   const [currentPage, setCurrentPage] = useState(Page.HOME);
 
   // --- MEMOIZED DATA ---
 
-  const menuOptions: {
-    page: Exclude<Page, Page.LOGIN | Page.REGISTER>;
-    translation: string;
-  }[] = useMemo(
-    () => [
-      { page: Page.CHAT, translation: t('pages.chat.menuOption') },
-      { page: Page.HOME, translation: t('pages.home.menuOption') },
-      { page: Page.SETTINGS, translation: t('pages.settings.menuOption') },
-      { page: Page.HISTORY, translation: t('pages.history.menuOption') },
-      { page: Page.STATISTICS, translation: t('pages.statistics.menuOption') },
-    ],
-    [t]
+  const pages: LoggedInPage[] = useMemo(
+    () => [Page.CHAT, Page.HOME, Page.SETTINGS, Page.HISTORY, Page.STATISTICS],
+    []
+  );
+
+  const MENU_OPTION_TO_ICON_MAP: Record<LoggedInPage, ReactNode> = useMemo(
+    () => ({
+      [Page.CHAT]: <SettingsIcon />,
+      [Page.SETTINGS]: <SettingsIcon />,
+      [Page.HISTORY]: <CalendarIcon />,
+      [Page.HOME]: <ClockIcon />,
+      [Page.STATISTICS]: <ChartIcon />,
+    }),
+    []
   );
 
   // --- CALLBACKS ---
@@ -50,13 +51,13 @@ export const MenuSlidingPane = ({
       <MenuSlidingPaneHeader headline={headline} />
 
       <Box className="menu-sliding-pane-options">
-        {menuOptions.map((menuOption) => (
+        {pages.map((page) => (
           <MenuSlidingPaneOption
-            currentLocale={params.lang}
-            isSelected={menuOption.page === currentPage}
-            key={menuOption.page}
-            menuOption={menuOption}
-            onClick={() => handleMenuOptionChange(menuOption.page)}
+            icon={MENU_OPTION_TO_ICON_MAP[page]}
+            isSelected={page === currentPage}
+            key={page}
+            page={page}
+            onClick={() => handleMenuOptionChange(page)}
           />
         ))}
       </Box>

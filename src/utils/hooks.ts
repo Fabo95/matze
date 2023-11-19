@@ -1,5 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Observable, Subject } from 'rxjs';
+import { useParams as useParamsNext } from 'next/navigation';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+
+import { Locale, TFunction } from 'utils/types';
+import { getTFunction } from 'i18n/tFunction';
+
+export const useClientTranslation = (): TFunction => {
+  const params = useParams<{ lang: Locale }>();
+  return getTFunction(params.lang);
+};
+
+export const useParams = <T extends Params = Params>(): T => useParamsNext();
 
 export const useBoolean = (initialValue: boolean) => {
   const [value, setValue] = useState<boolean>(initialValue);

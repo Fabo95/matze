@@ -16,7 +16,10 @@ import {
 
 // xstate typegen "src/**/*.ts?(x)" --watch
 
-type CreateIntervalTimerExecutionMachineProps<T> = Interval & {
+type CreateIntervalTimerExecutionMachineProps<T> = Omit<
+  Interval,
+  'createdAt' | 'updatedAt'
+> & {
   isExecuting$: Observable<T>;
   totalTime: number;
 };

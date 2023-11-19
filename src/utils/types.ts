@@ -18,6 +18,8 @@ export enum Page {
   REGISTER = 'register',
 }
 
+export type LoggedInPage = Exclude<Page, Page.LOGIN | Page.REGISTER>;
+
 export enum ValidationError {
   REQUIRED_EMAIL = 'requiredEmail',
   REQUIRED_PASSWORD = 'requiredPassword',

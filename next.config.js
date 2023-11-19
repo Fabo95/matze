@@ -14,6 +14,13 @@ const nextConfig = {
       })
     );
 
+    config.plugins.push(
+      new WebpackManifestPlugin({
+        fileName: '../public/asset-manifest.json',
+        // We generate asset-manifest.json with files from .next/static to precache them with the sw.
+        filter: (file) => file.name.includes('static'),
+      })
+    );
     return config;
   },
 };

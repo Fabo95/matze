@@ -9,7 +9,7 @@ import InitServiceWorker from 'serviceWorker/initServiceWorker';
 const manrope = Manrope({
   style: ['normal'],
   subsets: ['latin'],
-  variable: '--font-manro pe',
+  variable: '--font-manrope',
   weight: ['400', '600', '700'],
 });
 
