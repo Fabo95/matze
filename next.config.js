@@ -13,13 +13,7 @@ const nextConfig = {
         SERVICE_WORKER_HASH: JSON.stringify(buildId), // Replace 'your_generated_hash_or_version' with the actual hash/version
       })
     );
-    config.plugins.push(
-      new WebpackManifestPlugin({
-        fileName: '../public/asset-manifest.json',
-        // We generate asset-manifest.json with files from .next/static to precache them with the sw.
-        filter: (file) => file.name.includes('static'),
-      })
-    );
+
     return config;
   },
 };
