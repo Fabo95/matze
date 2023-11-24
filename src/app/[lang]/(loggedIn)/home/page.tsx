@@ -6,9 +6,9 @@ import { apiGetInterval } from 'api/api';
 import {
   getIntervalTimerConfigurationOptionsProps,
   getIntervalTimerExecutionOverviewButtonProps,
-} from 'blocks/intervalTimer/components/utils/intervalTimerHelpers';
-import { IntervalTimerBlock } from 'blocks/intervalTimer/intervalTimerBlock';
-import { Page } from 'core/page/page';
+} from 'components/blocks/intervalTimer/components/utils/intervalTimerHelpers';
+import { IntervalTimerBlock } from 'components/blocks/intervalTimer/intervalTimerBlock';
+import { Page } from 'components/core/page/page';
 
 type HomeProps = {
   params: { lang: Locale };

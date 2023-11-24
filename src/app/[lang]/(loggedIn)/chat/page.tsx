@@ -2,8 +2,8 @@ import React from 'react';
 import { cookies } from 'next/headers';
 
 import { apiGetFriendshipsMessages, apiGetUserByIdOrFromToken } from 'api/api';
-import { Page } from 'core/page/page';
-import { ChatBlock } from 'blocks/chat/chatBlock';
+import { Page } from 'components/core/page/page';
+import { ChatBlock } from 'components/blocks/chat/chatBlock';
 
 const Chat = async () => {
   // --- STATE ---

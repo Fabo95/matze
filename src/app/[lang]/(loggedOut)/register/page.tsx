@@ -1,14 +1,14 @@
-import { Box } from 'core/box';
-import { Form } from 'core/form';
-import { Input } from 'core/input';
+import { Box } from 'components/core/box';
+import { Form } from 'components/core/form';
+import { Input } from 'components/core/input';
 import { Locale } from 'utils/types';
 import { getTFunction } from 'i18n/tFunction';
-import { Heading } from 'core/heading';
-import { Label } from 'core/label';
+import { Heading } from 'components/core/heading';
+import { Label } from 'components/core/label';
 import { apiPostRegisterServerAction } from 'serverAction/serverActions';
-import { Text } from 'core/text';
+import { Text } from 'components/core/text';
 import { registerErrorState } from 'serverAction/utils/serverActionConstants';
-import { Button } from 'core/button';
+import { Button } from 'components/core/button';
 
 export default async function register({
   params: { lang },
