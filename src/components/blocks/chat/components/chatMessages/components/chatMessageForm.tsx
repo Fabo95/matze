@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
-import { Form } from 'components/core/form';
 import { SendMessage } from 'components/blocks/chat/components/chatMessages/utils/chatMessagesTypes';
+import { Form } from 'components/core/form';
 import { TextareaAutosize } from 'components/core/textareaAutosize';
 import { UnstyledButton } from 'components/core/unstyledButton';
 import { PaperAirplane } from 'components/icons/paperAirplane';

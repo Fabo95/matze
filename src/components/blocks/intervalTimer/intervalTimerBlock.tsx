@@ -1,16 +1,16 @@
 'use client';
 
-import { useReactiveCallback } from 'utils/hooks';
-import { createIntervalTimerExecutionMachine } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
-import { getTotalIntervalTime } from 'utils/helpers';
-import { IntervalTimerExecution } from 'components/blocks/intervalTimer/components/intervalTimerExecution/intervalTimerExecution';
-import { IntervalTimerDetail } from 'components/blocks/intervalTimer/components/intervalTimerDetail/intervalTimerDetail';
 import { Interval } from 'api/utils/apiTypes';
+import { IntervalTimerDetail } from 'components/blocks/intervalTimer/components/intervalTimerDetail/intervalTimerDetail';
+import { IntervalTimerExecution } from 'components/blocks/intervalTimer/components/intervalTimerExecution/intervalTimerExecution';
 import {
   IntervalTimerConfigurationOptionProps,
   IntervalTimerExecutionOverviewButtonProps,
 } from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
+import { createIntervalTimerExecutionMachine } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 import { IntervalTimerExecutionMachineProvider } from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
+import { getTotalIntervalTime } from 'utils/helpers';
+import { useReactiveCallback } from 'utils/hooks';
 
 type IntervalTimerBlockProps = {
   interval: Interval;

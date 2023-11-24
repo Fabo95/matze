@@ -1,12 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 
-import { Box } from 'components/core/box';
 import {
   IntervalTimerConfigurationType,
   IntervalTimerConfigurationOptionProps,
 } from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
+import { Box } from 'components/core/box';
 import { getArrayWithElements } from 'utils/helpers';
+import { v4 as uuidv4 } from 'uuid';
 
 export const SliderTrack = ({
   configurationType,

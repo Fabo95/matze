@@ -20,13 +20,31 @@
       "error",
       { "allow": ["_partNative", "_partContent"] }
     ],
-    // Needed for checking order of component props.
     "react/jsx-sort-props": [
       "warn",
       { "callbacksLast": true, "shorthandFirst": true }
     ],
-    // Needed for checking order of object props.
     "sort-keys-fix/sort-keys-fix": "warn",
+    // See: https://github.com/import-js/eslint-plugin-import/issues/1665#issuecomment-591610799
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
     "prettier/prettier": "warn",
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-explicit-any": "off",

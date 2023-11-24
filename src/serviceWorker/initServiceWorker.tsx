@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
 import * as process from 'process';
+
+import { useEffect } from 'react';
 
 export default function InitServiceWorker() {
   // --- EFFECTS ---

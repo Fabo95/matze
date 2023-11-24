@@ -1,6 +1,6 @@
+import { IntervalTimerConfigurationOptionProps } from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
 import { Box } from 'components/core/box';
 import { Chevron } from 'components/icons/chevron';
-import { IntervalTimerConfigurationOptionProps } from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
 
 export const SliderThumb = ({
   intensity,

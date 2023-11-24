@@ -1,19 +1,20 @@
-import { Box } from 'components/core/box';
-import { getFormattedSeconds } from 'utils/helpers';
 import React from 'react';
+
+import { IntervalTimerDetailExecutionOverviewButton } from 'components/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/components/intervalTimerDetailExecutionOverviewButton';
+import { IntervalTimerExecutionOverviewButtonProps } from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
 import { useSelector } from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
 import {
   makeSelectRemainingCount,
   makeSelectTotalCount,
   selectRemainingTotalTime,
 } from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors';
-import { IntervalTimerDetailExecutionOverviewButton } from 'components/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/components/intervalTimerDetailExecutionOverviewButton';
-import { IntervalTimerExecutionOverviewButtonProps } from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
+import { Box } from 'components/core/box';
 import { Row } from 'components/core/row';
 import { Text } from 'components/core/text';
 import { ClockIcon } from 'components/icons/clockIcon';
-import { useParams } from 'next/navigation';
 import { getTFunction } from 'i18n/tFunction';
+import { useParams } from 'next/navigation';
+import { getFormattedSeconds } from 'utils/helpers';
 import { Locale } from 'utils/types';
 
 type IntervalTimerDetailExecutionOverviewProps = {

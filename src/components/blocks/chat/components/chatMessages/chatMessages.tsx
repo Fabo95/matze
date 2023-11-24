@@ -1,19 +1,19 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
-import { ChatMessagesSlidingPane } from 'components/blocks/chat/components/chatMessages/components/chatMessagesSlidingPane';
 import { FriendshipMessages, Message } from 'api/utils/apiTypes';
-import { Box } from 'components/core/box';
-import { Text } from 'components/core/text';
-import { getFriend } from 'components/blocks/chat/utils/chatHelpers';
-import { Row } from 'components/core/row';
-import { Chevron } from 'components/icons/chevron';
-import { UnstyledButton } from 'components/core/unstyledButton';
 import { ChatMessage } from 'components/blocks/chat/components/chatMessages/components/chatMessage';
-import { scrollToBottom } from 'utils/helpers';
+import { ChatMessageForm } from 'components/blocks/chat/components/chatMessages/components/chatMessageForm';
+import { ChatMessagesSlidingPane } from 'components/blocks/chat/components/chatMessages/components/chatMessagesSlidingPane';
 import { getInitialMessages } from 'components/blocks/chat/components/chatMessages/utils/chatMessagesHelpers';
 import { useWebSocket } from 'components/blocks/chat/components/chatMessages/utils/chatMessagesHooks';
-import { ChatMessageForm } from 'components/blocks/chat/components/chatMessages/components/chatMessageForm';
+import { getFriend } from 'components/blocks/chat/utils/chatHelpers';
+import { Box } from 'components/core/box';
+import { Row } from 'components/core/row';
+import { Text } from 'components/core/text';
+import { UnstyledButton } from 'components/core/unstyledButton';
+import { Chevron } from 'components/icons/chevron';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+import { scrollToBottom } from 'utils/helpers';
 
 type ChatMessagesProps = {
   authToken?: RequestCookie;

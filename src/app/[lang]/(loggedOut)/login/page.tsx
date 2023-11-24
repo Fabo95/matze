@@ -1,14 +1,14 @@
 import { Box } from 'components/core/box';
-import { Form } from 'components/core/form';
-import { Input } from 'components/core/input';
-import { Locale } from 'utils/types';
-import { getTFunction } from 'i18n/tFunction';
-import { Heading } from 'components/core/heading';
-import { Label } from 'components/core/label';
-import { apiPostLoginServerAction } from 'serverAction/serverActions';
-import { Text } from 'components/core/text';
-import { loginErrorState } from 'serverAction/utils/serverActionConstants';
 import { Button } from 'components/core/button';
+import { Form } from 'components/core/form';
+import { Heading } from 'components/core/heading';
+import { Input } from 'components/core/input';
+import { Label } from 'components/core/label';
+import { Text } from 'components/core/text';
+import { getTFunction } from 'i18n/tFunction';
+import { apiPostLoginServerAction } from 'serverAction/serverActions';
+import { loginErrorState } from 'serverAction/utils/serverActionConstants';
+import { Locale } from 'utils/types';
 
 export default async function Login({
   params: { lang },

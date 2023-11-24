@@ -1,7 +1,6 @@
+import { jwtVerify } from 'jose';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { jwtVerify } from 'jose';
-
 import { getLocale, getLocaleFromPathname, getPage } from 'utils/routing';
 
 // eslint-disable-next-line consistent-return

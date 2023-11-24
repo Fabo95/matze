@@ -1,13 +1,13 @@
 import { ReactNode, useCallback, useMemo, useState } from 'react';
 
-import { Box } from 'components/core/box';
-import { MenuSlidingPaneOption } from 'components/blocks/menu/components/menuSlidingPane/components/menuSlidingPaneOption';
-import { LoggedInPage, Page } from 'utils/types';
 import { MenuSlidingPaneHeader } from 'components/blocks/menu/components/menuSlidingPane/components/menuSlidingPaneHeader';
-import { SettingsIcon } from 'components/icons/settingsIcon';
+import { MenuSlidingPaneOption } from 'components/blocks/menu/components/menuSlidingPane/components/menuSlidingPaneOption';
+import { Box } from 'components/core/box';
 import { CalendarIcon } from 'components/icons/calendarIcon';
-import { ClockIcon } from 'components/icons/clockIcon';
 import { ChartIcon } from 'components/icons/chartIcon';
+import { ClockIcon } from 'components/icons/clockIcon';
+import { SettingsIcon } from 'components/icons/settingsIcon';
+import { LoggedInPage, Page } from 'utils/types';
 
 export const MenuSlidingPane = ({
   isOpen,

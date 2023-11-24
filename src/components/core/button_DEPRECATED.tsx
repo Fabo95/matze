@@ -1,6 +1,5 @@
 'use client';
 
-import { UnstyledButton } from 'components/core/unstyledButton';
 import React, {
   ButtonHTMLAttributes,
   ForwardedRef,
@@ -9,6 +8,7 @@ import React, {
 } from 'react';
 
 import { Box } from 'components/core/box';
+import { UnstyledButton } from 'components/core/unstyledButton';
 
 type ButtonProps = {
   className?: string;

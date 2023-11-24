@@ -1,10 +1,11 @@
 import React from 'react';
-import { Manrope } from 'next/font/google';
+
 import { Metadata } from 'next';
+import { Manrope } from 'next/font/google';
 
 import 'styles/global.css';
-import { Locale } from 'utils/types';
 import InitServiceWorker from 'serviceWorker/initServiceWorker';
+import { Locale } from 'utils/types';
 
 const manrope = Manrope({
   style: ['normal'],

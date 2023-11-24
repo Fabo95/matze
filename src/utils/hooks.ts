@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Observable, Subject } from 'rxjs';
-import { useParams as useParamsNext } from 'next/navigation';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
-import { Locale, TFunction } from 'utils/types';
 import { getTFunction } from 'i18n/tFunction';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+import { useParams as useParamsNext } from 'next/navigation';
+import { Observable, Subject } from 'rxjs';
+import { Locale, TFunction } from 'utils/types';
 
 export const useClientTranslation = (): TFunction => {
   const params = useParams<{ lang: Locale }>();

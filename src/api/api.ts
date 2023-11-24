@@ -1,3 +1,4 @@
+import { apiBaseUrl, authBaseUrl } from 'api/utils/apiConstants';
 import {
   FriendshipMessages,
   Interval,
@@ -6,7 +7,6 @@ import {
   Register,
   User,
 } from 'api/utils/apiTypes';
-import { apiBaseUrl, authBaseUrl } from 'api/utils/apiConstants';
 import { getFetchOptions } from 'serverAction/utils/serverActionHelpers';
 import { HttpMethod } from 'serverAction/utils/serverActionTypes';
 

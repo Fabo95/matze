@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { getTFunction } from 'i18n/tFunction';
-import { Locale } from 'utils/types';
 import { apiGetInterval } from 'api/api';
 import {
   getIntervalTimerConfigurationOptionsProps,
@@ -9,6 +7,8 @@ import {
 } from 'components/blocks/intervalTimer/components/utils/intervalTimerHelpers';
 import { IntervalTimerBlock } from 'components/blocks/intervalTimer/intervalTimerBlock';
 import { Page } from 'components/core/page/page';
+import { getTFunction } from 'i18n/tFunction';
+import { Locale } from 'utils/types';
 
 type HomeProps = {
   params: { lang: Locale };

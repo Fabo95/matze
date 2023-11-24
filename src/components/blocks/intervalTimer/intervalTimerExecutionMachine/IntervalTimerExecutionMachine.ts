@@ -1,17 +1,17 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-import { assign, createMachine, StateFrom } from 'xstate';
-import { Observable } from 'rxjs';
 
 import { Interval } from 'api/utils/apiTypes';
+import {
+  getInitialCountContext,
+  getIntervalTimerExecution,
+} from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
 import {
   IntervalTimerExecutionMachineContext,
   IntervalTimerExecutionMachineEvents,
   IntervalTimerExecutionMachineServices,
 } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
-import {
-  getInitialCountContext,
-  getIntervalTimerExecution,
-} from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
+import { Observable } from 'rxjs';
+import { assign, createMachine, StateFrom } from 'xstate';
 
 // xstate typegen "src/**/*.ts?(x)" --watch
 

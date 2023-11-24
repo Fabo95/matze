@@ -2,17 +2,17 @@
 
 import { useMemo } from 'react';
 
-import { Box } from 'components/core/box';
+import { IntervalTimerDetailConfigurationOptions } from 'components/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailConfigurationOptions/intervalTimerDetailConfigurationOptions';
+import { IntervalTimerDetailExecutionOverview } from 'components/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/intervalTimerDetailExecutionOverview';
 import {
   IntervalTimerConfigurationOptionProps,
   IntervalTimerExecutionOverviewButtonProps,
 } from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
-import { Swiper } from 'components/core/swiper/swiper';
-import { IntervalTimerDetailConfigurationOptions } from 'components/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailConfigurationOptions/intervalTimerDetailConfigurationOptions';
-import { IntervalTimerDetailExecutionOverview } from 'components/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/intervalTimerDetailExecutionOverview';
 import { useSelector } from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
 import { selectIsExecuting } from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors';
+import { Box } from 'components/core/box';
 import { PageBlockEnd } from 'components/core/page/components/pageBlockEnd';
+import { Swiper } from 'components/core/swiper/swiper';
 
 export type IntervalTimerDetailProps = {
   configurationOptionsProps: IntervalTimerConfigurationOptionProps[];

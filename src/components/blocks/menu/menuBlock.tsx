@@ -1,10 +1,10 @@
 'use client';
 
-import { useBoolean } from 'utils/hooks';
-import { BackgroundBlur } from 'components/core/backgroundBlur';
-import { MenuSlidingPane } from 'components/blocks/menu/components/menuSlidingPane/menuSlidingPane';
 import { MenuHeader } from 'components/blocks/menu/components/menuHeader';
+import { MenuSlidingPane } from 'components/blocks/menu/components/menuSlidingPane/menuSlidingPane';
+import { BackgroundBlur } from 'components/core/backgroundBlur';
 import { Box } from 'components/core/box';
+import { useBoolean } from 'utils/hooks';
 
 export const MenuBlock = ({ headline }: { headline: string }) => {
   // --- STATE ---

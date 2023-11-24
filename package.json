@@ -6,7 +6,8 @@
     "dev": "sass src/styles/scss/global.scss src/styles/global.css && NODE_ENV=development next dev",
     "build": "sass src/styles/scss/global.scss src/styles/global.css && esbuild --outfile=public/sw.js --bundle src/serviceWorker/swRaw.js && NODE_ENV=production next build",
     "start": "NODE_ENV=production next start",
-    "lint": "next lint",
+    "fixEslint": "eslint --fix . && next lint",
+    "eslint": "next lint",
     "compileScss": "sass src/styles/scss/global.scss src/styles/global.css"
   },
   "dependencies": {

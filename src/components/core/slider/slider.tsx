@@ -1,4 +1,5 @@
 import { SyntheticEvent } from 'react';
+
 import { stopPropagation } from 'utils/helpers';
 
 type SliderProps = {

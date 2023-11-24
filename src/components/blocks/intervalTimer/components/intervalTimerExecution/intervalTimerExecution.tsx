@@ -1,11 +1,9 @@
 import { useCallback, useEffect, useMemo } from 'react';
 
-import { getFormattedSeconds } from 'utils/helpers';
-import { UnstyledButton } from 'components/core/unstyledButton';
-import { Row } from 'components/core/row';
-import { Text } from 'components/core/text';
-import { PlayIcon } from 'components/icons/playIcon';
-import { PauseIcon } from 'components/icons/pauseIcon';
+import {
+  executeIntervalTimerExecutionBackgroundGradientStrategy,
+  getIntervalTimerExecutionBackgroundGradientStrategies,
+} from 'components/blocks/intervalTimer/components/intervalTimerExecution/utils/intervalTimerExecutionHelpers';
 import {
   useActor,
   useSelector,
@@ -14,12 +12,14 @@ import {
   selectIsExecuting,
   selectRemainingCurrentTime,
 } from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors';
-import {
-  executeIntervalTimerExecutionBackgroundGradientStrategy,
-  getIntervalTimerExecutionBackgroundGradientStrategies,
-} from 'components/blocks/intervalTimer/components/intervalTimerExecution/utils/intervalTimerExecutionHelpers';
-import { Pulse } from 'components/core/pulse/pulse';
 import { PageBlockStart } from 'components/core/page/components/pageBlockStart';
+import { Pulse } from 'components/core/pulse/pulse';
+import { Row } from 'components/core/row';
+import { Text } from 'components/core/text';
+import { UnstyledButton } from 'components/core/unstyledButton';
+import { PauseIcon } from 'components/icons/pauseIcon';
+import { PlayIcon } from 'components/icons/playIcon';
+import { getFormattedSeconds } from 'utils/helpers';
 
 export const IntervalTimerExecution = ({
   nextIsExecution,

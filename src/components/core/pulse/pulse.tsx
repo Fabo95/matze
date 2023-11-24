@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef } from 'react';
 
 import { Box } from 'components/core/box';
-import { Span } from 'components/core/span';
 import { PulseAnimation } from 'components/core/pulse/utils/pulseHelpers';
 import {
   AnimationPlayState,
   PulseAnimationProps,
 } from 'components/core/pulse/utils/pulseTypes';
+import { Span } from 'components/core/span';
 
 type PulseProps = { isAnimating: boolean };
 

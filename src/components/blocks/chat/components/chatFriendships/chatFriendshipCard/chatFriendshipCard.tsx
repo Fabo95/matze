@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 
 import { FriendshipMessages } from 'api/utils/apiTypes';
-import { Text } from 'components/core/text';
+import { getFriend } from 'components/blocks/chat/utils/chatHelpers';
 import { Row } from 'components/core/row';
+import { Text } from 'components/core/text';
+import { UnstyledButton } from 'components/core/unstyledButton';
 import {
   formatDateAccordingToActuality,
   getTruncatedText,
 } from 'utils/helpers';
-import { UnstyledButton } from 'components/core/unstyledButton';
-import { getFriend } from 'components/blocks/chat/utils/chatHelpers';
 
 type ChatFriendshipCardProps = {
   handleSelectFriendshipMessages: (

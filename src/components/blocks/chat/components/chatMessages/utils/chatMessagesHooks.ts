@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
+import { webSocketBaseUrl } from 'api/utils/apiConstants';
 import { Message } from 'api/utils/apiTypes';
 import { SendMessage } from 'components/blocks/chat/components/chatMessages/utils/chatMessagesTypes';
-import { webSocketBaseUrl } from 'api/utils/apiConstants';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 export const useWebSocket = ({
   userId,

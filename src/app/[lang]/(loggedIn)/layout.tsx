@@ -2,9 +2,9 @@ import React from 'react';
 
 import 'styles/global.css';
 import { MenuBlock } from 'components/blocks/menu/menuBlock';
+import { Box } from 'components/core/box';
 import { getTFunction } from 'i18n/tFunction';
 import { Locale } from 'utils/types';
-import { Box } from 'components/core/box';
 
 const LoggedInLayout = async ({
   children,

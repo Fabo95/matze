@@ -1,7 +1,7 @@
+import { Message } from 'api/utils/apiTypes';
 import { Box } from 'components/core/box';
 import { Text } from 'components/core/text';
 import { formatDateToTime } from 'utils/helpers';
-import { Message } from 'api/utils/apiTypes';
 
 type ChatMessageProps = { message: Message; userId: number };
 

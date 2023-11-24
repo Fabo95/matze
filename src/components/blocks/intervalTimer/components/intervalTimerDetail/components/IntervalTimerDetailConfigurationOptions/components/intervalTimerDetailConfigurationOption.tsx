@@ -8,26 +8,27 @@ import React, {
   useState,
   startTransition,
 } from 'react';
-import { distinctUntilChanged, map } from 'rxjs';
-import { useParams } from 'next/navigation';
 
 import {
   IntervalTimerConfigurationOptionProps,
   IntervalTimerConfigurationType,
 } from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
-import { useObservable, useReactiveCallback } from 'utils/hooks';
-import { Modal } from 'components/core/modal';
-import { Slider } from 'components/core/slider/slider';
-import { SliderThumb } from 'components/core/slider/components/sliderThumb';
-import { SliderContainer } from 'components/core/slider/components/sliderContainer';
+import { Button } from 'components/core/button';
 import { DetailButton } from 'components/core/detailButton';
-import { getFormattedSeconds } from 'utils/helpers';
+import { Modal } from 'components/core/modal';
 import { ModalHeader } from 'components/core/modalHeader';
+import { SliderContainer } from 'components/core/slider/components/sliderContainer';
+import { SliderThumb } from 'components/core/slider/components/sliderThumb';
 import { SliderTrack } from 'components/core/slider/components/sliderTrack';
+import { Slider } from 'components/core/slider/slider';
+import { useParams } from 'next/navigation';
+import { distinctUntilChanged, map } from 'rxjs';
+
+import { getFormattedSeconds } from 'utils/helpers';
+import { useObservable, useReactiveCallback } from 'utils/hooks';
 import { apiPatchIntervalServerAction } from 'serverAction/serverActions';
 import { getTFunction } from 'i18n/tFunction';
 import { Locale } from 'utils/types';
-import { Button } from 'components/core/button';
 
 export const IntervalTimerDetailConfigurationOption = ({
   className,

@@ -4,13 +4,13 @@ import { useCallback, useState } from 'react';
 
 import { FriendshipMessages, User } from 'api/utils/apiTypes';
 import { ChatFriendshipCard } from 'components/blocks/chat/components/chatFriendships/chatFriendshipCard/chatFriendshipCard';
-import { PageBlockStart } from 'components/core/page/components/pageBlockStart';
-import { PageBlockEnd } from 'components/core/page/components/pageBlockEnd';
-import { getTFunction } from 'i18n/tFunction';
-import { Locale } from 'utils/types';
 import { ChatMessages } from 'components/blocks/chat/components/chatMessages/chatMessages';
-import { useBoolean } from 'utils/hooks';
+import { PageBlockEnd } from 'components/core/page/components/pageBlockEnd';
+import { PageBlockStart } from 'components/core/page/components/pageBlockStart';
+import { getTFunction } from 'i18n/tFunction';
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+import { useBoolean } from 'utils/hooks';
+import { Locale } from 'utils/types';
 
 type ChatBlockProps = {
   authToken?: RequestCookie;

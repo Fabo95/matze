@@ -1,9 +1,10 @@
+import { ReactNode } from 'react';
+
+import { Link } from 'components/core/link';
 import { Row } from 'components/core/row';
 import { Text } from 'components/core/text';
-import { LoggedInPage } from 'utils/types';
-import { ReactNode } from 'react';
 import { useClientTranslation, useParams } from 'utils/hooks';
-import { Link } from 'components/core/link';
+import { LoggedInPage } from 'utils/types';
 
 export const MenuSlidingPaneOption = ({
   page,

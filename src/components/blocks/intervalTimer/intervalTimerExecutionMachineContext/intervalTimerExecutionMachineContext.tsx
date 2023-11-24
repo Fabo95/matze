@@ -1,5 +1,4 @@
 import { createActorContext } from '@xstate/react';
-
 import { createIntervalTimerExecutionMachine } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 import { getReactiveCallback } from 'utils/helpers';
 

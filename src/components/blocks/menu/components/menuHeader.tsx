@@ -1,9 +1,9 @@
+import { LogOut } from 'components/core/logOut';
 import { Row } from 'components/core/row';
+import { Text } from 'components/core/text';
 import { UnstyledButton } from 'components/core/unstyledButton';
 import { HamburgerIcon } from 'components/icons/hamburgerIcon';
-import { Text } from 'components/core/text';
 import { LogOutIcon } from 'components/icons/logOutIcon';
-import { LogOut } from 'components/core/logOut';
 
 export const MenuHeader = ({
   toggleMenu,

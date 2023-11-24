@@ -1,17 +1,16 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
-
-import { IntervalIntensityType } from 'api/utils/apiTypes';
 import { apiPatchInterval, apiPostLogin, apiPostRegister } from 'api/api';
+import { IntervalIntensityType } from 'api/utils/apiTypes';
+import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import {
   loginErrorState,
   registerErrorState,
 } from 'serverAction/utils/serverActionConstants';
-import { validateEmail, validatePassword } from 'utils/validations';
-import { LoginError, RegisterError, Page } from 'utils/types';
 import { deleteCookie, setCookie } from 'utils/cookies';
+import { LoginError, RegisterError, Page } from 'utils/types';
+import { validateEmail, validatePassword } from 'utils/validations';
 
 export const handleLogout = async () => {
   await deleteCookie('authToken');

@@ -1,7 +1,7 @@
-import { Observable, Subject } from 'rxjs';
 import { CSSProperties } from 'react';
 
 import GermanTranslation from 'i18n/dictionaries/de.json';
+import { Observable, Subject } from 'rxjs';
 
 export enum Locale {
   DE = 'de',

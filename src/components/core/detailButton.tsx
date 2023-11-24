@@ -6,9 +6,9 @@ import {
   useRef,
 } from 'react';
 
-import { UnstyledButton } from 'components/core/unstyledButton';
 import { Row } from 'components/core/row';
 import { Span } from 'components/core/span';
+import { UnstyledButton } from 'components/core/unstyledButton';
 
 type DetailButtonProps = {
   inlineCenterLeft: string;

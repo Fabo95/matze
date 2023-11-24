@@ -1,13 +1,13 @@
 import React, { ReactElement, useMemo } from 'react';
 
-import { Row } from 'components/core/row';
+import { ApplicationProcessMachine } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 import { useSelector } from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
 import { DetailButton } from 'components/core/detailButton';
-import { ApplicationProcessMachine } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
-import { useParams } from 'next/navigation';
-import { getTFunction } from 'i18n/tFunction';
-import { Locale } from 'utils/types';
+import { Row } from 'components/core/row';
 import { Text } from 'components/core/text';
+import { getTFunction } from 'i18n/tFunction';
+import { useParams } from 'next/navigation';
+import { Locale } from 'utils/types';
 
 type IntervalTimerDetailExecutionOverviewButtonProps = {
   className: { overviewDot?: string; detailButton: string };
