@@ -1,17 +1,18 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 
-import { Interval } from 'api/utils/apiTypes';
+import { Observable } from 'rxjs';
+import { assign, createMachine, StateFrom } from 'xstate';
+
+import { Interval } from '@Interval/api/utils/apiTypes';
 import {
   getInitialCountContext,
   getIntervalTimerExecution,
-} from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
+} from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionHelpers';
 import {
   IntervalTimerExecutionMachineContext,
   IntervalTimerExecutionMachineEvents,
   IntervalTimerExecutionMachineServices,
-} from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
-import { Observable } from 'rxjs';
-import { assign, createMachine, StateFrom } from 'xstate';
+} from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
 
 // xstate typegen "src/**/*.ts?(x)" --watch
 
@@ -36,7 +37,7 @@ export const createIntervalTimerExecutionMachine = <T>({
     {
       id: 'intervalTimerExecutionMachine',
       tsTypes:
-        {} as import('components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine.typegen').Typegen0,
+        {} as import('@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine.typegen').Typegen0,
       preserveActionOrder: true,
       predictableActionArguments: true,
       schema: {

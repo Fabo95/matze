@@ -1,4 +1,4 @@
-import { LoginError, RegisterError } from 'utils/types';
+import { LoginError, RegisterError } from '@Interval/utils/types';
 
 type RecordMetadata = { createdAt: string; updatedAt: string };
 

@@ -1,9 +1,9 @@
-import { LogOut } from 'components/core/logOut';
-import { Row } from 'components/core/row';
-import { Text } from 'components/core/text';
-import { UnstyledButton } from 'components/core/unstyledButton';
-import { HamburgerIcon } from 'components/icons/hamburgerIcon';
-import { LogOutIcon } from 'components/icons/logOutIcon';
+import { LogOut } from '@Interval/components/core/logOut';
+import { Row } from '@Interval/components/core/row';
+import { Text } from '@Interval/components/core/text';
+import { UnstyledButton } from '@Interval/components/core/unstyledButton';
+import { HamburgerIcon } from '@Interval/components/icons/hamburgerIcon';
+import { LogOutIcon } from '@Interval/components/icons/logOutIcon';
 
 export const MenuHeader = ({
   toggleMenu,

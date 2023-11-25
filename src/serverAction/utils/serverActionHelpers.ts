@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
-import { HttpMethod } from 'serverAction/utils/serverActionTypes';
+
+import { HttpMethod } from '@Interval/serverAction/utils/serverActionTypes';
 
 type GetFetchOptions = Omit<RequestInit, 'body'> & {
   body?: { [key: string]: unknown };

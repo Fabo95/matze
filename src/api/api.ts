@@ -1,4 +1,4 @@
-import { apiBaseUrl, authBaseUrl } from 'api/utils/apiConstants';
+import { apiBaseUrl, authBaseUrl } from '@Interval/api/utils/apiConstants';
 import {
   FriendshipMessages,
   Interval,
@@ -6,9 +6,9 @@ import {
   Login,
   Register,
   User,
-} from 'api/utils/apiTypes';
-import { getFetchOptions } from 'serverAction/utils/serverActionHelpers';
-import { HttpMethod } from 'serverAction/utils/serverActionTypes';
+} from '@Interval/api/utils/apiTypes';
+import { getFetchOptions } from '@Interval/serverAction/utils/serverActionHelpers';
+import { HttpMethod } from '@Interval/serverAction/utils/serverActionTypes';
 
 export const apiGetInterval = async (): Promise<Interval> =>
   fetch(`${apiBaseUrl}intervals`, getFetchOptions()).then((data) =>

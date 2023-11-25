@@ -1,15 +1,15 @@
-import { Interval, IntervalIntensityType } from 'api/utils/apiTypes';
+import { Interval, IntervalIntensityType } from '@Interval/api/utils/apiTypes';
 import {
   IntervalTimerConfigurationOptionProps,
   IntervalTimerConfigurationType,
   IntervalTimerExecutionOverviewButtonProps,
-} from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
-import { PauseCircleIcon } from 'components/icons/pauseCircleIcon';
-import { PlayCircleIcon } from 'components/icons/playCircleIcon';
-import { RepeatIcon } from 'components/icons/repeatIcon';
-import { RocketIcon } from 'components/icons/rocketIcon';
-import { StopCircleIcon } from 'components/icons/stopCircleIcon';
-import { TFunction } from 'utils/types';
+} from '@Interval/components/blocks/intervalTimer/components/utils/intervalTimerTypes';
+import { PauseCircleIcon } from '@Interval/components/icons/pauseCircleIcon';
+import { PlayCircleIcon } from '@Interval/components/icons/playCircleIcon';
+import { RepeatIcon } from '@Interval/components/icons/repeatIcon';
+import { RocketIcon } from '@Interval/components/icons/rocketIcon';
+import { StopCircleIcon } from '@Interval/components/icons/stopCircleIcon';
+import { TFunction } from '@Interval/utils/types';
 
 const getIntervalTimerExecutionExerciseCountButtonProps = (
   t: TFunction

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { Box } from 'components/core/box';
+import { Box } from '@Interval/components/core/box';
 
 type PageBlockStartProps = {
   children: ReactNode;

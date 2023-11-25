@@ -1,9 +1,10 @@
 import { MouseEvent, RefObject, TouchEvent } from 'react';
 
-import { Interval } from 'api/utils/apiTypes';
 import moment from 'moment';
 import { Subject } from 'rxjs';
-import { ReactiveType, RecursiveObjectType } from 'utils/types';
+
+import { Interval } from '@Interval/api/utils/apiTypes';
+import { ReactiveType, RecursiveObjectType } from '@Interval/utils/types';
 
 /**
  * Takes a nested object and an array of keys and returns the corresponding nested string value.

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import { IntervalIntensityType } from 'api/utils/apiTypes';
+import { IntervalIntensityType } from '@Interval/api/utils/apiTypes';
 
 export enum IntervalTimerConfigurationType {
   COUNT = 'count',

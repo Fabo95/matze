@@ -4,8 +4,8 @@ import { RefObject } from 'react';
 import {
   PULSE_ANIMATION_DISTANCE_IN_MS,
   PULSE_ANIMATION_DURATION,
-} from 'components/core/pulse/utils/pulseConstants';
-import { AnimationPlayState } from 'components/core/pulse/utils/pulseTypes';
+} from '@Interval/components/core/pulse/utils/pulseConstants';
+import { AnimationPlayState } from '@Interval/components/core/pulse/utils/pulseTypes';
 
 class AnimationController {
   animation: Animation | undefined;

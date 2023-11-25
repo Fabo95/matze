@@ -1,8 +1,4 @@
 import {
-  IntervalTimerExecutionMachineContext,
-  IntervalTimerExecutionMachineEvents,
-} from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
-import {
   EMPTY,
   from,
   merge,
@@ -13,7 +9,12 @@ import {
   take,
 } from 'rxjs';
 import { interval as rxInterval } from 'rxjs/internal/observable/interval';
-import { ValueOf } from 'utils/types';
+
+import {
+  IntervalTimerExecutionMachineContext,
+  IntervalTimerExecutionMachineEvents,
+} from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
+import { ValueOf } from '@Interval/utils/types';
 
 export const getIntervalTimerExecution = <T>({
   isExecuting$,

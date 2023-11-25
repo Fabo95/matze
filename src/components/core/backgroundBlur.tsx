@@ -1,4 +1,4 @@
-import { Box } from 'components/core/box';
+import { Box } from '@Interval/components/core/box';
 
 type BackgroundBlurProps = {
   isBlurred: boolean;

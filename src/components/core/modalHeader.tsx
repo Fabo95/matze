@@ -1,7 +1,7 @@
 import React, { ReactElement, ReactNode } from 'react';
 
-import { Row } from 'components/core/row';
-import { Text } from 'components/core/text';
+import { Row } from '@Interval/components/core/row';
+import { Text } from '@Interval/components/core/text';
 
 type ModalHeaderProps = {
   inlineStart: ReactElement;

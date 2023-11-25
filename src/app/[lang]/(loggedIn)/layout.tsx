@@ -4,7 +4,8 @@ import 'styles/global.css';
 import { MenuBlock } from 'components/blocks/menu/menuBlock';
 import { Box } from 'components/core/box';
 import { getTFunction } from 'i18n/tFunction';
-import { Locale } from 'utils/types';
+
+import { Locale } from '@Interval/utils/types';
 
 const LoggedInLayout = async ({
   children,

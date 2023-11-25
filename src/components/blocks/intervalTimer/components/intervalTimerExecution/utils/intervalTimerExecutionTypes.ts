@@ -1,4 +1,4 @@
-import { ApplicationProcessMachine } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
+import { ApplicationProcessMachine } from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 
 export type IntervalTimerExecutionBackgroundGradientStrategy = {
   isCurrentState: (

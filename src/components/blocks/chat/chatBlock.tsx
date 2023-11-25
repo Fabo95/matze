@@ -2,15 +2,16 @@
 
 import { useCallback, useState } from 'react';
 
-import { FriendshipMessages, User } from 'api/utils/apiTypes';
-import { ChatFriendshipCard } from 'components/blocks/chat/components/chatFriendships/chatFriendshipCard/chatFriendshipCard';
-import { ChatMessages } from 'components/blocks/chat/components/chatMessages/chatMessages';
-import { PageBlockEnd } from 'components/core/page/components/pageBlockEnd';
-import { PageBlockStart } from 'components/core/page/components/pageBlockStart';
-import { getTFunction } from 'i18n/tFunction';
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
-import { useBoolean } from 'utils/hooks';
-import { Locale } from 'utils/types';
+
+import { FriendshipMessages, User } from '@Interval/api/utils/apiTypes';
+import { ChatFriendshipCard } from '@Interval/components/blocks/chat/components/chatFriendships/chatFriendshipCard/chatFriendshipCard';
+import { ChatMessages } from '@Interval/components/blocks/chat/components/chatMessages/chatMessages';
+import { PageBlockEnd } from '@Interval/components/core/page/components/pageBlockEnd';
+import { PageBlockStart } from '@Interval/components/core/page/components/pageBlockStart';
+import { getTFunction } from '@Interval/i18n/tFunction';
+import { useBoolean } from '@Interval/utils/hooks';
+import { Locale } from '@Interval/utils/types';
 
 type ChatBlockProps = {
   authToken?: RequestCookie;

@@ -9,7 +9,7 @@ import React, {
   useState,
 } from 'react';
 
-import { UnstyledButton } from 'components/core/unstyledButton';
+import { UnstyledButton } from '@Interval/components/core/unstyledButton';
 
 type ButtonProps = {
   children: ReactNode;

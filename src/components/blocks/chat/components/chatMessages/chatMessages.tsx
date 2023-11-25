@@ -1,19 +1,20 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-import { FriendshipMessages, Message } from 'api/utils/apiTypes';
-import { ChatMessage } from 'components/blocks/chat/components/chatMessages/components/chatMessage';
-import { ChatMessageForm } from 'components/blocks/chat/components/chatMessages/components/chatMessageForm';
-import { ChatMessagesSlidingPane } from 'components/blocks/chat/components/chatMessages/components/chatMessagesSlidingPane';
-import { getInitialMessages } from 'components/blocks/chat/components/chatMessages/utils/chatMessagesHelpers';
-import { useWebSocket } from 'components/blocks/chat/components/chatMessages/utils/chatMessagesHooks';
-import { getFriend } from 'components/blocks/chat/utils/chatHelpers';
-import { Box } from 'components/core/box';
-import { Row } from 'components/core/row';
-import { Text } from 'components/core/text';
-import { UnstyledButton } from 'components/core/unstyledButton';
-import { Chevron } from 'components/icons/chevron';
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
-import { scrollToBottom } from 'utils/helpers';
+
+import { FriendshipMessages, Message } from '@Interval/api/utils/apiTypes';
+import { ChatMessage } from '@Interval/components/blocks/chat/components/chatMessages/components/chatMessage';
+import { ChatMessageForm } from '@Interval/components/blocks/chat/components/chatMessages/components/chatMessageForm';
+import { ChatMessagesSlidingPane } from '@Interval/components/blocks/chat/components/chatMessages/components/chatMessagesSlidingPane';
+import { getInitialMessages } from '@Interval/components/blocks/chat/components/chatMessages/utils/chatMessagesHelpers';
+import { useWebSocket } from '@Interval/components/blocks/chat/components/chatMessages/utils/chatMessagesHooks';
+import { getFriend } from '@Interval/components/blocks/chat/utils/chatHelpers';
+import { Box } from '@Interval/components/core/box';
+import { Row } from '@Interval/components/core/row';
+import { Text } from '@Interval/components/core/text';
+import { UnstyledButton } from '@Interval/components/core/unstyledButton';
+import { Chevron } from '@Interval/components/icons/chevron';
+import { scrollToBottom } from '@Interval/utils/helpers';
 
 type ChatMessagesProps = {
   authToken?: RequestCookie;

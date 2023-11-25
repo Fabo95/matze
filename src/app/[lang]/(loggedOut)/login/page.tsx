@@ -6,9 +6,10 @@ import { Input } from 'components/core/input';
 import { Label } from 'components/core/label';
 import { Text } from 'components/core/text';
 import { getTFunction } from 'i18n/tFunction';
-import { apiPostLoginServerAction } from 'serverAction/serverActions';
-import { loginErrorState } from 'serverAction/utils/serverActionConstants';
-import { Locale } from 'utils/types';
+
+import { apiPostLoginServerAction } from '@Interval/serverAction/serverActions';
+import { loginErrorState } from '@Interval/serverAction/utils/serverActionConstants';
+import { Locale } from '@Interval/utils/types';
 
 export default async function Login({
   params: { lang },

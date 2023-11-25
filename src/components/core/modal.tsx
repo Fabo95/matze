@@ -1,9 +1,9 @@
 import { DialogHTMLAttributes, forwardRef, Ref } from 'react';
 
-import { Box } from 'components/core/box';
-import { Dialog } from 'components/core/dialog';
-import { UnstyledButton } from 'components/core/unstyledButton';
-import { XMarkIcon } from 'components/icons/xMarkIcon';
+import { Box } from '@Interval/components/core/box';
+import { Dialog } from '@Interval/components/core/dialog';
+import { UnstyledButton } from '@Interval/components/core/unstyledButton';
+import { XMarkIcon } from '@Interval/components/icons/xMarkIcon';
 
 type ModalProps = {
   containerClassName: string;

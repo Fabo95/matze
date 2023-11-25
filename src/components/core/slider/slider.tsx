@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
 
-import { stopPropagation } from 'utils/helpers';
+import { stopPropagation } from '@Interval/utils/helpers';
 
 type SliderProps = {
   className?: string;

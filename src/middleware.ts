@@ -1,7 +1,12 @@
 import { jwtVerify } from 'jose';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { getLocale, getLocaleFromPathname, getPage } from 'utils/routing';
+
+import {
+  getLocale,
+  getLocaleFromPathname,
+  getPage,
+} from '@Interval/utils/routing';
 
 // eslint-disable-next-line consistent-return
 export const middleware = async (request: NextRequest) => {

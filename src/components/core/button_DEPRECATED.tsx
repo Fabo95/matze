@@ -7,8 +7,8 @@ import React, {
   MouseEvent,
 } from 'react';
 
-import { Box } from 'components/core/box';
-import { UnstyledButton } from 'components/core/unstyledButton';
+import { Box } from '@Interval/components/core/box';
+import { UnstyledButton } from '@Interval/components/core/unstyledButton';
 
 type ButtonProps = {
   className?: string;

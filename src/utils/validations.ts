@@ -1,5 +1,6 @@
 import Joi from 'joi';
-import { ValidationError } from 'utils/types';
+
+import { ValidationError } from '@Interval/utils/types';
 
 export const validateEmail = (email: FormDataEntryValue | null) => {
   const schema = Joi.object({

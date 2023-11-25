@@ -1,8 +1,8 @@
-import GermanTranslation from 'i18n/dictionaries/de.json';
-import EnglishTranslation from 'i18n/dictionaries/en.json';
-import { TRANSLATION_STRING_PLACEHOLDER_PATTERN } from 'utils/constants';
-import { getNestedObjectValue } from 'utils/helpers';
-import { Dictionary, Locale, TFunction } from 'utils/types';
+import GermanTranslation from '@Interval/i18n/dictionaries/de.json';
+import EnglishTranslation from '@Interval/i18n/dictionaries/en.json';
+import { TRANSLATION_STRING_PLACEHOLDER_PATTERN } from '@Interval/utils/constants';
+import { getNestedObjectValue } from '@Interval/utils/helpers';
+import { Dictionary, Locale, TFunction } from '@Interval/utils/types';
 
 const LOCALE_TO_DICTIONARY_MAP = {
   [Locale.EN]: EnglishTranslation,

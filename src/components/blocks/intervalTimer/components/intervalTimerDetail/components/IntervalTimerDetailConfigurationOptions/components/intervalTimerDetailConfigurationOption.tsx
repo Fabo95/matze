@@ -9,26 +9,26 @@ import React, {
   startTransition,
 } from 'react';
 
-import {
-  IntervalTimerConfigurationOptionProps,
-  IntervalTimerConfigurationType,
-} from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
-import { Button } from 'components/core/button';
-import { DetailButton } from 'components/core/detailButton';
-import { Modal } from 'components/core/modal';
-import { ModalHeader } from 'components/core/modalHeader';
-import { SliderContainer } from 'components/core/slider/components/sliderContainer';
-import { SliderThumb } from 'components/core/slider/components/sliderThumb';
-import { SliderTrack } from 'components/core/slider/components/sliderTrack';
-import { Slider } from 'components/core/slider/slider';
 import { useParams } from 'next/navigation';
 import { distinctUntilChanged, map } from 'rxjs';
 
-import { getFormattedSeconds } from 'utils/helpers';
-import { useObservable, useReactiveCallback } from 'utils/hooks';
-import { apiPatchIntervalServerAction } from 'serverAction/serverActions';
-import { getTFunction } from 'i18n/tFunction';
-import { Locale } from 'utils/types';
+import {
+  IntervalTimerConfigurationOptionProps,
+  IntervalTimerConfigurationType,
+} from '@Interval/components/blocks/intervalTimer/components/utils/intervalTimerTypes';
+import { Button } from '@Interval/components/core/button';
+import { DetailButton } from '@Interval/components/core/detailButton';
+import { Modal } from '@Interval/components/core/modal';
+import { ModalHeader } from '@Interval/components/core/modalHeader';
+import { SliderContainer } from '@Interval/components/core/slider/components/sliderContainer';
+import { SliderThumb } from '@Interval/components/core/slider/components/sliderThumb';
+import { SliderTrack } from '@Interval/components/core/slider/components/sliderTrack';
+import { Slider } from '@Interval/components/core/slider/slider';
+import { getTFunction } from '@Interval/i18n/tFunction';
+import { apiPatchIntervalServerAction } from '@Interval/serverAction/serverActions';
+import { getFormattedSeconds } from '@Interval/utils/helpers';
+import { useObservable, useReactiveCallback } from '@Interval/utils/hooks';
+import { Locale } from '@Interval/utils/types';
 
 export const IntervalTimerDetailConfigurationOption = ({
   className,

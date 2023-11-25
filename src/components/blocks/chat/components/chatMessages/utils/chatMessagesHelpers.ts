@@ -1,4 +1,4 @@
-import { FriendshipMessages } from 'api/utils/apiTypes';
+import { FriendshipMessages } from '@Interval/api/utils/apiTypes';
 
 export const getInitialMessages = (
   selectedFriendshipMessages: FriendshipMessages

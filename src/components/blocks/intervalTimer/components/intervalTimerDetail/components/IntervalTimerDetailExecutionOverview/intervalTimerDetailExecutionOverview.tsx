@@ -1,21 +1,22 @@
 import React from 'react';
 
-import { IntervalTimerDetailExecutionOverviewButton } from 'components/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/components/intervalTimerDetailExecutionOverviewButton';
-import { IntervalTimerExecutionOverviewButtonProps } from 'components/blocks/intervalTimer/components/utils/intervalTimerTypes';
-import { useSelector } from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
+import { useParams } from 'next/navigation';
+
+import { IntervalTimerDetailExecutionOverviewButton } from '@Interval/components/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/components/intervalTimerDetailExecutionOverviewButton';
+import { IntervalTimerExecutionOverviewButtonProps } from '@Interval/components/blocks/intervalTimer/components/utils/intervalTimerTypes';
+import { useSelector } from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
 import {
   makeSelectRemainingCount,
   makeSelectTotalCount,
   selectRemainingTotalTime,
-} from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors';
-import { Box } from 'components/core/box';
-import { Row } from 'components/core/row';
-import { Text } from 'components/core/text';
-import { ClockIcon } from 'components/icons/clockIcon';
-import { getTFunction } from 'i18n/tFunction';
-import { useParams } from 'next/navigation';
-import { getFormattedSeconds } from 'utils/helpers';
-import { Locale } from 'utils/types';
+} from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors';
+import { Box } from '@Interval/components/core/box';
+import { Row } from '@Interval/components/core/row';
+import { Text } from '@Interval/components/core/text';
+import { ClockIcon } from '@Interval/components/icons/clockIcon';
+import { getTFunction } from '@Interval/i18n/tFunction';
+import { getFormattedSeconds } from '@Interval/utils/helpers';
+import { Locale } from '@Interval/utils/types';
 
 type IntervalTimerDetailExecutionOverviewProps = {
   executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];

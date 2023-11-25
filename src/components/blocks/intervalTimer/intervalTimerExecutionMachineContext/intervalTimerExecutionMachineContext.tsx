@@ -1,6 +1,7 @@
 import { createActorContext } from '@xstate/react';
-import { createIntervalTimerExecutionMachine } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
-import { getReactiveCallback } from 'utils/helpers';
+
+import { createIntervalTimerExecutionMachine } from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
+import { getReactiveCallback } from '@Interval/utils/helpers';
 
 const [, isExecuting$] = getReactiveCallback();
 

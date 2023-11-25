@@ -29,20 +29,27 @@
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal"],
+        "newlines-between": "always",
         "pathGroups": [
           {
             "pattern": "react",
             "group": "external",
             "position": "before"
+          },
+          // By adding this pathGroup we force Interval imoorts to be 'Internal' and after 'external' imports.
+          // TODO We need to fix that because normally the rule should handle it correctly without this pathGroup.
+          {
+            "pattern": "@Interval/**",
+            "group": "internal",
+            "position": "after"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["react"],
-        "newlines-between": "always",
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
+        "pathGroupsExcludedImportTypes": ["react", "@Interval"],
+        "groups": [
+          ["builtin", "external", "type"],
+          ["internal", "parent", "sibling", "index"],
+          ["object"]
+        ]
       }
     ],
     "prettier/prettier": "warn",

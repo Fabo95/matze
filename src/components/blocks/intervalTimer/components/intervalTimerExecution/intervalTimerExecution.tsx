@@ -3,23 +3,23 @@ import { useCallback, useEffect, useMemo } from 'react';
 import {
   executeIntervalTimerExecutionBackgroundGradientStrategy,
   getIntervalTimerExecutionBackgroundGradientStrategies,
-} from 'components/blocks/intervalTimer/components/intervalTimerExecution/utils/intervalTimerExecutionHelpers';
+} from '@Interval/components/blocks/intervalTimer/components/intervalTimerExecution/utils/intervalTimerExecutionHelpers';
 import {
   useActor,
   useSelector,
-} from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
+} from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
 import {
   selectIsExecuting,
   selectRemainingCurrentTime,
-} from 'components/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors';
-import { PageBlockStart } from 'components/core/page/components/pageBlockStart';
-import { Pulse } from 'components/core/pulse/pulse';
-import { Row } from 'components/core/row';
-import { Text } from 'components/core/text';
-import { UnstyledButton } from 'components/core/unstyledButton';
-import { PauseIcon } from 'components/icons/pauseIcon';
-import { PlayIcon } from 'components/icons/playIcon';
-import { getFormattedSeconds } from 'utils/helpers';
+} from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors';
+import { PageBlockStart } from '@Interval/components/core/page/components/pageBlockStart';
+import { Pulse } from '@Interval/components/core/pulse/pulse';
+import { Row } from '@Interval/components/core/row';
+import { Text } from '@Interval/components/core/text';
+import { UnstyledButton } from '@Interval/components/core/unstyledButton';
+import { PauseIcon } from '@Interval/components/icons/pauseIcon';
+import { PlayIcon } from '@Interval/components/icons/playIcon';
+import { getFormattedSeconds } from '@Interval/utils/helpers';
 
 export const IntervalTimerExecution = ({
   nextIsExecution,

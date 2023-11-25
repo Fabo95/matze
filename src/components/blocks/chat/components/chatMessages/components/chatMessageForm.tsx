@@ -1,10 +1,10 @@
 import React, { useCallback, useState } from 'react';
 
-import { SendMessage } from 'components/blocks/chat/components/chatMessages/utils/chatMessagesTypes';
-import { Form } from 'components/core/form';
-import { TextareaAutosize } from 'components/core/textareaAutosize';
-import { UnstyledButton } from 'components/core/unstyledButton';
-import { PaperAirplane } from 'components/icons/paperAirplane';
+import { SendMessage } from '@Interval/components/blocks/chat/components/chatMessages/utils/chatMessagesTypes';
+import { Form } from '@Interval/components/core/form';
+import { TextareaAutosize } from '@Interval/components/core/textareaAutosize';
+import { UnstyledButton } from '@Interval/components/core/unstyledButton';
+import { PaperAirplane } from '@Interval/components/icons/paperAirplane';
 
 type ChatMessageFormProps = {
   friendshipId: number;

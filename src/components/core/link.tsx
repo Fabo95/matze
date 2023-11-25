@@ -1,9 +1,9 @@
-import { UrlObject } from 'url';
-
 import React, { ReactNode } from 'react';
 
+import { UrlObject } from 'url';
 import NextLink from 'next/link';
-import { Locale } from 'utils/types';
+
+import { Locale } from '@Interval/utils/types';
 
 export const Link = ({
   href,

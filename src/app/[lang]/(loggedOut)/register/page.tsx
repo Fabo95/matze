@@ -6,9 +6,10 @@ import { Input } from 'components/core/input';
 import { Label } from 'components/core/label';
 import { Text } from 'components/core/text';
 import { getTFunction } from 'i18n/tFunction';
-import { apiPostRegisterServerAction } from 'serverAction/serverActions';
-import { registerErrorState } from 'serverAction/utils/serverActionConstants';
-import { Locale } from 'utils/types';
+
+import { apiPostRegisterServerAction } from '@Interval/serverAction/serverActions';
+import { registerErrorState } from '@Interval/serverAction/utils/serverActionConstants';
+import { Locale } from '@Interval/utils/types';
 
 export default async function register({
   params: { lang },

@@ -1,10 +1,10 @@
 'use client';
 
-import { MenuHeader } from 'components/blocks/menu/components/menuHeader';
-import { MenuSlidingPane } from 'components/blocks/menu/components/menuSlidingPane/menuSlidingPane';
-import { BackgroundBlur } from 'components/core/backgroundBlur';
-import { Box } from 'components/core/box';
-import { useBoolean } from 'utils/hooks';
+import { MenuHeader } from '@Interval/components/blocks/menu/components/menuHeader';
+import { MenuSlidingPane } from '@Interval/components/blocks/menu/components/menuSlidingPane/menuSlidingPane';
+import { BackgroundBlur } from '@Interval/components/core/backgroundBlur';
+import { Box } from '@Interval/components/core/box';
+import { useBoolean } from '@Interval/utils/hooks';
 
 export const MenuBlock = ({ headline }: { headline: string }) => {
   // --- STATE ---

@@ -1,5 +1,5 @@
-import { IntervalIntensityType } from 'api/utils/apiTypes';
-import { ApplicationProcessMachine } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
+import { IntervalIntensityType } from '@Interval/api/utils/apiTypes';
+import { ApplicationProcessMachine } from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 
 export const selectRemainingCurrentTime = ({
   context,

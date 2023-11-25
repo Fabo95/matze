@@ -1,7 +1,7 @@
 import { ReactNode, startTransition } from 'react';
 
-import { UnstyledButton } from 'components/core/unstyledButton';
-import { handleLogout } from 'serverAction/serverActions';
+import { UnstyledButton } from '@Interval/components/core/unstyledButton';
+import { handleLogout } from '@Interval/serverAction/serverActions';
 
 type LogOutProps = { children: ReactNode };
 

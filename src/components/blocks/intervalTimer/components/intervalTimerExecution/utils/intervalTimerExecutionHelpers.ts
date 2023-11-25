@@ -1,6 +1,6 @@
-import { IntervalTimerExecutionBackgroundGradientStrategy } from 'components/blocks/intervalTimer/components/intervalTimerExecution/utils/intervalTimerExecutionTypes';
-import { ApplicationProcessMachine } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
-import { State } from 'components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
+import { IntervalTimerExecutionBackgroundGradientStrategy } from '@Interval/components/blocks/intervalTimer/components/intervalTimerExecution/utils/intervalTimerExecutionTypes';
+import { ApplicationProcessMachine } from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
+import { State } from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachine/utils/intervalTimerExecutionTypes';
 
 export const getIntervalTimerExecutionBackgroundGradientStrategies =
   (): IntervalTimerExecutionBackgroundGradientStrategy[] => [

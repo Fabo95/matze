@@ -11,7 +11,7 @@ import React, {
 import {
   getClientX,
   getNextItemIndex,
-} from 'components/core/swiper/utils/swiperHelpers';
+} from '@Interval/components/core/swiper/utils/swiperHelpers';
 
 export type SwiperProps = {
   children: ReactElement | ReactElement[];

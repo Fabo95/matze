@@ -1,5 +1,5 @@
-import { Row } from 'components/core/row';
-import { Text } from 'components/core/text';
+import { Row } from '@Interval/components/core/row';
+import { Text } from '@Interval/components/core/text';
 
 export const MenuSlidingPaneHeader = ({ headline }: { headline: string }) => (
   <Row className="menu-sliding-pane-header">
