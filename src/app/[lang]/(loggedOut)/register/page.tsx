@@ -6,7 +6,6 @@ import { Input } from '@Interval/components/core/input';
 import { Label } from '@Interval/components/core/label';
 import { Text } from '@Interval/components/core/text';
 import { getTFunction } from '@Interval/i18n/tFunction';
-
 import { apiPostRegisterServerAction } from '@Interval/serverAction/serverActions';
 import { registerErrorState } from '@Interval/serverAction/utils/serverActionConstants';
 import { Locale } from '@Interval/utils/types';

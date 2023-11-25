@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { ChatBlock } from '@Interval/components/blocks/chat/chatBlock';
-import { Page } from '@Interval/components/core/page/page';
 import { cookies } from 'next/headers';
 
+import { ChatBlock } from '@Interval/components/blocks/chat/chatBlock';
+import { Page } from '@Interval/components/core/page/page';
 import {
   apiGetFriendshipsMessages,
   apiGetUserByIdOrFromToken,

@@ -7,7 +7,6 @@ import {
 import { IntervalTimerBlock } from '@Interval/components/blocks/intervalTimer/intervalTimerBlock';
 import { Page } from '@Interval/components/core/page/page';
 import { getTFunction } from '@Interval/i18n/tFunction';
-
 import { apiGetInterval } from '@Interval/api/api';
 import { Locale } from '@Interval/utils/types';
 
