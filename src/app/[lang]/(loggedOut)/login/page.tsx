@@ -1,11 +1,11 @@
-import { Box } from 'components/core/box';
-import { Button } from 'components/core/button';
-import { Form } from 'components/core/form';
-import { Heading } from 'components/core/heading';
-import { Input } from 'components/core/input';
-import { Label } from 'components/core/label';
-import { Text } from 'components/core/text';
-import { getTFunction } from 'i18n/tFunction';
+import { Box } from '@Interval/components/core/box';
+import { Button } from '@Interval/components/core/button';
+import { Form } from '@Interval/components/core/form';
+import { Heading } from '@Interval/components/core/heading';
+import { Input } from '@Interval/components/core/input';
+import { Label } from '@Interval/components/core/label';
+import { Text } from '@Interval/components/core/text';
+import { getTFunction } from '@Interval/i18n/tFunction';
 
 import { apiPostLoginServerAction } from '@Interval/serverAction/serverActions';
 import { loginErrorState } from '@Interval/serverAction/utils/serverActionConstants';

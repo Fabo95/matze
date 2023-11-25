@@ -3,10 +3,10 @@ import React from 'react';
 import {
   getIntervalTimerConfigurationOptionsProps,
   getIntervalTimerExecutionOverviewButtonProps,
-} from 'components/blocks/intervalTimer/components/utils/intervalTimerHelpers';
-import { IntervalTimerBlock } from 'components/blocks/intervalTimer/intervalTimerBlock';
-import { Page } from 'components/core/page/page';
-import { getTFunction } from 'i18n/tFunction';
+} from '@Interval/components/blocks/intervalTimer/components/utils/intervalTimerHelpers';
+import { IntervalTimerBlock } from '@Interval/components/blocks/intervalTimer/intervalTimerBlock';
+import { Page } from '@Interval/components/core/page/page';
+import { getTFunction } from '@Interval/i18n/tFunction';
 
 import { apiGetInterval } from '@Interval/api/api';
 import { Locale } from '@Interval/utils/types';

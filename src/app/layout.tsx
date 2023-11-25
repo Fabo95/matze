@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 // eslint-disable-next-line import/order
 import { Manrope } from 'next/font/google';
-import 'styles/global.css';
+import '@Interval/styles/global.css';
 
-import InitServiceWorker from 'serviceWorker/initServiceWorker';
-
+import InitServiceWorker from '@Interval/serviceWorker/initServiceWorker';
 import { Locale } from '@Interval/utils/types';
 
 const manrope = Manrope({
@@ -19,11 +18,11 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   description: 'Interval timer for your workout.',
   manifest: '/manifest.json',
-  themeColor: '#ffffff',
   title: 'Interval Timer',
-  viewport: {
-    width: 'device-width',
-  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
 };
 
 const RootLayout = ({

@@ -8,7 +8,8 @@
     "start": "NODE_ENV=production next start",
     "fixEslint": "eslint --fix . && next lint",
     "eslint": "next lint",
-    "compileScss": "sass src/styles/scss/global.scss src/styles/global.css"
+    "compileScss": "sass src/styles/scss/global.scss src/styles/global.css",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.2.32",

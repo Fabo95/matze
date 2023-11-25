@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { getTFunction } from 'i18n/tFunction';
+import { getTFunction } from '@Interval/i18n/tFunction';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 import { useParams as useParamsNext } from 'next/navigation';
 import { Observable, Subject } from 'rxjs';

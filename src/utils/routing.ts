@@ -1,8 +1,8 @@
 import { match as matchLocale } from '@formatjs/intl-localematcher';
-import { i18n } from 'i18n/i18nConfig';
 import Negotiator from 'negotiator';
 import { NextRequest } from 'next/server';
 
+import { i18n } from '@Interval/i18n/i18nConfig';
 import { Locale, Page } from '@Interval/utils/types';
 
 export const getLocaleFromPathname = (

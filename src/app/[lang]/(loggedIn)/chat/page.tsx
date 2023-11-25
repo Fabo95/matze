@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ChatBlock } from 'components/blocks/chat/chatBlock';
-import { Page } from 'components/core/page/page';
+import { ChatBlock } from '@Interval/components/blocks/chat/chatBlock';
+import { Page } from '@Interval/components/core/page/page';
 import { cookies } from 'next/headers';
 
 import {
