@@ -1,7 +1,7 @@
 import {
   dynamicCacheName,
   staticCacheName,
-} from 'serviceWorker/utils/constants';
+} from '@Interval/serviceWorker/utils/constants';
 
 export const getStaticAssetPaths = async () => {
   const assetResponse = await fetch('./asset-manifest.json');
