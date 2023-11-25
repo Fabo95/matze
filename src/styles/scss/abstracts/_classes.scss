@@ -1,0 +1,27 @@
+@use 'mixins';
+
+@import 'variables';
+@import 'functions';
+
+.background-white-dark {
+  background: $whiteDark;
+}
+.background-green-dark {
+  background: $greenDark;
+}
+.background-red-dark {
+  background: $redDark;
+}
+.background-gray-dark {
+  background: $grayDark;
+}
+.background-blue-dark {
+  background: $blueDark;
+}
+.background-yellow-dark {
+  background: $yellowDark;
+}
+
+.slider-track-dividing-line-long {
+  width: spacingPixel(8);
+}

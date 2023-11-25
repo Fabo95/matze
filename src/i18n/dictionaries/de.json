@@ -1,0 +1,72 @@
+{
+  "pages": {
+    "home": {
+      "headline": "Interval Timer",
+      "menuOption": "Timer",
+      "intervalTimer": {
+        "optionOne": "Work",
+        "optionTwo": "Rest",
+        "optionThree": "Exercises",
+        "optionFour": "Rounds",
+        "optionFive": "Round Reset"
+      },
+      "intervalTimerOverview": {
+        "timeLeft": "Verbleibende Zeit:",
+        "completedOfTotal": "{completed} von {total}"
+      }
+    },
+    "settings": {
+      "headline": "Einstellungen",
+      "menuOption": "Einstellungen"
+    },
+    "history": {
+      "headline": "Histories",
+      "menuOption": "Histories"
+    },
+    "statistics": {
+      "headline": "Statistiken",
+      "menuOption": "Statistiken"
+    },
+    "chat": {
+      "headline": "Kontakte",
+      "menuOption": "Chat"
+    },
+    "login": {
+      "headline": "Login",
+      "cta": "Einloggen",
+      "emailLabel": "E-Mail",
+      "passwordLabel": "Passwort",
+      "validationError": {
+        "missingUser": "Kein Benutzer mit dieser E-Mail gefunden.",
+        "invalidEmail": "Die E-Mail ist ungültig.",
+        "requiredEmail": "Bitte gib deine E-Mail an.",
+        "incorrectPassword": "Das Password ist nicht korrekt.",
+        "invalidPassword": "Das Password ist ungültig.",
+        "requiredPassword": "Bitte gib dein Password an.",
+        "minLengthPassword": "Das Password muss min. 8 Zeichen beinhalten.",
+        "serverError": "Ein Fehler ist aufgetreten."
+      }
+    },
+    "register": {
+      "headline": "Registrieren",
+      "cta": "Registrieren",
+      "emailLabel": "E-Mail",
+      "passwordLabel": "Passwort",
+      "confirmPasswordLabel": "Passwort bestätigen",
+      "validationError": {
+        "invalidEmail": "Die E-Mail ist ungültig.",
+        "requiredEmail": "Bitte gib eine E-Mail an.",
+        "invalidPassword": "Das Password ist ungültig.",
+        "requiredPassword": "Bitte gib ein Password an.",
+        "requiredConfirmPassword": "Bitte bestätige dein Passwort.",
+        "minLengthPassword": "Das Password muss min. 8 Zeichen beinhalten.",
+        "nonMatchingPassword": "Die Passwörter stimmen nicht überein.",
+        "existingEmail": "E-Mail ist bereits vergeben.",
+        "serverError": "Ein Fehler ist aufgetreten."
+      }
+    }
+  },
+  "cta": {
+    "confirm": "Bestätigen"
+  }
+}

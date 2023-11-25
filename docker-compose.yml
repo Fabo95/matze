@@ -1,0 +1,21 @@
+services:
+  interval-app-api:
+    environment:
+      - JWT_SECRET_KEY_OLD=Pd8Ji2d7mSq14Oqs?dkW!1
+    build:
+      context: /Users/fabianhinz/Desktop/dev/interval_app_api
+      dockerfile: ../../interval_app_api/Dockerfile.api
+    container_name: interval-app-api-container
+    ports:
+      - 8080:8080
+
+  interval-app-auth:
+    environment:
+      - JWT_SECRET_KEY_OLD=Pd8Ji2d7mSq14Oqs?dkW!1
+    build:
+      context: /Users/fabianhinz/Desktop/dev/interval_app_api
+      dockerfile: ../../interval_app_api/Dockerfile.auth
+    container_name: interval-app-auth-container
+    ports:
+      - 8090:8090
+

@@ -1,0 +1,22 @@
+@import '../abstracts/variables';
+
+@import '../abstracts/functions';
+
+.pulse {
+  position: absolute;
+  width: spacingPixel(19);
+  height: spacingPixel(19);
+  background: $whiteDark;
+  opacity: 0.2;
+  border-radius: $borderRadiusFull;
+
+  .pulse-wave-one,
+  .pulse-wave-two,
+  .pulse-wave-three {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: $whiteDark;
+    border-radius: $borderRadiusFull;
+  }
+}

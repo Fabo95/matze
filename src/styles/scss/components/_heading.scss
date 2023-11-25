@@ -1,0 +1,8 @@
+@import '../abstracts/variables';
+@import '../abstracts/functions';
+
+.heading {
+  color: inherit;
+  font-size: spacingPixel(3);
+  font-weight: $weightBigger;
+}

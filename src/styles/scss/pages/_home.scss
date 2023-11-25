@@ -1,0 +1,95 @@
+@import '../abstracts/variables';
+
+@import '../abstracts/functions';
+
+// scss
+
+.interval-timer-execution-intro {
+  font-size: spacingPixel(3.5);
+  color: $whiteDark;
+  font-weight: $weightBig;
+}
+
+.interval-timer-execution-dividing-line {
+  margin-bottom: spacingPixel(2);
+  height: 1px;
+}
+
+.interval-timer-execution-text {
+  font-size: 24px;
+}
+
+.interval-timer-execution-button {
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  width: spacingPixel(10);
+  height: spacingPixel(10);
+  transform: translate(-50%, 50%);
+  z-index: $zIndexXs;
+  background: transparent;
+  align-items: center;
+  justify-content: center;
+  border-radius: $borderRadiusFull;
+  bottom: 0;
+  display: flex;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* Circle cut off */
+.interval-timer-detail-circle-cut-off {
+  position: relative;
+  overflow: hidden;
+  /* Needed because otherwise there is a weird uncolored border on mobile devices */
+  bottom: -1px;
+  padding: spacingPixel(6) spacingPixel(2) spacingPixel(0);
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border-width: 0;
+    width: spacingPixel(10);
+    height: spacingPixel(10);
+    box-shadow: 0 0 0 2000px white;
+  }
+}
+
+.interval-timer-detail-configuration-options {
+  padding: spacingPixel(3) spacingPixel(2) spacingPixel(4);
+  flex-grow: 1;
+  overflow: auto;
+  background: $whiteDark;
+  width: 100%;
+}
+
+.interval-timer-detail-execution-overview {
+  flex-grow: 1;
+  padding: spacingPixel(3) spacingPixel(2) spacingPixel(4);
+  background: $whiteDark;
+  width: 100%;
+  align-items: center;
+
+  .interval-timer-detail-execution-overview-rest {
+    align-items: center;
+    color: $blackDark;
+    font-size: spacingPixel(2);
+    margin-top: auto;
+
+    .interval-timer-detail-execution-overview-rest-text {
+      font-weight: $weightBigger;
+      margin-left: spacingPixel(0.5);
+    }
+
+    svg {
+      margin-right: spacingPixel(0.5);
+    }
+  }
+}

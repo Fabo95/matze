@@ -1,0 +1,76 @@
+{
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "sort-keys-fix",
+    "react-hooks",
+    "prettier"
+  ],
+  "rules": {
+    "no-underscore-dangle": [
+      "error",
+      { "allow": ["_partNative", "_partContent"] }
+    ],
+    "react/jsx-sort-props": [
+      "warn",
+      { "callbacksLast": true, "shorthandFirst": true }
+    ],
+    "sort-keys-fix/sort-keys-fix": "warn",
+    // See: https://github.com/import-js/eslint-plugin-import/issues/1665#issuecomment-591610799
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          },
+          // By adding this pathGroup we force Interval imoorts to be 'Internal' and after 'external' imports.
+          // TODO We need to fix that because normally the rule should handle it correctly without this pathGroup.
+          {
+            "pattern": "@Interval/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react", "@Interval"],
+        "groups": [
+          ["builtin", "external", "type"],
+          ["internal", "parent", "sibling", "index"],
+          ["object"]
+        ]
+      }
+    ],
+    "prettier/prettier": "warn",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "import/no-default-export": "off",
+    "import/prefer-default-export": "off",
+    "react/function-component-definition": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-filename-extension": "off",
+    "react/display-name": "off",
+    "react/require-default-props": "off",
+    "max-classes-per-file": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/button-has-type": "off"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  // https://eslint.org/docs/latest/use/configure/ignore#:~:text=You%20can%20configure%20ESLint%20to,(%20.eslintignore%20by%20default).
+  "ignorePatterns": ["**/*.js", "**/*.typegen.ts"]
+}

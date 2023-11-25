@@ -1,0 +1,159 @@
+@use '../abstracts/mixins' as mixins;
+
+@import '../abstracts/functions';
+@import '../abstracts/variables';
+
+.chat-page {
+  position: relative;
+}
+
+.chat-headline {
+  font-size: spacingPixel(3.5);
+  color: #fff;
+  font-weight: 700;
+}
+
+.chat-friendships {
+  background: $whiteDark;
+  padding: spacingPixel(4) spacingPixel(2);
+  background: $whiteDark;
+  color: $blackDark;
+  border-top-left-radius: spacingPixel(1);
+  border-top-right-radius: spacingPixel(1);
+  overflow: auto !important;
+
+  .chat-friendship-card {
+    padding-bottom: spacingPixel(2);
+    padding-top: spacingPixel(2);
+    border-bottom: 1px solid $grayLight;
+  }
+
+  .chat-friendship-card-metadata {
+    justify-content: space-between;
+    margin-bottom: spacingPixel(1);
+  }
+
+  .chat-friendship-card-friend-name {
+    font-weight: 600;
+  }
+
+  .chat-friendship-card-friend-date {
+    font-weight: 300;
+    font-size: spacingPixel(1.75);
+    color: $grayExtraDark;
+  }
+
+  .chat-friendship-card-content {
+    text-align: start;
+    font-size: spacingPixel(1.75);
+    color: $grayExtraDark;
+  }
+}
+
+.chat-messages-sliding-pane {
+  background: $whiteDark;
+  color: getContrastingTextColor($whiteDark);
+  transition: $transitionL;
+  position: absolute;
+  z-index: $zIndexS;
+  width: 100%;
+  overflow: hidden;
+  border-top-right-radius: $borderRadiusM;
+  border-top-left-radius: $borderRadiusM;
+  transform: translateX(100%);
+  @include mixins.topRightBottomLeft();
+
+  .chat-messages-nav-bar-top {
+    padding: spacingPixel(2);
+    position: relative;
+    border-bottom: 1px solid $grayLight;
+    justify-content: center;
+
+    .chat-messages-nav-bar-top-chevron {
+      position: absolute;
+      left: spacingPixel(2);
+    }
+  }
+
+  .chat-messages-content {
+    overflow-y: scroll;
+    padding: spacingPixel(2);
+    height: 100%;
+
+    .chat-message-content-self,
+    .chat-message-content-other {
+      overflow-wrap: break-word;
+      max-width: 33%;
+      border-radius: $borderRadiusM;
+      background: $whiteDark;
+      padding: spacingPixel(1) spacingPixel(2);
+      margin-bottom: spacingPixel(1);
+
+      .chat-message-content-text {
+        text-align: left;
+      }
+
+      .chat-message-content-date {
+        font-size: spacingPixel(1.5);
+        color: $grayExtraDark;
+      }
+    }
+
+    .chat-message-content-self + .chat-message-content-other,
+    .chat-message-content-other + .chat-message-content-self {
+      margin-top: spacingPixel(1);
+    }
+
+    .chat-message-content-self {
+      align-self: end;
+      text-align: right;
+      background: $greenLight;
+    }
+
+    .chat-message-content-other {
+      align-self: start;
+      text-align: left;
+      background: $grayLight;
+    }
+  }
+
+  .chat-message-form {
+    display: flex;
+    background: $grayLight;
+    padding: spacingPixel(1);
+    align-items: center;
+
+    .chat-message-form-input {
+      width: 100%;
+      border-radius: $borderRadiusM;
+      border: 1px solid $grayDark;
+      padding: spacingPixel(1) spacingPixel(1.5);
+      margin-right: spacingPixel(2);
+
+      &:focus {
+        outline: unset;
+      }
+    }
+
+    .chat-message-form-submit {
+      border-radius: $borderRadiusFull;
+      background: $whiteDark;
+      padding: spacingPixel(1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: spacingPixel(1);
+
+      .chat-message-form-icon {
+        width: spacingPixel(3);
+        height: spacingPixel(3);
+        stroke: $blackDark;
+        fill: $blackDark;
+      }
+    }
+  }
+}
+
+.chat-messages-sliding-pane-open {
+  transform: translateX(0) !important;
+}

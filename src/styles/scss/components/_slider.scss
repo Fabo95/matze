@@ -1,0 +1,109 @@
+@use '../abstracts/mixins' as mixins;
+
+@import '../abstracts/variables';
+@import '../abstracts/functions';
+
+.slider-container {
+  position: relative;
+  height: 100%;
+  margin-bottom: spacingPixel(5);
+  align-items: center;
+
+  .slider {
+    -webkit-appearance: none;
+    appearance: slider-vertical;
+    cursor: pointer;
+    width: 50%;
+    height: 100%;
+    z-index: $zIndexXl;
+    opacity: 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    /**
+ * slider track
+ * Chrome, Safari, Opera and Edge Chromium styles
+ */
+    &::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+    }
+    /* slider thumb */
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none; /* Override default look */
+      width: 50px;
+      height: 50px;
+    }
+
+    /**
+  * slider thumb
+  * Firefox styles
+  */
+    &::-moz-range-thumb {
+      border: none; /*Removes extra border that FF applies*/
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  /* slider thumb */
+  .slider-thumb {
+    height: spacingPixel(3.5);
+    width: spacingPixel(6);
+    transform: translateY(50%);
+    position: absolute;
+    align-items: center;
+    z-index: $zIndexXs;
+    background: $whiteDark;
+    border-radius: $borderRadiusFull;
+    justify-content: center;
+
+    .slider-thumb-line {
+      position: absolute;
+      top: 50%;
+      width: 180px;
+      height: spacingPixel(0.5);
+      transform: translateY(-50%);
+      background: linear-gradient(
+        to right,
+        reduceOpacity($whiteDark, 0) 0%,
+        $whiteDark 50%,
+        reduceOpacity($whiteDark, 0) 100%
+      );
+    }
+  }
+
+  .slider-track {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+
+    .slider-track-dividing-line-container {
+      position: relative;
+      width: 100%;
+
+      /* slider track */
+      .slider-track-dividing-line {
+        height: 2px;
+        width: spacingPixel(4);
+        align-self: center;
+        background: reduceOpacity($whiteDark, 0.5);
+      }
+
+      .slider-track-dividing-line-long {
+        width: spacingPixel(6);
+      }
+
+      .slider-track-dividing-line-label {
+        font-size: spacingPixel(2);
+        color: $whiteDark;
+        font-weight: $weightBigger;
+        position: absolute;
+        left: 0;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
