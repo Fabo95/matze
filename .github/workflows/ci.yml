@@ -18,6 +18,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: heh1
+        run: ls
+
+      - name: hehe2
+        run: pwd
+
       - name: initialize-ci
         uses: ./.github/workflow-templates/initialize-ci.yml
 
