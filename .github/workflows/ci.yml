@@ -49,7 +49,6 @@ jobs:
 
 
   next-build:
-    needs: eslint-build
     runs-on: ubuntu-latest
 
     steps:
