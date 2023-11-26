@@ -1,37 +1,37 @@
 {
   "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "strict": true,
-    "composite": true,
-    "allowJs": true,
-    "baseUrl": ".",
-    "esModuleInterop": true,
+    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "noEmit": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "noEmit": true,
+    "resolveJsonModule": true,
+    "incremental": true,
+    "baseUrl": ".",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "noFallthroughCasesInSwitch": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
     "paths": {
       "@Interval/*": [
         "./src/*"
       ]
     },
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
     "strictNullChecks": true,
-    "sourceMap": true,
-    "target": "ES2018"
+    "sourceMap": true
   },
   "include": [
     "src",
@@ -45,10 +45,4 @@
   "exclude": [
     "node_modules"
   ],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "commonjs"
-    }
-  }
-
 }

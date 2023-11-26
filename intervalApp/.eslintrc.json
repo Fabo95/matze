@@ -24,6 +24,7 @@
     "functional/no-throw-statement": "off",
     "functional/no-mixed-type": "off",
     "functional/no-mixed-types": "off",
+    "functional/no-expression-statements": "off",
     "security/detect-object-injection": "off",
     "security/detect-non-literal-fs-filename": "off",
     "security/detect-non-literal-regexp": "off",
