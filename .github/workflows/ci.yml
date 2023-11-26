@@ -60,7 +60,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: matze
-          path: ./
+      - name: hehe
+        run: ls
 
       - name: Build Eslint
         working-directory: ./packages/eslint-plugin-interval-app-styleguide
