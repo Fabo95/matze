@@ -44,7 +44,7 @@
     "project": "./tsconfig.json"
   },
   // https://eslint.org/docs/latest/use/configure/ignore#:~:text=You%20can%20configure%20ESLint%20to,(%20.eslintignore%20by%20default).
-  "ignorePatterns": ["**/*.js", "**/*.typegen.ts"],
+  "ignorePatterns": ["**/*.js", "**/*.typegen.ts", "**/*.css"],
   "settings": {
     "import/resolver": {
       "typescript": {
