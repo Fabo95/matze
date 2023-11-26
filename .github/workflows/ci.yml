@@ -25,7 +25,7 @@ jobs:
         run: pwd
 
       - name: initialize-ci
-        uses: ./.github/template/initialize/action.yml
+        uses: ./.github/template/initialize
 
       - name: Build Eslint
         working-directory: ./packages/eslint-plugin-interval-app-styleguide
@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: initialize-ci
-        uses: ./.github/template/initialize/action.yml
+        uses: ./.github/template/initialize
 
       - name: Install dependencies
         run: pnpm i
