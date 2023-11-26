@@ -50,6 +50,7 @@ jobs:
 
     steps:
       - name: Build Eslint
+        working-directory: ./packages/eslint-plugin-interval-app-styleguide
         run: pwd
 
   next-build:
