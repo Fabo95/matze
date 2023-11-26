@@ -46,17 +46,24 @@ jobs:
         working-directory: ./packages
         run: pwd
 
-
-
-  next-build:
+  eslint-build:
+    needs: initialize
+    name: eslint-build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Build Project Artifacts (frontend)
-        working-directory: ./intervalApp
-        run: ls
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
+      - name: Build Eslint
+        working-directory: ./packages
+        run: pwd
 
+  next-build:
+    needs: eslint-build
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Install dependencies
         run: pnpm i
 
