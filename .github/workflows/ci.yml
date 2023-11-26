@@ -50,13 +50,11 @@ jobs:
 
     steps:
       - name: Build Eslint
-        working-directory: ./packages/eslint-plugin-interval-app-styleguide
-        run: pnpm initialize
+        run: pnpm --filter eslint-plugin-interval-app-styleguide initialize
 
   next-build:
     needs: eslint-build
     runs-on: ubuntu-latest
-
 
     steps:
       - name: Install dependencies
@@ -76,13 +74,3 @@ jobs:
       - name: Deploy Project Artifacts (frontend) to Vercel
         working-directory: ./intervalApp
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-
-
-
-
-
-
-
-      
-    
-    
