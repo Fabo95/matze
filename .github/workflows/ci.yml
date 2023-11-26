@@ -48,7 +48,7 @@ jobs:
 
       - name: Eslint-Linting
         working-directory: ./intervalApp
-        run:
+        run: pnpm --filter @interval/app eslint
 
       - name: Install dependencies
         run: pnpm i
