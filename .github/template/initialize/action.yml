@@ -6,7 +6,6 @@ on:
     branches: [ $default-branch ]
   pull_request:
     branches: [ $default-branch ]
-
 jobs:
   initialize-ci:
     runs-on: ubuntu-latest
@@ -32,9 +31,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          key: ${{ env.RUNNER_OS }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+            ${{ env.RUNNER_OS }}-pnpm-store-
 
       - name: hehe
         run: ls

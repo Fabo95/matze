@@ -26,6 +26,9 @@ jobs:
 
       - name: initialize-ci
         uses: ./.github/template/initialize
+        env:
+          STORE_PATH: ${{ env.STORE_PATH }}
+          RUNNER_OS: ${{ runner.os }}
 
       - name: Build Eslint
         working-directory: ./packages/eslint-plugin-interval-app-styleguide
