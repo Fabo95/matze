@@ -43,8 +43,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Build Eslint
-        working-directory: ./packages/eslint-plugin-interval-app-styleguide
-        run: pnpm initialize
+        run: pnpm --filter eslint-plugin-interval-app-styleguide initialize
 
       - name: Install dependencies
         run: pnpm i
