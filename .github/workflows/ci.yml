@@ -50,7 +50,8 @@ jobs:
 
     steps:
       - name: Build Eslint
-        run: pnpm --filter eslint-plugin-interval-app-styleguide initialize
+        working-directory: ./packages/eslint-plugin-interval-app-styleguide
+        run: ls
 
   next-build:
     needs: eslint-build
