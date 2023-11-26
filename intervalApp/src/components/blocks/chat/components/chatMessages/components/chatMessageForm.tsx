@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { ChangeEvent, useCallback, useState } from 'react';
 
 import { SendMessage } from '@Interval/components/blocks/chat/components/chatMessages/utils/chatMessagesTypes';
 import { Form } from '@Interval/components/core/form';
@@ -52,7 +52,9 @@ export const ChatMessageForm = ({
         minRows={1}
         name="message"
         value={currentMessage}
-        onChange={(event) => setCurrentMessage(event.currentTarget.value)}
+        onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
+          setCurrentMessage(event.currentTarget.value)
+        }
       />
 
       <UnstyledButton className="chat-message-form-submit" type="submit">
