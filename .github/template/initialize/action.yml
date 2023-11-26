@@ -1,36 +1,17 @@
-# See: https://docs.github.com/en/actions/using-workflows/creating-starter-workflows-for-your-organization
-name: Initialize CI
+name: Octo Organization CI
 
 on:
   push:
-    branches: [$default-branch]
+    branches: [ $default-branch ]
   pull_request:
-    branches: [$default-branch]
+    branches: [ $default-branch ]
+
 jobs:
-  initialize-ci:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.14
+      - uses: actions/checkout@v4
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          run_install: false
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      - name: Run a one-line script
+        run: ls
