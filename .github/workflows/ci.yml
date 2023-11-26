@@ -41,10 +41,12 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-            
-      - name: Build Eslint
-        working-directory: ./packages
-        run: pwd
+
+      - name: Upload repository
+        uses: actions/upload-artifact@v3
+        with:
+          name: matze
+          path: ./
 
   eslint-build:
     needs: initialize
@@ -52,8 +54,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Download repository
+        uses: actions/download-artifact@v3
+        with:
+          name: matze
+          path: ./
 
       - name: Build Eslint
         working-directory: ./packages
