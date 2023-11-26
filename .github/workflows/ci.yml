@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: heh1
-        run: ls
+        run: ls -a
 
       - name: hehe2
         run: pwd
