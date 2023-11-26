@@ -6,6 +6,7 @@ import {
   useMemo,
   useRef,
   useState,
+  cloneElement,
   startTransition,
 } from 'react';
 
@@ -120,7 +121,7 @@ export const IntervalTimerDetailConfigurationOption = ({
   // --- HELPERS ---
 
   // There is probably an easier way to do that but cloning is cool.
-  const clonedIcon = React.cloneElement(icon, {
+  const clonedIcon = cloneElement(icon, {
     ...icon.props,
     className: 'stroke-white-dark icon-size-1-5 margin-right-0-5',
   });
