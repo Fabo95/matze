@@ -57,6 +57,7 @@ jobs:
       - name: Install Vercel CLI
         run: pnpm install --global vercel@latest
 
+      # Vercel assumes that the frontend is in intervalApp folder.
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
 

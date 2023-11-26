@@ -1,6 +1,5 @@
-import { ReactElement, useMemo } from 'react';
-
 import { useParams } from 'next/navigation';
+import { ReactElement, useMemo } from 'react';
 
 import { ApplicationProcessMachine } from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
 import { useSelector } from '@Interval/components/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
