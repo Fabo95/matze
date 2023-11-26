@@ -1,6 +1,5 @@
 packages:
-  # include packages in subfolders (change as required)
-  - 'apps/**'
+  # packe in intervalApp /
+  - 'intervalApp'
+  # all packages in subdirs of packages/
   - 'packages/**'
-  # if required, exclude directories
-  - '!**/test/**'
