@@ -46,10 +46,6 @@ jobs:
         working-directory: ./packages/eslint-plugin-interval-app-styleguide
         run: pnpm initialize
 
-      - name: Eslint-Linting
-        working-directory: ./intervalApp
-        run: pnpm --filter @interval/app eslint
-
       - name: Install dependencies
         run: pnpm i
 
@@ -59,6 +55,9 @@ jobs:
       - name: Pull Vercel Environment Information
         working-directory: ./intervalApp
         run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: Linting
+        run: pnpm --filter @interval/app eslint
 
       - name: Build Project Artifacts (frontend)
         working-directory: ./intervalApp
