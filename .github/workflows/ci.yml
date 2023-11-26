@@ -10,51 +10,13 @@ on:
     branches: [ "main" ]
 
 jobs:
-  initialize:
-    name: initialize
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.14
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          run_install: false
-
-      - name: Get pnpm store directory
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - name: hehe
-        run: ls
-
   eslint-build:
-    needs: initialize
     name: eslint-build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Use Initialize Job
-        uses: ./.github/actions/initialize-job.yml
-
-      - name: hehe
-        run: ls
+      - name: initialize-ci
+        uses: ./.github/workflow-templates/initialize-ci.yml
 
       - name: Build Eslint
         working-directory: ./packages/eslint-plugin-interval-app-styleguide
@@ -65,8 +27,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Use Initialize Job
-        uses: ./.github/actions/initialize-job.yml
+      - name: initialize-ci
+        uses: ./.github/workflow-templates/initialize-ci.yml
 
       - name: Install dependencies
         run: pnpm i

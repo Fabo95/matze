@@ -1,0 +1,7 @@
+{
+  "name": "Initialize CI",
+  "description": "Checks out repository, sets up node, pnpm and pnpm cache.",
+  "categories": [
+    "continuous-integration"
+  ]
+}
