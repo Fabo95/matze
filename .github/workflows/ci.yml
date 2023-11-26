@@ -16,9 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.workflow_run.head_branch }}
+        uses: actions/checkout@v4
 
       - name: heh1
         run: ls
@@ -39,12 +37,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: initialize-ci
         uses: ./.github/template/initialize/action.yml
-        with:
-          ref: ${{ github.event.workflow_run.head_branch }}
 
       - name: Install dependencies
         run: pnpm i
