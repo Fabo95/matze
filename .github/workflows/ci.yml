@@ -42,6 +42,10 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
+            
+      - name: Build Eslint
+        working-directory: ./packages
+        run: pwd
 
   eslint-build:
     needs: initialize
