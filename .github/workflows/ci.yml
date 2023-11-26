@@ -25,7 +25,7 @@ jobs:
         run: pwd
 
       - name: initialize-ci
-        uses: ./.github/workflow-templates/octo-organization-ci.yml
+        uses: ./.github/workflow-templates/action.yml
 
       - name: Build Eslint
         working-directory: ./packages/eslint-plugin-interval-app-styleguide
@@ -40,7 +40,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: initialize-ci
-        uses: ./.github/workflow-templates/octo-organization-ci.yml
+        uses: ./.github/workflow-templates/action.yml
 
       - name: Install dependencies
         run: pnpm i
