@@ -48,10 +48,10 @@ export type Login =
   | {
       authToken: string;
     }
-  | { error: LoginError type: 'email' | 'server'; };
+  | { error: LoginError; type: 'email' | 'server' };
 
 export type Register =
   | {
       authToken: string;
     }
-  | { error: RegisterError type: 'email' | 'server'; };
+  | { error: RegisterError; type: 'email' | 'server' };

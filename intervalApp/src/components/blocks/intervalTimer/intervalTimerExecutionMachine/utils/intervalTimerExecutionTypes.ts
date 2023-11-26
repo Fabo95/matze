@@ -1,12 +1,12 @@
 import { Observable } from 'rxjs';
 
 export type IntervalTimerExecutionMachineContext = {
-  exerciseCount: { remaining: number total: number; };
+  exerciseCount: { remaining: number; total: number };
   isExecuting: boolean;
   remainingCurrentTime: number;
   remainingTotalTime: number;
   restTime: number;
-  roundCount: { remaining: number total: number; };
+  roundCount: { remaining: number; total: number };
   roundResetTime: number;
   wakeLockSentinel?: WakeLockSentinel;
   workTime: number;

@@ -1,4 +1,4 @@
-import React, { ReactElement, useMemo } from 'react';
+import { ReactElement, useMemo } from 'react';
 
 import { useParams } from 'next/navigation';
 
@@ -11,7 +11,7 @@ import { getTFunction } from '@Interval/i18n/tFunction';
 import { Locale } from '@Interval/utils/types';
 
 type IntervalTimerDetailExecutionOverviewButtonProps = {
-  className: { detailButton: string overviewDot?: string; };
+  className: { detailButton: string; overviewDot?: string };
   icon: ReactElement;
   selectRemainingCount: (state: ApplicationProcessMachine) => number;
   selectTotalCount: (state: ApplicationProcessMachine) => number;
