@@ -26,7 +26,6 @@
     "strict": false,
     "strictNullChecks": true,
     "sourceMap": true,
-    "suppressImplicitAnyIndexErrors": true,
     "target": "ES2018"
   },
   "include": [
