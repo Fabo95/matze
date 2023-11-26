@@ -8,7 +8,8 @@ import {
   getPage,
 } from '@Interval/utils/routing';
 
-// eslint-disable-next-line consistent-return
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 export const middleware = async (request: NextRequest) => {
   const { pathname } = request.nextUrl;
 
@@ -19,12 +20,17 @@ export const middleware = async (request: NextRequest) => {
   if (authToken) {
     try {
       const secret = new TextEncoder().encode(process.env.JWT_SECRET_KEY);
+      // eslint-disable-next-line functional/no-expression-statements
       await jwtVerify(authToken, secret);
 
+      // eslint-disable-next-line functional/no-expression-statements
       isAuthorized = true;
     } catch (e) {
+      // eslint-disable-next-line functional/no-expression-statements
       isAuthorized = false;
     }
+
+    return;
   }
 
   const locale =
