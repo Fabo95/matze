@@ -1,5 +1,3 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
-
 import { Observable } from 'rxjs';
 import { assign, createMachine, StateFrom } from 'xstate';
 
@@ -251,6 +249,7 @@ export const createIntervalTimerExecutionMachine = <T>({
           const { wakeLockSentinel } = context;
           if (wakeLockSentinel) {
             await wakeLockSentinel.release();
+            return;
           }
 
           return undefined;
@@ -258,9 +257,7 @@ export const createIntervalTimerExecutionMachine = <T>({
 
         requestWakeLockSentinel: async () => {
           if ('wakeLock' in navigator) {
-            const wakeLockSentinel = await navigator.wakeLock.request('screen');
-
-            return wakeLockSentinel;
+            return await navigator.wakeLock.request('screen');
           }
 
           return undefined;

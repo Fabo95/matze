@@ -32,6 +32,7 @@ export const getFetchOptions = ({
   ...options,
 });
 
+// eslint-disable-next-line functional/no-classes
 export class AtomicState<T> {
   constructor(
     public emailError: T | undefined = undefined,

@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from 'react';
+import { ReactElement, ReactNode } from 'react';
 
 import { Row } from '@Interval/components/core/row';
 import { Text } from '@Interval/components/core/text';

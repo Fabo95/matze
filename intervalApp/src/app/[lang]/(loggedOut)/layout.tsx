@@ -1,5 +1,3 @@
-import React from 'react';
-
 import '@Interval/styles/global.css';
 import { Box } from '@Interval/components/core/box';
 

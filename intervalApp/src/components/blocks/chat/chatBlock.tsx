@@ -31,12 +31,8 @@ export const ChatBlock = ({
   const [selectedFriendshipMessages, setSelectedFriendshipMessages] =
     useState<FriendshipMessages>();
 
-  const {
-    setFalse: closeChatMessages,
-    setTrue: openChatMessages,
-    toggle: toggleChatMessages,
-    value: isChatMessagesShown,
-  } = useBoolean(false);
+  const { setTrue: openChatMessages, value: isChatMessagesShown } =
+    useBoolean(false);
 
   // --- CALLBACKS ---
 

@@ -19,6 +19,7 @@
     "functional/prefer-immutable-types": "off",
     "functional/no-loop-statement": "off",
     "functional/no-try-statement": "off",
+    "functional/no-conditional-statements": "off",
     "functional/no-this-expression": "off",
     "functional/no-class": "off",
     "functional/no-throw-statement": "off",

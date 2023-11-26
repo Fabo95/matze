@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 

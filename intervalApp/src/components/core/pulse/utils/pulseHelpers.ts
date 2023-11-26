@@ -7,6 +7,7 @@ import {
 } from '@Interval/components/core/pulse/utils/pulseConstants';
 import { AnimationPlayState } from '@Interval/components/core/pulse/utils/pulseTypes';
 
+// eslint-disable-next-line functional/no-classes
 class AnimationController {
   animation: Animation | undefined;
 
@@ -44,15 +45,18 @@ class AnimationController {
     this.animation?.finish();
   }
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   set currenTimeoutId(id: ReturnType<typeof setTimeout>) {
     this.timeoutId = id;
   }
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   set currenState(state: AnimationPlayState) {
     this.state = state;
   }
 }
 
+// eslint-disable-next-line functional/no-classes
 export class PulseAnimation {
   animationControllers: AnimationController[];
 

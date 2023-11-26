@@ -18,6 +18,8 @@ export default function InitServiceWorker() {
           console.warn('Error registering:', error);
         });
     }
+
+    return;
   }, []);
 
   // --- RENDER ---

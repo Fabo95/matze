@@ -30,7 +30,6 @@
         "./src/*"
       ]
     },
-    "strictNullChecks": true,
     "sourceMap": true
   },
   "include": [

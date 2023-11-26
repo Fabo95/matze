@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Metadata, Viewport } from 'next';
 // eslint-disable-next-line import/order
 import { Manrope } from 'next/font/google';

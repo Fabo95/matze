@@ -46,6 +46,10 @@ jobs:
         working-directory: ./packages/eslint-plugin-interval-app-styleguide
         run: pnpm initialize
 
+      - name: Eslint-Linting
+        working-directory: ./intervalApp
+        run:
+
       - name: Install dependencies
         run: pnpm i
 

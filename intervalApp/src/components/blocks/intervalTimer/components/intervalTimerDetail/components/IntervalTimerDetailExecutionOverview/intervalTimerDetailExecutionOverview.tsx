@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useParams } from 'next/navigation';
 
 import { IntervalTimerDetailExecutionOverviewButton } from '@Interval/components/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/components/intervalTimerDetailExecutionOverviewButton';

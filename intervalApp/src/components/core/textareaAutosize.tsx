@@ -1,5 +1,6 @@
-import BaseTextareaAutosize from 'react-textarea-autosize';
-import { TextareaAutosizeProps } from 'react-textarea-autosize/dist/declarations/src';
+import BaseTextareaAutosize, {
+  TextareaAutosizeProps,
+} from 'react-textarea-autosize';
 
 export const TextareaAutosize = ({
   className: propsClassName,

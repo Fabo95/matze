@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 import { UrlObject } from 'url';
 import NextLink from 'next/link';

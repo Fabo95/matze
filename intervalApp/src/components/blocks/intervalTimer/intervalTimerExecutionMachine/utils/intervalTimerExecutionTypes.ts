@@ -1,5 +1,3 @@
-import { Observable } from 'rxjs';
-
 export type IntervalTimerExecutionMachineContext = {
   exerciseCount: { remaining: number; total: number };
   isExecuting: boolean;
