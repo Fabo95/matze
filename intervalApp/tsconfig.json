@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "strict": true,
     "composite": true,
     "allowJs": true,
     "baseUrl": ".",
@@ -12,6 +13,11 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -23,7 +29,6 @@
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "strict": false,
     "strictNullChecks": true,
     "sourceMap": true,
     "target": "ES2018"
