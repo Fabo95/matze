@@ -4,11 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "sass src/styles/scss/global.scss src/styles/global.css && NODE_ENV=development next dev",
-    "build": "sass src/styles/scss/global.scss src/styles/global.css && esbuild --outfile=public/sw.js --bundle src/serviceWorker/swRaw.js && NODE_ENV=production next build",
+    "build": "esbuild --outfile=public/sw.js --bundle src/serviceWorker/swRaw.js && NODE_ENV=production next build",
     "start": "NODE_ENV=production next start",
     "fixEslint": "./node_modules/.bin/eslint --fix . && next lint",
     "eslint": "./node_modules/.bin/next lint",
-    "compileScss": "../node_modules/.bin/sass src/styles/scss/global.scss src/styles/global.css",
+    "compileScss": "sass src/styles/scss/global.scss src/styles/global.css",
     "packages:force-node-modules-sync": "sudo find node_modules/.pnpm -name 'file+*' -type d -prune -print -exec rm -rf '{}' + && pnpm install",
     "remove:node-modules": "sudo find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' +"
   },
