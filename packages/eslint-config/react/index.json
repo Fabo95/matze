@@ -20,7 +20,7 @@
     "interval-app-styleguide/no-volatile-import": [
       "error",
       {
-        "importFolder": ["utils", "components"],
+        "importFolders": ["utils", "components"],
         "includedFilePaths": [
           "/.*src\\/blocks\\.*/"
         ],

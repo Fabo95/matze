@@ -97,7 +97,7 @@ const testAndReport = ({
   if (!isImportFolderInPathSegments) {
     context.report({
       data: {
-        tmp: `normalizedFilePath: ${normalizedFilePath}; normalizedImportPath: ${normalizedImportPath}`,
+        tmp: `CURRENT VALUES 1 -> normalizedFilePath: ${normalizedFilePath}; normalizedImportPath: ${normalizedImportPath}`,
       },
       messageId: "defaultMessage",
       loc: node.source.loc,
@@ -118,7 +118,7 @@ const testAndReport = ({
 
   context.report({
     data: {
-      tmp: `normalizedFilePath: ${normalizedFilePath}; normalizedImportPath: ${normalizedImportPath}`,
+      tmp: `CURRENT VALUES 2 -> normalizedFilePath: ${normalizedFilePath}; truncatedImportPath: ${truncatedImportPath}`,
     },
     messageId: "defaultMessage",
     loc: node.source.loc,
