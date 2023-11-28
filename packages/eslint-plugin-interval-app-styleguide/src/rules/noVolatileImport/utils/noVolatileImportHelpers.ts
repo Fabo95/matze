@@ -42,7 +42,7 @@ export const getTruncatedImportPath = ({
   importFolder: string[];
 }) => {
   const importFolderIndex = importPathSegments.findIndex((pathSegment) =>
-    importFolder.includes(pathSegment)
+    importFolder?.includes(pathSegment)
   );
 
   const truncatedImportPathSegments =

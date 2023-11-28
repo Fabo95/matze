@@ -91,7 +91,7 @@ const testAndReport = ({
   const importPathSegments = normalizedImportPath.split("/");
 
   const isImportFolderInPathSegments = importPathSegments.some((segment) =>
-    options.importFolders.includes(segment)
+    options.importFolders?.includes(segment)
   );
 
   if (!isImportFolderInPathSegments) {
@@ -110,7 +110,7 @@ const testAndReport = ({
   });
 
   const isTruncatedImportPathInFilePath =
-    normalizedFilePath.includes(truncatedImportPath);
+    normalizedFilePath?.includes(truncatedImportPath);
 
   if (isTruncatedImportPathInFilePath) {
     return;
