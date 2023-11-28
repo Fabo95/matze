@@ -54,7 +54,10 @@ jobs:
       - name: Build CSS
         run: pnpm --filter @interval/app compileScss
 
-      - name: Linting
+      - name: Run Prettier
+        run: pnpm --filter @interval/app prettier
+
+      - name: Run Linter
         run: pnpm --filter @interval/app eslint
 
       - name: Install Vercel CLI
