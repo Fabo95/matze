@@ -56,8 +56,8 @@ export const MenuSlidingPane = ({
             icon={MENU_OPTION_TO_ICON_MAP[page]}
             isSelected={page === currentPage}
             key={page}
-            page={page}
             onClick={() => handleMenuOptionChange(page)}
+            page={page}
           />
         ))}
       </Box>

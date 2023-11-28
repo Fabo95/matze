@@ -20,9 +20,9 @@ const Chat = async () => {
   return (
     <Page className="chat-page">
       <ChatBlock
+        authToken={authToken}
         friendshipsMessages={friendshipsMessages}
         user={user}
-        authToken={authToken}
       />
     </Page>
   );

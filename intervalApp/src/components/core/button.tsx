@@ -46,8 +46,8 @@ export const Button = forwardRef(
         className={`button ${className} ${
           isClickEffect ? 'button-click-effect' : ''
         }`}
-        ref={ref}
         onClick={handleClick}
+        ref={ref}
         {...buttonProps}
       >
         {children}

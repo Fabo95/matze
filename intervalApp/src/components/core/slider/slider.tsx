@@ -26,13 +26,13 @@ export const Slider = ({
       min={min}
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      orient="vertical"
-      type="range"
-      value={value}
       onChange={onChange}
       onMouseMove={stopPropagation}
       onTouchMove={stopPropagation}
       onTouchStart={onChange}
+      orient="vertical"
+      type="range"
+      value={value}
     />
   );
 };

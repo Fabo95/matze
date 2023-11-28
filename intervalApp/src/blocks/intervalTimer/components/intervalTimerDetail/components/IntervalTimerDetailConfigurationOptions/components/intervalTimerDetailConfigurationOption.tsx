@@ -166,8 +166,8 @@ export const IntervalTimerDetailConfigurationOption = ({
               // We multiply it by 10 to have a smooth slider transition even for small ranges.
               max={sliderRange.to * 10}
               min={sliderRange.from * 10}
-              value={intensity * 10}
               onChange={handleIndexChange}
+              value={intensity * 10}
             />
 
             <SliderThumb intensity={intensity} sliderRange={sliderRange} />

@@ -36,6 +36,7 @@
       }
     ],
 
+    "interval-app-styleguide/react-props-order": "error",
 
     "complexity": [
       "error",

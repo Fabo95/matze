@@ -51,10 +51,10 @@ export const ChatMessageForm = ({
         maxRows={3}
         minRows={1}
         name="message"
-        value={currentMessage}
         onChange={(event: ChangeEvent<HTMLTextAreaElement>) =>
           setCurrentMessage(event.currentTarget.value)
         }
+        value={currentMessage}
       />
 
       <UnstyledButton className="chat-message-form-submit" type="submit">

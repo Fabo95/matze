@@ -144,12 +144,6 @@ export const Swiper = ({ autoSwipe, children }: SwiperProps) => {
     <div className="swiper" ref={swiperRef}>
       <div
         className="swiper-items"
-        role="presentation"
-        style={{
-          transform: `translateX(${currentXTranslation}px)`,
-          transition: isDragging ? '0ms' : '150ms',
-          width: `${swiperItemsWidth}%`,
-        }}
         onMouseDown={handleSwipeStart}
         onMouseLeave={handleSwipeEnd}
         onMouseMove={handleSwipe}
@@ -157,6 +151,12 @@ export const Swiper = ({ autoSwipe, children }: SwiperProps) => {
         onTouchEnd={handleSwipeEnd}
         onTouchMove={handleSwipe}
         onTouchStart={handleSwipeStart}
+        role="presentation"
+        style={{
+          transform: `translateX(${currentXTranslation}px)`,
+          transition: isDragging ? '0ms' : '150ms',
+          width: `${swiperItemsWidth}%`,
+        }}
       >
         {children}
       </div>
