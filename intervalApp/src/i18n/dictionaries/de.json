@@ -45,6 +45,9 @@
                 "requiredPassword": "Bitte gib dein Password an.",
                 "minLengthPassword": "Das Password muss min. 8 Zeichen beinhalten.",
                 "serverError": "Ein Fehler ist aufgetreten."
+            },
+            "subtitle": {
+                "registerRedirect": "Oder Registriere dich jetzt."
             }
         },
         "register": {
@@ -63,6 +66,9 @@
                 "nonMatchingPassword": "Die Passwörter stimmen nicht überein.",
                 "existingEmail": "E-Mail ist bereits vergeben.",
                 "serverError": "Ein Fehler ist aufgetreten."
+            },
+            "subtitle": {
+                "loginRedirect": "Oder logge dich ein."
             }
         }
     },

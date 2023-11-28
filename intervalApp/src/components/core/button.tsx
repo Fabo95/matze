@@ -1,6 +1,6 @@
 "use client";
 
-import { ButtonHTMLAttributes, ForwardedRef, forwardRef, ReactNode, useCallback, useState } from "react";
+import { ButtonHTMLAttributes, ForwardedRef, forwardRef, ReactNode } from "react";
 
 import { UnstyledButton } from "@Interval/components/core/unstyledButton";
 
@@ -9,35 +9,11 @@ type ButtonProps = {
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const Button = forwardRef(
-    ({ children, className, onClick, ...buttonProps }: ButtonProps, ref?: ForwardedRef<HTMLButtonElement>) => {
-        const [isClickEffect, setIsClickEffect] = useState(false);
-
-        // --- CALLBACKS ---
-
-        const handleClick = useCallback(
-            (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-                setIsClickEffect(true);
-
-                setTimeout(() => {
-                    setIsClickEffect(false);
-
-                    if (onClick) {
-                        onClick(event);
-                    }
-                }, 150);
-            },
-            [onClick]
-        );
-
+    ({ children, className, ...buttonProps }: ButtonProps, ref?: ForwardedRef<HTMLButtonElement>) => {
         // --- RENDER ---
 
         return (
-            <UnstyledButton
-                className={`button ${className} ${isClickEffect ? "button-click-effect" : ""}`}
-                onClick={handleClick}
-                ref={ref}
-                {...buttonProps}
-            >
+            <UnstyledButton className={`button ${className}`} ref={ref} {...buttonProps}>
                 {children}
             </UnstyledButton>
         );

@@ -25,8 +25,6 @@ export const middleware = async (request: NextRequest) => {
             // eslint-disable-next-line functional/no-expression-statements
             isAuthorized = false;
         }
-
-        return;
     }
 
     const locale = getLocaleFromPathname(request.nextUrl.pathname) || getLocale(request);

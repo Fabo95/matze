@@ -9,6 +9,7 @@ import { getTFunction } from "@Interval/i18n/tFunction";
 import { apiPostRegisterServerAction } from "@Interval/serverAction/serverActions";
 import { registerErrorState } from "@Interval/serverAction/utils/serverActionConstants";
 import { Locale } from "@Interval/utils/types";
+import { Link } from "@Interval/components/core/link";
 
 export default async function register({
     params: { lang },
@@ -74,9 +75,14 @@ export default async function register({
 
                         <Text className="form-validation-error">{passwordValidationError}</Text>
                     </Box>
+
                     <Button className="form-cta" type="submit">
                         {buttonTitle}
                     </Button>
+
+                    <Link className="form-subtitle" href={"/login"} locale={lang}>
+                        {t("pages.register.subtitle.loginRedirect")}
+                    </Link>
                 </Form>
             </Box>
         </Box>

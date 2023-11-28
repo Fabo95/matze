@@ -9,6 +9,7 @@ import { getTFunction } from "@Interval/i18n/tFunction";
 import { apiPostLoginServerAction } from "@Interval/serverAction/serverActions";
 import { loginErrorState } from "@Interval/serverAction/utils/serverActionConstants";
 import { Locale } from "@Interval/utils/types";
+import { Link } from "@Interval/components/core/link";
 
 export default async function Login({
     params: { lang },
@@ -64,6 +65,10 @@ export default async function Login({
                     <Button className="form-cta" type="submit">
                         {t("pages.login.cta")}
                     </Button>
+
+                    <Link className="form-subtitle" href={"/register"} locale={lang}>
+                        {t("pages.login.subtitle.registerRedirect")}
+                    </Link>
                 </Form>
             </Box>
         </Box>

@@ -48,6 +48,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      margin-bottom: spacingPixel(1);
     }
 
     .form-validation-error {
@@ -65,6 +66,11 @@
     .form-password-box {
       position: relative;
       margin-bottom: spacingPixel(4);
+    }
+
+    .form-subtitle {
+      color: reduceOpacity($blackDark, 0.8);
+      font-size: spacingPixel(1.75);
     }
   }
 }
