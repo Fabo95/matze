@@ -1,17 +1,18 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 import { FriendshipMessages, User } from "@Interval/api/utils/apiTypes";
 import { ChatFriendshipCard } from "@Interval/blocks/chat/components/chatFriendships/chatFriendshipCard/chatFriendshipCard";
 import { ChatMessages } from "@Interval/blocks/chat/components/chatMessages/chatMessages";
-import { PageBlockEnd } from "@Interval/components/core/page/components/pageBlockEnd";
-import { PageBlockStart } from "@Interval/components/core/page/components/pageBlockStart";
 import { getTFunction } from "@Interval/i18n/tFunction";
 import { useBoolean } from "@Interval/utils/hooks";
 import { Locale } from "@Interval/utils/types";
+import { Page } from "@Interval/components/core/page/page";
+import { Box } from "@Interval/components/core/box";
+import { Text } from "@Interval/components/core/text";
 
 type ChatBlockProps = {
     authToken?: RequestCookie;
@@ -39,6 +40,26 @@ export const ChatBlock = ({ authToken, friendshipsMessages, user }: ChatBlockPro
         [openChatMessages]
     );
 
+    // --- MEMOIZED DATA ---
+
+    const pageBlockStart = useMemo(() => <Text className="chat-headline">{t("pages.chat.headline")}</Text>, [t]);
+
+    const pageBlockEnd = useMemo(
+        () => (
+            <Box className="chat-friendships">
+                {friendshipsMessages.map((friendshipMessages) => (
+                    <ChatFriendshipCard
+                        friendshipMessages={friendshipMessages}
+                        handleSelectFriendshipMessages={handleSelectFriendshipMessages}
+                        key={friendshipMessages.friendshipId}
+                        userId={user.userId}
+                    />
+                ))}
+            </Box>
+        ),
+        [friendshipsMessages, handleSelectFriendshipMessages, user.userId]
+    );
+
     // --- RENDER ---
 
     return (
@@ -51,18 +72,8 @@ export const ChatBlock = ({ authToken, friendshipsMessages, user }: ChatBlockPro
                     userId={user.userId}
                 />
             )}
-            <PageBlockStart className="chat-headline">{t("pages.chat.headline")}</PageBlockStart>
 
-            <PageBlockEnd className="chat-friendships">
-                {friendshipsMessages.map((friendshipMessages) => (
-                    <ChatFriendshipCard
-                        friendshipMessages={friendshipMessages}
-                        handleSelectFriendshipMessages={handleSelectFriendshipMessages}
-                        key={friendshipMessages.friendshipId}
-                        userId={user.userId}
-                    />
-                ))}
-            </PageBlockEnd>
+            <Page blockEnd={pageBlockEnd} blockStart={pageBlockStart} className="chat-page" />
         </>
     );
 };

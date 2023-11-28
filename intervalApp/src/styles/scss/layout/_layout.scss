@@ -23,6 +23,8 @@ body {
   overflow: hidden;
 
   .page-block-start {
+    display: flex;
+    flex-direction: column;
     background: transparent;
     position: relative;
     align-items: center;

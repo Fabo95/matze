@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 
 import { ChatBlock } from "@Interval/blocks/chat/chatBlock";
-import { Page } from "@Interval/components/core/page/page";
 import { apiGetFriendshipsMessages, apiGetUserByIdOrFromToken } from "@Interval/api/api";
 
 const Chat = async () => {
@@ -14,11 +13,7 @@ const Chat = async () => {
 
     // --- RENDER ---
 
-    return (
-        <Page className="chat-page">
-            <ChatBlock authToken={authToken} friendshipsMessages={friendshipsMessages} user={user} />
-        </Page>
-    );
+    return <ChatBlock authToken={authToken} friendshipsMessages={friendshipsMessages} user={user} />;
 };
 
 export default Chat;

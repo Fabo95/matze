@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-import { Box } from "@Interval/components/core/box";
+import { Section } from "@Interval/components/core/section";
 
 type PageBlockStartProps = {
     children: ReactNode;
@@ -14,5 +14,5 @@ export const PageBlockStart = ({ children, className: propsClassName }: PageBloc
 
     // --- RENDER ---
 
-    return <Box className={className}>{children}</Box>;
+    return <Section className={className}>{children}</Section>;
 };

@@ -6,12 +6,12 @@ type BoxProps = HTMLAttributes<HTMLDivElement>;
 
 export const Box = forwardRef(
     ({ children, className: propsClassName, ...boxProps }: BoxProps, ref: Ref<HTMLDivElement>) => {
-        const defaultClassnames = "box";
+        const defaultClassname = "box";
 
-        const classNames = propsClassName ? `${defaultClassnames} ${propsClassName}` : defaultClassnames;
+        const className = propsClassName ? `${defaultClassname} ${propsClassName}` : defaultClassname;
 
         return (
-            <div className={classNames} ref={ref} role="presentation" {...boxProps}>
+            <div className={className} ref={ref} role="presentation" {...boxProps}>
                 {children}
             </div>
         );

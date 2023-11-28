@@ -12,7 +12,6 @@ import {
     selectIsExecuting,
     selectRemainingCurrentTime,
 } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors";
-import { PageBlockStart } from "@Interval/components/core/page/components/pageBlockStart";
 import { Pulse } from "@Interval/components/core/pulse/pulse";
 import { Row } from "@Interval/components/core/row";
 import { Text } from "@Interval/components/core/text";
@@ -76,7 +75,7 @@ export const IntervalTimerExecution = ({ nextIsExecution }: { nextIsExecution: (
     // --- RENDER ---
 
     return (
-        <PageBlockStart>
+        <>
             <Text className="interval-timer-execution-intro">{formattedIntervalTime}</Text>
 
             <Pulse isAnimating={isExecuting} />
@@ -86,6 +85,6 @@ export const IntervalTimerExecution = ({ nextIsExecution }: { nextIsExecution: (
                     {isExecuting ? <PauseIcon /> : <PlayIcon />}
                 </UnstyledButton>
             </Row>
-        </PageBlockStart>
+        </>
     );
 };

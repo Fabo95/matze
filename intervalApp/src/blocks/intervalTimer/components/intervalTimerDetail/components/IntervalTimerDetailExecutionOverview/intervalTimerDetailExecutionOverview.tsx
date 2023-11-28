@@ -1,7 +1,6 @@
-import { useParams } from "next/navigation";
+import { useMemo } from "react";
 
 import { IntervalTimerDetailExecutionOverviewButton } from "@Interval/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/components/intervalTimerDetailExecutionOverviewButton";
-import { IntervalTimerExecutionOverviewButtonProps } from "@Interval/blocks/intervalTimer/components/utils/intervalTimerTypes";
 import { useSelector } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext";
 import {
     makeSelectRemainingCount,
@@ -12,28 +11,22 @@ import { Box } from "@Interval/components/core/box";
 import { Row } from "@Interval/components/core/row";
 import { Text } from "@Interval/components/core/text";
 import { ClockIcon } from "@Interval/components/icons/clockIcon";
-import { getTFunction } from "@Interval/i18n/tFunction";
 import { getFormattedSeconds } from "@Interval/utils/helpers";
-import { Locale } from "@Interval/utils/types";
+import { useClientTranslation } from "@Interval/utils/hooks";
+import { getIntervalTimerExecutionOverviewButtonProps } from "@Interval/blocks/intervalTimer/components/utils/intervalTimerHelpers";
 
-type IntervalTimerDetailExecutionOverviewProps = {
-    executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
-};
-
-export const IntervalTimerDetailExecutionOverview = ({
-    executionOverviewButtonProps,
-}: IntervalTimerDetailExecutionOverviewProps) => {
-    const params = useParams();
-
-    const t = getTFunction(params.lang as Locale);
+export const IntervalTimerDetailExecutionOverview = () => {
+    const t = useClientTranslation();
 
     // --- STATE ---
 
     const remainingTotalTime = useSelector(selectRemainingTotalTime);
 
-    // --- HELPERS ---
+    // --- MEMOIZED DATA ---
 
-    const formattedRemainingTotalTime = getFormattedSeconds(remainingTotalTime);
+    const executionOverviewButtonProps = useMemo(() => getIntervalTimerExecutionOverviewButtonProps(t), [t]);
+
+    const formattedRemainingTotalTime = useMemo(() => getFormattedSeconds(remainingTotalTime), [remainingTotalTime]);
 
     // --- RENDER ---
     return (
