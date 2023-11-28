@@ -17,6 +17,26 @@
   "rules": {
     "interval-app-styleguide/keys-order": "error",
 
+    "interval-app-styleguide/no-volatile-import": [
+      "error",
+      {
+        "importFolder": ["utils", "components"],
+        "includedFilePaths": [
+          "/.*src\\/blocks\\.*/"
+        ],
+        "excludedImportPaths": [
+          "/.*src\\/api\\.*",
+          "/.*src\\/i18n\\.*",
+          "/.*src\\/serverAction\\.*",
+          "/.*src\\/styles\\.*",
+          "/.*src\\/utils\\.*",
+          "/.*src\\/components\\.*",
+          "/.*src\\/blocks\\/intervalTimer\\/intervalTimerExecutionMachine.*"
+        ]
+      }
+    ],
+
+
     "complexity": [
       "error",
       15

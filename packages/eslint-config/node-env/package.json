@@ -1,0 +1,13 @@
+{
+  "name": "@interval/eslint-config-node-env",
+  "version": "1.0.0",
+  "description": "Node environment eslint configuration for interval app",
+  "main": "index.json",
+  "author": "Fabian Hinz",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "peerDependencies": {
+    "@interval/eslint-config-base": "workspace:*"
+  }
+}

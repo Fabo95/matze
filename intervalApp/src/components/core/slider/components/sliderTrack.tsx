@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
   IntervalTimerConfigurationType,
   IntervalTimerConfigurationOptionProps,
-} from '@Interval/components/blocks/intervalTimer/components/utils/intervalTimerTypes';
+} from '@Interval/blocks/intervalTimer/components/utils/intervalTimerTypes';
 import { Box } from '@Interval/components/core/box';
 import { getArrayWithElements } from '@Interval/utils/helpers';
 

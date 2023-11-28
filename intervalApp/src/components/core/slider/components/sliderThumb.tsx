@@ -1,4 +1,4 @@
-import { IntervalTimerConfigurationOptionProps } from '@Interval/components/blocks/intervalTimer/components/utils/intervalTimerTypes';
+import { IntervalTimerConfigurationOptionProps } from '@Interval/blocks/intervalTimer/components/utils/intervalTimerTypes';
 import { Box } from '@Interval/components/core/box';
 import { Chevron } from '@Interval/components/icons/chevron';
 

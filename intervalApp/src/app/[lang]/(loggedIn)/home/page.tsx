@@ -1,8 +1,8 @@
 import {
   getIntervalTimerConfigurationOptionsProps,
   getIntervalTimerExecutionOverviewButtonProps,
-} from '@Interval/components/blocks/intervalTimer/components/utils/intervalTimerHelpers';
-import { IntervalTimerBlock } from '@Interval/components/blocks/intervalTimer/intervalTimerBlock';
+} from '@Interval/blocks/intervalTimer/components/utils/intervalTimerHelpers';
+import { IntervalTimerBlock } from '@Interval/blocks/intervalTimer/intervalTimerBlock';
 import { Page } from '@Interval/components/core/page/page';
 import { getTFunction } from '@Interval/i18n/tFunction';
 import { apiGetInterval } from '@Interval/api/api';

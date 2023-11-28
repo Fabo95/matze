@@ -1,5 +1,5 @@
 import '@Interval/styles/global.css';
-import { MenuBlock } from '@Interval/components/blocks/menu/menuBlock';
+import { MenuBlock } from '@Interval/blocks/menu/menuBlock';
 import { Box } from '@Interval/components/core/box';
 import { getTFunction } from '@Interval/i18n/tFunction';
 import { Locale } from '@Interval/utils/types';

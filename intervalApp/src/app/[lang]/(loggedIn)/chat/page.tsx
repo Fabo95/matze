@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 
-import { ChatBlock } from '@Interval/components/blocks/chat/chatBlock';
+import { ChatBlock } from '@Interval/blocks/chat/chatBlock';
 import { Page } from '@Interval/components/core/page/page';
 import {
   apiGetFriendshipsMessages,
@@ -17,8 +17,6 @@ const Chat = async () => {
 
   // --- RENDER ---
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   return (
     <Page className="chat-page">
       <ChatBlock
