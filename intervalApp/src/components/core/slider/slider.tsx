@@ -24,6 +24,8 @@ export const Slider = ({ className: propsClassName, max, min, onChange, value }:
             onMouseMove={stopPropagation}
             onTouchMove={stopPropagation}
             onTouchStart={onChange}
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             orient="vertical"
             type="range"
             value={value}
