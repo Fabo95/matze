@@ -1,72 +1,72 @@
 {
-  "pages": {
-    "home": {
-      "headline": "Interval Timer",
-      "menuOption": "Timer",
-      "intervalTimer": {
-        "optionOne": "Work",
-        "optionTwo": "Rest",
-        "optionThree": "Exercises",
-        "optionFour": "Rounds",
-        "optionFive": "Round Reset"
-      },
-      "intervalTimerOverview": {
-        "timeLeft": "Time left:",
-        "completedOfTotal": "{completed} of {total}"
-      }
+    "pages": {
+        "home": {
+            "headline": "Interval Timer",
+            "menuOption": "Timer",
+            "intervalTimer": {
+                "optionOne": "Work",
+                "optionTwo": "Rest",
+                "optionThree": "Exercises",
+                "optionFour": "Rounds",
+                "optionFive": "Round Reset"
+            },
+            "intervalTimerOverview": {
+                "timeLeft": "Time left:",
+                "completedOfTotal": "{completed} of {total}"
+            }
+        },
+        "settings": {
+            "headline": "Settings",
+            "menuOption": "Settings"
+        },
+        "history": {
+            "headline": "History",
+            "menuOption": "History"
+        },
+        "statistics": {
+            "headline": "Statistics",
+            "menuOption": "Statistics"
+        },
+        "chat": {
+            "headline": "Contact",
+            "menuOption": "Chat"
+        },
+        "login": {
+            "headline": "Login",
+            "cta": "Login",
+            "emailLabel": "E-Mail",
+            "passwordLabel": "Password",
+            "validationError": {
+                "missingUser": "No user found with this email.",
+                "invalidEmail": "E-Mail is invalid.",
+                "requiredEmail": "Please enter your email.",
+                "incorrectPassword": "The password is not correct.",
+                "invalidPassword": "Password is invalid.",
+                "requiredPassword": "Please enter your password.",
+                "minLengthPassword": "The password must contain at least 8 characters.",
+                "serverError": "An error has occurred."
+            }
+        },
+        "register": {
+            "headline": "Register",
+            "cta": "Register",
+            "emailLabel": "E-Mail",
+            "passwordLabel": "Password",
+            "confirmPasswordLabel": "Confirm password",
+            "validationError": {
+                "invalidEmail": "E-Mail is invalid.",
+                "requiredEmail": "Please enter an email.",
+                "invalidPassword": "Password is invalid.",
+                "requiredPassword": "Please enter a password.",
+                "requiredConfirmPassword": "Please confirm your password.",
+                "minLengthPassword": "The password must contain at least 8 characters.",
+                "nonMatchingPassword": "Passwords do not match.",
+                "existingEmail": "E-Mail is already used.",
+                "serverError": "An error has occurred."
+            }
+        }
     },
-    "settings": {
-      "headline": "Settings",
-      "menuOption": "Settings"
-    },
-    "history": {
-      "headline": "History",
-      "menuOption": "History"
-    },
-    "statistics": {
-      "headline": "Statistics",
-      "menuOption": "Statistics"
-    },
-    "chat": {
-      "headline": "Contact",
-      "menuOption": "Chat"
-    },
-    "login": {
-      "headline": "Login",
-      "cta": "Login",
-      "emailLabel": "E-Mail",
-      "passwordLabel": "Password",
-      "validationError": {
-        "missingUser": "No user found with this email.",
-        "invalidEmail": "E-Mail is invalid.",
-        "requiredEmail": "Please enter your email.",
-        "incorrectPassword": "The password is not correct.",
-        "invalidPassword": "Password is invalid.",
-        "requiredPassword": "Please enter your password.",
-        "minLengthPassword": "The password must contain at least 8 characters.",
-        "serverError": "An error has occurred."
-      }
-    },
-    "register": {
-      "headline": "Register",
-      "cta": "Register",
-      "emailLabel": "E-Mail",
-      "passwordLabel": "Password",
-      "confirmPasswordLabel": "Confirm password",
-      "validationError": {
-        "invalidEmail": "E-Mail is invalid.",
-        "requiredEmail": "Please enter an email.",
-        "invalidPassword": "Password is invalid.",
-        "requiredPassword": "Please enter a password.",
-        "requiredConfirmPassword": "Please confirm your password.",
-        "minLengthPassword": "The password must contain at least 8 characters.",
-        "nonMatchingPassword": "Passwords do not match.",
-        "existingEmail": "E-Mail is already used.",
-        "serverError": "An error has occurred."
-      }
+    "cta": {
+        "confirm": "Confirm"
     }
-  },
-  "cta": {
-    "confirm": "Confirm"
-  }
 }

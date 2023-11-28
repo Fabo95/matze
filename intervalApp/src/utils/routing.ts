@@ -1,63 +1,52 @@
-import { match as matchLocale } from '@formatjs/intl-localematcher';
-import Negotiator from 'negotiator';
-import { NextRequest } from 'next/server';
+import { match as matchLocale } from "@formatjs/intl-localematcher";
+import Negotiator from "negotiator";
+import { NextRequest } from "next/server";
 
-import { i18n } from '@Interval/i18n/i18nConfig';
-import { Locale, Page } from '@Interval/utils/types';
+import { i18n } from "@Interval/i18n/i18nConfig";
+import { Locale, Page } from "@Interval/utils/types";
 
-export const getLocaleFromPathname = (
-  pathname: NextRequest['nextUrl']['pathname'],
-) => {
-  const locale = Object.values(Locale).find((currentLocale) =>
-    pathname.includes(currentLocale),
-  );
+export const getLocaleFromPathname = (pathname: NextRequest["nextUrl"]["pathname"]) => {
+    const locale = Object.values(Locale).find((currentLocale) => pathname.includes(currentLocale));
 
-  if (!locale) {
-    return undefined;
-  }
+    if (!locale) {
+        return undefined;
+    }
 
-  return locale;
+    return locale;
 };
 
-export const getPage = (
-  pathname: NextRequest['nextUrl']['pathname'],
-  isAuthorized: boolean,
-) => {
-  if (isAuthorized) {
-    const loggedInPages = Object.values(Page).filter(
-      (currentPage) =>
-        currentPage !== Page.LOGIN && currentPage !== Page.REGISTER,
+export const getPage = (pathname: NextRequest["nextUrl"]["pathname"], isAuthorized: boolean) => {
+    if (isAuthorized) {
+        const loggedInPages = Object.values(Page).filter(
+            (currentPage) => currentPage !== Page.LOGIN && currentPage !== Page.REGISTER
+        );
+
+        const loggedInPage = loggedInPages.find((currentPage) => pathname.includes(currentPage));
+
+        return loggedInPage || Page.HOME;
+    }
+
+    const loggedOutPages = Object.values(Page).filter(
+        (currentPage) => currentPage === Page.LOGIN || currentPage === Page.REGISTER
     );
 
-    const loggedInPage = loggedInPages.find((currentPage) =>
-      pathname.includes(currentPage),
-    );
+    const loggedOutPage = loggedOutPages.find((currentPage) => pathname.includes(currentPage));
 
-    return loggedInPage || Page.HOME;
-  }
-
-  const loggedOutPages = Object.values(Page).filter(
-    (currentPage) =>
-      currentPage === Page.LOGIN || currentPage === Page.REGISTER,
-  );
-
-  const loggedOutPage = loggedOutPages.find((currentPage) =>
-    pathname.includes(currentPage),
-  );
-
-  return loggedOutPage || Page.LOGIN;
+    return loggedOutPage || Page.LOGIN;
 };
 
 export const getLocale = (request: NextRequest): string | undefined => {
-  // Negotiator expects plain object so we need to transform headers
-  const negotiatorHeaders: Record<string, string> = {};
-  const { locales } = i18n;
+    // Negotiator expects plain object so we need to transform headers
+    const negotiatorHeaders: Record<string, string> = {};
+    const { locales } = i18n;
 
-  // eslint-disable-next-line no-return-assign
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
+    // eslint-disable-next-line no-return-assign
+    request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-  // Use negotiator and intl-localematcher to get best locale
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
+    // Use negotiator and intl-localematcher to get best locale
+    const languages = new Negotiator({
+        headers: negotiatorHeaders,
+    }).languages();
 
-  return matchLocale(languages, locales as string[], i18n.defaultLocale);
+    return matchLocale(languages, locales as string[], i18n.defaultLocale);
 };

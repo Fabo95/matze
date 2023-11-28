@@ -1,54 +1,53 @@
-'use client';
+"use client";
 
-import { useMemo } from 'react';
+import { useMemo } from "react";
 
-import { IntervalTimerDetailConfigurationOptions } from '@Interval/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailConfigurationOptions/intervalTimerDetailConfigurationOptions';
-import { IntervalTimerDetailExecutionOverview } from '@Interval/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/intervalTimerDetailExecutionOverview';
+import { IntervalTimerDetailConfigurationOptions } from "@Interval/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailConfigurationOptions/intervalTimerDetailConfigurationOptions";
+import { IntervalTimerDetailExecutionOverview } from "@Interval/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/intervalTimerDetailExecutionOverview";
 import {
-  IntervalTimerConfigurationOptionProps,
-  IntervalTimerExecutionOverviewButtonProps,
-} from '@Interval/blocks/intervalTimer/components/utils/intervalTimerTypes';
-import { useSelector } from '@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
-import { selectIsExecuting } from '@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors';
-import { Box } from '@Interval/components/core/box';
-import { PageBlockEnd } from '@Interval/components/core/page/components/pageBlockEnd';
-import { Swiper } from '@Interval/components/core/swiper/swiper';
+    IntervalTimerConfigurationOptionProps,
+    IntervalTimerExecutionOverviewButtonProps,
+} from "@Interval/blocks/intervalTimer/components/utils/intervalTimerTypes";
+import { useSelector } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext";
+import { selectIsExecuting } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors";
+import { Box } from "@Interval/components/core/box";
+import { PageBlockEnd } from "@Interval/components/core/page/components/pageBlockEnd";
+import { Swiper } from "@Interval/components/core/swiper/swiper";
 
 export type IntervalTimerDetailProps = {
-  configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
-  executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
+    configurationOptionsProps: IntervalTimerConfigurationOptionProps[];
+    executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
 };
 
 export const IntervalTimerDetail = ({
-  configurationOptionsProps,
-  executionOverviewButtonProps,
+    configurationOptionsProps,
+    executionOverviewButtonProps,
 }: IntervalTimerDetailProps) => {
-  // --- STATE ---
+    // --- STATE ---
 
-  const isExecuting = useSelector(selectIsExecuting);
+    const isExecuting = useSelector(selectIsExecuting);
 
-  // --- MEMOIZED DATA ---
+    // --- MEMOIZED DATA ---
 
-  const autoSwipe = useMemo(
-    () => ({ itemIndex: 1, shouldSwipe: isExecuting }),
-    [isExecuting],
-  );
+    const autoSwipe = useMemo(
+        () => ({
+            itemIndex: 1,
+            shouldSwipe: isExecuting,
+        }),
+        [isExecuting]
+    );
 
-  // --- RENDER ---
+    // --- RENDER ---
 
-  return (
-    <PageBlockEnd>
-      {/* This box styling enables circle cut off of the interval timer detail box. */}
-      <Box className="interval-timer-detail-circle-cut-off" />
-      <Swiper autoSwipe={autoSwipe}>
-        <IntervalTimerDetailConfigurationOptions
-          configurationOptionsProps={configurationOptionsProps}
-        />
+    return (
+        <PageBlockEnd>
+            {/* This box styling enables circle cut off of the interval timer detail box. */}
+            <Box className="interval-timer-detail-circle-cut-off" />
+            <Swiper autoSwipe={autoSwipe}>
+                <IntervalTimerDetailConfigurationOptions configurationOptionsProps={configurationOptionsProps} />
 
-        <IntervalTimerDetailExecutionOverview
-          executionOverviewButtonProps={executionOverviewButtonProps}
-        />
-      </Swiper>
-    </PageBlockEnd>
-  );
+                <IntervalTimerDetailExecutionOverview executionOverviewButtonProps={executionOverviewButtonProps} />
+            </Swiper>
+        </PageBlockEnd>
+    );
 };

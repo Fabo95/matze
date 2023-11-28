@@ -1,63 +1,61 @@
-import { useParams } from 'next/navigation';
+import { useParams } from "next/navigation";
 
-import { IntervalTimerDetailExecutionOverviewButton } from '@Interval/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/components/intervalTimerDetailExecutionOverviewButton';
-import { IntervalTimerExecutionOverviewButtonProps } from '@Interval/blocks/intervalTimer/components/utils/intervalTimerTypes';
-import { useSelector } from '@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
+import { IntervalTimerDetailExecutionOverviewButton } from "@Interval/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/components/intervalTimerDetailExecutionOverviewButton";
+import { IntervalTimerExecutionOverviewButtonProps } from "@Interval/blocks/intervalTimer/components/utils/intervalTimerTypes";
+import { useSelector } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext";
 import {
-  makeSelectRemainingCount,
-  makeSelectTotalCount,
-  selectRemainingTotalTime,
-} from '@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors';
-import { Box } from '@Interval/components/core/box';
-import { Row } from '@Interval/components/core/row';
-import { Text } from '@Interval/components/core/text';
-import { ClockIcon } from '@Interval/components/icons/clockIcon';
-import { getTFunction } from '@Interval/i18n/tFunction';
-import { getFormattedSeconds } from '@Interval/utils/helpers';
-import { Locale } from '@Interval/utils/types';
+    makeSelectRemainingCount,
+    makeSelectTotalCount,
+    selectRemainingTotalTime,
+} from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors";
+import { Box } from "@Interval/components/core/box";
+import { Row } from "@Interval/components/core/row";
+import { Text } from "@Interval/components/core/text";
+import { ClockIcon } from "@Interval/components/icons/clockIcon";
+import { getTFunction } from "@Interval/i18n/tFunction";
+import { getFormattedSeconds } from "@Interval/utils/helpers";
+import { Locale } from "@Interval/utils/types";
 
 type IntervalTimerDetailExecutionOverviewProps = {
-  executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
+    executionOverviewButtonProps: IntervalTimerExecutionOverviewButtonProps[];
 };
 
 export const IntervalTimerDetailExecutionOverview = ({
-  executionOverviewButtonProps,
+    executionOverviewButtonProps,
 }: IntervalTimerDetailExecutionOverviewProps) => {
-  const params = useParams();
+    const params = useParams();
 
-  const t = getTFunction(params.lang as Locale);
+    const t = getTFunction(params.lang as Locale);
 
-  // --- STATE ---
+    // --- STATE ---
 
-  const remainingTotalTime = useSelector(selectRemainingTotalTime);
+    const remainingTotalTime = useSelector(selectRemainingTotalTime);
 
-  // --- HELPERS ---
+    // --- HELPERS ---
 
-  const formattedRemainingTotalTime = getFormattedSeconds(remainingTotalTime);
+    const formattedRemainingTotalTime = getFormattedSeconds(remainingTotalTime);
 
-  // --- RENDER ---
-  return (
-    <Box className="interval-timer-detail-execution-overview">
-      {executionOverviewButtonProps.map(
-        ({ className, icon, intensityType, title }) => (
-          <IntervalTimerDetailExecutionOverviewButton
-            className={className}
-            icon={icon}
-            key={intensityType}
-            selectRemainingCount={makeSelectRemainingCount(intensityType)}
-            selectTotalCount={makeSelectTotalCount(intensityType)}
-            title={title}
-          />
-        ),
-      )}
+    // --- RENDER ---
+    return (
+        <Box className="interval-timer-detail-execution-overview">
+            {executionOverviewButtonProps.map(({ className, icon, intensityType, title }) => (
+                <IntervalTimerDetailExecutionOverviewButton
+                    className={className}
+                    icon={icon}
+                    key={intensityType}
+                    selectRemainingCount={makeSelectRemainingCount(intensityType)}
+                    selectTotalCount={makeSelectTotalCount(intensityType)}
+                    title={title}
+                />
+            ))}
 
-      <Row className="interval-timer-detail-execution-overview-rest">
-        <ClockIcon className="stroke-gray-dark" />
-        <Text>{t('pages.home.intervalTimerOverview.timeLeft')}</Text>
-        <Text className="interval-timer-detail-execution-overview-rest-text">
-          {formattedRemainingTotalTime}
-        </Text>
-      </Row>
-    </Box>
-  );
+            <Row className="interval-timer-detail-execution-overview-rest">
+                <ClockIcon className="stroke-gray-dark" />
+                <Text>{t("pages.home.intervalTimerOverview.timeLeft")}</Text>
+                <Text className="interval-timer-detail-execution-overview-rest-text">
+                    {formattedRemainingTotalTime}
+                </Text>
+            </Row>
+        </Box>
+    );
 };

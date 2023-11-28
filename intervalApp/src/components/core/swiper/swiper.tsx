@@ -1,167 +1,149 @@
-import {
-  Children,
-  MouseEvent,
-  ReactElement,
-  TouchEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import { Children, MouseEvent, ReactElement, TouchEvent, useEffect, useRef, useState } from "react";
 
-import {
-  getClientX,
-  getNextItemIndex,
-} from '@Interval/components/core/swiper/utils/swiperHelpers';
+import { getClientX, getNextItemIndex } from "@Interval/components/core/swiper/utils/swiperHelpers";
 
 export type SwiperProps = {
-  autoSwipe: {
-    itemIndex: number;
-    shouldSwipe: boolean;
-  };
-  children: ReactElement | ReactElement[];
+    autoSwipe: {
+        itemIndex: number;
+        shouldSwipe: boolean;
+    };
+    children: ReactElement | ReactElement[];
 };
 
 export const Swiper = ({ autoSwipe, children }: SwiperProps) => {
-  // --- STATE ---
+    // --- STATE ---
 
-  const swiperRef = useRef<HTMLDivElement>(null);
-  const itemIndexRef = useRef<number>(0);
+    const swiperRef = useRef<HTMLDivElement>(null);
+    const itemIndexRef = useRef<number>(0);
 
-  const [isDragging, setIsDragging] = useState(false);
-  const [currentXTranslation, setCurrentXTranslation] = useState(0);
-  const [distanceX, setDistanceX] = useState(0);
-  const [startXPosition, setStartXPosition] = useState(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const [currentXTranslation, setCurrentXTranslation] = useState(0);
+    const [distanceX, setDistanceX] = useState(0);
+    const [startXPosition, setStartXPosition] = useState(0);
 
-  // --- HELPERS ---
+    // --- HELPERS ---
 
-  const isSwiperRefAvailable = swiperRef.current;
+    const isSwiperRefAvailable = swiperRef.current;
 
-  const swiperWidth = swiperRef.current ? swiperRef.current.clientWidth : 0;
+    const swiperWidth = swiperRef.current ? swiperRef.current.clientWidth : 0;
 
-  const childrenLength = Children.toArray(children).length;
+    const childrenLength = Children.toArray(children).length;
 
-  const swiperItemsWidth = childrenLength * 100;
+    const swiperItemsWidth = childrenLength * 100;
 
-  // --- CALLBACKS ---
+    // --- CALLBACKS ---
 
-  const resetStates = () => {
-    setIsDragging(false);
+    const resetStates = () => {
+        setIsDragging(false);
 
-    setDistanceX(0);
-    setStartXPosition(0);
-  };
+        setDistanceX(0);
+        setStartXPosition(0);
+    };
 
-  const handleSwipeStart = (
-    event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>,
-  ) => {
-    const clientX = getClientX(event);
+    const handleSwipeStart = (event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>) => {
+        const clientX = getClientX(event);
 
-    setIsDragging(true);
-    setStartXPosition(clientX);
-  };
+        setIsDragging(true);
+        setStartXPosition(clientX);
+    };
 
-  const handleSwipe = (
-    event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>,
-  ) => {
-    const clientX = getClientX(event);
+    const handleSwipe = (event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>) => {
+        const clientX = getClientX(event);
 
-    const currentDistanceX = clientX - startXPosition;
+        const currentDistanceX = clientX - startXPosition;
 
-    if (
-      // We assume that the swipe movement must be at least 5 px to trigger the swipe execution.
-      Math.abs(currentDistanceX) < 5 ||
-      !isSwiperRefAvailable ||
-      !isDragging
-    ) {
-      return;
-    }
+        if (
+            // We assume that the swipe movement must be at least 5 px to trigger the swipe execution.
+            Math.abs(currentDistanceX) < 5 ||
+            !isSwiperRefAvailable ||
+            !isDragging
+        ) {
+            return;
+        }
 
-    const optimisticXTranslation =
-      -itemIndexRef.current * swiperWidth + currentDistanceX;
+        const optimisticXTranslation = -itemIndexRef.current * swiperWidth + currentDistanceX;
 
-    const maxXTranslation = -(childrenLength - 1) * swiperWidth;
+        const maxXTranslation = -(childrenLength - 1) * swiperWidth;
 
-    // Assures that we can not swipe before the first item.
-    if (optimisticXTranslation > 0) {
-      setDistanceX(0);
-      setCurrentXTranslation(0);
-      return;
-    }
+        // Assures that we can not swipe before the first item.
+        if (optimisticXTranslation > 0) {
+            setDistanceX(0);
+            setCurrentXTranslation(0);
+            return;
+        }
 
-    // Assures that we can not swipe behind the last item.
-    if (optimisticXTranslation < maxXTranslation) {
-      setDistanceX(0);
-      setCurrentXTranslation(maxXTranslation);
-      return;
-    }
+        // Assures that we can not swipe behind the last item.
+        if (optimisticXTranslation < maxXTranslation) {
+            setDistanceX(0);
+            setCurrentXTranslation(maxXTranslation);
+            return;
+        }
 
-    setDistanceX(currentDistanceX);
-    setCurrentXTranslation(optimisticXTranslation);
-  };
+        setDistanceX(currentDistanceX);
+        setCurrentXTranslation(optimisticXTranslation);
+    };
 
-  const handleSwipeEnd = (
-    event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>,
-  ) => {
-    const clientX = getClientX(event);
+    const handleSwipeEnd = (event: MouseEvent<HTMLDivElement> | TouchEvent<HTMLDivElement>) => {
+        const clientX = getClientX(event);
 
-    const currentDistanceX = clientX - startXPosition;
+        const currentDistanceX = clientX - startXPosition;
 
-    if (!isSwiperRefAvailable || Math.abs(currentDistanceX) < 5) {
-      resetStates();
-      return;
-    }
+        if (!isSwiperRefAvailable || Math.abs(currentDistanceX) < 5) {
+            resetStates();
+            return;
+        }
 
-    const autoSwipeThreshold = swiperWidth / 3;
+        const autoSwipeThreshold = swiperWidth / 3;
 
-    if (Math.abs(distanceX) > autoSwipeThreshold) {
-      itemIndexRef.current = getNextItemIndex({
-        distanceX,
-        itemIndex: itemIndexRef.current,
-      });
+        if (Math.abs(distanceX) > autoSwipeThreshold) {
+            itemIndexRef.current = getNextItemIndex({
+                distanceX,
+                itemIndex: itemIndexRef.current,
+            });
 
-      setCurrentXTranslation(-itemIndexRef.current * swiperWidth);
-      resetStates();
+            setCurrentXTranslation(-itemIndexRef.current * swiperWidth);
+            resetStates();
 
-      return;
-    }
+            return;
+        }
 
-    setCurrentXTranslation(-itemIndexRef.current * swiperWidth);
-    resetStates();
-  };
+        setCurrentXTranslation(-itemIndexRef.current * swiperWidth);
+        resetStates();
+    };
 
-  // --- EFFECTS ---
+    // --- EFFECTS ---
 
-  useEffect(() => {
-    if (autoSwipe.shouldSwipe) {
-      itemIndexRef.current = autoSwipe.itemIndex;
-      setCurrentXTranslation(-itemIndexRef.current * swiperWidth);
-    }
-  }, [autoSwipe.shouldSwipe, autoSwipe.itemIndex, swiperWidth]);
+    useEffect(() => {
+        if (autoSwipe.shouldSwipe) {
+            itemIndexRef.current = autoSwipe.itemIndex;
+            setCurrentXTranslation(-itemIndexRef.current * swiperWidth);
+        }
+    }, [autoSwipe.shouldSwipe, autoSwipe.itemIndex, swiperWidth]);
 
-  // --- RENDER ---
+    // --- RENDER ---
 
-  return (
-    <div className="swiper" ref={swiperRef}>
-      <div
-        className="swiper-items"
-        onMouseDown={handleSwipeStart}
-        onMouseLeave={handleSwipeEnd}
-        onMouseMove={handleSwipe}
-        onMouseUp={handleSwipeEnd}
-        onTouchEnd={handleSwipeEnd}
-        onTouchMove={handleSwipe}
-        onTouchStart={handleSwipeStart}
-        role="presentation"
-        style={{
-          transform: `translateX(${currentXTranslation}px)`,
-          transition: isDragging ? '0ms' : '150ms',
-          width: `${swiperItemsWidth}%`,
-        }}
-      >
-        {children}
-      </div>
-    </div>
-  );
+    return (
+        <div className="swiper" ref={swiperRef}>
+            <div
+                className="swiper-items"
+                onMouseDown={handleSwipeStart}
+                onMouseLeave={handleSwipeEnd}
+                onMouseMove={handleSwipe}
+                onMouseUp={handleSwipeEnd}
+                onTouchEnd={handleSwipeEnd}
+                onTouchMove={handleSwipe}
+                onTouchStart={handleSwipeStart}
+                role="presentation"
+                style={{
+                    transform: `translateX(${currentXTranslation}px)`,
+                    transition: isDragging ? "0ms" : "150ms",
+                    width: `${swiperItemsWidth}%`,
+                }}
+            >
+                {children}
+            </div>
+        </div>
+    );
 };
 
 export default Swiper;

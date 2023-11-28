@@ -1,9 +1,9 @@
 export type SendMessage = ({
-  friendshipId,
-  message,
-  receiverUserId,
+    friendshipId,
+    message,
+    receiverUserId,
 }: {
-  friendshipId: number;
-  message: FormDataEntryValue | null;
-  receiverUserId: number;
+    friendshipId: number;
+    message: FormDataEntryValue | null;
+    receiverUserId: number;
 }) => void;

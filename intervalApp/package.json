@@ -2,6 +2,7 @@
   "name": "@interval/app",
   "version": "0.1.0",
   "private": true,
+  "prettier": "@interval/prettier-config",
   "scripts": {
     "dev": "sass src/styles/scss/global.scss src/styles/global.css && NODE_ENV=development next dev",
     "build": "esbuild --outfile=public/sw.js --bundle src/serviceWorker/swRaw.js && NODE_ENV=production next build",
@@ -10,7 +11,9 @@
     "eslint": "./node_modules/.bin/next lint",
     "compileScss": "sass src/styles/scss/global.scss src/styles/global.css",
     "packages:force-node-modules-sync": "sudo find node_modules/.pnpm -name 'file+*' -type d -prune -print -exec rm -rf '{}' + && pnpm install",
-    "remove:node-modules": "sudo find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' +"
+    "remove:node-modules": "sudo find . -name 'node_modules' -type d -prune -print -exec rm -rf '{}' +",
+    "prettier": "prettier --check 'src/**/*.{ts,tsx,js,jsx,json}'",
+    "prettier:write": "prettier --write 'src/**/*.{ts,tsx,js,jsx,json}'"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.2.32",
@@ -57,6 +60,7 @@
     "eslint-plugin-functional": "6.0.0",
     "eslint-plugin-import": "2.28.1",
     "eslint-plugin-interval-app-styleguide": "file:../packages/eslint-plugin-interval-app-styleguide",
+    "@interval/prettier-config": "file:../packages/prettier-config",
     "eslint-plugin-no-unsanitized": "4.0.1",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-promise": "^6.1.1",

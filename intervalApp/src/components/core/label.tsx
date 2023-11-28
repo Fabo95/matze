@@ -1,21 +1,15 @@
-import { LabelHTMLAttributes } from 'react';
+import { LabelHTMLAttributes } from "react";
 
 type LabelProps = LabelHTMLAttributes<HTMLLabelElement>;
-export const Label = ({
-  children,
-  className: propsClassName,
-  ...labelProps
-}: LabelProps) => {
-  const defaultClassname = 'label';
+export const Label = ({ children, className: propsClassName, ...labelProps }: LabelProps) => {
+    const defaultClassname = "label";
 
-  const className = propsClassName
-    ? `${defaultClassname} ${propsClassName}`
-    : defaultClassname;
+    const className = propsClassName ? `${defaultClassname} ${propsClassName}` : defaultClassname;
 
-  return (
-    // eslint-disable-next-line jsx-a11y/label-has-associated-control
-    <label className={className} {...labelProps}>
-      {children}
-    </label>
-  );
+    return (
+        // eslint-disable-next-line jsx-a11y/label-has-associated-control
+        <label className={className} {...labelProps}>
+            {children}
+        </label>
+    );
 };

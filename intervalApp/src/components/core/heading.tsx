@@ -1,21 +1,15 @@
-import { HTMLAttributes } from 'react';
+import { HTMLAttributes } from "react";
 
 type HeadingProps = HTMLAttributes<HTMLHeadingElement>;
 
-export const Heading = ({
-  children,
-  className: propsClassName,
-  ...headingProps
-}: HeadingProps) => {
-  const defaultClassnames = 'heading';
+export const Heading = ({ children, className: propsClassName, ...headingProps }: HeadingProps) => {
+    const defaultClassnames = "heading";
 
-  const classNames = propsClassName
-    ? `${defaultClassnames} ${propsClassName}`
-    : defaultClassnames;
+    const classNames = propsClassName ? `${defaultClassnames} ${propsClassName}` : defaultClassnames;
 
-  return (
-    <h1 className={classNames} {...headingProps}>
-      {children}
-    </h1>
-  );
+    return (
+        <h1 className={classNames} {...headingProps}>
+            {children}
+        </h1>
+    );
 };

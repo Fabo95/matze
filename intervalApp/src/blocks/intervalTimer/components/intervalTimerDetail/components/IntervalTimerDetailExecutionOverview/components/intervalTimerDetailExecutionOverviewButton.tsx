@@ -1,68 +1,71 @@
-import { ReactElement, useMemo } from 'react';
+import { ReactElement, useMemo } from "react";
 
-import { useParams } from 'next/navigation';
+import { useParams } from "next/navigation";
 
-import { ApplicationProcessMachine } from '@Interval/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
-import { useSelector } from '@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext';
-import { DetailButton } from '@Interval/components/core/detailButton';
-import { Row } from '@Interval/components/core/row';
-import { Text } from '@Interval/components/core/text';
-import { getTFunction } from '@Interval/i18n/tFunction';
-import { Locale } from '@Interval/utils/types';
+import { ApplicationProcessMachine } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine";
+import { useSelector } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext";
+import { DetailButton } from "@Interval/components/core/detailButton";
+import { Row } from "@Interval/components/core/row";
+import { Text } from "@Interval/components/core/text";
+import { getTFunction } from "@Interval/i18n/tFunction";
+import { Locale } from "@Interval/utils/types";
 
 type IntervalTimerDetailExecutionOverviewButtonProps = {
-  className: { detailButton: string; overviewDot?: string };
-  icon: ReactElement;
-  selectRemainingCount: (state: ApplicationProcessMachine) => number;
-  selectTotalCount: (state: ApplicationProcessMachine) => number;
-  title: string;
+    className: {
+        detailButton: string;
+        overviewDot?: string;
+    };
+    icon: ReactElement;
+    selectRemainingCount: (state: ApplicationProcessMachine) => number;
+    selectTotalCount: (state: ApplicationProcessMachine) => number;
+    title: string;
 };
 
 export const IntervalTimerDetailExecutionOverviewButton = ({
-  className: propsClassName,
-  icon,
-  selectRemainingCount,
-  selectTotalCount,
-  title,
+    className: propsClassName,
+    icon,
+    selectRemainingCount,
+    selectTotalCount,
+    title,
 }: IntervalTimerDetailExecutionOverviewButtonProps) => {
-  const params = useParams();
+    const params = useParams();
 
-  const t = getTFunction(params.lang as Locale);
+    const t = getTFunction(params.lang as Locale);
 
-  // --- STATE ---
+    // --- STATE ---
 
-  const totalCount = useSelector(selectTotalCount);
+    const totalCount = useSelector(selectTotalCount);
 
-  const remainingCount = useSelector(selectRemainingCount);
+    const remainingCount = useSelector(selectRemainingCount);
 
-  // --- HELPERS ---
+    // --- HELPERS ---
 
-  const completedCount = totalCount - remainingCount;
+    const completedCount = totalCount - remainingCount;
 
-  // --- MEMOIZED DATA ---
+    // --- MEMOIZED DATA ---
 
-  const IntervalCompletion = useMemo(
-    () => (
-      <Row>
-        <Text>
-          {t('pages.home.intervalTimerOverview.completedOfTotal', {
-            completed: completedCount,
-            total: totalCount,
-          })}
-        </Text>
-      </Row>
-    ),
-    [completedCount, t, totalCount],
-  );
+    const IntervalCompletion = useMemo(
+        () => (
+            <Row>
+                <Text>
+                    {t("pages.home.intervalTimerOverview.completedOfTotal", {
+                        completed: completedCount,
+                        total: totalCount,
+                    })}
+                </Text>
+            </Row>
+        ),
+        [completedCount, t, totalCount]
+    );
 
-  // --- RENDER ---
+    // --- RENDER ---
 
-  return (
-    <DetailButton
-      className={propsClassName.detailButton}
-      inlineCenterLeft={title}
-      inlineEnd={IntervalCompletion}
-      inlineStart={icon}
-    />
-  );
+    return (
+        <DetailButton
+            className={propsClassName.detailButton}
+            inlineCenterLeft={title}
+            inlineEnd={IntervalCompletion}
+            inlineStart={icon}
+        />
+    );
 };

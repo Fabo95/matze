@@ -1,12 +1,11 @@
-import { createActorContext } from '@xstate/react';
+import { createActorContext } from "@xstate/react";
 
-import { createIntervalTimerExecutionMachine } from '@Interval/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine';
-import { getReactiveCallback } from '@Interval/utils/helpers';
+import { createIntervalTimerExecutionMachine } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine";
+import { getReactiveCallback } from "@Interval/utils/helpers";
 
 const [, isExecuting$] = getReactiveCallback();
 
-const initialIntervalTimerExecutionMachine =
-  createIntervalTimerExecutionMachine({
+const initialIntervalTimerExecutionMachine = createIntervalTimerExecutionMachine({
     isExecuting$,
     exerciseCount: 0,
     restTime: 0,
@@ -15,15 +14,13 @@ const initialIntervalTimerExecutionMachine =
     totalTime: 0,
     userId: 0,
     workTime: 0,
-  });
+});
 
-const IntervalTimerExecutionMachineContext = createActorContext(
-  initialIntervalTimerExecutionMachine,
-);
+const IntervalTimerExecutionMachineContext = createActorContext(initialIntervalTimerExecutionMachine);
 
 export const {
-  Provider: IntervalTimerExecutionMachineProvider,
-  useActor,
-  useActorRef,
-  useSelector,
+    Provider: IntervalTimerExecutionMachineProvider,
+    useActor,
+    useActorRef,
+    useSelector,
 } = IntervalTimerExecutionMachineContext;

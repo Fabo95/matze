@@ -1,38 +1,27 @@
-'use client';
+"use client";
 
-import {
-  ButtonHTMLAttributes,
-  ForwardedRef,
-  forwardRef,
-  MouseEvent,
-} from 'react';
+import { ButtonHTMLAttributes, ForwardedRef, forwardRef, MouseEvent } from "react";
 
 type UnstyledButtonProps = {
-  handlemousedown?: (event: MouseEvent<HTMLButtonElement>) => void;
+    handlemousedown?: (event: MouseEvent<HTMLButtonElement>) => void;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const UnstyledButton = forwardRef(
-  (
-    {
-      children,
-      className: propsClassName,
-      ...unstyledButtonProps
-    }: UnstyledButtonProps,
-    ref?: ForwardedRef<HTMLButtonElement>,
-  ) => {
-    // --- STATE ---
-    const defaultClassnames = 'unstyled-button';
+    (
+        { children, className: propsClassName, ...unstyledButtonProps }: UnstyledButtonProps,
+        ref?: ForwardedRef<HTMLButtonElement>
+    ) => {
+        // --- STATE ---
+        const defaultClassnames = "unstyled-button";
 
-    const classNames = propsClassName
-      ? `${defaultClassnames} ${propsClassName}`
-      : defaultClassnames;
+        const classNames = propsClassName ? `${defaultClassnames} ${propsClassName}` : defaultClassnames;
 
-    // --- RENDER ---
+        // --- RENDER ---
 
-    return (
-      <button className={classNames} ref={ref} {...unstyledButtonProps}>
-        {children}
-      </button>
-    );
-  },
+        return (
+            <button className={classNames} ref={ref} {...unstyledButtonProps}>
+                {children}
+            </button>
+        );
+    }
 );

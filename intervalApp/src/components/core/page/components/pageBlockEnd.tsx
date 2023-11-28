@@ -1,23 +1,18 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
-import { Box } from '@Interval/components/core/box';
+import { Box } from "@Interval/components/core/box";
 
 type PageBlockEndProps = {
-  children: ReactNode;
-  className?: string;
+    children: ReactNode;
+    className?: string;
 };
 
-export const PageBlockEnd = ({
-  children,
-  className: propsClassName,
-}: PageBlockEndProps) => {
-  // --- HELPERS ---
+export const PageBlockEnd = ({ children, className: propsClassName }: PageBlockEndProps) => {
+    // --- HELPERS ---
 
-  const className = propsClassName
-    ? `page-block-end ${propsClassName}`
-    : 'page-block-end';
+    const className = propsClassName ? `page-block-end ${propsClassName}` : "page-block-end";
 
-  // --- RENDER ---
+    // --- RENDER ---
 
-  return <Box className={className}>{children}</Box>;
+    return <Box className={className}>{children}</Box>;
 };

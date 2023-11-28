@@ -1,8 +1,10 @@
-import { ReactElement } from 'react';
+import { ReactElement } from "react";
 
-import { Box } from '@Interval/components/core/box';
+import { Box } from "@Interval/components/core/box";
 
-type SliderContainerProps = { children: ReactElement };
+type SliderContainerProps = {
+    children: ReactElement;
+};
 export const SliderContainer = ({ children }: SliderContainerProps) => (
-  <Box className="slider-container">{children}</Box>
+    <Box className="slider-container">{children}</Box>
 );

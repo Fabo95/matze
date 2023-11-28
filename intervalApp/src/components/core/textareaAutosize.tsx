@@ -1,22 +1,13 @@
-import BaseTextareaAutosize, {
-  TextareaAutosizeProps,
-} from 'react-textarea-autosize';
+import BaseTextareaAutosize, { TextareaAutosizeProps } from "react-textarea-autosize";
 
-export const TextareaAutosize = ({
-  className: propsClassName,
-  ...autosizeTextAreaProps
-}: TextareaAutosizeProps) => {
-  // --- HELPERS ---
+export const TextareaAutosize = ({ className: propsClassName, ...autosizeTextAreaProps }: TextareaAutosizeProps) => {
+    // --- HELPERS ---
 
-  const defaultClassname = 'text-area-autosize';
+    const defaultClassname = "text-area-autosize";
 
-  const className = propsClassName
-    ? `${defaultClassname} ${propsClassName}`
-    : defaultClassname;
+    const className = propsClassName ? `${defaultClassname} ${propsClassName}` : defaultClassname;
 
-  // --- RENDER
+    // --- RENDER
 
-  return (
-    <BaseTextareaAutosize className={className} {...autosizeTextAreaProps} />
-  );
+    return <BaseTextareaAutosize className={className} {...autosizeTextAreaProps} />;
 };

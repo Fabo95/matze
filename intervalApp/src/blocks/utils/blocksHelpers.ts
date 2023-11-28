@@ -1,14 +1,14 @@
-import { FriendshipMessages } from '@Interval/api/utils/apiTypes';
+import { FriendshipMessages } from "@Interval/api/utils/apiTypes";
 
 export const getFriend = ({
-  friendshipMessages,
-  userId,
+    friendshipMessages,
+    userId,
 }: {
-  friendshipMessages: FriendshipMessages;
-  userId?: number;
+    friendshipMessages: FriendshipMessages;
+    userId?: number;
 }) => {
-  const { userA } = friendshipMessages;
-  const { userB } = friendshipMessages;
+    const { userA } = friendshipMessages;
+    const { userB } = friendshipMessages;
 
-  return userId === userA.userId ? userB : userA;
+    return userId === userA.userId ? userB : userA;
 };
