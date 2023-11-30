@@ -1,32 +1,25 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 import {
     executeIntervalTimerExecutionBackgroundGradientStrategy,
     getIntervalTimerExecutionBackgroundGradientStrategies,
 } from "@Interval/blocks/intervalTimer/components/intervalTimerExecution/utils/intervalTimerExecutionHelpers";
+import { useSelector } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext";
 import {
-    useActor,
-    useSelector,
-} from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext";
-import {
+    selectIntervalTimerExecutionState,
     selectIsExecuting,
     selectRemainingCurrentTime,
 } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors";
 import { Pulse } from "@Interval/components/core/pulse/pulse";
-import { Row } from "@Interval/components/core/row";
 import { Text } from "@Interval/components/core/text";
-import { UnstyledButton } from "@Interval/components/core/unstyledButton";
-import { PauseIcon } from "@Interval/components/icons/pauseIcon";
-import { PlayIcon } from "@Interval/components/icons/playIcon";
 import { getFormattedSeconds } from "@Interval/utils/helpers";
 
-export const IntervalTimerExecution = ({ nextIsExecution }: { nextIsExecution: (value: unknown) => void }) => {
+export const IntervalTimerExecution = () => {
     // --- STATE ---
 
     const isExecuting = useSelector(selectIsExecuting);
     const remainingCurrentTime = useSelector(selectRemainingCurrentTime);
-
-    const [intervalTimerExecutionState, send] = useActor();
+    const intervalTimerExecutionState = useSelector(selectIntervalTimerExecutionState);
 
     // --- MEMOIZED DATA ---
 
@@ -35,27 +28,9 @@ export const IntervalTimerExecution = ({ nextIsExecution }: { nextIsExecution: (
         []
     );
 
-    // --- CALLBACKS ---
-
-    const startIntervalTimerExecution = useCallback(() => {
-        send({
-            type: "START_EXECUTION",
-        });
-        nextIsExecution(true);
-    }, [nextIsExecution, send]);
-
-    const pauseIntervalTimerExecution = useCallback(() => {
-        send({
-            type: "PAUSE_EXECUTION",
-        });
-        nextIsExecution(false);
-    }, [nextIsExecution, send]);
-
     // --- HELPERS ---
 
     const formattedIntervalTime = getFormattedSeconds(remainingCurrentTime);
-
-    const handleIntervalTimerExecution = isExecuting ? pauseIntervalTimerExecution : startIntervalTimerExecution;
 
     // --- EFFECTS ---
 
@@ -63,14 +38,14 @@ export const IntervalTimerExecution = ({ nextIsExecution }: { nextIsExecution: (
         intervalTimerExecutionBackgroundGradientStrategies.forEach((backgroundGradientStrategy) =>
             executeIntervalTimerExecutionBackgroundGradientStrategy({
                 backgroundGradientStrategy,
-                intervalTimerExecutionStateValue: intervalTimerExecutionState.value,
+                intervalTimerExecutionStateValue: intervalTimerExecutionState,
             })
         );
 
         return () => {
             document.body.className = "";
         };
-    }, [intervalTimerExecutionBackgroundGradientStrategies, intervalTimerExecutionState.value]);
+    }, [intervalTimerExecutionBackgroundGradientStrategies, intervalTimerExecutionState]);
 
     // --- RENDER ---
 
@@ -79,12 +54,6 @@ export const IntervalTimerExecution = ({ nextIsExecution }: { nextIsExecution: (
             <Text className="interval-timer-execution-intro">{formattedIntervalTime}</Text>
 
             <Pulse isAnimating={isExecuting} />
-
-            <Row>
-                <UnstyledButton className="interval-timer-execution-button" onClick={handleIntervalTimerExecution}>
-                    {isExecuting ? <PauseIcon /> : <PlayIcon />}
-                </UnstyledButton>
-            </Row>
         </>
     );
 };

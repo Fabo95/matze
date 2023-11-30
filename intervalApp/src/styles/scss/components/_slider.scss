@@ -67,9 +67,9 @@
       transform: translateY(-50%);
       background: linear-gradient(
         to right,
-        reduceOpacity($whiteDark, 0) 0%,
+        change-color-alpha($whiteDark, 0) 0%,
         $whiteDark 50%,
-        reduceOpacity($whiteDark, 0) 100%
+        change-color-alpha($whiteDark, 0) 100%
       );
     }
   }
@@ -89,7 +89,7 @@
         height: 2px;
         width: spacingPixel(4);
         align-self: center;
-        background: reduceOpacity($whiteDark, 0.5);
+        background: change-color-alpha($whiteDark, 0.5);
       }
 
       .slider-track-dividing-line-long {

@@ -1,17 +1,36 @@
-@import 'variables';
+@use "sass:color";
+
+@import "variables";
 
 @function getContrastingTextColor($color) {
-  @if (lightness($color) > 50) {
-    @return $blackDark;
-  } @else {
-    @return $whiteDark;
-  }
+    @if (lightness($color) > 50) {
+        @return $blackDark;
+    } @else {
+        @return $whiteDark;
+    }
 }
 
 @function spacingPixel($factor) {
-  @return $factor * $basePixel;
+    @return $factor * $basePixel;
 }
 
-@function reduceOpacity($color, $opacity) {
-  @return rgba($color, $opacity);
+/**
+ * Adjusts the lightness of a given color.
+ *
+ * This function utilizes the color.adjust() function provided by the Sass color module.
+ * It allows you to modify the lightness of a color by a specified amount.
+ *
+ * @param {Color} $color - The original color to be adjusted.
+ * @param {Number} $lightness - The amount by which the lightness should be adjusted.
+ *                              Should be a number between -100% (darker) and 100% (lighter).
+ *
+ * @return {Color} - A new color with the adjusted lightness.
+ * See: https://sass-lang.com/documentation/modules/color/#lightness
+ */
+@function change-color-lightness($color, $lightness) {
+    @return color.adjust($color, $lightness: $lightness);
+}
+
+@function change-color-alpha($color, $alpha) {
+    @return color.adjust($color, $alpha: $alpha);
 }

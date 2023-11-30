@@ -69,7 +69,7 @@
     }
 
     .form-subtitle {
-      color: reduceOpacity($blackDark, 0.8);
+      color: change-color-alpha($blackDark, 0.8);
       font-size: spacingPixel(1.75);
     }
   }

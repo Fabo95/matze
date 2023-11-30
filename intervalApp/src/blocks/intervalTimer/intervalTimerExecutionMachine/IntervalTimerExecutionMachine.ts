@@ -16,12 +16,14 @@ import {
 
 type CreateIntervalTimerExecutionMachineProps<T> = Omit<Interval, "createdAt" | "updatedAt"> & {
     isExecuting$: Observable<T>;
+    nextIsExecution: (value: boolean) => void;
     totalTime: number;
 };
 
 export const createIntervalTimerExecutionMachine = <T>({
     exerciseCount,
     isExecuting$,
+    nextIsExecution,
     restTime,
     roundCount,
     roundResetTime,
@@ -224,11 +226,21 @@ export const createIntervalTimerExecutionMachine = <T>({
                     roundCount: getInitialCountContext(roundCount),
                 }),
                 setIsExecuting: assign({
-                    isExecuting: () => true,
+                    isExecuting: () => {
+                        // We need to set the observable value to enable the timer execution service.
+                        nextIsExecution(true);
+
+                        return true;
+                    },
                 }),
 
                 setIsNotExecuting: assign({
-                    isExecuting: () => false,
+                    isExecuting: () => {
+                        // We need to set the observable value to enable the timer execution service.
+                        nextIsExecution(false);
+
+                        return false;
+                    },
                 }),
                 setRestTime: assign({
                     remainingCurrentTime: (context) => context.restTime,

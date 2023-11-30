@@ -1,0 +1,13 @@
+@use '../abstracts/mixins';
+
+@import "../abstracts/variables";
+@import "../abstracts/functions";
+
+.skeleton {
+ width: 100%;
+ height: 100%;
+}
+
+.skeleton-light {
+ @include mixins.skeleton(change-color-alpha($whiteDark, -0.5));
+}

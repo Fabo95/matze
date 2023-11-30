@@ -39,5 +39,5 @@
   @include mixins.stroke($yellowDark);
 }
 .stroke-black-50 {
-  @include mixins.stroke(reduceOpacity($blackDark, 0.5));
+  @include mixins.stroke(change-color-alpha($blackDark, 0.5));
 }

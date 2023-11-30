@@ -32,14 +32,10 @@ export const IntervalTimerDetail = ({ interval }: IntervalTimerDetailProps) => {
     // --- RENDER ---
 
     return (
-        <>
-            {/* This box styling enables circle cut off of the interval timer detail box. */}
-            <Box className="interval-timer-detail-circle-cut-off" />
-            <Swiper autoSwipe={autoSwipe}>
-                <IntervalTimerDetailConfigurationOptions interval={interval} />
+        <Swiper autoSwipe={autoSwipe}>
+            <IntervalTimerDetailConfigurationOptions interval={interval} />
 
-                <IntervalTimerDetailExecutionOverview />
-            </Swiper>
-        </>
+            <IntervalTimerDetailExecutionOverview />
+        </Swiper>
     );
 };

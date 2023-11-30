@@ -1,171 +1,130 @@
-@use '../abstracts/mixins' as mixins;
+@use "../abstracts/mixins" as mixins;
 
-@import '../abstracts/functions';
-@import '../abstracts/variables';
+@import "../abstracts/functions";
+@import "../abstracts/variables";
 
 html,
 body {
-  // https://stackoverflow.com/questions/33343854/input-range-slider-not-working-on-ios-safari-when-clicking-on-track
-  -webkit-tap-highlight-color: transparent;
-  overscroll-behavior: none;
+    // https://stackoverflow.com/questions/33343854/input-range-slider-not-working-on-ios-safari-when-clicking-on-track
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
 }
 
 body {
-  box-sizing: border-box;
-  color: $whiteDark;
-  letter-spacing: 0.025em;
-  overflow-x: hidden;
-  @include mixins.primaryLinearGradient();
-}
-
-.page {
-  flex-grow: 1;
-  overflow: hidden;
-
-  .page-block-start {
-    display: flex;
-    flex-direction: column;
-    background: transparent;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    padding: spacingPixel(1);
-    flex-grow: 1;
-    min-height: 300px;
-  }
-
-  .page-block-end {
-    border-top-left-radius: spacingPixel(1);
-    border-top-right-radius: spacingPixel(1);
-    overflow: hidden;
-    width: 100%;
-    height: fit-content;
-  }
+    box-sizing: border-box;
+    color: $whiteDark;
+    letter-spacing: 0.025em;
+    overflow-x: hidden;
+    @include mixins.primaryLinearGradient();
 }
 
 .work-time-background-gradient {
-  @include mixins.animatedLinearGradient(
-    $greenPrimary,
-    $greenSecondary,
-    $greenTertiary
-  );
+    @include mixins.animatedLinearGradient($greenPrimary, $greenSecondary, $greenTertiary);
 }
 
 .rest-time-background-gradient {
-  @include mixins.animatedLinearGradient(
-    $redPrimary,
-    $redSecondary,
-    $redTertiary
-  );
+    @include mixins.animatedLinearGradient($redPrimary, $redSecondary, $redTertiary);
 }
 
 .round-reset-time-background-gradient {
-  @include mixins.animatedLinearGradient(
-    $yellowPrimary,
-    $yellowSecondary,
-    $yellowTertiary
-  );
+    @include mixins.animatedLinearGradient($yellowPrimary, $yellowSecondary, $yellowTertiary);
 }
 
 .root-layout {
-  height: 100vh;
-  overflow: hidden;
+    height: 100vh;
+    overflow: hidden;
 
-  .menu {
-    padding: spacingPixel(2);
+    .menu {
+        padding: spacingPixel(2);
 
-    .menu-header {
-      align-items: center;
-      justify-content: space-between;
+        .menu-header {
+            align-items: center;
+            justify-content: space-between;
 
-      .menu-header-headline {
-        font-weight: $weightBigger;
-      }
+            .menu-header-headline {
+                font-weight: $weightBigger;
+            }
+        }
+
+        .menu-sliding-pane {
+            background: $whiteDark;
+            color: getContrastingTextColor($whiteDark);
+            transition: $transitionL;
+            position: absolute;
+            z-index: $zIndexS;
+            width: 66%;
+            overflow: hidden;
+            border-top-right-radius: $borderRadiusM;
+            border-bottom-right-radius: $borderRadiusM;
+            transform: translateX(-100%);
+            @include mixins.topRightBottomLeft();
+
+            .menu-sliding-pane-header {
+                color: $whiteDark;
+                align-items: center;
+                padding: spacingPixel(3) spacingPixel(2) spacingPixel(2);
+                background: $redDark;
+
+                .menu-sliding-pane-header-time-icon {
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: $borderRadiusFull;
+                    margin-right: spacingPixel(1);
+                    height: spacingPixel(6);
+                    width: spacingPixel(6);
+                    flex-shrink: 0;
+                    border: 1px solid change-color-alpha($whiteDark, 0.5);
+
+                    p {
+                        font-size: 14px;
+                    }
+                }
+
+                .menu-sliding-pane-header-time-text {
+                    font-size: spacingPixel(2);
+                    text-align: center;
+                    font-weight: $weightBigger;
+                }
+            }
+
+            .menu-sliding-pane-options {
+                padding-top: spacingPixel(4);
+                padding-bottom: spacingPixel(4);
+
+                .menu-sliding-pane-option {
+                    align-items: center;
+                    padding: spacingPixel(2);
+                    margin-bottom: spacingPixel(1);
+
+                    svg {
+                        stroke: change-color-alpha($blackDark, 0.5);
+                        margin-right: spacingPixel(1);
+                    }
+
+                    .menu-sliding-pane-option-text {
+                        font-size: spacingPixel(1.75);
+                        color: $blackDark;
+                        font-weight: $weightBigger;
+                    }
+
+                    .menu-sliding-pane-option-text-selected {
+                        color: $redPrimary;
+                    }
+                }
+
+                .menu-sliding-pane-option-selected {
+                    background: linear-gradient(to right, $redOpacity33 0%, $redOpacity5 100%);
+
+                    svg {
+                        stroke: $redPrimary;
+                        margin-right: spacingPixel(1);
+                    }
+                }
+            }
+        }
+
+        .menu-sliding-pane-open {
+            transform: translateX(0);
+        }
     }
-
-    .menu-sliding-pane {
-      background: $whiteDark;
-      color: getContrastingTextColor($whiteDark);
-      transition: $transitionL;
-      position: absolute;
-      z-index: $zIndexS;
-      width: 66%;
-      overflow: hidden;
-      border-top-right-radius: $borderRadiusM;
-      border-bottom-right-radius: $borderRadiusM;
-      transform: translateX(-100%);
-      @include mixins.topRightBottomLeft();
-
-      .menu-sliding-pane-header {
-        color: $whiteDark;
-        align-items: center;
-        padding: spacingPixel(3) spacingPixel(2) spacingPixel(2);
-        background: $redDark;
-
-        .menu-sliding-pane-header-time-icon {
-          align-items: center;
-          justify-content: center;
-          border-radius: $borderRadiusFull;
-          margin-right: spacingPixel(1);
-          height: spacingPixel(6);
-          width: spacingPixel(6);
-          flex-shrink: 0;
-          border: 1px solid reduceOpacity($whiteDark, 0.5);
-
-          p {
-            font-size: 14px;
-          }
-        }
-
-        .menu-sliding-pane-header-time-text {
-          font-size: spacingPixel(2);
-          text-align: center;
-          font-weight: $weightBigger;
-        }
-      }
-
-      .menu-sliding-pane-options {
-        padding-top: spacingPixel(4);
-        padding-bottom: spacingPixel(4);
-
-        .menu-sliding-pane-option {
-          align-items: center;
-          padding: spacingPixel(2);
-          margin-bottom: spacingPixel(1);
-
-          svg {
-            stroke: reduceOpacity($blackDark, 0.5);
-            margin-right: spacingPixel(1);
-          }
-
-          .menu-sliding-pane-option-text {
-            font-size: spacingPixel(1.75);
-            color: $blackDark;
-            font-weight: $weightBigger;
-          }
-
-          .menu-sliding-pane-option-text-selected {
-            color: $redPrimary;
-          }
-        }
-
-        .menu-sliding-pane-option-selected {
-          background: linear-gradient(
-            to right,
-            $redOpacity33 0%,
-            $redOpacity5 100%
-          );
-
-          svg {
-            stroke: $redPrimary;
-            margin-right: spacingPixel(1);
-          }
-        }
-      }
-    }
-
-    .menu-sliding-pane-open {
-      transform: translateX(0);
-    }
-  }
 }

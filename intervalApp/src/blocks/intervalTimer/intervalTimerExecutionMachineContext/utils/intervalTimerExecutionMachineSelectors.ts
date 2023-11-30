@@ -7,6 +7,8 @@ export const selectRemainingTotalTime = ({ context }: ApplicationProcessMachine)
 
 export const selectIsExecuting = ({ context }: ApplicationProcessMachine) => context.isExecuting;
 
+export const selectIntervalTimerExecutionState = ({ value }: ApplicationProcessMachine) => value;
+
 export const makeSelectTotalCount =
     (contextKey: IntervalIntensityType.ROUND_COUNT | IntervalIntensityType.EXERCISE_COUNT) =>
     ({ context }: ApplicationProcessMachine) =>

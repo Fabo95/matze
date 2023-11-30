@@ -21,6 +21,8 @@
 @use 'components/button';
 @use 'components/detailButton';
 @use 'components/textAreaAutosize';
+@use 'components/skeleton';
+@use 'components/page';
 
 @use 'components/icons';
 @use 'components/chevron';
@@ -29,5 +31,6 @@
 @use 'pages/loginRegister';
 @use 'pages/chat';
 @use 'layout/layout';
+@use 'layout/loading';
 
 @import 'abstracts/variables';

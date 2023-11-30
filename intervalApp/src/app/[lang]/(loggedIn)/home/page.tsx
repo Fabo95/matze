@@ -6,6 +6,12 @@ export default async function Home() {
 
     const interval = await apiGetInterval();
 
+    const p = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("d");
+        }, 30000);
+    });
+
     // --- RENDER ---
 
     return <IntervalTimerBlock interval={interval} key={JSON.stringify(interval)} />;

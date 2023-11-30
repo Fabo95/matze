@@ -18,9 +18,4 @@ const initialIntervalTimerExecutionMachine = createIntervalTimerExecutionMachine
 
 const IntervalTimerExecutionMachineContext = createActorContext(initialIntervalTimerExecutionMachine);
 
-export const {
-    Provider: IntervalTimerExecutionMachineProvider,
-    useActor,
-    useActorRef,
-    useSelector,
-} = IntervalTimerExecutionMachineContext;
+export const { Provider: MachineProvider, useActor, useActorRef, useSelector } = IntervalTimerExecutionMachineContext;

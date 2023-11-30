@@ -7,7 +7,7 @@
   border-radius: $borderRadiusM;
   padding: spacingPixel(1.5) spacingPixel(2);
   font-weight: $weightBigger;
-  background: reduceOpacity($whiteDark, 0.5);
+  background: change-color-alpha($whiteDark, 0.5);
   align-self: center;
   width: max-content;
   border: none;

@@ -1,0 +1,13 @@
+@import '../abstracts/variables';
+
+.chat-page-loading-block-start {
+  width: 200px;
+  height: 35px;
+  border-radius: $borderRadiusM;
+}
+
+.home-page-loading-block-start {
+  border-radius: $borderRadiusFull;
+  width: 152px;
+  height: 152px;
+}

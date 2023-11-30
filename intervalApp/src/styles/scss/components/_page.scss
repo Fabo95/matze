@@ -1,0 +1,76 @@
+@import "../abstracts/functions";
+
+.page {
+    flex-grow: 1;
+    overflow: hidden;
+    height: 100%;
+
+    .page-block-start {
+        display: flex;
+        flex-direction: column;
+        background: transparent;
+        position: relative;
+        align-items: center;
+        justify-content: center;
+        padding: spacingPixel(1);
+        flex-grow: 1;
+        min-height: 300px;
+    }
+
+    .page-action {
+        position: relative;
+
+        .page-action-button {
+            overflow: hidden;
+            position: absolute;
+            left: 50%;
+            width: spacingPixel(10);
+            height: spacingPixel(10);
+            transform: translate(-50%, -10%);
+            z-index: $zIndexXs;
+            background: transparent;
+            align-items: center;
+            justify-content: center;
+            border-radius: $borderRadiusFull;
+            bottom: 0;
+            display: flex;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+
+        /* Circle cut off */
+        .page-action-circle-cut-off {
+            position: relative;
+            overflow: hidden;
+            /* Needed because otherwise there is a weird uncolored border on mobile devices */
+            bottom: -1px;
+            padding: spacingPixel(6) spacingPixel(2) spacingPixel(0);
+
+            &:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 50%;
+                border-width: 0;
+                width: spacingPixel(10);
+                height: spacingPixel(10);
+                box-shadow: 0 0 0 2000px white;
+            }}
+    }
+
+    .page-block-end {
+        border-top-left-radius: spacingPixel(1);
+        border-top-right-radius: spacingPixel(1);
+        overflow: hidden;
+        width: 100%;
+        height: fit-content;
+        min-height: 200px;
+        overflow-y: auto;
+    }
+}
