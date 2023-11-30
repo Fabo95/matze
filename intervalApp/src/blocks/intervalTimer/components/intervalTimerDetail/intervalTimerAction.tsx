@@ -12,7 +12,7 @@ import { selectIsExecuting } from "@Interval/blocks/intervalTimer/intervalTimerE
 export const IntervalTimerAction = () => {
     // --- STATE ---
 
-    const [_, send] = useActor();
+    const [, send] = useActor();
 
     const isExecuting = useSelector(selectIsExecuting);
 

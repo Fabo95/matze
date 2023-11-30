@@ -6,7 +6,6 @@ import { IntervalTimerDetailConfigurationOptions } from "@Interval/blocks/interv
 import { IntervalTimerDetailExecutionOverview } from "@Interval/blocks/intervalTimer/components/intervalTimerDetail/components/IntervalTimerDetailExecutionOverview/intervalTimerDetailExecutionOverview";
 import { useSelector } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext";
 import { selectIsExecuting } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors";
-import { Box } from "@Interval/components/core/box";
 import { Swiper } from "@Interval/components/core/swiper/swiper";
 import { Interval } from "@Interval/api/utils/apiTypes";
 

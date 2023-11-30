@@ -1,7 +1,5 @@
 import { ReactNode } from "react";
 
-import { Observable } from "rxjs";
-
 import { createIntervalTimerExecutionMachine } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine";
 import { getTotalIntervalTime } from "@Interval/utils/helpers";
 import { MachineProvider } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext";
