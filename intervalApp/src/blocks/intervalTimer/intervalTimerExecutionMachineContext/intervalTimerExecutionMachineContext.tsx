@@ -3,11 +3,12 @@ import { createActorContext } from "@xstate/react";
 import { createIntervalTimerExecutionMachine } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachine/IntervalTimerExecutionMachine";
 import { getReactiveCallback } from "@Interval/utils/helpers";
 
-const [, isExecuting$] = getReactiveCallback();
+const [nextIsExecution, isExecuting$] = getReactiveCallback<boolean>();
 
 const initialIntervalTimerExecutionMachine = createIntervalTimerExecutionMachine({
     isExecuting$,
     exerciseCount: 0,
+    nextIsExecution: nextIsExecution.next,
     restTime: 0,
     roundCount: 0,
     roundResetTime: 0,
