@@ -1,5 +1,4 @@
 import { Box } from "@Interval/components/core/box";
-import { Button } from "@Interval/components/core/button";
 import { Form } from "@Interval/components/core/form";
 import { Heading } from "@Interval/components/core/heading";
 import { Input } from "@Interval/components/core/input";
@@ -10,6 +9,7 @@ import { apiPostRegisterServerAction } from "@Interval/serverAction/serverAction
 import { registerErrorState } from "@Interval/serverAction/utils/serverActionConstants";
 import { Locale } from "@Interval/utils/types";
 import { Link } from "@Interval/components/core/link";
+import { FormButton } from "@Interval/components/formButton";
 
 export default async function register({
     params: { lang },
@@ -76,9 +76,9 @@ export default async function register({
                         <Text className="form-validation-error">{passwordValidationError}</Text>
                     </Box>
 
-                    <Button className="form-cta" type="submit">
+                    <FormButton className="form-cta" type="submit">
                         {buttonTitle}
-                    </Button>
+                    </FormButton>
 
                     <Link className="form-subtitle" href={"/login"} locale={lang}>
                         {t("pages.register.subtitle.loginRedirect")}

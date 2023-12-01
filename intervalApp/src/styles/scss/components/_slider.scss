@@ -67,9 +67,9 @@
       transform: translateY(-50%);
       background: linear-gradient(
         to right,
-        change-color-alpha($whiteDark, 0) 0%,
+        change-color-alpha($whiteDark, -1) 0%,
         $whiteDark 50%,
-        change-color-alpha($whiteDark, 0) 100%
+        change-color-alpha($whiteDark, -1) 100%
       );
     }
   }

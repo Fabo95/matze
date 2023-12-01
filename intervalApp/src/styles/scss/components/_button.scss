@@ -4,20 +4,137 @@
 @import "../abstracts/functions";
 
 .button {
-    box-sizing: border-box;
-    border-radius: $borderRadiusM;
-    padding: spacingPixel(1.25) spacingPixel(2);
-    font-weight: $weightBigger;
-    background: change-color-alpha($blackDark, 0.53);
-    align-self: center;
     width: max-content;
     border: 1px solid transparent;
-    color: change-color-alpha($blackDark, 0.6);
     cursor: pointer;
     transition: 150ms;
+    align-self: center;
+    box-sizing: border-box;
+    position: relative;
+
+    // Applies styles only when the element with class .button has a child element with class .button-loading.
+    // See: https://stackoverflow.com/questions/4220327/css-selector-element-with-a-given-child
+    &:has(.button-loading) {
+        color: transparent;
+    }
+}
+
+.button-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $zIndexS;
+
+    .button-loading-indicator {
+        border-radius: 50%;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: $borderRadiusFull;
+        }
+
+        &::before {
+            translate: -14px 0;
+            animation: button-loading-dot-two 2.5s ease 0s infinite;
+        }
+
+        &::after {
+            translate: 6px 0;
+            animation: button-loading-dot-three 2.5s ease 0s infinite;
+        }
+    }
+}
+
+.button-small {
+    padding: spacingPixel(1) spacingPixel(1.75);
+    font-weight: $weightRegular;
+    border-radius: $borderRadiusM;
+}
+
+.button-medium {
+    padding: spacingPixel(1.25) spacingPixel(2);
+    font-weight: $weightBigger;
+    border-radius: $borderRadiusM;
+}
+
+.button-large {
+    padding: spacingPixel(2) spacingPixel(3);
+    font-weight: $weightBig;
+    border-radius: $borderRadiusM;
+}
+
+.button-dark {
+    $background: change-color-alpha($blackDark, -0.93);
+    $color: change-color-alpha($blackDark, 0.7);
+
+    background: $background;
+    color: $color;
 
     &:hover {
-        background: change-color-alpha($blackDark, 0.55);
-        color: change-color-alpha($blackDark, 0.7);
+        background: change-color-alpha($blackDark, -0.9);
+        color: change-color-alpha($blackDark, 0.78);
+    }
+
+    // Applies styles only when the element with class .button-dark has a child element with class .button-loading.
+    // See: https://stackoverflow.com/questions/4220327/css-selector-element-with-a-given-child
+    &:has(.button-loading) {
+        &:hover {
+            background: $background;
+            color: transparent;
+        }
+    }
+
+    .button-loading-indicator {
+        background: $blackDark;
+
+        &::before,
+        &::after {
+            background: $blackDark;
+        }
+    }
+}
+
+.button-light {
+    $background: change-color-alpha($whiteDark, -0.73);
+    $color: change-color-alpha($whiteDark, 0.7);
+
+    background: $background;
+    color: $color;
+
+    &:hover {
+        background: change-color-alpha($whiteDark, -0.7);
+        color: change-color-alpha($whiteDark, 0.78);
+    }
+
+    // Applies styles only when the element with class .button-light has a child element with class .button-loading.
+    // See: https://stackoverflow.com/questions/4220327/css-selector-element-with-a-given-child
+    &:has(.button-loading) {
+        &:hover {
+            background: $background;
+            color: transparent;
+        }
+    }
+
+    .button-loading-indicator {
+        background: $whiteDark;
+
+        &::before,
+        &::after {
+            background: $whiteDark;
+        }
     }
 }

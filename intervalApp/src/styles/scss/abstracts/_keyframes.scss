@@ -1,58 +1,94 @@
 @keyframes backdrop-filter-in-keyframe {
-  0% {
-    backdrop-filter: blur(0);
-  }
-  100% {
-    backdrop-filter: blur(8px);
-  }
+    0% {
+        backdrop-filter: blur(0);
+    }
+    100% {
+        backdrop-filter: blur(8px);
+    }
 }
 
 @keyframes backdrop-filter-out-keyframe {
-  0% {
-    backdrop-filter: blur(8px);
-  }
-  100% {
-    backdrop-filter: blur(0);
-  }
+    0% {
+        backdrop-filter: blur(8px);
+    }
+    100% {
+        backdrop-filter: blur(0);
+    }
 }
 
 @keyframes animated-linear-gradient-keyframe {
-  0% {
-    background-position: 0 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0 50%;
-  }
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
 }
 
 @keyframes pulse-wave-keyframe-up {
-  100% {
-    opacity: 0;
-    transform: scale(2);
-  }
+    100% {
+        opacity: 0;
+        transform: scale(2);
+    }
 }
 
 @keyframes pulse-wave-keyframe-down {
-  100% {
-    opacity: 0;
-    transform: scale(2);
-  }
+    100% {
+        opacity: 0;
+        transform: scale(2);
+    }
 
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 @keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
 }
 
+
+@keyframes button-loading-dot-two {
+    0% {
+        translate: -14px 0;
+        scale: 1;
+    }
+
+    25% {
+        translate: -18px 0;
+        scale: 1.1;
+    }
+
+    50%, 100% {
+        translate: -14px 0;
+        scale: 1;
+    }
+
+}
+
+@keyframes button-loading-dot-three {
+    0%,
+    50% {
+        translate: 6px 0;
+        scale: 1;
+    }
+
+    75% {
+        translate: 10px 0;
+        scale: 1.1;
+    }
+
+    100% {
+        translate: 6px 0;
+        scale: 1;
+    }
+}

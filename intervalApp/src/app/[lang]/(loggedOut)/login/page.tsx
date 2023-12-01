@@ -1,5 +1,4 @@
 import { Box } from "@Interval/components/core/box";
-import { Button } from "@Interval/components/core/button";
 import { Form } from "@Interval/components/core/form";
 import { Heading } from "@Interval/components/core/heading";
 import { Input } from "@Interval/components/core/input";
@@ -10,6 +9,7 @@ import { apiPostLoginServerAction } from "@Interval/serverAction/serverActions";
 import { loginErrorState } from "@Interval/serverAction/utils/serverActionConstants";
 import { Locale } from "@Interval/utils/types";
 import { Link } from "@Interval/components/core/link";
+import { FormButton } from "@Interval/components/formButton";
 
 export default async function Login({
     params: { lang },
@@ -62,9 +62,9 @@ export default async function Login({
                         <Text className="form-validation-error">{passwordValidationError}</Text>
                     </Box>
 
-                    <Button className="form-cta" type="submit">
+                    <FormButton className="form-cta" type="submit">
                         {t("pages.login.cta")}
-                    </Button>
+                    </FormButton>
 
                     <Link className="form-subtitle" href={"/register"} locale={lang}>
                         {t("pages.login.subtitle.registerRedirect")}

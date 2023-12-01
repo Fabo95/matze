@@ -1,6 +1,6 @@
 "use client";
 
-import { SyntheticEvent, useCallback, useMemo, useRef, useState, cloneElement, startTransition } from "react";
+import { cloneElement, startTransition, SyntheticEvent, useCallback, useMemo, useRef, useState } from "react";
 
 import { useParams } from "next/navigation";
 import { distinctUntilChanged, map } from "rxjs";
@@ -9,7 +9,7 @@ import {
     IntervalTimerConfigurationOptionProps,
     IntervalTimerConfigurationType,
 } from "@Interval/blocks/intervalTimer/components/utils/intervalTimerTypes";
-import { Button } from "@Interval/components/core/button";
+import { Button } from "@Interval/components/button/button";
 import { DetailButton } from "@Interval/components/core/detailButton";
 import { Modal } from "@Interval/components/core/modal";
 import { ModalHeader } from "@Interval/components/core/modalHeader";
@@ -17,11 +17,10 @@ import { SliderContainer } from "@Interval/components/core/slider/components/sli
 import { SliderThumb } from "@Interval/components/core/slider/components/sliderThumb";
 import { SliderTrack } from "@Interval/components/core/slider/components/sliderTrack";
 import { Slider } from "@Interval/components/core/slider/slider";
-import { getTFunction } from "@Interval/i18n/tFunction";
 import { apiPatchIntervalServerAction } from "@Interval/serverAction/serverActions";
 import { getFormattedSeconds } from "@Interval/utils/helpers";
-import { useObservable, useReactiveCallback } from "@Interval/utils/hooks";
-import { Locale } from "@Interval/utils/types";
+import { useClientTranslation, useObservable, useReactiveCallback } from "@Interval/utils/hooks";
+import { ButtonType } from "@Interval/components/button/utils/buttonTypes";
 
 export const IntervalTimerDetailConfigurationOption = ({
     className,
@@ -34,11 +33,13 @@ export const IntervalTimerDetailConfigurationOption = ({
 }: IntervalTimerConfigurationOptionProps) => {
     const params = useParams();
 
-    const t = getTFunction(params.lang as Locale);
+    const t = useClientTranslation();
 
     // --- STATE ---
 
     const [intensity, setIntensity] = useState<number>(propsIntensity);
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const modalRef = useRef<HTMLDialogElement>(null);
 
@@ -94,6 +95,7 @@ export const IntervalTimerDetailConfigurationOption = ({
     );
 
     const handleConfirmIntensity = () => {
+        setIsLoading(true);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         startTransition(async () => {
@@ -102,9 +104,10 @@ export const IntervalTimerDetailConfigurationOption = ({
                 intensityType,
                 path: params.lang,
             });
-        });
 
-        closeModal();
+            closeModal();
+            setIsLoading(false);
+        });
     };
 
     // --- HELPERS ---
@@ -156,7 +159,9 @@ export const IntervalTimerDetailConfigurationOption = ({
                     </>
                 </SliderContainer>
 
-                <Button onClick={handleConfirmIntensity}>{t("cta.confirm")}</Button>
+                <Button buttonType={ButtonType.LIGHT} isLoading={isLoading} onClick={handleConfirmIntensity}>
+                    {t("cta.confirm")}
+                </Button>
             </Modal>
         </>
     );
