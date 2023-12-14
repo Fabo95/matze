@@ -2,10 +2,6 @@
 
 import { ButtonHTMLAttributes, ForwardedRef, forwardRef, ReactNode } from "react";
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import { useFormStatus } from "react-dom";
-
 import { UnstyledButton } from "@Interval/components/core/unstyledButton";
 import { ButtonSize, ButtonType } from "@Interval/components/button/utils/buttonTypes";
 import {
@@ -33,10 +29,6 @@ export const Button = forwardRef(
         }: ButtonProps,
         ref?: ForwardedRef<HTMLButtonElement>
     ) => {
-        const status = useFormStatus();
-
-        console.log("status", status);
-
         // --- HELPERS ---
 
         const buttonType = BUTTON_TYPE_TO_CLASS_NAME_MAP[propsButtonType];

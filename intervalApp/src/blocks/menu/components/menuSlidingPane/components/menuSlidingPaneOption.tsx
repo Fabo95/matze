@@ -3,8 +3,9 @@ import { ReactNode } from "react";
 import { Link } from "@Interval/components/core/link";
 import { Row } from "@Interval/components/core/row";
 import { Text } from "@Interval/components/core/text";
-import { useClientTranslation, useParams } from "@Interval/utils/hooks";
+import { useParams } from "@Interval/utils/routing/routingHooks";
 import { LoggedInPage } from "@Interval/utils/types";
+import { useClientTranslation } from "@Interval/utils/hooks";
 
 export const MenuSlidingPaneOption = ({
     icon,

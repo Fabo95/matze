@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
-import { useParams as useParamsNext } from "next/navigation";
 import { Observable, Subject } from "rxjs";
 
 import { getTFunction } from "@Interval/i18n/tFunction";
 import { Locale, TFunction } from "@Interval/utils/types";
+import { useParams } from "@Interval/utils/routing/routingHooks";
 
 export const useClientTranslation = (): TFunction => {
     const params = useParams<{
@@ -13,8 +12,6 @@ export const useClientTranslation = (): TFunction => {
     }>();
     return getTFunction(params.lang);
 };
-
-export const useParams = <T extends Params = Params>(): T => useParamsNext();
 
 export const useBoolean = (initialValue: boolean) => {
     const [value, setValue] = useState<boolean>(initialValue);

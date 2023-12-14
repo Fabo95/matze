@@ -1,0 +1,15 @@
+@import "../abstracts/variables";
+@import "../abstracts/functions";
+
+.Toastify .Toastify__toast {
+    background: $whiteDark;
+    border-bottom-left-radius: $borderRadiusM;
+    border-bottom-right-radius: $borderRadiusM;
+    padding: spacingPixel(2);
+    color: $blackDark;
+
+    svg {
+        fill: $blackDark;
+        stroke: $blackDark;
+    }
+}

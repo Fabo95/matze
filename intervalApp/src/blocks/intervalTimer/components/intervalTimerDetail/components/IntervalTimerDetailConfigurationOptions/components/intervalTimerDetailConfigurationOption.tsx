@@ -21,6 +21,7 @@ import { apiPatchIntervalServerAction } from "@Interval/serverAction/serverActio
 import { getFormattedSeconds } from "@Interval/utils/helpers";
 import { useClientTranslation, useObservable, useReactiveCallback } from "@Interval/utils/hooks";
 import { ButtonType } from "@Interval/components/button/utils/buttonTypes";
+import { showToast } from "@Interval/utils/toast";
 
 export const IntervalTimerDetailConfigurationOption = ({
     className,
@@ -104,6 +105,8 @@ export const IntervalTimerDetailConfigurationOption = ({
                 intensityType,
                 path: params.lang,
             });
+
+            showToast(t("toast.intervalSaved"));
 
             closeModal();
             setIsLoading(false);

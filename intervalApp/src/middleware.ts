@@ -2,7 +2,7 @@ import { jwtVerify } from "jose";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-import { getLocale, getLocaleFromPathname, getPage } from "@Interval/utils/routing";
+import { getLocale, getLocaleFromPathname, getPage } from "@Interval/utils/routing/routingHelpers";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

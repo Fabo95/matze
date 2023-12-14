@@ -80,6 +80,9 @@ importers:
       react-textarea-autosize:
         specifier: ^8.5.3
         version: 8.5.3(@types/react@18.0.33)(react@18.3.0-canary-87cb0bf18-20231129)
+      react-toastify:
+        specifier: ^9.1.3
+        version: 9.1.3(react-dom@18.3.0-canary-87cb0bf18-20231129)(react@18.3.0-canary-87cb0bf18-20231129)
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
@@ -3301,7 +3304,7 @@ packages:
       isomorphic-fetch: 3.0.0
       prettier: 2.8.8
       xstate: 4.38.3
-      xstate-beta: /xstate@5.0.0-beta.53
+      xstate-beta: /xstate@5.0.0-beta.54
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -3901,6 +3904,11 @@ packages:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
+
+  /clsx@1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
 
   /clsx@2.0.0:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
@@ -6867,6 +6875,17 @@ packages:
       - '@types/react'
     dev: false
 
+  /react-toastify@9.1.3(react-dom@18.3.0-canary-87cb0bf18-20231129)(react@18.3.0-canary-87cb0bf18-20231129):
+    resolution: {integrity: sha512-fPfb8ghtn/XMxw3LkxQBk3IyagNpF/LIKjOBflbexr2AWxAH1MJgvnESwEwBn9liLFXgTKWgBSdZpw9m4OTHTg==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      clsx: 1.2.1
+      react: 18.3.0-canary-87cb0bf18-20231129
+      react-dom: 18.3.0-canary-87cb0bf18-20231129(react@18.3.0-canary-87cb0bf18-20231129)
+    dev: false
+
   /react-transition-group@4.4.5(react-dom@18.3.0-canary-87cb0bf18-20231129)(react@18.3.0-canary-87cb0bf18-20231129):
     resolution: {integrity: sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==}
     peerDependencies:
@@ -8177,8 +8196,8 @@ packages:
     resolution: {integrity: sha512-SH7nAaaPQx57dx6qvfcIgqKRXIh4L0A1iYEqim4s1u7c9VoCgzZc+63FY90AKU4ZzOC2cfJzTnpO4zK7fCUzzw==}
     dev: false
 
-  /xstate@5.0.0-beta.53:
-    resolution: {integrity: sha512-ioa28EXhKUPzaEyvPM9Sg1V0mQpp2EC45TgbpCbQeH54Qg4tIamHFf3ed/V3UQ8IAzZN0Ba4gvlEsUdG2HOn4Q==}
+  /xstate@5.0.0-beta.54:
+    resolution: {integrity: sha512-BTnCPBQ2iTKe4uCnHEe1hNx6VTbXU+5mQGybSQHOjTLiBi4Ryi+tL9T6N1tmqagvM8rfl4XRfvndogfWCWcdpw==}
     dev: false
 
   /y18n@5.0.8:

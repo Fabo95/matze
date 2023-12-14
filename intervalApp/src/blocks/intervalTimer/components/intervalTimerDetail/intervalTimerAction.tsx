@@ -8,6 +8,8 @@ import {
     useSelector,
 } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/intervalTimerExecutionMachineContext";
 import { selectIsExecuting } from "@Interval/blocks/intervalTimer/intervalTimerExecutionMachineContext/utils/intervalTimerExecutionMachineSelectors";
+import { createQueryString } from "@Interval/utils/routing/routingHelpers";
+import { usePathname, useRouter } from "@Interval/utils/routing/routingHooks";
 
 export const IntervalTimerAction = () => {
     // --- STATE ---
@@ -15,20 +17,28 @@ export const IntervalTimerAction = () => {
     const [, send] = useActor();
 
     const isExecuting = useSelector(selectIsExecuting);
+    const router = useRouter();
+    const pathname = usePathname();
 
     // --- CALLBACKS ---
 
     const startIntervalTimerExecution = useCallback(() => {
+        const searchParams = createQueryString({ isExecuting: true });
+
+        router.replace(`${pathname}?${searchParams}`);
+
         send({
             type: "START_EXECUTION",
         });
-    }, [send]);
+    }, [pathname, router, send]);
 
     const pauseIntervalTimerExecution = useCallback(() => {
+        router.replace(pathname);
+
         send({
             type: "PAUSE_EXECUTION",
         });
-    }, [send]);
+    }, [pathname, router, send]);
 
     // --- HELPERS ---
 

@@ -1,49 +1,49 @@
-@use '../abstracts/mixins' as mixins;
+@use "../abstracts/mixins" as mixins;
 
-@import '../abstracts/variables';
-@import '../abstracts/functions';
+@import "../abstracts/variables";
+@import "../abstracts/functions";
 
 .detail-button-work-time {
-  @include mixins.detail-button($greenLight, $greenDark);
+    @include mixins.detail-button(change-color-lightness($greenDark, 28%), $greenDark);
 }
 
 .detail-button-rest-time {
-  @include mixins.detail-button($redLight, $redDark);
+    @include mixins.detail-button(change-color-lightness($redDark, 38%), $redDark);
 }
 
 .detail-button-exercise-count {
-  @include mixins.detail-button($grayLight, $grayDark);
+    @include mixins.detail-button(change-color-lightness($grayDark, 21%), $grayDark);
 }
 
 .detail-button-round-count {
-  @include mixins.detail-button($blueLight, $blueDark);
+    @include mixins.detail-button(change-color-lightness($blueDark, 28%), $blueDark);
 }
 
 .detail-button-round-reset-time {
-  @include mixins.detail-button($yellowLight, $yellowDark);
+    @include mixins.detail-button(change-color-lightness($yellowDark, 22%), $yellowDark);
 }
 
 .detail-button {
-  border-radius: $borderRadiusL;
-  font-size: spacingPixel(2);
-  margin-bottom: spacingPixel(1.5);
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  padding: spacingPixel(1.5);
-  display: flex;
-  font-weight: $weightBigger;
-
-  &:last-of-type {
-    margin-bottom: 0;
-  }
-
-  .detail-button-text {
+    border-radius: $borderRadiusL;
+    font-size: spacingPixel(2);
+    margin-bottom: spacingPixel(1.5);
+    width: 100%;
     align-items: center;
-    color: $blackDark;
+    justify-content: space-between;
+    padding: spacingPixel(1.5);
+    display: flex;
+    font-weight: $weightBigger;
 
-    svg {
-      margin-right: spacingPixel(1);
+    &:last-of-type {
+        margin-bottom: 0;
     }
-  }
+
+    .detail-button-text {
+        align-items: center;
+        color: $blackDark;
+
+        svg {
+            margin-right: spacingPixel(1);
+        }
+    }
 }

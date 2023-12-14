@@ -72,6 +72,9 @@
             }
         }
     },
+    "toast": {
+        "intervalSaved": "Training gespeichert"
+    },
     "cta": {
         "confirm": "Bestätigen"
     }

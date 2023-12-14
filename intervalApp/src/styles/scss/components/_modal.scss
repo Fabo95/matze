@@ -37,6 +37,10 @@
       font-weight: $weightBigger;
       margin-left: spacingPixel(1);
     }
+
+    svg {
+      stroke: $whiteDark;
+    }
   }
 
   .modal-header-intensity {

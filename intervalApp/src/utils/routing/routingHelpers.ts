@@ -1,6 +1,7 @@
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
 import { NextRequest } from "next/server";
+import { ReadonlyURLSearchParams } from "next/dist/client/components/navigation";
 
 import { i18n } from "@Interval/i18n/i18nConfig";
 import { Locale, Page } from "@Interval/utils/types";
@@ -49,4 +50,21 @@ export const getLocale = (request: NextRequest): string | undefined => {
     }).languages();
 
     return matchLocale(languages, locales as string[], i18n.defaultLocale);
+};
+
+export const createQueryString = (
+    keyValuePairs: Record<string, string | boolean>,
+    searchParams?: ReadonlyURLSearchParams
+) => {
+    const params = new URLSearchParams(searchParams);
+
+    Object.entries(keyValuePairs).forEach(([key, value]) => {
+        if (searchParams && searchParams.has(key)) {
+            params.delete(key);
+        }
+
+        params.set(key, String(value));
+    });
+
+    return params.toString();
 };
