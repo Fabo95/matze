@@ -30,10 +30,10 @@ export type User = {
     userId: number;
 } & RecordMetadata;
 
-export type FriendshipMessages = {
+export type Friendship = {
     friendId: number;
     friendshipId: number;
-    friendshipMessages: Message[];
+    messages: Message[];
     userA: User;
     userB: User;
     userId: number;

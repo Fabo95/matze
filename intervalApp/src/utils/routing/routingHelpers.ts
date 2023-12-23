@@ -52,18 +52,34 @@ export const getLocale = (request: NextRequest): string | undefined => {
     return matchLocale(languages, locales as string[], i18n.defaultLocale);
 };
 
-export const createQueryString = (
-    keyValuePairs: Record<string, string | boolean>,
+export const createSearchParams = (
+    keyValuePairs: Record<string, string | boolean | number>,
     searchParams?: ReadonlyURLSearchParams
 ) => {
     const params = new URLSearchParams(searchParams);
 
     Object.entries(keyValuePairs).forEach(([key, value]) => {
-        if (searchParams && searchParams.has(key)) {
+        if (params.has(key)) {
             params.delete(key);
         }
 
         params.set(key, String(value));
+    });
+
+    return params.toString();
+};
+
+export const deleteSearchParams = ({
+    keysToDelete,
+    searchParams,
+}: {
+    keysToDelete: string[];
+    searchParams: ReadonlyURLSearchParams;
+}) => {
+    const params = new URLSearchParams(searchParams);
+
+    keysToDelete.forEach((key) => {
+        params.delete(key);
     });
 
     return params.toString();

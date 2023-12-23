@@ -4,41 +4,59 @@ import { useCallback, useMemo, useState } from "react";
 
 import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
-import { FriendshipMessages, User } from "@Interval/api/utils/apiTypes";
+import { Friendship, User } from "@Interval/api/utils/apiTypes";
 import { ChatFriendshipCard } from "@Interval/blocks/chat/components/chatFriendships/chatFriendshipCard/chatFriendshipCard";
-import { ChatMessages } from "@Interval/blocks/chat/components/chatMessages/chatMessages";
-import { getTFunction } from "@Interval/i18n/tFunction";
-import { useBoolean } from "@Interval/utils/hooks";
-import { Locale } from "@Interval/utils/types";
+import { ChatSlidingPane } from "@Interval/blocks/chat/components/chatMessages/chatSlidingPane";
+import { useClientTranslation } from "@Interval/utils/hooks";
 import { Page } from "@Interval/components/core/page/page";
 import { Box } from "@Interval/components/core/box";
 import { Text } from "@Interval/components/core/text";
+import { createSearchParams, deleteSearchParams } from "@Interval/utils/routing/routingHelpers";
+import { usePathname, useRouter, useSearchParams } from "@Interval/utils/routing/routingHooks";
 
 type ChatBlockProps = {
     authToken?: RequestCookie;
-    friendshipsMessages: FriendshipMessages[];
+    friendships: Friendship[];
+    selectedFriendship?: Friendship;
     user: User;
 };
 
-export const ChatBlock = ({ authToken, friendshipsMessages, user }: ChatBlockProps) => {
-    const t = getTFunction(Locale.DE);
+export const ChatBlock = ({
+    authToken,
+    friendships,
+    selectedFriendship: propsSelectedFriendship,
+    user,
+}: ChatBlockProps) => {
+    const t = useClientTranslation();
 
     // --- STATE ---
 
-    const [selectedFriendshipMessages, setSelectedFriendshipMessages] = useState<FriendshipMessages>();
+    const [selectedFriendship, setSelectedFriendship] = useState<Friendship | undefined>(propsSelectedFriendship);
 
-    const { setTrue: openChatMessages, value: isChatMessagesShown } = useBoolean(false);
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
     // --- CALLBACKS ---
 
-    const handleSelectFriendshipMessages = useCallback(
-        (friendshipMessages: FriendshipMessages) => {
-            setSelectedFriendshipMessages(friendshipMessages);
+    const handleOpenChat = useCallback(
+        (friendship: Friendship) => {
+            const searchParams = createSearchParams({ friendshipId: friendship.friendshipId });
 
-            openChatMessages();
+            router.replace(`${pathname}?${searchParams}`);
+
+            setSelectedFriendship(friendship);
         },
-        [openChatMessages]
+        [pathname, router]
     );
+
+    const handleCloseChat = useCallback(() => {
+        const newSearchParams = deleteSearchParams({ searchParams, keysToDelete: ["friendshipId"] });
+
+        router.replace(newSearchParams ? `${pathname}?${newSearchParams}` : pathname);
+
+        setSelectedFriendship(undefined);
+    }, [pathname, router, searchParams]);
 
     // --- MEMOIZED DATA ---
 
@@ -47,28 +65,28 @@ export const ChatBlock = ({ authToken, friendshipsMessages, user }: ChatBlockPro
     const pageBlockEnd = useMemo(
         () => (
             <Box className="chat-friendships">
-                {friendshipsMessages.map((friendshipMessages) => (
+                {friendships.map((friendship) => (
                     <ChatFriendshipCard
-                        friendshipMessages={friendshipMessages}
-                        handleSelectFriendshipMessages={handleSelectFriendshipMessages}
-                        key={friendshipMessages.friendshipId}
+                        friendship={friendship}
+                        handleOpenChat={handleOpenChat}
+                        key={friendship.friendshipId}
                         userId={user.userId}
                     />
                 ))}
             </Box>
         ),
-        [friendshipsMessages, handleSelectFriendshipMessages, user.userId]
+        [friendships, handleOpenChat, user.userId]
     );
 
     // --- RENDER ---
 
     return (
         <>
-            {selectedFriendshipMessages && isChatMessagesShown && (
-                <ChatMessages
+            {selectedFriendship && (
+                <ChatSlidingPane
                     authToken={authToken}
-                    isChatMessagesShown={isChatMessagesShown}
-                    selectedFriendshipMessages={selectedFriendshipMessages}
+                    handleCloseChat={handleCloseChat}
+                    selectedFriendship={selectedFriendship}
                     userId={user.userId}
                 />
             )}

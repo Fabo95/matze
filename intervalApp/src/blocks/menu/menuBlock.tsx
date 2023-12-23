@@ -8,6 +8,7 @@ import { BackgroundBlur } from "@Interval/components/core/backgroundBlur";
 import { Box } from "@Interval/components/core/box";
 import { usePathname, useRouter, useSearchParams } from "@Interval/utils/routing/routingHooks";
 import { useBoolean } from "@Interval/utils/hooks";
+import { deleteSearchParams } from "@Interval/utils/routing/routingHelpers";
 
 let isFirstRender = true;
 export const MenuBlock = ({ headline }: { headline: string }) => {
@@ -29,9 +30,11 @@ export const MenuBlock = ({ headline }: { headline: string }) => {
         if (isFirstRender) {
             isFirstRender = false;
 
-            router.replace(pathname);
+            const newSearchParams = deleteSearchParams({ searchParams, keysToDelete: ["isExecuting"] });
+
+            router.replace(newSearchParams ? `${pathname}?${newSearchParams}` : pathname);
         }
-    }, [pathname, router]);
+    }, [isExecuting, pathname, router, searchParams]);
 
     // --- RENDER ---
 

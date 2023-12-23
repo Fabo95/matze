@@ -1,12 +1,5 @@
 import { apiBaseUrl, authBaseUrl } from "@Interval/api/utils/apiConstants";
-import {
-    FriendshipMessages,
-    Interval,
-    IntervalIntensityType,
-    Login,
-    Register,
-    User,
-} from "@Interval/api/utils/apiTypes";
+import { Friendship, Interval, IntervalIntensityType, Login, Register, User } from "@Interval/api/utils/apiTypes";
 import { getFetchOptions } from "@Interval/serverAction/utils/serverActionHelpers";
 import { HttpMethod } from "@Interval/serverAction/utils/serverActionTypes";
 
@@ -76,5 +69,5 @@ export const apiGetUserByIdOrFromToken = async ({
 } = {}): Promise<User> =>
     fetch(`${authBaseUrl}users${userId ? `?userId=${userId}` : ""}`, getFetchOptions()).then((data) => data.json());
 
-export const apiGetFriendshipsMessages = async (): Promise<FriendshipMessages[]> =>
-    fetch(`${apiBaseUrl}friendships/messages`, getFetchOptions()).then((data) => data.json());
+export const apiGetFriendships = async (): Promise<Friendship[]> =>
+    fetch(`${apiBaseUrl}friendships`, getFetchOptions()).then((data) => data.json());
