@@ -20,7 +20,7 @@
 }
 
 .detail-button-round-reset-time {
-    @include mixins.detail-button(change-color-lightness($yellowDark, 22%), $yellowDark);
+    @include mixins.detail-button(change-color-lightness($yellowDark, 28%), $yellowDark);
 }
 
 .detail-button {
